@@ -43,7 +43,6 @@ dev.log
 
 # Verification scratch: headless Chrome profile, unsorted image drops, server logs
 .chrome-capture-profile/
-images/_inbox/
 prod.log
 
 # Verification builds, kept out of the dev server's .next

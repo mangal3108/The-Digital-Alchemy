@@ -109,7 +109,7 @@ If you tell me what you are planning, along with your name and email, I will pas
   }
 
   return {
-    response: `Hello! I am **Bhadawar AI**, the digital representative for **The Digital Alchemy**.\n\nI can help you explore our AI automation services, review our technical stack, look through client case studies, or submit a project brief directly to our senior engineering team.\n\nWhat kind of digital system or software are you looking to build?`,
+    response: `Hello! I am **AI**, the digital representative for **The Digital Alchemy**.\n\nI can help you explore our AI automation services, review our technical stack, look through client case studies, or submit a project brief directly to our senior engineering team.\n\nWhat kind of digital system or software are you looking to build?`,
     actionData: null,
   };
 }
@@ -267,9 +267,9 @@ export async function POST(request: Request) {
             name: name || "Website Visitor",
             email: email.trim().toLowerCase(),
             company: company || null,
-            services: Array.isArray(services) ? JSON.stringify(services) : JSON.stringify(["Bhadawar AI Inquiry"]),
-            message: message || "Submitted via Bhadawar AI Chatbot conversation",
-            sourcePage: "BHADAWAR_AI",
+            services: Array.isArray(services) ? JSON.stringify(services) : JSON.stringify(["AI Chat Inquiry"]),
+            message: message || "Submitted via AI Chatbot conversation",
+            sourcePage: "AI_CHAT",
           },
         });
 

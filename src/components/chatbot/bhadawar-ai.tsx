@@ -10,7 +10,7 @@ const INITIAL_MESSAGES: ChatMessage[] = [
   {
     id: "welcome-1",
     role: "assistant",
-    content: "Hi there! I am **Bhadawar AI**, your technical consultant at **The Digital Alchemy**.\n\nI can help you explore our AI automation services, review our production tech stack, or directly scope and submit a project inquiry to our senior engineers.\n\nWhat are you planning to build?",
+    content: "Hi there! I am **AI**, your technical consultant at **The Digital Alchemy**.\n\nI can help you explore our AI automation services, review our production tech stack, or directly scope and submit a project inquiry to our senior engineers.\n\nWhat are you planning to build?",
     timestamp: Date.now(),
   },
 ];
@@ -201,7 +201,7 @@ export function BhadawarAI() {
         <div
           role="dialog"
           aria-modal="true"
-          aria-label="Bhadawar AI Chat Window"
+          aria-label="AI Chat Window"
           className={cn(
             "fixed z-50 flex flex-col overflow-hidden bg-white shadow-2xl transition-all duration-200 animate-in fade-in slide-in-from-bottom-5",
             // Mobile: Fullscreen sheet anchored to bottom with clean top offset
@@ -217,7 +217,7 @@ export function BhadawarAI() {
               <div className="relative flex size-10 items-center justify-center shrink-0">
                 <Image
                   src="/images/bhadawar-ai-avatar.png"
-                  alt="Bhadawar AI"
+                  alt="AI"
                   width={40}
                   height={40}
                   className="size-10 rounded-full object-cover ring-2 ring-blue-500/40 shadow-xs"
@@ -227,11 +227,8 @@ export function BhadawarAI() {
               <div>
                 <div className="flex items-center gap-1.5">
                   <h3 className="font-display text-sm font-bold text-slate-900 dark:text-white">
-                    Bhadawar AI
+                    AI
                   </h3>
-                  <span className="rounded-full bg-blue-100 px-1.5 py-0.2 text-[0.625rem] font-bold text-blue-700 dark:bg-blue-900/40 dark:text-blue-300 uppercase tracking-wide">
-                    Agent
-                  </span>
                 </div>
                 <p className="text-[0.6875rem] text-slate-500 dark:text-slate-400 font-medium">
                   Your Friendly Assistant · The Digital Alchemy
@@ -243,7 +240,7 @@ export function BhadawarAI() {
               type="button"
               onClick={() => setIsOpen(false)}
               className="flex size-8 items-center justify-center rounded-full bg-slate-200/70 text-slate-600 hover:bg-slate-300 hover:text-slate-900 dark:bg-slate-800 dark:text-slate-300 dark:hover:bg-slate-700 transition-colors"
-              aria-label="Close Bhadawar AI chat"
+              aria-label="Close AI chat"
             >
               <X className="size-4.5" />
             </button>
@@ -271,13 +268,13 @@ export function BhadawarAI() {
                   <div className="flex items-center gap-1.5 mb-0.5">
                     <Image
                       src="/images/bhadawar-ai-avatar.png"
-                      alt="Bhadawar AI"
+                      alt="AI"
                       width={18}
                       height={18}
                       className="size-4.5 rounded-full object-cover ring-1 ring-blue-500/30"
                     />
                     <span className="text-[0.6875rem] font-bold text-slate-700 dark:text-slate-300">
-                      Bhadawar AI
+                      AI
                     </span>
                   </div>
                 )}
@@ -316,7 +313,7 @@ export function BhadawarAI() {
               <div className="mr-auto flex items-center gap-2 rounded-2xl bg-white border border-slate-200/80 px-3.5 py-2.5 shadow-xs dark:bg-slate-900 dark:border-slate-800">
                 <Image
                   src="/images/bhadawar-ai-avatar.png"
-                  alt="Bhadawar AI"
+                  alt="AI"
                   width={20}
                   height={20}
                   className="size-5 rounded-full object-cover ring-1 ring-blue-500/30"
@@ -327,7 +324,7 @@ export function BhadawarAI() {
                   <span className="size-2 rounded-full bg-purple-500 animate-bounce [animation-delay:0.4s]" />
                 </div>
                 <span className="font-mono text-[0.6875rem] text-slate-400 ml-1 font-bold uppercase">
-                  Bhadawar AI thinking...
+                  AI thinking...
                 </span>
               </div>
             )}
@@ -356,7 +353,7 @@ export function BhadawarAI() {
                 value={input}
                 onChange={(e) => setInput(e.target.value)}
                 onKeyDown={handleKeyDown}
-                placeholder="Ask Bhadawar AI or scope an MVP..."
+                placeholder="Ask AI or scope an MVP..."
                 className="flex-1 bg-transparent text-[0.875rem] text-slate-900 placeholder:text-slate-400 focus:outline-hidden dark:text-white"
               />
               <button

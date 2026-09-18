@@ -1,0 +1,12 @@
+{
+ "logo-mark": {
+  "src": "/brand/logo-mark.png",
+  "width": 256,
+  "height": 205
+ },
+ "logo-lockup": {
+  "src": "/brand/logo-lockup.png",
+  "width": 628,
+  "height": 517
+ }
+}

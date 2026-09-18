@@ -1,0 +1,54 @@
+# dependencies
+/node_modules
+/.pnp
+.pnp.*
+
+# next.js
+/.next/
+/out/
+next-env.d.ts
+
+# production
+/build
+
+# local database (SQLite dev only — production uses PostgreSQL)
+/prisma/*.db
+/prisma/*.db-journal
+
+# uploaded media — user content, never committed
+/public/uploads/*
+!/public/uploads/.gitkeep
+
+# environment
+.env
+.env*.local
+.session-token
+
+# logs
+*.log
+dev.log
+
+# testing
+/coverage
+
+# misc
+.DS_Store
+*.pem
+.vercel
+/.idea
+/.vscode
+
+# source renders — kept for regeneration, never served
+# (public/images holds the graded, optimised output)
+
+# Verification scratch: headless Chrome profile, unsorted image drops, server logs
+.chrome-capture-profile/
+images/_inbox/
+prod.log
+
+# Verification builds, kept out of the dev server's .next
+.next-verify/
+.chrome-*-profile/
+
+# Redundant: the delivered archive, already extracted into images/
+images/*.zip

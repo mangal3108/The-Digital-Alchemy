@@ -1,0 +1,981 @@
+<title>Flow Image Brief</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600&family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700&family=JetBrains+Mono:wght@400;500&display=swap">
+
+<style>
+  :root {
+    --ground: #f7f7f5;
+    --surface: #ffffff;
+    --sunk: #f1f0ec;
+    --ink: #111111;
+    --ink-muted: #5f5f68;
+    --ink-faint: #6e6e77;
+    --rule: #e4e3de;
+    --rule-strong: #d3d2cb;
+
+    --coral: #ff5a36;
+    --tangerine: #ff8a3d;
+    --gold: #d9a520;
+    --blue: #5b8cff;
+    --violet: #7c6cff;
+    --mint: #38c7a5;
+    --pink: #ff6fae;
+    --indigo: #6d7cff;
+    --neutral: #9a9a93;
+
+    --shadow: 0 1px 2px rgba(17,17,17,.04), 0 8px 24px rgba(17,17,17,.04);
+
+    --display: "Bricolage Grotesque", "Archivo", system-ui, sans-serif;
+    --body: "Archivo", system-ui, -apple-system, sans-serif;
+    --mono: "JetBrains Mono", ui-monospace, "SF Mono", Menlo, monospace;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --ground: #101011; --surface: #18181a; --sunk: #1e1e21;
+      --ink: #f2f2ef; --ink-muted: #a3a3aa; --ink-faint: #86868e;
+      --rule: #2a2a2d; --rule-strong: #3a3a3f;
+      --gold: #ffd166; --neutral: #8a8a84;
+      --shadow: 0 1px 2px rgba(0,0,0,.4), 0 8px 24px rgba(0,0,0,.3);
+    }
+  }
+  :root[data-theme="dark"] {
+    --ground: #101011; --surface: #18181a; --sunk: #1e1e21;
+    --ink: #f2f2ef; --ink-muted: #a3a3aa; --ink-faint: #86868e;
+    --rule: #2a2a2d; --rule-strong: #3a3a3f;
+    --gold: #ffd166; --neutral: #8a8a84;
+    --shadow: 0 1px 2px rgba(0,0,0,.4), 0 8px 24px rgba(0,0,0,.3);
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    margin: 0; background: var(--ground); color: var(--ink);
+    font-family: var(--body); font-size: 16px; line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+  .wrap { max-width: 68rem; margin: 0 auto; padding: 4rem 1.5rem 6rem; }
+
+  h1, h2, h3 {
+    font-family: var(--display); font-weight: 700;
+    letter-spacing: -0.02em; text-wrap: balance; margin: 0;
+  }
+  h1 { font-size: clamp(2.4rem, 6vw, 3.6rem); line-height: 1.04; }
+  h2 { font-size: clamp(1.5rem, 3vw, 2rem); line-height: 1.14; }
+
+  p { margin: 0; max-width: 66ch; }
+  a { color: var(--ink); text-decoration-color: var(--rule-strong); text-underline-offset: 3px; }
+  a:focus-visible, button:focus-visible { outline: 2px solid var(--blue); outline-offset: 3px; border-radius: 3px; }
+  code { font-family: var(--mono); font-size: .9em; }
+
+  .eyebrow {
+    font-family: var(--mono); font-size: .6875rem;
+    text-transform: uppercase; letter-spacing: .14em; color: var(--ink-faint);
+  }
+
+  header.masthead {
+    display: flex; flex-direction: column; gap: 1.25rem;
+    padding-bottom: 2.5rem; border-bottom: 1px solid var(--rule);
+  }
+  .lede { font-size: 1.125rem; color: var(--ink-muted); }
+  .tally {
+    display: flex; flex-wrap: wrap; gap: .25rem 2rem;
+    font-family: var(--mono); font-size: .8125rem;
+    color: var(--ink-muted); font-variant-numeric: tabular-nums;
+  }
+  .tally b { color: var(--ink); font-weight: 500; }
+
+  section { margin-top: 4rem; }
+  .section-head {
+    display: flex; align-items: baseline; justify-content: space-between;
+    gap: 1rem; flex-wrap: wrap; padding-bottom: 1rem;
+    border-bottom: 1px solid var(--rule); margin-bottom: 1.5rem;
+  }
+  .count {
+    font-family: var(--mono); font-size: .8125rem;
+    color: var(--ink-faint); font-variant-numeric: tabular-nums;
+  }
+  .section-note { color: var(--ink-muted); margin-bottom: 2rem; }
+
+  .rules {
+    background: var(--surface); border: 1px solid var(--rule);
+    border-radius: 10px; padding: 1.5rem; box-shadow: var(--shadow);
+  }
+  .rules ul { margin: 0; padding-left: 1.1rem; display: flex; flex-direction: column; gap: .625rem; }
+  .rules li { max-width: 64ch; }
+
+  .tree {
+    font-family: var(--mono); font-size: .8125rem; line-height: 1.9;
+    background: var(--sunk); border: 1px solid var(--rule);
+    border-radius: 8px; padding: 1.25rem; overflow-x: auto;
+    white-space: pre; color: var(--ink);
+  }
+  .tree .dim { color: var(--ink-faint); }
+
+  .entry {
+    display: grid; grid-template-columns: 1fr; gap: 1rem;
+    padding: 1.5rem 0; border-bottom: 1px solid var(--rule);
+  }
+  .entry:last-child { border-bottom: none; }
+  @media (min-width: 60rem) { .entry { grid-template-columns: 17rem 1fr; gap: 2rem; } }
+
+  .meta { display: flex; flex-direction: column; gap: .5rem; }
+  .filename {
+    font-family: var(--mono); font-size: .8125rem; font-weight: 500;
+    word-break: break-all; display: flex; align-items: center;
+    gap: .5rem; line-height: 1.45;
+  }
+  .swatch {
+    width: .625rem; height: .625rem; border-radius: 2px; flex: none;
+    box-shadow: inset 0 0 0 1px rgba(0,0,0,.12);
+  }
+  .dims { font-family: var(--mono); font-size: .75rem; color: var(--ink-muted); font-variant-numeric: tabular-nums; }
+  .used { font-size: .8125rem; color: var(--ink-faint); }
+
+  .prompt {
+    position: relative; background: var(--sunk);
+    border: 1px solid var(--rule); border-radius: 8px; padding: 1rem 1rem .875rem;
+  }
+  .prompt pre {
+    margin: 0; font-family: var(--mono); font-size: .8125rem;
+    line-height: 1.65; white-space: pre-wrap; word-break: break-word; color: var(--ink);
+  }
+  .copy {
+    position: absolute; top: .5rem; right: .5rem;
+    font-family: var(--mono); font-size: .6875rem; letter-spacing: .06em;
+    text-transform: uppercase; background: var(--surface); color: var(--ink-muted);
+    border: 1px solid var(--rule-strong); border-radius: 5px;
+    padding: .25rem .5rem; cursor: pointer; transition: color .15s, border-color .15s;
+  }
+  .copy:hover { color: var(--ink); border-color: var(--ink-faint); }
+  .copy[data-done="1"] { color: var(--mint); border-color: var(--mint); }
+
+  .table-scroll { overflow-x: auto; border: 1px solid var(--rule); border-radius: 10px; background: var(--surface); }
+  table { border-collapse: collapse; width: 100%; min-width: 38rem; font-size: .875rem; }
+  th, td { text-align: left; padding: .75rem 1rem; border-bottom: 1px solid var(--rule); }
+  th {
+    font-family: var(--mono); font-size: .6875rem; text-transform: uppercase;
+    letter-spacing: .1em; color: var(--ink-faint); font-weight: 500; white-space: nowrap;
+  }
+  tr:last-child td { border-bottom: none; }
+  td.num { font-family: var(--mono); font-variant-numeric: tabular-nums; white-space: nowrap; }
+
+  @media (prefers-reduced-motion: reduce) { * { transition: none !important; animation: none !important; } }
+
+  footer.end {
+    margin-top: 4rem; padding-top: 2rem; border-top: 1px solid var(--rule);
+    color: var(--ink-muted); font-size: .9375rem;
+    display: flex; flex-direction: column; gap: .75rem;
+  }
+</style>
+
+<div class="wrap">
+
+<header class="masthead">
+  <p class="eyebrow">The Digital Alchemy · image production · v3 · technology</p>
+  <h1>Flow Image Brief</h1>
+  <p class="lede">Real technology, photographed like a product catalogue: machined aluminium, fibre, silicon, patch panels, server rails. One distinct subject per page. Screens stay out of it — those come from screenshots of the running product.</p>
+  <div class="tally">
+    <span><b>51</b> prompts</span>
+    <span><b>1</b> subject per page</span>
+    <span><b>0</b> contain a screen or an interface</span>
+  </div>
+</header>
+
+<section>
+  <div class="section-head"><h2>The world</h2></div>
+  <p class="prose" style="color:var(--ink-muted)">Every prompt here is technology you could photograph on a bench: a server rail, a fibre termination, a silicon wafer, a machined billet with the swarf still on it. Shot with controlled studio light and shallow focus, the way a catalogue shoots a product — not the way stock shoots "technology."</p>
+  <p class="prose" style="color:var(--ink-muted); margin-top:1rem">That last distinction is the whole job. The default for this subject is glowing blue circuit boards, holographic overlays and matrix rain, and it looks cheap instantly. These prompts ban all of it by name and ask for real materials and real light instead.</p>
+  <p class="prose" style="color:var(--ink-muted); margin-top:1rem">Screens are deliberately absent. Generated interfaces are what produced "Eampany Value" in the old hero; real ones get captured from the site and admin panel and composited into the device frames already built in code.</p>
+</section>
+
+<section>
+  <div class="section-head"><h2>Rules</h2></div>
+  <div class="rules">
+    <ul>
+      <li><strong>Never caption this hardware as ours.</strong> We don't own a data centre or a machine shop. A generated photo of a server aisle is atmosphere and that's fine — the same way any company uses a photograph of a thing it doesn't own. It stops being fine the moment a caption says "our infrastructure." I'll keep the alt text and captions descriptive, never possessive.</li>
+      <li><strong>No text, numbers or labels.</strong> Hardware is covered in tiny lettering and models render it as garbage. Every prompt bans it; leave the negative block in.</li>
+      <li><strong>No screens showing anything.</strong> Displays should be off, dark, or absent. Anything on a screen gets composited from a real capture.</li>
+      <li><strong>No people, hands or faces.</strong></li>
+      <li><strong>One accent, on one element.</strong> Each entry names a hex. Everything else stays in the material's own tone — raw aluminium, steel, black anodise, glass. That restraint is what stops forty tech photos turning into a single wash of colour.</li>
+      <li><strong>Save with the exact path shown.</strong> The build resolves by folder and filename, then trims, resizes, converts to WebP and registers each one automatically.</li>
+    </ul>
+  </div>
+</section>
+
+<section>
+  <div class="section-head"><h2>Where to save</h2></div>
+  <p class="section-note">Five folders inside <code>tda/images/</code>. Filenames below already include theirs.</p>
+  <div class="tree">tda/images/
+├── plates/      <span class="dim">4 · surfaces the device composites sit on</span>
+├── objects/     <span class="dim">3 · brand objects</span>
+├── services/    <span class="dim">20 · one per service page</span>
+├── industries/  <span class="dim">9 · one per industry page</span>
+└── studio/      <span class="dim">4 · about, careers, and two world textures</span></div>
+</section>
+
+<section>
+  <div class="section-head">
+    <h2>Plates</h2>
+    <span class="count">4 · essential · 16:9 · 2560 × 1440</span>
+  </div>
+  <p class="section-note">Backgrounds for the device composites — the hero and any section where real screenshots sit inside device frames. No hardware in these: a generated laptop can't be composited into cleanly, because its perspective won't match the frames placed on top. Empty surfaces composite every time.</p>
+
+  <div class="entry">
+    <div class="meta">
+      <p class="filename"><span class="swatch" style="background:var(--neutral)"></span>plates/plate-bench-aluminium.png</p>
+      <p class="dims">16:9 · 2560 × 1440 · capture 16:9</p>
+      <p class="used">Default ground — hero, most service pages.</p>
+    </div>
+    <div class="prompt"><button class="copy" type="button">Copy</button><pre>Overhead photograph of an empty brushed aluminium workbench surface, the grain running in one direction with a fine even satin finish. Broad soft daylight from the upper left lays a slow gradient across the metal and catches the brushing as a soft directional sheen. A few honest marks of use — faint swirls, one shallow scuff. The bench is completely clear.
+
+Shot straight down on a 50mm lens at f/8, even focus corner to corner.
+
+Colour: raw aluminium and cool grey only. No accent, no colour cast.
+
+Negative prompt: text, letters, words, numbers, labels, logos, watermarks, tools, devices, laptops, phones, screens, cables, people, hands, faces, rust, heavy scratches, neon, glowing lines, lens flare, clutter, borders, frames, vignette.</pre></div>
+  </div>
+
+  <div class="entry">
+    <div class="meta">
+      <p class="filename"><span class="swatch" style="background:var(--indigo)"></span>plates/plate-rack-dark.png</p>
+      <p class="dims">16:9 · 2560 × 1440 · capture 16:9</p>
+      <p class="used">Dark section rhythm — work band, footer, dark service pages.</p>
+    </div>
+    <div class="prompt"><button class="copy" type="button">Copy</button><pre>Photograph of a large black anodised perforated steel panel filling the frame, the perforations in a precise regular grid, shot straight on and perfectly parallel. A single hard light rakes from the upper right, catching the edge of every hole and falling away into deep shadow across the left. Rich blacks that still hold the texture of the anodising. Nothing mounted on it, no fixings, no edges of the panel visible.
+
+Shot on an 85mm lens at f/8, even focus.
+
+Accent colour: indigo #6D7CFF, present only as a very faint cool cast in the deepest shadow.
+
+Negative prompt: text, letters, words, numbers, labels, logos, watermarks, screens, LEDs, cables, devices, people, hands, faces, rust, neon, glowing lines, lens flare, smoke, clutter, borders, frames.</pre></div>
+  </div>
+
+  <div class="entry">
+    <div class="meta">
+      <p class="filename"><span class="swatch" style="background:var(--tangerine)"></span>plates/plate-bench-light.png</p>
+      <p class="dims">16:9 · 2560 × 1440 · capture 16:9</p>
+      <p class="used">Warm alternative ground — about, careers, process sections.</p>
+    </div>
+    <div class="prompt"><button class="copy" type="button">Copy</button><pre>Photograph of low afternoon sun falling across an empty workshop bench of pale end-grain maple and the plain wall behind it, thrown through a window frame outside the shot. Crisp diagonal bands of light and soft shadow cross the surface, their edges just beginning to blur. The wood is worn smooth with use, unfinished, no gloss. Nothing on the bench.
+
+Shot on a 35mm lens at f/4.
+
+Accent colour: tangerine #FF8A3D only as the natural warmth in the sunlit bands. No coloured objects.
+
+Negative prompt: text, letters, words, numbers, logos, watermarks, tools, devices, screens, cables, plants, people, hands, faces, silhouettes, sawdust, neon, lens flare, dust motes, clutter, borders, frames.</pre></div>
+  </div>
+
+  <div class="entry">
+    <div class="meta">
+      <p class="filename"><span class="swatch" style="background:var(--neutral)"></span>plates/plate-esd-mat.png</p>
+      <p class="dims">16:9 · 2560 × 1440 · capture 16:9</p>
+      <p class="used">Fine texture layer, used at very low opacity across the site.</p>
+    </div>
+    <div class="prompt"><button class="copy" type="button">Copy</button><pre>Macro photograph of a dark grey anti-static bench mat, filling the entire frame. Raking light from the left reveals its fine rubberised stipple and the subtle sheen of the dissipative surface. Flat on, perfectly parallel to the camera, no edges of the mat visible. Uniform charcoal grey throughout, no markings of any kind.
+
+Shot on a 100mm macro lens at f/8, even focus across the frame.
+
+Colour: charcoal grey only. No accent.
+
+Negative prompt: text, letters, words, numbers, grid lines, markings, logos, watermarks, edges, studs, press fasteners, tools, components, people, hands, colour, neon, lens flare, borders, frames, vignette.</pre></div>
+  </div>
+</section>
+
+<section>
+  <div class="section-head">
+    <h2>Objects</h2>
+    <span class="count">3 · essential · 1:1 · 1600 × 1600</span>
+  </div>
+  <p class="section-note">The brand objects. These carry the colour system, which is why they're the only images allowed to be vivid. The first answers the question you asked a while back — Colourful Glass Sculpture, written as a prompt.</p>
+
+  <div class="entry">
+    <div class="meta">
+      <p class="filename"><span class="swatch" style="background:var(--violet)"></span>objects/object-alchemy-core.png</p>
+      <p class="dims">1:1 · 1600 × 1600 · capture 1:1</p>
+      <p class="used">The Alchemy Core. Sits behind the hero and anchors the brand.</p>
+    </div>
+    <div class="prompt"><button class="copy" type="button">Copy</button><pre>Studio photograph of a hand-blown solid glass sphere on a seamless dark charcoal surface, lit by a large softbox from above and slightly behind so light passes through it. Inside the glass, ribbons of coloured pigment are suspended mid-swirl and frozen — coral, tangerine, gold, mint, blue, violet and pink threading through one another without muddying, each still distinct. The outer glass is flawlessly clear with a crisp specular highlight at the upper left, and a pool of refracted colour falls on the surface beneath.
+
+Shot on a 100mm macro lens at f/5.6, shallow depth so the far side of the sphere softens.
+
+Accent colour: the full palette — coral #FF5A36, tangerine #FF8A3D, gold #FFD166, mint #38C7A5, blue #5B8CFF, violet #7C6CFF, pink #FF6FAE — all inside the glass. Background stays neutral charcoal.
+
+Negative prompt: text, letters, words, numbers, logos, watermarks, people, hands, faces, planets, eyeballs, crystal balls, fortune telling, purple-blue gradient wash, neon, cyberpunk, holograms, lens flare, sparkles, clutter, borders, frames.</pre></div>
+  </div>
+
+  <div class="entry">
+    <div class="meta">
+      <p class="filename"><span class="swatch" style="background:var(--blue)"></span>objects/object-silicon-wafer.png</p>
+      <p class="dims">1:1 · 1600 × 1600 · capture 1:1</p>
+      <p class="used">Section dividers, the technology band — the substrate everything is built on.</p>
+    </div>
+    <div class="prompt"><button class="copy" type="button">Copy</button><pre>Studio photograph of a polished silicon wafer held at a shallow angle on a seamless charcoal surface, its mirror finish catching a broad soft light so the regular grid of dies reads as fine geometric texture rather than detail. The wafer's notch is visible at the edge. A subtle iridescence plays across the surface where the light grazes it — the natural colour of thin-film interference, not a rainbow.
+
+Shot on a 100mm macro lens at f/8, focus on the near third, the far edge softening.
+
+Accent colour: blue #5B8CFF, appearing only in the iridescent sheen. The wafer itself stays mirror grey.
+
+Negative prompt: text, letters, words, numbers, part numbers, logos, watermarks, people, hands, faces, gloves, tweezers, rainbow gradients, neon, cyberpunk, holograms, glowing circuits, lens flare, clutter, borders, frames.</pre></div>
+  </div>
+
+  <div class="entry">
+    <div class="meta">
+      <p class="filename"><span class="swatch" style="background:var(--neutral)"></span>objects/object-machined-forms.png</p>
+      <p class="dims">1:1 · 1600 × 1600 · capture 1:1</p>
+      <p class="used">Engineering pages. Precision as a material fact.</p>
+    </div>
+    <div class="prompt"><button class="copy" type="button">Copy</button><pre>Studio photograph of four precision-machined aluminium blocks on a seamless charcoal surface, bead-blasted to a fine even matte with crisp chamfered edges. They interlock into one assembly, and a single block is lifted a centimetre clear of its slot, revealing the clean machined recess beneath. Tolerances visibly tight. Soft top light with a gentle sheen along each upper edge and a close contact shadow.
+
+Shot on an 85mm lens at f/8, low three-quarter angle.
+
+Accent colour: indigo #6D7CFF, anodised onto the lifted block only. All other blocks raw aluminium.
+
+Negative prompt: text, letters, words, numbers, engravings, logos, watermarks, people, hands, faces, gears, cogs, circuit boards, neon, cyberpunk, glowing edges, lens flare, clutter, borders, frames.</pre></div>
+  </div>
+</section>
+
+<section>
+  <div class="section-head">
+    <h2>Services</h2>
+    <span class="count">20 · 4:3 · 1600 × 1200 each</span>
+  </div>
+  <p class="section-note">One real subject per page. Each sits behind a live interface panel that floats in front at a different depth, so keep the lower-left quadrant relatively calm — that's where the panel lands. All twenty share a style block; only the subject and accent change.</p>
+
+  <div class="entry">
+    <div class="meta">
+      <p class="filename"><span class="swatch" style="background:var(--blue)"></span>services/service-saas-development.png</p>
+      <p class="dims">4:3 · 1600 × 1200</p>
+      <p class="used">accent blue #5B8CFF</p>
+    </div>
+    <div class="prompt"><button class="copy" type="button">Copy</button><pre>Editorial technology photography. Real hardware on a seamless charcoal surface, one large soft key light from upper left plus a hard grazing accent, deep blacks that hold detail, shallow depth with one crisp plane of focus. Shot like a product catalogue, not stock technology.
+
+Subject: a column of identical slim rack-mount server units stacked in a frame, machined faceplates with fine ventilation slots. One unit is drawn halfway out on its rails, cantilevered into the light, its clean interior structure visible. Uniform gaps, crisp shadow lines between each unit.
+
+Accent colour: blue #5B8CFF on the drawn-out unit's faceplate only. Everything else raw aluminium and black anodise.
+
+Negative prompt: text, letters, words, numbers, labels, part numbers, logos, watermarks, screens, displays, blinking LEDs, cable spaghetti, people, hands, faces, neon, cyberpunk, holograms, glowing circuits, matrix code, lens flare, clutter, borders, frames.</pre></div>
+  </div>
+
+  <div class="entry">
+    <div class="meta">
+      <p class="filename"><span class="swatch" style="background:var(--indigo)"></span>services/service-custom-software-development.png</p>
+      <p class="dims">4:3 · 1600 × 1200</p>
+      <p class="used">accent indigo #6D7CFF</p>
+    </div>
+    <div class="prompt"><button class="copy" type="button">Copy</button><pre>Editorial technology photography. Real hardware on a seamless charcoal surface, one large soft key light from upper left plus a hard grazing accent, deep blacks that hold detail, shallow depth with one crisp plane of focus. Shot like a product catalogue, not stock technology.
+
+Subject: a solid aluminium billet part-way through being machined — one face still raw stock, the other cut into a precise pocketed form with sharp internal corners and visible tool paths. Fine curls of swarf sit where they fell, and a faint sheen of cutting fluid catches the light.
+
+Accent colour: indigo #6D7CFF, present only in the cool sheen on the machined faces. The metal stays raw aluminium.
+
+Negative prompt: text, letters, words, numbers, labels, logos, watermarks, screens, displays, people, hands, faces, gloves, sparks, neon, cyberpunk, glowing edges, lens flare, clutter, borders, frames.</pre></div>
+  </div>
+
+  <div class="entry">
+    <div class="meta">
+      <p class="filename"><span class="swatch" style="background:var(--mint)"></span>services/service-web-development.png</p>
+      <p class="dims">4:3 · 1600 × 1200</p>
+      <p class="used">accent mint #38C7A5</p>
+    </div>
+    <div class="prompt"><button class="copy" type="button">Copy</button><pre>Editorial technology photography. Real hardware on a seamless charcoal surface, one large soft key light from upper left plus a hard grazing accent, deep blacks that hold detail, shallow depth with one crisp plane of focus. Shot like a product catalogue, not stock technology.
+
+Subject: a fibre optic patch panel seen at a shallow angle, its ceramic ferrules seated in a precise row. Fibres are combed and routed in clean parallel sweeps with generous bend radius, each one crossing the frame without tangling. The cut ends of two spare fibres catch the light as tiny bright points.
+
+Accent colour: mint #38C7A5 on the jackets of two fibres only. Everything else pale grey fibre, black panel and steel.
+
+Negative prompt: text, letters, words, numbers, port labels, logos, watermarks, screens, blinking LEDs, cable spaghetti, people, hands, faces, neon, cyberpunk, glowing light beams, laser, lens flare, clutter, borders, frames.</pre></div>
+  </div>
+
+  <div class="entry">
+    <div class="meta">
+      <p class="filename"><span class="swatch" style="background:var(--blue)"></span>services/service-web-application-development.png</p>
+      <p class="dims">4:3 · 1600 × 1200</p>
+      <p class="used">accent blue #5B8CFF</p>
+    </div>
+    <div class="prompt"><button class="copy" type="button">Copy</button><pre>Editorial technology photography. Real hardware on a seamless charcoal surface, one large soft key light from upper left plus a hard grazing accent, deep blacks that hold detail, shallow depth with one crisp plane of focus. Shot like a product catalogue, not stock technology.
+
+Subject: a network switch photographed straight down its port array, the ports receding in a precise row with patch cables seated in strict sequence and dressed flat. The metalwork is fine-gauge folded steel with crisp punched detail. One port sits empty, its shutter visible.
+
+Accent colour: blue #5B8CFF on the boots of three cables only. Everything else grey cable, black chassis and steel.
+
+Negative prompt: text, letters, words, numbers, port numbers, labels, logos, watermarks, screens, blinking LEDs, cable spaghetti, people, hands, faces, neon, cyberpunk, glowing ports, lens flare, clutter, borders, frames.</pre></div>
+  </div>
+
+  <div class="entry">
+    <div class="meta">
+      <p class="filename"><span class="swatch" style="background:var(--coral)"></span>services/service-mobile-app-development.png</p>
+      <p class="dims">4:3 · 1600 × 1200</p>
+      <p class="used">accent coral #FF5A36</p>
+    </div>
+    <div class="prompt"><button class="copy" type="button">Copy</button><pre>Editorial technology photography. Real hardware on a seamless charcoal surface, one large soft key light from upper left plus a hard grazing accent, deep blacks that hold detail, shallow depth with one crisp plane of focus. Shot like a product catalogue, not stock technology.
+
+Subject: an exploded view of a smartphone's internals, laid out in precise vertical separation — the brushed titanium mid-frame, the battery cell, the logic board, the camera module, and the cover glass floating above them all. Each layer parallel, evenly spaced, casting a soft shadow onto the one below. The glass is dark and shows nothing.
+
+Accent colour: coral #FF5A36 on the battery cell's wrap only. Everything else titanium, graphite and black.
+
+Negative prompt: text, letters, words, numbers, part numbers, labels, logos, brand marks, watermarks, screen content, displays showing anything, people, hands, faces, tweezers, neon, cyberpunk, glowing circuits, lens flare, clutter, borders, frames.</pre></div>
+  </div>
+
+  <div class="entry">
+    <div class="meta">
+      <p class="filename"><span class="swatch" style="background:var(--pink)"></span>services/service-ecommerce-development.png</p>
+      <p class="dims">4:3 · 1600 × 1200</p>
+      <p class="used">accent pink #FF6FAE</p>
+    </div>
+    <div class="prompt"><button class="copy" type="button">Copy</button><pre>Editorial technology photography. Real hardware on a seamless charcoal surface, one large soft key light from upper left plus a hard grazing accent, deep blacks that hold detail, shallow depth with one crisp plane of focus. Shot like a product catalogue, not stock technology.
+
+Subject: a payment terminal opened and laid out — the moulded outer shell, the tamper-evident inner cage, the card reader head with its contact springs, and the secure element board, arranged in a clean row on the surface. Precise, sealed, deliberately unglamorous engineering. The terminal's display is dark and blank.
+
+Accent colour: pink #FF6FAE on the contact springs only. Everything else black polymer, steel and matte board.
+
+Negative prompt: text, letters, words, numbers, keypad digits, labels, logos, card brands, watermarks, screen content, credit cards, people, hands, faces, neon, cyberpunk, glowing circuits, lens flare, clutter, borders, frames.</pre></div>
+  </div>
+
+  <div class="entry">
+    <div class="meta">
+      <p class="filename"><span class="swatch" style="background:var(--violet)"></span>services/service-ui-ux-design.png</p>
+      <p class="dims">4:3 · 1600 × 1200</p>
+      <p class="used">accent violet #7C6CFF</p>
+    </div>
+    <div class="prompt"><button class="copy" type="button">Copy</button><pre>Editorial technology photography. Real hardware on a seamless charcoal surface, one large soft key light from upper left plus a hard grazing accent, deep blacks that hold detail, shallow depth with one crisp plane of focus. Shot like a product catalogue, not stock technology.
+
+Subject: extreme macro of a bare display panel's surface, so close that the individual subpixel stripes read as precise coloured columns of geometry. Beside it on the surface lies a printed colour calibration target — plain rectangular patches in a grid, no markings. The relationship between the two is the subject: measured colour, and how it is actually made.
+
+Accent colour: violet #7C6CFF, strongest in two of the calibration patches. The subpixels keep their natural red, green and blue.
+
+Negative prompt: text, letters, words, numbers, labels, logos, watermarks, interface content, icons, people, hands, faces, rainbow gradients, neon, cyberpunk, holograms, lens flare, moiré, clutter, borders, frames.</pre></div>
+  </div>
+
+  <div class="entry">
+    <div class="meta">
+      <p class="filename"><span class="swatch" style="background:var(--indigo)"></span>services/service-product-design.png</p>
+      <p class="dims">4:3 · 1600 × 1200</p>
+      <p class="used">accent indigo #6D7CFF</p>
+    </div>
+    <div class="prompt"><button class="copy" type="button">Copy</button><pre>Editorial technology photography. Real hardware on a seamless charcoal surface, one large soft key light from upper left plus a hard grazing accent, deep blacks that hold detail, shallow depth with one crisp plane of focus. Shot like a product catalogue, not stock technology.
+
+Subject: five prototype iterations of the same machined part, lined up in order left to right. The first is rough 3D-printed polymer with visible layer lines; each successive one is closer to finished, and the last is bead-blasted aluminium with crisp edges and a perfect surface. The same form, resolving.
+
+Accent colour: indigo #6D7CFF, anodised onto the final finished part only. Everything else raw polymer, primer grey and aluminium.
+
+Negative prompt: text, letters, words, numbers, labels, logos, watermarks, screens, people, hands, faces, callipers, rulers, neon, cyberpunk, glowing edges, lens flare, clutter, borders, frames.</pre></div>
+  </div>
+
+  <div class="entry">
+    <div class="meta">
+      <p class="filename"><span class="swatch" style="background:var(--gold)"></span>services/service-branding.png</p>
+      <p class="dims">4:3 · 1600 × 1200</p>
+      <p class="used">accent gold #FFD166</p>
+    </div>
+    <div class="prompt"><button class="copy" type="button">Copy</button><pre>Editorial technology photography. Real hardware on a seamless charcoal surface, one large soft key light from upper left plus a hard grazing accent, deep blacks that hold detail, shallow depth with one crisp plane of focus. Shot like a product catalogue, not stock technology.
+
+Subject: a fan of anodising test coupons — identical machined aluminium tabs, each taken to a different colour in the bath, laid out in a graduated arc. The metal grain shows through every finish. Two loose coupons sit slightly apart from the arc, as if pulled for comparison.
+
+Accent colour: warm gold #FFD166 on the two pulled coupons. The rest of the arc runs through neutral greys, graphite and one muted blue.
+
+Negative prompt: text, letters, words, numbers, swatch labels, logos, brand marks, watermarks, screens, people, hands, faces, paint, ink, neon, cyberpunk, lens flare, clutter, borders, frames.</pre></div>
+  </div>
+
+  <div class="entry">
+    <div class="meta">
+      <p class="filename"><span class="swatch" style="background:var(--tangerine)"></span>services/service-digital-marketing.png</p>
+      <p class="dims">4:3 · 1600 × 1200</p>
+      <p class="used">accent tangerine #FF8A3D</p>
+    </div>
+    <div class="prompt"><button class="copy" type="button">Copy</button><pre>Editorial technology photography. Real hardware on a seamless charcoal surface, one large soft key light from upper left plus a hard grazing accent, deep blacks that hold detail, shallow depth with one crisp plane of focus. Shot like a product catalogue, not stock technology.
+
+Subject: a flat phased-array antenna panel viewed straight on, its radiating elements arranged in a precise regular grid across a matte substrate. Crisp machined edges, fine soldered detail at each element, one coaxial feed entering from the lower edge. Signal made physical and geometric.
+
+Accent colour: tangerine #FF8A3D on the coaxial feed connector only. Everything else matte substrate, copper and steel.
+
+Negative prompt: text, letters, words, numbers, labels, logos, watermarks, screens, radio waves, signal arcs, wifi symbols, people, hands, faces, neon, cyberpunk, glowing circuits, lens flare, clutter, borders, frames.</pre></div>
+  </div>
+
+  <div class="entry">
+    <div class="meta">
+      <p class="filename"><span class="swatch" style="background:var(--mint)"></span>services/service-search-engine-optimization.png</p>
+      <p class="dims">4:3 · 1600 × 1200</p>
+      <p class="used">accent mint #38C7A5</p>
+    </div>
+    <div class="prompt"><button class="copy" type="button">Copy</button><pre>Editorial technology photography. Real hardware on a seamless charcoal surface, one large soft key light from upper left plus a hard grazing accent, deep blacks that hold detail, shallow depth with one crisp plane of focus. Shot like a product catalogue, not stock technology.
+
+Subject: a single fibre trunk entering the frame and fanning out into many individual strands, each terminating in a polished ferrule laid in an ordered row. The fan is combed and deliberate — one source, many destinations, nothing tangled. The polished end faces catch the light as a line of tiny bright points.
+
+Accent colour: mint #38C7A5 on the jackets of the three strands nearest the front. Everything else pale grey and black.
+
+Negative prompt: text, letters, words, numbers, labels, logos, watermarks, screens, magnifying glasses, search icons, people, hands, faces, neon, cyberpunk, glowing beams, laser, lens flare, clutter, borders, frames.</pre></div>
+  </div>
+
+  <div class="entry">
+    <div class="meta">
+      <p class="filename"><span class="swatch" style="background:var(--pink)"></span>services/service-social-media-management.png</p>
+      <p class="dims">4:3 · 1600 × 1200</p>
+      <p class="used">accent pink #FF6FAE</p>
+    </div>
+    <div class="prompt"><button class="copy" type="button">Copy</button><pre>Editorial technology photography. Real hardware on a seamless charcoal surface, one large soft key light from upper left plus a hard grazing accent, deep blacks that hold detail, shallow depth with one crisp plane of focus. Shot like a product catalogue, not stock technology.
+
+Subject: a camera module disassembled into its optical stack and laid out in vertical separation — the lens barrel, three glass elements at descending diameters, the infrared filter with its faint dichroic sheen, and the bare image sensor at the bottom. Each layer parallel and evenly spaced, soft shadow beneath.
+
+Accent colour: pink #FF6FAE, visible only in the dichroic sheen on the filter. Everything else black barrel, clear glass and silicon grey.
+
+Negative prompt: text, letters, words, numbers, focal lengths, labels, logos, brand marks, watermarks, screens, social media icons, people, hands, faces, neon, cyberpunk, lens flare, rainbow refraction, clutter, borders, frames.</pre></div>
+  </div>
+
+  <div class="entry">
+    <div class="meta">
+      <p class="filename"><span class="swatch" style="background:var(--coral)"></span>services/service-performance-marketing.png</p>
+      <p class="dims">4:3 · 1600 × 1200</p>
+      <p class="used">accent coral #FF5A36</p>
+    </div>
+    <div class="prompt"><button class="copy" type="button">Copy</button><pre>Editorial technology photography. Real hardware on a seamless charcoal surface, one large soft key light from upper left plus a hard grazing accent, deep blacks that hold detail, shallow depth with one crisp plane of focus. Shot like a product catalogue, not stock technology.
+
+Subject: the front panel of a laboratory signal generator — knurled metal rotary dials, precise machined bezels, and a row of BNC connectors, photographed at a shallow angle so the dials recede. Everything is tactile and analogue: measurement as a physical act. The instrument's display area is dark and blank.
+
+Accent colour: coral #FF5A36 on one dial's index mark only. Everything else brushed steel, black anodise and knurled aluminium.
+
+Negative prompt: text, letters, words, numbers, dial markings, scale graduations, labels, logos, watermarks, screen content, waveforms on displays, people, hands, faces, neon, cyberpunk, glowing traces, lens flare, clutter, borders, frames.</pre></div>
+  </div>
+
+  <div class="entry">
+    <div class="meta">
+      <p class="filename"><span class="swatch" style="background:var(--tangerine)"></span>services/service-google-ads.png</p>
+      <p class="dims">4:3 · 1600 × 1200</p>
+      <p class="used">accent tangerine #FF8A3D</p>
+    </div>
+    <div class="prompt"><button class="copy" type="button">Copy</button><pre>Editorial technology photography. Real hardware on a seamless charcoal surface, one large soft key light from upper left plus a hard grazing accent, deep blacks that hold detail, shallow depth with one crisp plane of focus. Shot like a product catalogue, not stock technology.
+
+Subject: a bank of precision relays mounted in a crossbar arrangement, their contacts visible through clear housings, arranged in a strict grid of rows and columns. A few relays sit closed and the rest open, so the grid reads as a pattern of states. Fine machined mounting rails beneath.
+
+Accent colour: tangerine #FF8A3D on the coil bobbins of the closed relays only. Everything else clear housing, copper and steel.
+
+Negative prompt: text, letters, words, numbers, ratings, labels, logos, watermarks, screens, auction imagery, gavels, people, hands, faces, neon, cyberpunk, glowing contacts, sparks, lens flare, clutter, borders, frames.</pre></div>
+  </div>
+
+  <div class="entry">
+    <div class="meta">
+      <p class="filename"><span class="swatch" style="background:var(--pink)"></span>services/service-meta-ads.png</p>
+      <p class="dims">4:3 · 1600 × 1200</p>
+      <p class="used">accent pink #FF6FAE</p>
+    </div>
+    <div class="prompt"><button class="copy" type="button">Copy</button><pre>Editorial technology photography. Real hardware on a seamless charcoal surface, one large soft key light from upper left plus a hard grazing accent, deep blacks that hold detail, shallow depth with one crisp plane of focus. Shot like a product catalogue, not stock technology.
+
+Subject: a radio transceiver board photographed at a shallow angle, its shielding cans standing proud of the substrate in a clean rectilinear arrangement, with machined SMA connectors along one edge. Fine trace geometry runs between the cans as precise parallel paths. The board is matte and dark, the metalwork crisp.
+
+Accent colour: pink #FF6FAE on two of the SMA connector collars only. Everything else matte board, tinned steel and copper.
+
+Negative prompt: text, letters, words, numbers, silkscreen markings, component codes, labels, logos, watermarks, screens, wifi symbols, radio waves, people, hands, faces, neon, cyberpunk, glowing traces, lens flare, clutter, borders, frames.</pre></div>
+  </div>
+
+  <div class="entry">
+    <div class="meta">
+      <p class="filename"><span class="swatch" style="background:var(--coral)"></span>services/service-lead-generation.png</p>
+      <p class="dims">4:3 · 1600 × 1200</p>
+      <p class="used">accent coral #FF5A36</p>
+    </div>
+    <div class="prompt"><button class="copy" type="button">Copy</button><pre>Editorial technology photography. Real hardware on a seamless charcoal surface, one large soft key light from upper left plus a hard grazing accent, deep blacks that hold detail, shallow depth with one crisp plane of focus. Shot like a product catalogue, not stock technology.
+
+Subject: many loose fibre strands entering from the left of the frame, gathered progressively by a series of combs and guides, and converging into a single polished ferrule at the right. Many in, one out. The gathering is orderly at every stage, each comb holding the strands in an even fan.
+
+Accent colour: coral #FF5A36 on the final ferrule only. Everything else pale grey fibre, black guides and steel.
+
+Negative prompt: text, letters, words, numbers, labels, logos, watermarks, screens, funnels as diagrams, arrows, people, hands, faces, neon, cyberpunk, glowing beams, lens flare, tangles, clutter, borders, frames.</pre></div>
+  </div>
+
+  <div class="entry">
+    <div class="meta">
+      <p class="filename"><span class="swatch" style="background:var(--violet)"></span>services/service-marketing-funnels.png</p>
+      <p class="dims">4:3 · 1600 × 1200</p>
+      <p class="used">accent violet #7C6CFF</p>
+    </div>
+    <div class="prompt"><button class="copy" type="button">Copy</button><pre>Editorial technology photography. Real hardware on a seamless charcoal surface, one large soft key light from upper left plus a hard grazing accent, deep blacks that hold detail, shallow depth with one crisp plane of focus. Shot like a product catalogue, not stock technology.
+
+Subject: a set of machined waveguide sections joined into a stepped run, each section narrower than the last, descending from a wide mouth to a small square aperture. Precision flanges bolt each step to the next. Photographed at a low three-quarter angle so the stepping reads clearly against the light.
+
+Accent colour: violet #7C6CFF, anodised onto the final narrowest section only. Everything else raw aluminium and steel fixings.
+
+Negative prompt: text, letters, words, numbers, labels, logos, watermarks, screens, funnel diagrams, arrows, percentages, people, hands, faces, neon, cyberpunk, glowing apertures, lens flare, clutter, borders, frames.</pre></div>
+  </div>
+
+  <div class="entry">
+    <div class="meta">
+      <p class="filename"><span class="swatch" style="background:var(--indigo)"></span>services/service-automation-integrations.png</p>
+      <p class="dims">4:3 · 1600 × 1200</p>
+      <p class="used">accent indigo #6D7CFF</p>
+    </div>
+    <div class="prompt"><button class="copy" type="button">Copy</button><pre>Editorial technology photography. Real hardware on a seamless charcoal surface, one large soft key light from upper left plus a hard grazing accent, deep blacks that hold detail, shallow depth with one crisp plane of focus. Shot like a product catalogue, not stock technology.
+
+Subject: a patch bay of machined jack sockets in precise rows, with a handful of cables routed between them in clean curves — each patch deliberate, each cable's path readable from end to end. Most sockets remain empty. The panel is black anodised with crisp chamfered holes.
+
+Accent colour: indigo #6D7CFF on two of the patch cables only. Everything else black anodise, nickel and grey cable.
+
+Negative prompt: text, letters, words, numbers, channel labels, logos, watermarks, screens, node diagrams, flowcharts, people, hands, faces, cable spaghetti, neon, cyberpunk, glowing connections, lens flare, clutter, borders, frames.</pre></div>
+  </div>
+
+  <div class="entry">
+    <div class="meta">
+      <p class="filename"><span class="swatch" style="background:var(--blue)"></span>services/service-cloud-solutions.png</p>
+      <p class="dims">4:3 · 1600 × 1200</p>
+      <p class="used">accent blue #5B8CFF</p>
+    </div>
+    <div class="prompt"><button class="copy" type="button">Copy</button><pre>Editorial technology photography. Real hardware, one large soft key light plus a hard grazing accent, deep blacks that hold detail, shallow depth with one crisp plane of focus. Shot like a product catalogue, not stock technology.
+
+Subject: a data centre cold aisle photographed straight down its length, perforated cabinet doors receding in strict symmetry on both sides, the floor grille running to a vanishing point. Cool even ambient light with one brighter pool part way down. Immaculate, empty, silent — no cables loose, nothing on the floor.
+
+Accent colour: blue #5B8CFF, only in the cool cast of the ambient light. The cabinets stay black and steel.
+
+Negative prompt: text, letters, words, numbers, labels, signage, logos, watermarks, screens, rows of blinking LEDs, cable spaghetti, people, hands, faces, neon, cyberpunk, holograms, glowing floor strips, fog, lens flare, clutter, borders, frames.</pre></div>
+  </div>
+
+  <div class="entry">
+    <div class="meta">
+      <p class="filename"><span class="swatch" style="background:var(--mint)"></span>services/service-maintenance-support.png</p>
+      <p class="dims">4:3 · 1600 × 1200</p>
+      <p class="used">accent mint #38C7A5</p>
+    </div>
+    <div class="prompt"><button class="copy" type="button">Copy</button><pre>Editorial technology photography. Real hardware on a seamless charcoal surface, one large soft key light from upper left plus a hard grazing accent, deep blacks that hold detail, shallow depth with one crisp plane of focus. Shot like a product catalogue, not stock technology.
+
+Subject: a long machined status panel with a single row of small recessed indicator lenses running its full width, photographed at a shallow angle so the row recedes. The lenses are frosted and softly lit from within — steady, even, unremarkable. One lens near the centre sits dark. Fine milled detail around each recess.
+
+Accent colour: mint #38C7A5 in the lit lenses only. The panel stays black anodise and steel.
+
+Negative prompt: text, letters, words, numbers, labels, status text, logos, watermarks, screens, warning icons, red alarms, people, hands, faces, neon, cyberpunk, glowing haze, lens flare, clutter, borders, frames.</pre></div>
+  </div>
+</section>
+
+<section>
+  <div class="section-head">
+    <h2>Industries</h2>
+    <span class="count">9 · 4:3 · 1600 × 1200 each</span>
+  </div>
+  <p class="section-note">Hardware from each sector's own working world — not the sector's clichés. No stethoscopes, no hard hats, no handshakes. All nine share the services style block; swap the subject and accent below.</p>
+
+  <div class="entry">
+    <div class="meta">
+      <p class="filename"><span class="swatch" style="background:var(--neutral)"></span>industries/industry-<em>{slug}</em>.png</p>
+      <p class="dims">4:3 · 1600 × 1200 · capture 4:3 or 16:9</p>
+      <p class="used">Run nine times, swapping SUBJECT and ACCENT from the table.</p>
+    </div>
+    <div class="prompt"><button class="copy" type="button">Copy</button><pre>Editorial technology photography. Real hardware on a seamless charcoal surface, one large soft key light from upper left plus a hard grazing accent, deep blacks that hold detail, shallow depth with one crisp plane of focus. Shot like a product catalogue, not stock technology.
+
+Subject: {SUBJECT}. Composed with generous space around it, nothing else in frame, every surface reading by its own material and finish.
+
+Accent colour: {ACCENT}, on one element only. Everything else in the material's own tone — raw metal, black anodise, matte polymer, glass.
+
+Negative prompt: text, letters, words, numbers, labels, part numbers, logos, brand marks, watermarks, screens showing anything, industry symbols, icons, people, hands, faces, neon, cyberpunk, holograms, glowing circuits, lens flare, clutter, collage, borders, frames.</pre></div>
+  </div>
+
+  <div class="table-scroll" style="margin-top:1.5rem">
+    <table>
+      <thead><tr><th>Filename</th><th>{SUBJECT}</th><th>{ACCENT}</th></tr></thead>
+      <tbody>
+        <tr><td class="num">industry-startups.png</td><td>a bare development board on a bench, jumper wires neatly routed, one header unpopulated</td><td class="num">coral #FF5A36</td></tr>
+        <tr><td class="num">industry-ecommerce.png</td><td>a conveyor roller bed section with a fixed scanner head above it, rollers receding</td><td class="num">pink #FF6FAE</td></tr>
+        <tr><td class="num">industry-healthcare.png</td><td>a sealed medical-grade enclosure in matte white, ventless, with gasketed seams and captive fasteners</td><td class="num">mint #38C7A5</td></tr>
+        <tr><td class="num">industry-education.png</td><td>a row of identical thin-client terminals stacked on a shelf, screens dark, ports facing out</td><td class="num">blue #5B8CFF</td></tr>
+        <tr><td class="num">industry-real-estate.png</td><td>a surveyor's total station, its optics and machined tilt mechanism in close detail</td><td class="num">gold #FFD166</td></tr>
+        <tr><td class="num">industry-finance.png</td><td>a hardware security module with its tamper-evident mesh and captive seals visible</td><td class="num">indigo #6D7CFF</td></tr>
+        <tr><td class="num">industry-hospitality.png</td><td>an array of flush ceiling-mounted wireless access points seen against a plain plane</td><td class="num">tangerine #FF8A3D</td></tr>
+        <tr><td class="num">industry-professional-services.png</td><td>a document scanner's open optical path — glass platen, mirror, lamp housing</td><td class="num">violet #7C6CFF</td></tr>
+        <tr><td class="num">industry-retail.png</td><td>an array of unpowered e-ink shelf labels in a rail, all blank and uniformly grey</td><td class="num">coral #FF5A36</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<section>
+  <div class="section-head">
+    <h2>Studio &amp; world</h2>
+    <span class="count">4</span>
+  </div>
+  <p class="section-note">About and Careers stay honest — one office, in New Delhi, and no team page I can populate. Spaces and benches, never a fabricated team. The two world textures replace the old plaster relief maps with something on-world: etched metal.</p>
+
+  <div class="entry">
+    <div class="meta">
+      <p class="filename"><span class="swatch" style="background:var(--violet)"></span>studio/studio-bench.png</p>
+      <p class="dims">3:2 · 1600 × 1067 · capture 16:9</p>
+      <p class="used">/about</p>
+    </div>
+    <div class="prompt"><button class="copy" type="button">Copy</button><pre>Photograph of an electronics workbench mid-project with nobody at it. On a worn maple top: a soldering station with its iron in the stand, a small pile of cut component legs, a spool of solder, a pair of fine tweezers set down mid-task, and an anti-static mat. Arranged the way a real bench arranges itself — off-centre, honest space between things, not styled. Soft window light from the left.
+
+Shot on a 50mm lens at f/5.6, slightly above and to one side.
+
+Accent colour: violet #7C6CFF on the soldering station's dial only. Everything else maple, steel, charcoal mat and tinned copper.
+
+Negative prompt: text, letters, words, numbers, dial markings, labels, logos, watermarks, screens, laptops, phones, people, hands, faces, smoke, plants, neon, lens flare, styled flat-lay, symmetry, borders, frames.</pre></div>
+  </div>
+
+  <div class="entry">
+    <div class="meta">
+      <p class="filename"><span class="swatch" style="background:var(--mint)"></span>studio/studio-seats.png</p>
+      <p class="dims">3:2 · 1600 × 1067 · capture 16:9</p>
+      <p class="used">/careers</p>
+    </div>
+    <div class="prompt"><button class="copy" type="button">Copy</button><pre>Photograph of a quiet workshop room with a long steel-framed bench and four simple stools, three tucked in and one pulled slightly out and turned, as though someone has just left it. Nobody in the room. Broad soft daylight from a window along one side falling across the empty bench top. Plain walls, bare floor, nothing on the bench.
+
+Shot on a 35mm lens at f/4 from standing height, slightly off axis.
+
+Accent colour: mint #38C7A5, on a single small object at the far end of the bench, barely noticeable.
+
+Negative prompt: text, letters, words, numbers, labels, signage, logos, watermarks, screens, monitors, laptops, people, hands, faces, silhouettes, open-plan office, cubicles, plants, neon, lens flare, clutter, borders, frames.</pre></div>
+  </div>
+
+  <div class="entry">
+    <div class="meta">
+      <p class="filename"><span class="swatch" style="background:var(--tangerine)"></span>studio/world-etched-light.png</p>
+      <p class="dims">16:9 · 2400 × 1350 · capture 16:9</p>
+      <p class="used">Homepage reach band and locations index, under a soft radial mask.</p>
+    </div>
+    <div class="prompt"><button class="copy" type="button">Copy</button><pre>Overhead photograph of a world map chemically etched into a brushed aluminium plate, the continents standing very slightly proud of an etched ground. Soft raking light from the upper left catches every raised edge and the fine directional brushing across the plate. No borders, no country divisions, no graticule, no labels of any kind. A scattering of small drilled and polished dots across several continents.
+
+Shot straight down on a 50mm lens at f/8, even focus.
+
+Accent colour: tangerine #FF8A3D in three or four of the polished dots only. Everything else raw aluminium and cool grey.
+
+Negative prompt: text, letters, words, numbers, country names, borders, grid lines, latitude, longitude, compass rose, flags, logos, watermarks, people, hands, glowing arcs, connection lines, neon, lens flare, clutter, borders, frames.</pre></div>
+  </div>
+
+  <div class="entry">
+    <div class="meta">
+      <p class="filename"><span class="swatch" style="background:var(--gold)"></span>studio/world-etched-dark.png</p>
+      <p class="dims">16:9 · 2400 × 1350 · capture 16:9</p>
+      <p class="used">Footer band. Full-bleed, cropped right, faded to nothing on the left.</p>
+    </div>
+    <div class="prompt"><button class="copy" type="button">Copy</button><pre>Overhead photograph of a world map chemically etched into a black anodised aluminium plate, the continents standing very slightly proud of an etched ground. A single hard raking light from the upper right catches the top edge of every raised form and leaves the rest in deep shadow, so the map reads as a rim of light on darkness. The left third falls away to near-black. No borders, no country divisions, no graticule, no labels. A scattering of small polished dots across the continents.
+
+Shot straight down on a 50mm lens at f/8, even focus. Rich blacks that still hold detail.
+
+Accent colour: warm gold #FFD166 catching the top edge of a few polished dots only. Everything else black anodise and dark grey.
+
+Negative prompt: text, letters, words, numbers, country names, borders, grid lines, latitude, longitude, flags, logos, watermarks, people, hands, glowing arcs, connection lines, city lights, satellite imagery, neon, lens flare, clutter, frames.</pre></div>
+  </div>
+</section>
+
+<section>
+  <div class="section-head">
+    <h2>Page heroes</h2>
+    <span class="count">8 · 16:9 · 2400 × 1350 (hero lineup 21:10)</span>
+  </div>
+  <p class="section-note">These render as full-bleed bands under the page title — centred copy, then the photograph edge to edge. Wide and shallow: the visible strip is roughly the middle third, so keep the subject centred vertically and leave room top and bottom.</p>
+
+  <div class="entry">
+    <div class="meta">
+      <p class="filename"><span class="swatch" style="background:var(--neutral)"></span>heroes/hero-lineup.png</p>
+      <p class="dims">21:10 · 2400 × 1143 · capture 16:9</p>
+      <p class="used">Homepage hero. Replaces the supplied render, which has garbled dashboard text.</p>
+    </div>
+    <div class="prompt"><button class="copy" type="button">Copy</button><pre>Editorial product photography. A desktop monitor, an open laptop, a tablet and a phone arranged left to right in gentle receding depth on a seamless warm off-white surface. Large soft key light from upper left, soft contact shadows, a faint mirror reflection fading to nothing beneath. Matte materials, crisp bezels, no gloss.
+
+Every screen is switched OFF — dark, blank, reflective glass. No interface, no content, no text of any kind on any display.
+
+Shot on a 50mm lens at f/8, even focus across the lineup, generous margin all round.
+
+Negative prompt: text, letters, words, numbers, charts, dashboards, user interfaces, icons, logos, watermarks, screen content, glowing displays, people, hands, faces, neon, lens flare, clutter, borders, frames.</pre></div>
+  </div>
+
+  <div class="entry">
+    <div class="meta">
+      <p class="filename"><span class="swatch" style="background:var(--coral)"></span>heroes/hero-services.png</p>
+      <p class="dims">16:9 · 2400 × 1350</p>
+      <p class="used">/services — the index of all twenty.</p>
+    </div>
+    <div class="prompt"><button class="copy" type="button">Copy</button><pre>Editorial technology photography. Real hardware on a seamless charcoal surface, one large soft key light from upper left plus a hard grazing accent, deep blacks that hold detail, shallow depth with one crisp plane of focus. Shot like a product catalogue, not stock technology.
+
+Subject: a machinist's index drawer pulled open and shot from directly above, its compartments holding many different precision inserts and connectors — each type in its own bay, each a different geometry, all in the same materials and all clearly part of one set. Orderly, full, nothing loose.
+
+Accent colour: coral #FF5A36 on the contents of two compartments only. Everything else steel, aluminium and black anodise.
+
+Negative prompt: text, letters, words, numbers, labels, size markings, logos, watermarks, screens, people, hands, faces, rust, clutter, neon, cyberpunk, glowing parts, lens flare, borders, frames.</pre></div>
+  </div>
+
+  <div class="entry">
+    <div class="meta">
+      <p class="filename"><span class="swatch" style="background:var(--gold)"></span>heroes/hero-industries.png</p>
+      <p class="dims">16:9 · 2400 × 1350</p>
+      <p class="used">/industries — nine sectors, one discipline.</p>
+    </div>
+    <div class="prompt"><button class="copy" type="button">Copy</button><pre>Editorial technology photography. Real hardware on a seamless charcoal surface, one large soft key light from upper left plus a hard grazing accent, deep blacks that hold detail, shallow depth with one crisp plane of focus. Shot like a product catalogue, not stock technology.
+
+Subject: the same machined enclosure repeated six times in a row, each one finished differently — raw aluminium, bead-blasted, black anodised, white powder-coated, brushed steel, clear-anodised — and each configured with a different port arrangement on its face. One object, adapted six ways, photographed at a shallow angle so the row recedes.
+
+Accent colour: warm gold #FFD166 on the ports of one enclosure only. Everything else in its own metal finish.
+
+Negative prompt: text, letters, words, numbers, labels, logos, brand marks, watermarks, screens, industry symbols, people, hands, faces, neon, cyberpunk, glowing ports, lens flare, clutter, borders, frames.</pre></div>
+  </div>
+
+  <div class="entry">
+    <div class="meta">
+      <p class="filename"><span class="swatch" style="background:var(--violet)"></span>heroes/hero-insights.png</p>
+      <p class="dims">16:9 · 2400 × 1350</p>
+      <p class="used">/insights — the writing.</p>
+    </div>
+    <div class="prompt"><button class="copy" type="button">Copy</button><pre>Editorial technology photography. Seamless charcoal surface, one large soft key light from upper left plus a hard grazing accent, deep blacks that hold detail, shallow depth with one crisp plane of focus. Shot like a product catalogue, not stock technology.
+
+Subject: precision drafting instruments laid out on a dark drawing surface — a pair of dividers, a spring bow compass, a scale rule seen edge-on so its face is not readable, and a mechanical pencil. Machined knurling and blued steel, everything used rather than new. Arranged loosely, as if set down mid-task.
+
+Accent colour: violet #7C6CFF on the knurled collar of the compass only. Everything else steel, brass and graphite.
+
+Negative prompt: text, letters, words, numbers, scale graduations, ruler markings, handwriting, drawings, logos, watermarks, paper with visible marks, people, hands, faces, neon, lens flare, clutter, borders, frames.</pre></div>
+  </div>
+
+  <div class="entry">
+    <div class="meta">
+      <p class="filename"><span class="swatch" style="background:var(--indigo)"></span>heroes/hero-clients.png</p>
+      <p class="dims">16:9 · 2400 × 1350</p>
+      <p class="used">/clients — a page that exists to explain why it is empty.</p>
+    </div>
+    <div class="prompt"><button class="copy" type="button">Copy</button><pre>Editorial technology photography. Seamless charcoal surface, one large soft key light from upper left plus a hard grazing accent, deep blacks that hold detail, shallow depth with one crisp plane of focus. Shot like a product catalogue, not stock technology.
+
+Subject: a rack-mount blanking panel — a plain machined plate that fills an empty bay and does nothing else — installed in a frame with its fixing screws seated. Above and below it, the frame is open. Deliberately, obviously blank: the panel is there because something is not.
+
+Accent colour: indigo #6D7CFF on the captive screws only. Everything else black anodise and steel.
+
+Negative prompt: text, letters, words, numbers, labels, logos, brand marks, company logos, watermarks, screens, people, hands, faces, handshakes, neon, lens flare, clutter, borders, frames.</pre></div>
+  </div>
+
+  <div class="entry">
+    <div class="meta">
+      <p class="filename"><span class="swatch" style="background:var(--mint)"></span>heroes/hero-products.png</p>
+      <p class="dims">16:9 · 2400 × 1350</p>
+      <p class="used">/products — replaces a drawn dashboard carrying invented MRR and churn figures.</p>
+    </div>
+    <div class="prompt"><button class="copy" type="button">Copy</button><pre>Editorial technology photography. Real hardware on a seamless charcoal surface, one large soft key light from upper left plus a hard grazing accent, deep blacks that hold detail, shallow depth with one crisp plane of focus. Shot like a product catalogue, not stock technology.
+
+Subject: a single finished product enclosure alone in the frame — a compact machined aluminium case with crisp chamfers, gasketed seams, captive fasteners and one recessed port on its face. Completely unbranded. Photographed at a low three-quarter angle with plenty of space around it, so it reads as a thing that exists rather than a concept.
+
+Accent colour: mint #38C7A5 inside the recessed port only. Everything else bead-blasted aluminium.
+
+Negative prompt: text, letters, words, numbers, labels, logos, brand marks, watermarks, screens, displays, interfaces, people, hands, faces, neon, cyberpunk, glowing edges, lens flare, clutter, borders, frames.</pre></div>
+  </div>
+
+  <div class="entry">
+    <div class="meta">
+      <p class="filename"><span class="swatch" style="background:var(--blue)"></span>heroes/hero-contact.png</p>
+      <p class="dims">16:9 · 2400 × 1350</p>
+      <p class="used">/contact</p>
+    </div>
+    <div class="prompt"><button class="copy" type="button">Copy</button><pre>Editorial technology photography. Real hardware on a seamless charcoal surface, one large soft key light from upper left plus a hard grazing accent, deep blacks that hold detail, shallow depth with one crisp plane of focus. Shot like a product catalogue, not stock technology.
+
+Subject: a single machined call button in a heavy anodised bezel, mounted flush in a panel, photographed close and slightly from the side. The button is softly lit from within by a ring of light around its edge. Nothing else in frame. Tactile, precise, obviously meant to be pressed.
+
+Accent colour: blue #5B8CFF in the illuminated ring only. Everything else black anodise and machined aluminium.
+
+Negative prompt: text, letters, words, numbers, labels, icons, symbols, logos, watermarks, screens, people, hands, fingers, faces, neon, cyberpunk, lens flare, clutter, borders, frames.</pre></div>
+  </div>
+
+  <div class="entry">
+    <div class="meta">
+      <p class="filename"><span class="swatch" style="background:var(--tangerine)"></span>heroes/hero-start-project.png</p>
+      <p class="dims">16:9 · 2400 × 1350</p>
+      <p class="used">/start-a-project</p>
+    </div>
+    <div class="prompt"><button class="copy" type="button">Copy</button><pre>Editorial technology photography. Real hardware on a seamless charcoal surface, one large soft key light from upper left plus a hard grazing accent, deep blacks that hold detail, shallow depth with one crisp plane of focus. Shot like a product catalogue, not stock technology.
+
+Subject: a solid rectangular block of raw aluminium stock, uncut, its faces still carrying mill finish. A single fine scribe line has been marked across one face — the first and only mark on it. Nothing has been machined yet. Photographed at a low three-quarter angle so the block reads as heavy and full of possibility.
+
+Accent colour: tangerine #FF8A3D catching along the scribe line only. Everything else raw mill-finish aluminium.
+
+Negative prompt: text, letters, words, numbers, measurements, layout lines, logos, watermarks, tools, screens, people, hands, faces, neon, lens flare, sparks, clutter, borders, frames.</pre></div>
+  </div>
+</section>
+
+<section>
+  <div class="section-head">
+    <h2>Homepage sections</h2>
+    <span class="count">2 · 16:9 · 2400 × 1350</span>
+  </div>
+  <p class="section-note">Two bands on the homepage still draw their visuals in CSS — scattered wireframe cards and an abstract diagram. Both read as placeholder art, which is what they were.</p>
+
+  <div class="entry">
+    <div class="meta">
+      <p class="filename"><span class="swatch" style="background:var(--pink)"></span>sections/section-ideas-canvas.png</p>
+      <p class="dims">16:9 · 2400 × 1350</p>
+      <p class="used">Homepage, "Where ideas take shape" — replaces the floating wireframe cards.</p>
+    </div>
+    <div class="prompt"><button class="copy" type="button">Copy</button><pre>Editorial technology photography. Real hardware on a seamless charcoal surface, one large soft key light from upper left plus a hard grazing accent, deep blacks that hold detail, shallow depth with one crisp plane of focus. Shot like a product catalogue, not stock technology.
+
+Subject: an assembly caught halfway through coming together. At the centre, a machined housing with two parts already seated in it. Fanned around it on the surface, the remaining components still loose and unplaced — a board, a bracket, a seal, a fastener set — each one clearly belonging to the same object. Not a tidy exploded diagram: things sit where they were put down.
+
+Accent colour: pink #FF6FAE on the seal only. Everything else aluminium, black polymer and steel.
+
+Negative prompt: text, letters, words, numbers, labels, part numbers, logos, watermarks, screens, diagrams, arrows, callouts, people, hands, faces, neon, cyberpunk, glowing parts, lens flare, borders, frames.</pre></div>
+  </div>
+
+  <div class="entry">
+    <div class="meta">
+      <p class="filename"><span class="swatch" style="background:var(--blue)"></span>sections/section-technology.png</p>
+      <p class="dims">16:9 · 2400 × 1350</p>
+      <p class="used">Homepage technology band. Runs dark, so keep the blacks deep.</p>
+    </div>
+    <div class="prompt"><button class="copy" type="button">Copy</button><pre>Editorial technology photography. Real hardware on a seamless near-black surface, one hard raking light from the upper right and deep falloff into shadow. Rich blacks that still hold detail, shallow depth with one crisp plane of focus. Shot like a product catalogue, not stock technology.
+
+Subject: four circuit boards stacked in parallel on machined standoffs, evenly spaced with clear air between each layer, photographed from a low angle so you can see straight through the stack. Each board is a different density of components, and the layers read as a structure rather than a pile. Matte dark substrate, fine soldered detail, crisp standoff hardware.
+
+Accent colour: blue #5B8CFF on the standoffs of the top layer only. Everything else dark substrate, tinned steel and copper.
+
+Negative prompt: text, letters, words, numbers, silkscreen markings, component codes, labels, logos, watermarks, screens, glowing traces, matrix code, people, hands, faces, neon, cyberpunk, lens flare, clutter, borders, frames.</pre></div>
+  </div>
+</section>
+
+<section>
+  <div class="section-head">
+    <h2>One replacement</h2>
+    <span class="count">1 · 1:1 · 1200 × 1200</span>
+  </div>
+  <p class="section-note">The last image on the site still coming from the original supplied set. Everything else has been replaced.</p>
+
+  <div class="entry">
+    <div class="meta">
+      <p class="filename"><span class="swatch" style="background:var(--neutral)"></span>objects/object-globe-etched.png</p>
+      <p class="dims">1:1 · 1200 × 1200 · capture 1:1</p>
+      <p class="used">Static layer behind the live interactive globe on all six location pages.</p>
+    </div>
+    <div class="prompt"><button class="copy" type="button">Copy</button><pre>Editorial still life. Seamless charcoal surface, one large soft key light from upper left, gentle falloff, soft contact shadow. Matte materials, no gloss. Calm, uncluttered, generous margin.
+
+Subject: a sphere machined from solid aluminium, its continents etched into the surface in very low relief and left with a brushed finish while the oceans are bead-blasted matte, so the two read apart by texture rather than by colour. No borders, no graticule, no labels of any kind. A few small polished dots sit on the landmasses. Photographed straight on, the sphere filling most of the frame with even margins all round.
+
+Accent colour: none — keep the whole object in aluminium and grey. The live interface tints this per market, so a colour baked in here would fight it.
+
+Negative prompt: text, letters, words, numbers, country names, borders, latitude, longitude, flags, compass rose, logos, watermarks, people, hands, glowing arcs, connection lines, neon, lens flare, clutter, frames.</pre></div>
+  </div>
+</section>
+
+<section>
+  <div class="section-head"><h2>Not generated — uploaded in the admin</h2></div>
+  <p class="section-note">Case studies, products and articles are CMS-driven; each carries its own cover, uploaded through <strong>/admin → Media</strong>.</p>
+  <div class="table-scroll">
+    <table>
+      <thead><tr><th>Item</th><th>Ratio</th><th>Pixels</th><th>Note</th></tr></thead>
+      <tbody>
+        <tr><td>Case study cover</td><td class="num">16:9</td><td class="num">1600 × 900</td><td>Real project work only — never a render dressed as a client result.</td></tr>
+        <tr><td>Product cover</td><td class="num">16:9</td><td class="num">1600 × 900</td><td>A real screenshot beats a render. I can capture these.</td></tr>
+        <tr><td>Article cover</td><td class="num">16:9</td><td class="num">1600 × 900</td><td>Generated is fine; the service images crop well to 16:9.</td></tr>
+        <tr><td>Client logos</td><td class="num">—</td><td class="num">—</td><td><strong>Never generate.</strong> Supplied with permission, or the section stays empty.</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<footer class="end">
+  <p><strong>When you're done:</strong> drop the folders into <code>C:\Users\krisc_knym526\tda\images\</code> and tell me what's there. Partial is fine — <code>npm run build:images</code> builds whatever exists and prints the rest by exact path.</p>
+  <p>On my side: each file gets trimmed, resized, converted to WebP with a blur placeholder and registered in the manifest. Device frames and real screenshots composite on top of the plates. Industries, About and Careers get image slots built to match the service pages. Nothing generated ends up on a screen, and nothing here gets captioned as equipment we own.</p>
+</footer>
+
+</div>
+
+<script>
+  document.querySelectorAll(".copy").forEach(function (btn) {
+    btn.addEventListener("click", function () {
+      var pre = btn.parentElement.querySelector("pre");
+      navigator.clipboard.writeText(pre.textContent).then(function () {
+        btn.textContent = "Copied";
+        btn.dataset.done = "1";
+        setTimeout(function () {
+          btn.textContent = "Copy";
+          delete btn.dataset.done;
+        }, 1600);
+      });
+    });
+  });
+</script>

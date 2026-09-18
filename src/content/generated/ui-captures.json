@@ -1,0 +1,149 @@
+{
+ "site-home": {
+  "src": "/images/ui/site-home.png",
+  "width": 2880,
+  "height": 1800,
+  "viewport": "1440×900",
+  "route": "/"
+ },
+ "site-services": {
+  "src": "/images/ui/site-services.png",
+  "width": 2880,
+  "height": 1800,
+  "viewport": "1440×900",
+  "route": "/services"
+ },
+ "site-service-saas": {
+  "src": "/images/ui/site-service-saas.png",
+  "width": 2880,
+  "height": 1800,
+  "viewport": "1440×900",
+  "route": "/services/saas-development"
+ },
+ "site-work": {
+  "src": "/images/ui/site-work.png",
+  "width": 2880,
+  "height": 1800,
+  "viewport": "1440×900",
+  "route": "/work"
+ },
+ "site-contact": {
+  "src": "/images/ui/site-contact.png",
+  "width": 2880,
+  "height": 1800,
+  "viewport": "1440×900",
+  "route": "/contact"
+ },
+ "site-locations": {
+  "src": "/images/ui/site-locations.png",
+  "width": 2880,
+  "height": 1800,
+  "viewport": "1440×900",
+  "route": "/locations/india"
+ },
+ "admin-dashboard": {
+  "src": "/images/ui/admin-dashboard.png",
+  "width": 2880,
+  "height": 1800,
+  "viewport": "1440×900",
+  "route": "/admin"
+ },
+ "admin-leads": {
+  "src": "/images/ui/admin-leads.png",
+  "width": 2880,
+  "height": 1800,
+  "viewport": "1440×900",
+  "route": "/admin/leads"
+ },
+ "admin-media": {
+  "src": "/images/ui/admin-media.png",
+  "width": 2880,
+  "height": 1800,
+  "viewport": "1440×900",
+  "route": "/admin/media"
+ },
+ "admin-settings": {
+  "src": "/images/ui/admin-settings.png",
+  "width": 2880,
+  "height": 1800,
+  "viewport": "1440×900",
+  "route": "/admin/settings"
+ },
+ "admin-audit": {
+  "src": "/images/ui/admin-audit.png",
+  "width": 2880,
+  "height": 1800,
+  "viewport": "1440×900",
+  "route": "/admin/audit"
+ },
+ "admin-users": {
+  "src": "/images/ui/admin-users.png",
+  "width": 2880,
+  "height": 1800,
+  "viewport": "1440×900",
+  "route": "/admin/users"
+ },
+ "admin-seo": {
+  "src": "/images/ui/admin-seo.png",
+  "width": 2880,
+  "height": 1800,
+  "viewport": "1440×900",
+  "route": "/admin/seo"
+ },
+ "admin-redirects": {
+  "src": "/images/ui/admin-redirects.png",
+  "width": 2880,
+  "height": 1800,
+  "viewport": "1440×900",
+  "route": "/admin/redirects"
+ },
+ "phone-home": {
+  "src": "/images/ui/phone-home.png",
+  "width": 780,
+  "height": 1688,
+  "viewport": "390×844",
+  "route": "/"
+ },
+ "phone-services": {
+  "src": "/images/ui/phone-services.png",
+  "width": 780,
+  "height": 1688,
+  "viewport": "390×844",
+  "route": "/services"
+ },
+ "phone-contact": {
+  "src": "/images/ui/phone-contact.png",
+  "width": 780,
+  "height": 1688,
+  "viewport": "390×844",
+  "route": "/contact"
+ },
+ "tablet-services": {
+  "src": "/images/ui/tablet-services.png",
+  "width": 2048,
+  "height": 1536,
+  "viewport": "1024×768",
+  "route": "/services"
+ },
+ "tablet-industries": {
+  "src": "/images/ui/tablet-industries.png",
+  "width": 2048,
+  "height": 1536,
+  "viewport": "1024×768",
+  "route": "/industries"
+ },
+ "tablet-home-services": {
+  "src": "/images/ui/tablet-home-services.png",
+  "width": 2048,
+  "height": 1536,
+  "viewport": "1024×768",
+  "route": "/"
+ },
+ "tablet-admin": {
+  "src": "/images/ui/tablet-admin.png",
+  "width": 2048,
+  "height": 1536,
+  "viewport": "1024×768",
+  "route": "/admin"
+ }
+}

@@ -170,21 +170,17 @@ export function BhadawarAI() {
           <button
             type="button"
             onClick={() => setIsOpen(true)}
-            aria-label="Open Bhadawar AI chat"
-            className={cn(
-              "group relative flex items-center gap-2.5 rounded-full p-3 sm:px-4 sm:py-3 shadow-2xl transition-all duration-300 cursor-pointer",
-              "bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 text-white hover:opacity-95 hover:scale-105 active:scale-95",
-              "ring-4 ring-blue-500/20 shadow-blue-500/30",
-            )}
+            aria-label="Open AI Assistant"
+            className="group relative flex items-center gap-2.5 rounded-full bg-linear-to-r from-blue-600 via-indigo-600 to-purple-600 p-1.5 pr-4 shadow-xl shadow-blue-500/25 transition-all duration-300 hover:scale-105 hover:shadow-2xl hover:shadow-blue-500/40 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-500 cursor-pointer"
           >
             {/* Animated Glow Ring */}
             <span className="absolute -inset-0.5 rounded-full bg-gradient-to-r from-cyan-400 to-purple-500 opacity-60 blur-xs transition duration-500 group-hover:opacity-100 animate-pulse" />
 
             <div className="relative flex items-center gap-2.5">
-              <div className="relative flex size-7 items-center justify-center shrink-0">
+              <div className="relative flex size-7 items-center justify-center">
                 <Image
                   src="/images/bhadawar-ai-avatar.png"
-                  alt="Bhadawar AI"
+                  alt="AI"
                   width={28}
                   height={28}
                   className="size-7 rounded-full object-cover ring-2 ring-white/70 shadow-xs"
@@ -193,10 +189,7 @@ export function BhadawarAI() {
                 <span className="absolute -top-0.5 -right-0.5 size-2.5 rounded-full bg-emerald-400 ring-2 ring-blue-600" />
               </div>
               <span className="inline font-display text-sm font-bold tracking-tight text-white">
-                Bhadawar AI
-              </span>
-              <span className="rounded-full bg-white/20 px-2 py-0.5 text-[0.6875rem] font-black uppercase tracking-wider text-white">
-                Agent
+                AI
               </span>
             </div>
           </button>

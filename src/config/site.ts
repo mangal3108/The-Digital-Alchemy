@@ -16,7 +16,7 @@
 export const siteConfig = {
   /** VERIFIED — og:site_name on the live site */
   name: "The Digital Alchemy",
-  legalName: "The Digital Alchemy",
+  legalName: "The Digital Alchemy Media Private Limited",
 
   /**
    * Repositioning: the live site presents the company as a social-media and

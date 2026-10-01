@@ -87,10 +87,18 @@ const META_FIELDS: EditableField[] = [
 export const EDITABLE_FIELDS: Record<ContentScope, EditableField[]> = {
   service: [
     ...HEADLINE_FIELDS,
+    // No "Call to action" field: every page uses the one sitewide label
+    // (PRIMARY_CTA in src/config/site.ts), so it is changed in one place.
     {
-      name: "ctaLabel",
-      label: "Call to action",
-      hint: "The primary button on this page.",
+      name: "priceFrom",
+      label: "Starting price",
+      hint: 'Include the currency, e.g. "₹60,000". Shown as "Most projects start from …". Leave empty to say every project is priced on what it needs.',
+      guide: 20,
+    },
+    {
+      name: "typicalTimeline",
+      label: "Typical timeline",
+      hint: 'From start to launch, e.g. "4 to 8 weeks". Leave empty to say it depends on what is included.',
       guide: 30,
     },
     ...META_FIELDS,

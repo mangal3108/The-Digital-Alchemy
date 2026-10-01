@@ -146,7 +146,6 @@ export default async function JobPage({
         lede={job.summary}
         crumbs={crumbs}
         primaryCta={{ label: "Apply for this role", href: applyHref }}
-        secondaryCta={{ label: "All roles", href: "/careers" }}
       />
 
       <Section size="sm" className="border-y border-hairline bg-surface">

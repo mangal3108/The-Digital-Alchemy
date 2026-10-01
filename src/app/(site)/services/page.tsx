@@ -6,15 +6,16 @@ import { ArrowUpRight } from "lucide-react";
 import {
   services,
   SERVICE_GROUPS,
+  SERVICE_GROUP_ORDER,
   getServicesByGroup,
   serviceHref,
-  type ServiceGroup,
 } from "@/content/services";
 import { withOverridesAll } from "@/lib/content-overrides";
 import { engagementModels } from "@/content/engagement";
 import { processStages } from "@/content/process";
 
 import { PageHero } from "@/components/sections/page-hero";
+import { BrandLogos } from "@/components/ui/brand-logos";
 import { Section, SectionHeading } from "@/components/ui/section-heading";
 import { SectionBackdrop } from "@/components/visuals/section-backdrop";
 import { CtaSection } from "@/components/sections/cta";
@@ -24,47 +25,42 @@ import { revealProps } from "@/lib/reveal";
 import { buildMetadata, breadcrumbSchema, faqSchema } from "@/lib/seo";
 import { FlowSteps } from "@/components/visuals/flow-diagram";
 import { getScopedFaqs } from "@/lib/content";
-
-const GROUP_ORDER: ServiceGroup[] = [
-  "development",
-  "design",
-  "growth",
-  "technology",
-];
+import { ServicePickerSection } from "@/components/sections/service-picker-section";
+import { PRIMARY_CTA } from "@/config/site";
 
 const FAQS = [
   {
     question: "Can we start with just one service?",
     answer:
-      "Yes, and most clients do. A website, an audit or a single piece of software is a normal starting point. The advantage of the range is that when the work touches something else — search visibility, an integration, a campaign to fill it — that is a conversation rather than a new supplier.",
+      "Yes. A website, a check-up of your marketing, or one piece of software is a normal place to start. The benefit of one team is that when the work touches something else, like showing up on Google or connecting another app, you have a conversation instead of finding a new supplier.",
   },
   {
-    question: "Do you work on retainer or per project?",
+    question: "Do you charge per project or monthly?",
     answer:
-      "Both. Build work is usually project-based with a defined scope; marketing, social and SEO work on a monthly retainer because they compound. Longer product work often becomes a dedicated team or product partnership. We recommend the model that suits the work rather than the one that suits us.",
+      "Both. Building something is usually a fixed project with an agreed list of what is included. Marketing, social media and SEO are monthly, because their results build up over time. We suggest the arrangement that suits the work, not the one that suits us.",
   },
   {
     question: "How do you price?",
     answer:
-      "Project work is quoted against a written scope after a discovery conversation, so you see a costed plan before committing. Retainers are a monthly fee against agreed deliverables. We do not price marketing as a percentage of ad spend, because that creates an incentive to recommend spending more.",
+      "For projects, we give you a price for a written plan after a first conversation, so you see the cost before you commit. Monthly work is a fixed monthly fee for an agreed list of work. We never charge a share of your ad spend, because that would reward us for telling you to spend more.",
   },
   {
     question: "What if we already have a developer or agency?",
     answer:
-      "That is common and usually fine. We work alongside in-house teams and other suppliers regularly. What matters is that ownership of each area is clear from the start — overlapping responsibility with no boundary is what makes those arrangements fail.",
+      "That is common, and usually fine. We work alongside your own team or other suppliers. What matters is agreeing at the start who is responsible for what, because unclear responsibilities are what make these arrangements fail.",
   },
   {
     question: "Do you work with businesses outside India?",
     answer:
-      "Yes. We are based in New Delhi and work remotely with clients in the United States, Australia, the United Kingdom, Canada and the UAE. Each market page sets out the real time-zone overlap and how contracting and invoicing work there.",
+      "Yes. We are based in New Delhi, and we also take on clients in the United States, Australia, the United Kingdom, Canada and the UAE, working remotely. Each country's page shows the working hours we share and how contracts and invoices work there.",
   },
 ];
 
 export async function generateMetadata(): Promise<Metadata> {
   return buildMetadata({
-    title: "Services — AI Automation, Software, Design & Growth | The Digital Alchemy",
+    title: "Web, App, AI & Marketing Services | The Digital Alchemy",
     description:
-      "AI automation & intelligent workflows, AI-ready SaaS development, web and mobile platforms, UI/UX design, and compound search growth engineering.",
+      "Websites, online stores, apps, AI tools and online marketing, grouped by what you need. Not sure? Answer three quick questions. Get a free consultation.",
     path: "/services",
   });
 }
@@ -97,29 +93,54 @@ export default async function ServicesPage() {
   return (
     <>
       <PageHero
-        eyebrow="Services & Capabilities"
-        title="AI automation. Software engineering. Digital scale."
-        lede="AI automation, modern software engineering, product design, and compound growth under one roof. We architect autonomous, AI-ready digital platforms that eliminate operational friction and scale effortlessly."
+        eyebrow="Our services"
+        title="Websites, apps, AI tools and more customers, all from one team."
+        lede="Choose by what you need: a website, an app, more customers, less repetitive work, a better look, or someone to keep it all running. Not sure? The questions below will point you in the right direction."
         crumbs={crumbs}
-        primaryCta={{ label: "Start an AI Project", href: "/start-a-project" }}
-        secondaryCta={{ label: "How we work", href: "/about" }}
+        primaryCta={{ label: PRIMARY_CTA.label, href: PRIMARY_CTA.href }}
         bleedImage={getOptionalBrandImage("hero-services")}
         bleedImageAlt=""
       />
+
+      {/* ---- Platforms strip ---- */}
+      <section className="border-b border-hairline bg-surface/60 py-6 sm:py-7">
+        <div className="container-page">
+          <BrandLogos
+            slugs={[
+              "google",
+              "meta",
+              "shopify",
+              "wordpress",
+              "aws",
+              "react",
+              "nextjs",
+              "figma",
+              "stripe",
+              "whatsapp",
+            ]}
+            title="Platforms & tools covered across our services"
+            layout="strip"
+            size="md"
+          />
+        </div>
+      </section>
+
+      {/* ---- Help me choose: where the menu's "Not sure what you need?" lands ---- */}
+      <ServicePickerSection />
 
       {/* ---- The connected model ---- */}
       <Section size="sm" className="relative overflow-hidden border-y border-hairline bg-surface">
         <SectionBackdrop name="section-technology" from="var(--color-surface)" opacity={0.16} side="right" />
         <div className="relative">
           <div {...revealProps()} className="max-w-2xl">
-            <p className="eyebrow">The model</p>
+            <p className="eyebrow">Why one team</p>
             <h2 className="mt-3 text-title text-ink">
-              Each stage informs the next, and the last one feeds the first.
+              Each step helps the next, and what we learn feeds back in.
             </h2>
             <p className="mt-3 text-[0.9375rem] leading-relaxed text-ink-muted">
-              The people who will have to market a product are in the room while
-              it is being designed. The engineers know what the campaign
-              promised. That is the whole argument for a combined team.
+              The people who will market your website or app help plan it. The
+              people who build it know what the ads promised. That is why one
+              team works better than several.
             </p>
           </div>
 
@@ -134,7 +155,7 @@ export default async function ServicesPage() {
       </Section>
 
       {/* ---- Service groups ---- */}
-      {GROUP_ORDER.map((group, groupIndex) => {
+      {SERVICE_GROUP_ORDER.map((group, groupIndex) => {
         const services = getServicesByGroup(group).map(
           (service) => bySlug.get(service.slug) ?? service,
         );
@@ -168,7 +189,7 @@ export default async function ServicesPage() {
                       />
                     </div>
                     <p className="mt-2.5 flex-1 text-[0.875rem] leading-relaxed text-ink-muted">
-                      {service.summary}
+                      {service.oneLiner}
                     </p>
                   </Link>
                 </li>
@@ -183,9 +204,9 @@ export default async function ServicesPage() {
         <SectionBackdrop name="section-why-us" from="var(--color-surface)" opacity={0.14} side="left" />
         <div className="relative">
           <SectionHeading
-            eyebrow="Engagement models"
-            title="How working together is usually structured."
-            lede="The right model depends on how defined the work is and how long it runs. We will recommend one rather than defaulting to whichever bills most."
+            eyebrow="Ways to work with us"
+            title="How working together usually works."
+            lede="The right arrangement depends on how clear the work is and how long it lasts. We will suggest one, not whichever earns us most."
           />
 
           <div className="mt-11 grid gap-4 md:grid-cols-2 xl:grid-cols-3">
@@ -225,9 +246,8 @@ export default async function ServicesPage() {
       <FaqSection items={faqs} title="Questions about working with us" />
 
       <CtaSection
-        title="Not sure which of these you need?"
-        body="That is a normal place to start. Describe the problem rather than the solution and we will tell you what we would actually recommend."
-        secondary={{ label: "Read about our process", href: "/about" }}
+        title="Still not sure what you need?"
+        body="That is a normal place to start. Tell us the problem, not the solution, and we will tell you what we would actually suggest."
       />
 
       <JsonLd id="breadcrumb-schema" data={breadcrumbSchema(crumbs)} />

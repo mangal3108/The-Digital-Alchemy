@@ -29,6 +29,7 @@ export interface ResolvedSettings {
   addressStreet: string;
   mapsUrl: string;
   businessHours: string;
+  replyTime: string;
   footerNote: string;
   social: Record<string, string>;
   analytics: {
@@ -136,6 +137,15 @@ export const SETTING_DEFINITIONS: {
     hint: "Leave blank to hide. Example: Mon–Fri, 10:00–19:00 IST",
     default: siteConfig.businessHours,
   },
+  {
+    key: "contact.replyTime",
+    label: "How fast you reply to enquiries",
+    group: "contact",
+    type: "text",
+    hint: 'Shown by the enquiry form as "We reply within …". Example: one working day. Leave blank to promise no time.',
+    // {{TODO: the owner's real reply time}} Empty means no promise is shown.
+    default: "",
+  },
 
   // -- Address -------------------------------------------------------------
   {
@@ -198,7 +208,8 @@ export const SETTING_DEFINITIONS: {
     label: "Default meta title",
     group: "seo",
     type: "text",
-    default: `${siteConfig.name} | AI Automation, AI-Ready Products & Digital Software Studio`,
+    // Keyword first, brand last, under 60 characters.
+    default: `Web, Apps, AI & Marketing in Delhi | ${siteConfig.name}`,
   },
   {
     key: "seo.defaultDescription",
@@ -292,6 +303,7 @@ export const getSiteSettings = cache(async (): Promise<ResolvedSettings> => {
     phoneE164: get("contact.phoneE164"),
     whatsapp: get("contact.whatsapp"),
     businessHours: get("contact.businessHours"),
+    replyTime: get("contact.replyTime"),
     addressStreet: get("address.street"),
     addressLocality: get("address.locality"),
     addressRegion: get("address.region"),

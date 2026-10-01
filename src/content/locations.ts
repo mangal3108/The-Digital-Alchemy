@@ -50,50 +50,50 @@ export const markets: Market[] = [
     isoNumeric: "356",
     coordinates: { lat: 28.61, lon: 77.21 },
     type: "headquarters",
-    title: "A digital product and growth studio in New Delhi.",
+    title: "Websites, apps and marketing for Indian businesses, from New Delhi.",
     eyebrow: "India",
-    lede: "This is where the studio is. We work with Indian businesses on the full range — websites and software through to the marketing that brings them customers — and we can meet in person when it helps.",
-    metaTitle: "Digital Product Studio in New Delhi | The Digital Alchemy",
+    lede: "This is where we are. We help Indian businesses with everything from websites and software to the marketing that brings them customers. We can also meet in person when it helps.",
+    metaTitle: "Websites, Apps and Marketing in India | The Digital Alchemy",
     metaDescription:
-      "A digital product, software and growth studio in Uttam Nagar, New Delhi — SaaS, custom software, websites, apps, SEO and marketing for Indian businesses.",
+      "A New Delhi team building websites, apps, software and AI tools, and running online marketing for Indian businesses. Get a free consultation.",
     presence:
-      "Based in Uttam Nagar, New Delhi. This is our only office; every other market we serve, we serve remotely.",
+      "Based in Uttam Nagar, New Delhi. This is our only office; we work with clients in every other country remotely.",
     timezone: {
-      label: "IST (UTC+5:30)",
-      overlap: "Full working-day overlap",
+      label: "Indian time (IST)",
+      overlap: "The whole working day",
       detail:
-        "We are in the same time zone, so meetings, reviews and urgent questions happen the same day rather than the next one.",
+        "We keep the same hours as you, so meetings, reviews and urgent questions happen the same day, not the next one.",
     },
     workingModel: [
       {
-        title: "In-person where it earns its place",
-        body: "Discovery workshops and major reviews can happen face to face in Delhi NCR. Most day-to-day work still runs remotely, because that is genuinely more efficient for both sides.",
+        title: "Meeting in person when it helps",
+        body: "The first planning sessions and big reviews can happen face to face in Delhi NCR. Most day-to-day work still happens remotely, because that is quicker for both sides.",
       },
       {
-        title: "Same-day responsiveness",
-        body: "Shared working hours mean questions get answered within the day and decisions do not wait overnight for a reply.",
+        title: "Answers the same day",
+        body: "Shared working hours mean questions are answered within the day, and decisions do not wait overnight.",
       },
       {
-        title: "Local payment and contracting",
-        body: "Invoicing in rupees, GST handled correctly, and payment through standard domestic methods including UPI and bank transfer.",
+        title: "Indian billing and payments",
+        body: "Invoices in rupees with GST done correctly, and payment by UPI or bank transfer.",
       },
     ],
     practicalities: [
       {
-        title: "Payments built for Indian customers",
-        body: "UPI, cards, net banking and wallets through domestic gateways. Checkout that omits UPI loses a substantial share of Indian consumer transactions.",
+        title: "Payments Indian customers use",
+        body: "UPI, cards, net banking and wallets through Indian payment gateways. A checkout without UPI loses a large share of Indian buyers.",
       },
       {
-        title: "Performance on real Indian networks",
-        body: "We test on mid-range Android devices and constrained connections, not on a fast desktop. That is what most of your traffic actually looks like.",
+        title: "Fast on real Indian phones and networks",
+        body: "We test on mid-range Android phones and slow connections, not a fast office computer, because that is what most of your visitors use.",
       },
       {
-        title: "Local search visibility",
-        body: "Google Business Profile, consistent listings and location content — the work that decides whether nearby customers find you at all.",
+        title: "Showing up in local searches",
+        body: "Google Business Profile, the same details on every listing, and useful local pages: the work that decides whether nearby customers find you at all.",
       },
       {
-        title: "Multilingual where it matters",
-        body: "Where your audience is not primarily English-reading, we plan for that in the content model rather than bolting on a translation plugin later.",
+        title: "Hindi and regional languages, where needed",
+        body: "Do many of your customers prefer a language other than English? Then we plan the website for it from the start, not with a translation plug-in later.",
       },
     ],
     services: [
@@ -108,17 +108,17 @@ export const markets: Market[] = [
       {
         question: "Can we meet in person?",
         answer:
-          "Yes, for clients in and around Delhi NCR. We usually suggest meeting for discovery and for major milestone reviews, and running everything else remotely, which keeps the project moving faster.",
+          "Yes, if you are in or around Delhi NCR. We usually suggest meeting for the first planning session and for big reviews, and doing everything else online, which keeps the project moving faster.",
       },
       {
         question: "Do you work with businesses outside Delhi?",
         answer:
-          "Yes — remote work across India is routine for us. The only difference is that in-person sessions become video calls.",
+          "Yes, anywhere in India. The only difference is that in-person meetings become video calls.",
       },
       {
-        question: "How does GST and invoicing work?",
+        question: "How do GST and invoices work?",
         answer:
-          "We invoice in rupees with GST applied as required. Payment terms are agreed in the contract, typically against milestones for project work and monthly in advance for retainers.",
+          "We invoice in rupees, with GST added as required. Payment terms are agreed in the contract: usually by stages for projects, and monthly in advance for ongoing work.",
       },
     ],
   },
@@ -130,54 +130,54 @@ export const markets: Market[] = [
     isoNumeric: "840",
     coordinates: { lat: 38.9, lon: -77.04 },
     type: "client-market",
-    title: "A remote product and engineering partner for US businesses.",
+    title: "Software and app development for US businesses, from New Delhi.",
     eyebrow: "United States",
-    lede: "We work with US companies as a remote design and engineering team. No US office, no local sales presence — just a studio in New Delhi that has structured its week so American clients are not waiting a day for every answer.",
-    metaTitle: "SaaS & Software Development for US Businesses | The Digital Alchemy",
+    lede: "We work with US businesses as a remote design and development team. There is no US office and no local sales team. We are a team in New Delhi that plans its day so American clients are not waiting a day for every answer.",
+    metaTitle: "Software Development for US Businesses | The Digital Alchemy",
     metaDescription:
-      "Remote SaaS, software, web and app development for United States businesses. A New Delhi studio working with US companies on product design, engineering and digital growth.",
+      "Software, SaaS, website and app development for US businesses, by a New Delhi team that keeps set hours for your mornings. Get a free consultation.",
     presence:
-      "We do not have a US office. We are based in New Delhi and work with US clients remotely, with an overlap window held open specifically for them.",
+      "We do not have a US office. We are based in New Delhi and work with US clients remotely, keeping set hours free just for them.",
     timezone: {
-      label: "IST is 9.5–13 hours ahead of the US",
-      overlap: "Late afternoon US / early morning IST, and evening IST / morning ET",
+      label: "India is 9.5 to 13 hours ahead of the US",
+      overlap: "Our evening, your morning",
       detail:
-        "Our evening overlaps the US East Coast morning: roughly 6:30pm–9:30pm in Delhi is 8:00am–11:00am in New York. For the West Coast the overlap sits later in our evening. We hold that window for calls rather than asking you to take meetings at unreasonable hours.",
+        "Our evening lines up with the US East Coast morning: roughly 6:30pm to 9:30pm in Delhi is 8:00am to 11:00am in New York. For the West Coast, the shared time is later in our evening. We keep that time free for calls, so you never need to meet at unreasonable hours.",
     },
     workingModel: [
       {
-        title: "A held overlap window",
-        body: "A fixed block each working day when our team is available for US calls, so scheduling does not become a negotiation every week.",
+        title: "Set hours for your calls",
+        body: "A fixed block every working day when our team is free for US calls, so booking a meeting is never a weekly negotiation.",
       },
       {
-        title: "Written first",
-        body: "Decisions, specifications and progress documented in writing rather than relayed verbally. It means the time difference works for you — work continues while you sleep, and it is legible when you wake up.",
+        title: "Everything in writing",
+        body: "Decisions, plans and progress are written down, not just said on calls. The time difference then works for you: work continues while you sleep, and it is clear when you wake up.",
       },
       {
-        title: "Environments you can check any time",
-        body: "A staging URL you can open whenever you want. Progress is something you inspect directly rather than something you receive a summary of.",
+        title: "A test link you can open any time",
+        body: "A test version of your project you can open whenever you like, so you check progress yourself instead of waiting for a summary.",
       },
       {
-        title: "One point of contact",
-        body: "A named lead who knows the whole engagement, so you are not re-explaining context to whoever is available.",
+        title: "One person to talk to",
+        body: "A named lead who knows your whole project, so you never re-explain things to whoever is free.",
       },
     ],
     practicalities: [
       {
-        title: "Contracting and IP",
-        body: "Written agreements covering scope, intellectual property assignment and confidentiality. Code, designs and infrastructure accounts are yours outright.",
+        title: "Contracts and ownership",
+        body: "Written agreements covering what is included, confidentiality, and your ownership of the work. The code, designs and accounts are yours.",
       },
       {
-        title: "Invoicing in USD",
-        body: "Invoiced in US dollars, paid by international transfer. Fees and payment schedule are fixed in the contract so exchange movement is not your problem mid-project.",
+        title: "Invoices in US dollars",
+        body: "Invoiced in US dollars and paid by international transfer. Fees and payment dates are fixed in the contract, so exchange rates are not your problem during the project.",
       },
       {
-        title: "Data location",
-        body: "Where your data must stay in US regions, we deploy to US regions. That is a decision we take explicitly at the start rather than by default.",
+        title: "Where your data is kept",
+        body: "If your data must stay in the US, we host it in the US. We decide that on purpose at the start, not by default.",
       },
       {
-        title: "Realistic cost expectations",
-        body: "Our rates are lower than a comparable US studio. We would rather be chosen for the quality of the work than positioned purely on price, so we scope openly and let the plan speak for itself.",
+        title: "Honest about cost",
+        body: "Our rates are usually lower than a similar US studio's. We would rather be chosen for the quality of our work than on price alone. So we plan openly and let the plan speak for itself.",
       },
     ],
     services: [
@@ -192,22 +192,22 @@ export const markets: Market[] = [
       {
         question: "Do you have a US office?",
         answer:
-          "No. We are based in New Delhi and work with US clients remotely. We would rather say that plainly than imply a local presence we do not have.",
+          "No. We are based in New Delhi and work with US clients remotely. We would rather say that plainly than suggest a local office we do not have.",
       },
       {
         question: "How do we handle the time difference?",
         answer:
-          "With a held overlap window for calls — our evening, your morning on the East Coast — and by working in writing so progress does not depend on being in a meeting together. In practice, many clients find the offset useful: work happens overnight and is ready for review when they start.",
+          "With set hours for calls, our evening and your East Coast morning, and by doing everything in writing so progress does not depend on meetings. The time difference can even help: work happens while you sleep and is ready to review when you start.",
       },
       {
-        question: "Who owns the intellectual property?",
+        question: "Who owns the work?",
         answer:
-          "You do. IP assignment is written into the contract, and repositories, cloud accounts and design files are in your company's name from the beginning.",
+          "You do. Ownership is written into the contract, and the code, cloud accounts and design files are in your company's name from the start.",
       },
       {
         question: "How do we know the work will be good?",
         answer:
-          "Start small. A paid discovery phase or a defined first milestone gives you a real basis to judge quality, communication and pace before committing to a larger build. We would rather earn a bigger engagement than ask for one on trust.",
+          "Start small. A paid first phase, or a clearly defined first stage, lets you judge the quality, communication and speed before committing to more. We would rather earn a bigger project than ask for one on trust.",
       },
     ],
   },
@@ -219,50 +219,50 @@ export const markets: Market[] = [
     isoNumeric: "036",
     coordinates: { lat: -33.87, lon: 151.21 },
     type: "client-market",
-    title: "A development partner for Australian businesses, in a workable time zone.",
+    title: "Web and app development for Australian businesses, with easy hours.",
     eyebrow: "Australia",
-    lede: "Australia is one of the easier markets to work with from India. Our morning is your afternoon, so a same-day conversation is normal rather than something to be arranged around.",
-    metaTitle: "Software & Web Development for Australia | The Digital Alchemy",
+    lede: "Australia is one of the easiest countries to work with from India. Our morning is your afternoon, so talking the same day is normal, not something to plan around.",
+    metaTitle: "Web and App Development for Australia | The Digital Alchemy",
     metaDescription:
-      "Remote web, SaaS, software and app development for Australian businesses. A New Delhi studio with a substantial daily time-zone overlap with Australian working hours.",
+      "Websites, software, SaaS and apps for Australian businesses, by a New Delhi team whose morning is your afternoon. Get a free consultation.",
     presence:
       "We do not have an Australian office. We are based in New Delhi and work with Australian clients remotely.",
     timezone: {
-      label: "IST is 4.5–5.5 hours behind AEST/AEDT",
-      overlap: "Most of the Australian afternoon",
+      label: "India is 4.5 to 5.5 hours behind Sydney",
+      overlap: "Most of your afternoon",
       detail:
-        "Our working morning covers a large part of your afternoon — around 9:30am in Delhi is roughly 2:00pm in Sydney. That is a genuine shared window every day, not a narrow edge of it.",
+        "Our working morning covers much of your afternoon: around 9:30am in Delhi is roughly 2:00pm in Sydney. That is real shared time every day, not a narrow slot.",
     },
     workingModel: [
       {
-        title: "Same-day, not next-day",
-        body: "A question raised in your morning is usually answered before you finish for the day. The overlap is wide enough that work rarely waits a full cycle.",
+        title: "The same day, not the next",
+        body: "A question you ask in the morning is usually answered before you finish for the day. The shared time is wide enough that work rarely waits overnight.",
       },
       {
-        title: "Calls at sensible hours for both sides",
-        body: "Your afternoon is our morning. Nobody has to take a call at eleven at night to keep the project moving.",
+        title: "Calls at sensible hours",
+        body: "Your afternoon is our morning. Nobody has to take a call at eleven at night to keep things moving.",
       },
       {
-        title: "Regular review cadence",
-        body: "A fixed weekly review at a time that suits your week, with written updates in between so nothing depends on attendance.",
+        title: "A regular weekly review",
+        body: "A fixed weekly review at a time that suits you, with written updates in between, so nothing depends on being on a call.",
       },
     ],
     practicalities: [
       {
-        title: "Contracting and invoicing",
-        body: "Written agreements with IP assignment, invoiced in Australian dollars and paid by international transfer.",
+        title: "Contracts and invoices",
+        body: "Written agreements with ownership of the work, invoiced in Australian dollars and paid by international transfer.",
       },
       {
-        title: "Accessibility expectations",
-        body: "Australian organisations, particularly in the public and education sectors, often work to WCAG conformance. We build to WCAG 2.2 AA as standard, so that requirement is already met.",
+        title: "Easy access for everyone",
+        body: "Many Australian organisations, especially in government and education, must meet the international accessibility standard (WCAG). We build to WCAG 2.2 AA as standard, so that is already covered.",
       },
       {
-        title: "Payments and local methods",
-        body: "For consumer products we cover the payment methods Australian customers expect, including local card handling and buy-now-pay-later where it suits the category.",
+        title: "Local payment methods",
+        body: "For products sold to the public, we set up the payment methods Australians expect, including local cards and buy-now-pay-later where it suits.",
       },
       {
-        title: "Hosting region",
-        body: "Where latency or data residency matters, we deploy to Australian regions rather than defaulting to wherever is cheapest.",
+        title: "Hosting in Australia",
+        body: "Where speed or data rules matter, we host in Australia instead of wherever is cheapest.",
       },
     ],
     services: [
@@ -277,17 +277,17 @@ export const markets: Market[] = [
       {
         question: "Are you based in Australia?",
         answer:
-          "No. We are in New Delhi and work with Australian clients remotely. The time-zone overlap is good enough that this works well in practice.",
+          "No. We are in New Delhi and work with Australian clients remotely. The shared hours are good enough that this works well.",
       },
       {
-        question: "What are your working hours relative to ours?",
+        question: "How do our working hours line up?",
         answer:
-          "Our standard day covers a large part of your afternoon. We schedule calls in that window, which is comfortable for both sides rather than an imposition on either.",
+          "Our normal day covers much of your afternoon. We book calls in that time, which is comfortable for both sides.",
       },
       {
         question: "Can you host in Australia?",
         answer:
-          "Yes. Where data residency or latency matters, we deploy to Australian cloud regions and confirm that in writing as part of the architecture.",
+          "Yes. Where data rules or speed matter, we host in Australia and confirm that in writing.",
       },
     ],
   },
@@ -299,50 +299,50 @@ export const markets: Market[] = [
     isoNumeric: "826",
     coordinates: { lat: 51.51, lon: -0.13 },
     type: "client-market",
-    title: "A remote studio for UK businesses, working most of your day.",
+    title: "Web and software development for UK businesses, in your working day.",
     eyebrow: "United Kingdom",
-    lede: "The UK is the market our working day overlaps most naturally. Our afternoon covers your morning and most of your working day, which makes a remote arrangement feel closer to a local one.",
-    metaTitle: "Software & Web Development for the UK | The Digital Alchemy",
+    lede: "Our working day lines up with the UK's more than with any other country's. Our afternoon covers your morning and most of your day, so working remotely feels close to working with a local team.",
+    metaTitle: "Web and Software Development in the UK | The Digital Alchemy",
     metaDescription:
-      "Remote web, software and SaaS development for United Kingdom businesses. A New Delhi studio with substantial daily overlap with UK working hours and WCAG-standard delivery.",
+      "Websites, software and SaaS for UK businesses, by a New Delhi team sharing most of your working day, with UK GDPR in mind. Get a free consultation.",
     presence:
       "We do not have a UK office. We are based in New Delhi and work with UK clients remotely.",
     timezone: {
-      label: "IST is 4.5–5.5 hours ahead of the UK",
-      overlap: "Your morning through mid-afternoon",
+      label: "India is 4.5 to 5.5 hours ahead of the UK",
+      overlap: "Your morning to mid-afternoon",
       detail:
-        "Around 1:30pm in Delhi is 8:00am in London. Our afternoon covers your morning and much of your working day, so most of your week has a live channel to us.",
+        "Around 1:30pm in Delhi is 8:00am in London. Our afternoon covers your morning and much of your working day, so you can reach us live for most of your week.",
     },
     workingModel: [
       {
-        title: "A shared working afternoon",
-        body: "Several hours of genuine overlap every day means reviews, questions and decisions happen live rather than by asynchronous relay.",
+        title: "A shared working day",
+        body: "Several hours of real shared time every day, so reviews, questions and decisions happen live instead of by message.",
       },
       {
-        title: "Written specifications",
-        body: "Scope and decisions documented, so there is a shared record rather than a recollection of what was agreed on a call.",
+        title: "Plans in writing",
+        body: "What is included, and every decision, written down, so there is a shared record instead of different memories of a call.",
       },
       {
-        title: "Weekly demos",
-        body: "A short weekly session showing what actually works, which keeps direction correctable while correction is still cheap.",
+        title: "A short weekly demo",
+        body: "A short session every week showing what works, so the direction can be changed while changes are still cheap.",
       },
     ],
     practicalities: [
       {
         title: "Data protection",
-        body: "UK GDPR shapes what personal data you can collect, why, and for how long. We design forms, analytics and consent around that from the start rather than adding a banner afterwards.",
+        body: "UK GDPR decides what personal data you can collect, why, and for how long. We design forms, tracking and consent around it from the start, instead of adding a cookie banner afterwards.",
       },
       {
         title: "Consent before tracking",
-        body: "Analytics and marketing tags gated behind consent, because loading them first and asking afterwards is the common implementation and it is not compliant.",
+        body: "Analytics and marketing tracking only load after the visitor agrees. Loading them first and asking afterwards is common, and it breaks the rules.",
       },
       {
-        title: "Accessibility",
-        body: "We build to WCAG 2.2 AA as standard, which covers the accessibility expectations most UK organisations work to.",
+        title: "Easy access for everyone",
+        body: "We build to the international accessibility standard (WCAG 2.2 AA) as standard, which covers what most UK organisations require.",
       },
       {
-        title: "Contracting and invoicing",
-        body: "Written agreements with IP assignment, invoiced in pounds sterling and paid by international transfer.",
+        title: "Contracts and invoices",
+        body: "Written agreements with ownership of the work, invoiced in pounds and paid by international transfer.",
       },
     ],
     services: [
@@ -355,19 +355,19 @@ export const markets: Market[] = [
     ],
     faqs: [
       {
-        question: "Do you have a UK entity?",
+        question: "Do you have a UK company?",
         answer:
-          "No. We contract from India and invoice in sterling. We say so plainly rather than presenting a local address that would not mean anything.",
+          "No. We contract from India and invoice in pounds. We say so plainly, rather than showing a local address that would mean nothing.",
       },
       {
         question: "How do you handle UK GDPR?",
         answer:
-          "By designing for it: collecting the minimum personal data, gating analytics and marketing behind consent, documenting retention, and agreeing where data is stored. Your legal advisers set the requirements and we build to them.",
+          "By designing for it: collecting as little personal data as possible, loading tracking only after consent, writing down how long data is kept, and agreeing where it is stored. Your legal advisers set the requirements, and we build to them.",
       },
       {
-        question: "Can you work to our accessibility requirements?",
+        question: "Can you meet our accessibility requirements?",
         answer:
-          "Yes. WCAG 2.2 AA is our default standard rather than an optional extra, and we check it during delivery rather than as a review at the end.",
+          "Yes. WCAG 2.2 AA is our normal standard, not an extra, and we check it while we build, not only at the end.",
       },
     ],
   },
@@ -379,50 +379,50 @@ export const markets: Market[] = [
     isoNumeric: "124",
     coordinates: { lat: 43.65, lon: -79.38 },
     type: "client-market",
-    title: "A remote design and engineering team for Canadian businesses.",
+    title: "Software and web development for Canadian businesses, from New Delhi.",
     eyebrow: "Canada",
-    lede: "We work with Canadian companies the same way we work with US ones: remotely, in writing, with a held overlap window and a named lead who carries the context.",
-    metaTitle: "Software & Web Development for Canada | The Digital Alchemy",
+    lede: "We work with Canadian businesses the same way we work with US ones. That means remote work, everything in writing, set hours for calls, and one person who knows your whole project.",
+    metaTitle: "Software Development for Canada | The Digital Alchemy",
     metaDescription:
-      "Remote software, SaaS, web and app development for Canadian businesses. A New Delhi studio working with Canadian clients on product design, engineering and digital growth.",
+      "Software, websites and apps for Canadian businesses, by a New Delhi team with set hours for your mornings, in English and French. Get a free consultation.",
     presence:
       "We do not have a Canadian office. We are based in New Delhi and work with Canadian clients remotely.",
     timezone: {
-      label: "IST is 9.5–13.5 hours ahead of Canada",
+      label: "India is 9.5 to 13.5 hours ahead of Canada",
       overlap: "Our evening, your morning",
       detail:
-        "Roughly 6:30pm in Delhi is 8:00am in Toronto, with the window sitting later in our evening for British Columbia. We hold that block for calls.",
+        "Roughly 6:30pm in Delhi is 8:00am in Toronto. For British Columbia, the shared time is later in our evening. We keep that time free for calls.",
     },
     workingModel: [
       {
-        title: "A held overlap window",
-        body: "A fixed block each day reserved for calls with Canadian clients, so scheduling is settled once rather than renegotiated weekly.",
+        title: "Set hours for your calls",
+        body: "A fixed block every day kept free for calls with Canadian clients, so booking is settled once, not negotiated every week.",
       },
       {
-        title: "Asynchronous by design",
-        body: "Written updates, recorded walkthroughs and a staging environment you can check whenever suits, so progress does not depend on a shared hour.",
+        title: "Progress you can check any time",
+        body: "Written updates, recorded walk-throughs and a test link you can open whenever it suits you, so progress never depends on a shared hour.",
       },
       {
-        title: "Named lead",
-        body: "One person who knows the engagement end to end, so context does not have to be rebuilt each conversation.",
+        title: "One named person",
+        body: "One person who knows your project from start to finish, so you never have to explain it again.",
       },
     ],
     practicalities: [
       {
-        title: "Privacy legislation",
-        body: "Canadian privacy law, and provincial legislation in Quebec in particular, affects consent and how personal data is handled. We design collection and retention around the requirements your advisers set.",
+        title: "Privacy law",
+        body: "Canadian privacy law, and Quebec's rules in particular, affect consent and how personal data is handled. We design what is collected, and how long it is kept, around what your advisers require.",
       },
       {
-        title: "Bilingual requirements",
-        body: "Where English and French are both needed, that shapes the content model, the layout and the review process. It is far cheaper decided at the start than retrofitted.",
+        title: "English and French",
+        body: "Where you need both languages, that shapes the pages, the layout and how content is checked. It is far cheaper to decide at the start than to add later.",
       },
       {
-        title: "Data residency",
-        body: "Where data must remain in Canada, we deploy to Canadian regions and confirm it in the architecture documentation.",
+        title: "Data kept in Canada",
+        body: "Where data must stay in Canada, we host it there and confirm it in writing.",
       },
       {
-        title: "Contracting and invoicing",
-        body: "Written agreements with IP assignment, invoiced in Canadian or US dollars by agreement, paid by international transfer.",
+        title: "Contracts and invoices",
+        body: "Written agreements with ownership of the work, invoiced in Canadian or US dollars as agreed, and paid by international transfer.",
       },
     ],
     services: [
@@ -435,14 +435,14 @@ export const markets: Market[] = [
     ],
     faqs: [
       {
-        question: "Can you support English and French?",
+        question: "Can you build sites in English and French?",
         answer:
-          "Yes. We build the content model for multiple languages from the start. We do not provide translation ourselves — we work with your translators or a supplier, and design the workflow so both versions stay in step.",
+          "Yes. We plan for both languages from the start. We do not translate ourselves: we work with your translators or a translation company, and set things up so both versions stay in step.",
       },
       {
-        question: "Can data stay in Canada?",
+        question: "Can our data stay in Canada?",
         answer:
-          "Yes. Where residency is a requirement we deploy to Canadian cloud regions and document it as part of the architecture rather than leaving it to a default.",
+          "Yes. Where that is required, we host in Canada and write it into the plan, rather than leaving it to a default setting.",
       },
     ],
   },
@@ -454,50 +454,50 @@ export const markets: Market[] = [
     isoNumeric: "784",
     coordinates: { lat: 25.2, lon: 55.27 },
     type: "client-market",
-    title: "A development partner an hour and a half from your working day.",
+    title: "Web and app development for UAE businesses, just 90 minutes away.",
     eyebrow: "United Arab Emirates",
-    lede: "The UAE is the closest of our international markets. With only ninety minutes between us, working together feels much like working with a local team.",
-    metaTitle: "Software & Web Development for the UAE | The Digital Alchemy",
+    lede: "The UAE is the closest of the countries we work with. With only ninety minutes between us, working together feels much like working with a local team.",
+    metaTitle: "Web and App Development for the UAE | The Digital Alchemy",
     metaDescription:
-      "Remote web, software and SaaS development for businesses in the UAE. A New Delhi studio working with Dubai and Abu Dhabi clients across an almost fully shared working day.",
+      "Websites, apps and software for businesses in Dubai and Abu Dhabi, by a New Delhi team just 90 minutes ahead of you. Get a free consultation.",
     presence:
       "We do not have a UAE office. We are based in New Delhi and work with clients in the Emirates remotely.",
     timezone: {
-      label: "IST is 1.5 hours ahead of GST",
-      overlap: "Effectively the whole working day",
+      label: "India is 1.5 hours ahead of the UAE",
+      overlap: "The whole working day",
       detail:
-        "Ninety minutes separates us, so for practical purposes we are on the same schedule. Same-day turnaround is the norm rather than something to plan around.",
+        "Only ninety minutes separate us, so in practice we work the same hours. Getting things done the same day is normal, not something to plan around.",
     },
     workingModel: [
       {
-        title: "Effectively shared hours",
-        body: "With a ninety-minute offset, meetings, reviews and quick questions happen whenever they need to, without either side working unsociable hours.",
+        title: "The same working hours",
+        body: "With ninety minutes between us, meetings, reviews and quick questions happen whenever needed, and nobody works odd hours.",
       },
       {
-        title: "Aligned working week",
-        body: "The UAE working week runs Monday to Friday, matching ours, so there is no lost day at either end of the week.",
+        title: "The same working week",
+        body: "The UAE working week runs Monday to Friday, like ours, so no day is lost at either end of the week.",
       },
       {
-        title: "Occasional travel where it matters",
-        body: "For larger engagements, in-person workshops can be arranged. We would treat that as a specific, agreed exception rather than implying a local presence.",
+        title: "Occasional visits for big projects",
+        body: "For larger projects, in-person workshops can be arranged. We treat that as an agreed exception, and never suggest we have a local office.",
       },
     ],
     practicalities: [
       {
         title: "Arabic and English",
-        body: "Where both are needed, right-to-left layout affects the entire design system, not just the text. We plan for it from the first screen rather than mirroring at the end.",
+        body: "Where you need both, Arabic's right-to-left reading changes the whole design, not just the text. We plan for it from the first screen.",
       },
       {
-        title: "Local payment expectations",
-        body: "For consumer products we cover the payment methods customers in the region actually use, including regional card handling and cash on delivery where the category calls for it.",
+        title: "Local payment methods",
+        body: "For products sold to the public, we set up the payment methods people in the region actually use. That includes local cards, and cash on delivery where it suits.",
       },
       {
-        title: "Hosting region",
-        body: "Where latency or residency matters, we deploy to Middle East regions rather than defaulting elsewhere.",
+        title: "Hosting in the region",
+        body: "Where speed or data rules matter, we host in the Middle East instead of somewhere far away.",
       },
       {
-        title: "Contracting and invoicing",
-        body: "Written agreements with IP assignment, invoiced in dirhams or US dollars by agreement.",
+        title: "Contracts and invoices",
+        body: "Written agreements with ownership of the work, invoiced in dirhams or US dollars as agreed.",
       },
     ],
     services: [
@@ -512,12 +512,12 @@ export const markets: Market[] = [
       {
         question: "Do you have an office in Dubai?",
         answer:
-          "No. We work with clients in the Emirates from New Delhi. The time difference is small enough that it rarely makes a practical difference.",
+          "No. We work with clients in the Emirates from New Delhi. The time difference is small enough that it rarely makes any practical difference.",
       },
       {
-        question: "Can you build Arabic-language sites?",
+        question: "Can you build websites in Arabic?",
         answer:
-          "Yes. We design and build for right-to-left layout properly, which affects typography, spacing, icons and navigation rather than just the direction of the text. Translation itself comes from your team or a specialist supplier.",
+          "Yes. We design and build for right-to-left reading properly, which changes the fonts, spacing, icons and menus, not just the direction of the text. The translation itself comes from your team or a specialist.",
       },
     ],
   },

@@ -691,3 +691,23 @@
   line-height: 1.45;
 }
 
+
+/*
+ * The chat launcher steps aside while a navigation menu is open.
+ *
+ * It is pinned bottom-right; on short windows the open mega menu's "Start a
+ * Project" link lands underneath it (measured: overlapping at 1280x580, clear
+ * at 1280x800), so a click meant for the menu opened the chat. `visibility`
+ * rather than opacity alone, so it also leaves the tab order and cannot be
+ * clicked while invisible. The navbar sets `data-nav-open` on <html>.
+ */
+.chat-launcher {
+  transition:
+    opacity var(--duration-fast, 150ms) ease,
+    visibility var(--duration-fast, 150ms) ease;
+}
+html[data-nav-open] .chat-launcher {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}

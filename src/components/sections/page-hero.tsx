@@ -67,7 +67,14 @@ export function PageHero({
         }}
       />
 
-      <div className="container-page relative pb-12 pt-8 sm:pb-16 sm:pt-10 lg:pb-20">
+      <div
+        className={cn(
+          "container-page relative",
+          bleed
+            ? "pb-10 pt-8 sm:pb-12 sm:pt-10 lg:pb-14 lg:pt-12"
+            : "pb-12 pt-8 sm:pb-16 sm:pt-10 lg:pb-20",
+        )}
+      >
         {crumbs?.length ? (
           <Breadcrumb crumbs={crumbs} className="mb-8" />
         ) : null}
@@ -149,7 +156,7 @@ export function PageHero({
       </div>
 
       {bleedImage ? (
-        <div className="relative h-[clamp(15rem,32vw,28rem)] w-full overflow-hidden">
+        <div className="relative h-[clamp(20rem,40vw,34rem)] w-full overflow-hidden">
           <BrandImage
             name={bleedImage}
             alt={bleedImageAlt}
@@ -163,14 +170,13 @@ export function PageHero({
             aria-hidden="true"
             className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-hairline-strong/40 to-transparent"
           />
-          {/* Dissolves into whatever section follows rather than ending on a
-              hard edge. */}
+          {/* Soft bottom edge transition instead of washing out the photo */}
           <span
             aria-hidden="true"
-            className="pointer-events-none absolute inset-x-0 bottom-0 h-24"
+            className="pointer-events-none absolute inset-x-0 bottom-0 h-16 sm:h-20"
             style={{
               background:
-                "linear-gradient(to top, var(--color-canvas) 0%, color-mix(in srgb, var(--color-canvas) 60%, transparent) 50%, transparent 100%)",
+                "linear-gradient(to top, var(--color-canvas) 0%, color-mix(in srgb, var(--color-canvas) 25%, transparent) 55%, transparent 100%)",
             }}
           />
         </div>

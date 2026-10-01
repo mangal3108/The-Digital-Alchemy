@@ -5,9 +5,9 @@ import { Check } from "lucide-react";
 
 import { withOverrides } from "@/lib/content-overrides";
 import { getIndustry, industrySlugs } from "@/content/industries";
-import { getServices, serviceHref } from "@/content/services";
+import { getService, getServices, serviceHref } from "@/content/services";
 import { getIndustryAccent } from "@/content/accents";
-import { getIndustryImage } from "@/content/service-imagery";
+import { getIndustryImage, getIndustryAltText } from "@/content/service-imagery";
 
 import { PageHero } from "@/components/sections/page-hero";
 import { Section, SectionHeading } from "@/components/ui/section-heading";
@@ -18,6 +18,9 @@ import { JsonLd } from "@/components/ui/json-ld";
 import { revealProps } from "@/lib/reveal";
 import { buildMetadata, breadcrumbSchema, faqSchema } from "@/lib/seo";
 import { getPublishedProjects, getScopedFaqs } from "@/lib/content";
+import { PRIMARY_CTA } from "@/config/site";
+import { BrandLogos } from "@/components/ui/brand-logos";
+import { INDUSTRY_LOGOS } from "@/content/logos";
 
 export const dynamicParams = false;
 
@@ -89,17 +92,63 @@ export default async function IndustryPage({
         title={industry.title}
         lede={industry.lede}
         crumbs={crumbs}
-        primaryCta={{ label: "Start a Project", href: "/start-a-project" }}
-        secondaryCta={{ label: "See our services", href: "/services" }}
+        primaryCta={{ label: PRIMARY_CTA.label, href: PRIMARY_CTA.href }}
         bleedImage={heroImage}
-        bleedImageAlt=""
+        bleedImageAlt={getIndustryAltText(slug)}
       />
+
+      {/* ---- Sector platforms & ecosystems strip ---- */}
+      {INDUSTRY_LOGOS[slug]?.length ? (
+        <section className="border-b border-hairline bg-surface/60 py-6 sm:py-7">
+          <div className="container-page">
+            <BrandLogos
+              slugs={INDUSTRY_LOGOS[slug]}
+              title="Platforms & ecosystems we build for"
+              layout="strip"
+              size="md"
+            />
+          </div>
+        </section>
+      ) : null}
+
+      {/*
+        ---- What we can do for you ----
+        First under the hero: three concrete things, each linked to the
+        service that delivers it, before any explanation of the industry.
+      */}
+      <Section>
+        <SectionHeading
+          eyebrow="What we can do"
+          title={`What we can do for ${industry.audience}.`}
+        />
+        <ul className="mt-10 grid gap-5 md:grid-cols-3">
+          {industry.examples.map((example, index) => (
+            <li key={example.title} {...revealProps(index * 60)}>
+              <Link
+                href={serviceHref(example.service)}
+                className="group flex h-full flex-col rounded-lg border border-hairline bg-surface p-6 transition-[border-color,box-shadow,transform] duration-[var(--duration-standard)] ease-standard hover:-translate-y-0.5 hover:border-accent/40 hover:shadow-md focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus motion-reduce:hover:translate-y-0"
+              >
+                <h3 className="text-[1.0625rem] font-semibold tracking-[-0.015em] text-ink">
+                  {example.title}
+                </h3>
+                <p className="mt-2.5 flex-1 text-[0.9375rem] leading-relaxed text-ink-muted">
+                  {example.body}
+                </p>
+                <span className="mt-4 text-[0.875rem] font-medium text-accent-text">
+                  {getService(example.service)?.name ?? "Learn more"}
+                  <span aria-hidden="true"> →</span>
+                </span>
+              </Link>
+            </li>
+          ))}
+        </ul>
+      </Section>
 
       {/* ---- Challenges ---- */}
       <Section className="border-y border-hairline bg-surface">
         <SectionHeading
-          eyebrow="What makes this sector different"
-          title="The constraints that shape the work."
+          eyebrow="What is different in your industry"
+          title="The things that shape the work."
         />
         <div className="mt-11 grid gap-x-10 gap-y-9 sm:grid-cols-2">
           {industry.challenges.map((challenge, index) => (
@@ -122,8 +171,8 @@ export default async function IndustryPage({
       {/* ---- Approach ---- */}
       <Section>
         <SectionHeading
-          eyebrow="How we approach it"
-          title="What we do differently here."
+          eyebrow="How we help"
+          title="What we do for businesses like yours."
         />
         <div className="mt-11 grid gap-5 sm:grid-cols-2">
           {industry.approach.map((item, index) => (
@@ -149,7 +198,7 @@ export default async function IndustryPage({
           <div {...revealProps()}>
             <p className="eyebrow">Things we plan for</p>
             <h2 className="mt-3 text-title text-ink">
-              The details that catch teams out in this sector.
+              The details that often get missed in your industry.
             </h2>
           </div>
           <ul className="grid gap-x-8 gap-y-3 sm:grid-cols-2">
@@ -174,7 +223,7 @@ export default async function IndustryPage({
       <Section>
         <SectionHeading
           eyebrow="Services"
-          title="What we are usually asked for here."
+          title="What businesses like yours usually ask us for."
         />
         <ul className="mt-9 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {services.map((service, index) => (
@@ -213,8 +262,7 @@ export default async function IndustryPage({
 
       <CtaSection
         title={`Working in ${industry.name.toLowerCase()}?`}
-        body="Tell us what you are trying to fix. We will tell you how we would approach it, and whether we are genuinely the right team."
-        secondary={{ label: "All industries", href: "/industries" }}
+        body="Tell us what you want to fix. We will explain how we would help a business like yours, and tell you honestly if we are not the right team."
       />
 
       <JsonLd id="breadcrumb-schema" data={breadcrumbSchema(crumbs)} />

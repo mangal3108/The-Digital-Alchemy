@@ -43,13 +43,15 @@ export async function ProductShowcase() {
         <div {...revealProps()} className="mx-auto max-w-2xl text-center">
           <div className="mb-3 inline-flex items-center gap-2 rounded-full border border-blue-500/20 bg-blue-500/10 px-3 py-1 text-[0.8125rem] font-medium text-blue-600 shadow-xs">
             <span className="size-1.5 rounded-full bg-blue-500" />
-            AI-Ready Architecture
+            One team
           </div>
           <h2 className="mt-2 text-display-2 text-ink">
-            One team, one system, <span className="text-gradient-apple font-semibold">every surface</span>.
+            Plan, design, build and market, <span className="text-gradient-apple font-semibold">all in one place</span>.
           </h2>
           <p className="mx-auto mt-4 max-w-xl text-lede text-ink-muted">
-            Strategy, autonomous workflows, design and cloud engineering on a single canvas. From custom AI tooling to production digital experiences.
+            The same team that plans and designs your website or app also
+            builds it and helps people find it. Nothing gets lost between
+            different companies.
           </p>
         </div>
 
@@ -62,7 +64,7 @@ export async function ProductShowcase() {
             {SHOWCASE ? (
               <Image
                 src={SHOWCASE.src}
-                alt="The industries section of this site, running on a tablet"
+                alt="A page of this website, shown on a tablet"
                 width={SHOWCASE.width}
                 height={SHOWCASE.height}
                 sizes="(max-width: 1024px) 100vw, 880px"
@@ -78,12 +80,12 @@ export async function ProductShowcase() {
           <div {...revealProps()}>
             <p className="eyebrow">The journey</p>
             <h3 className="mt-3 text-title text-ink">
-              Six stages, start to scale.
+              Six clear steps, start to finish.
             </h3>
             <p className="mt-2.5 text-[0.9375rem] leading-relaxed text-ink-muted">
               {processStages[0]?.title} through to {processStages.at(-1)?.title}
-              {" — "}the same shape whether it is a platform or a growth
-              retainer.
+              {" — "}the same steps whether we are building an app or
+              running your marketing.
             </p>
             <Link
               href="/#process"
@@ -101,18 +103,18 @@ export async function ProductShowcase() {
           <div {...revealProps(80)}>
             <p className="eyebrow">Where it runs</p>
             <h3 className="mt-3 text-title text-ink">
-              {markets.length} markets, one studio.
+              {markets.length} countries, one team.
             </h3>
             <p className="mt-2.5 text-[0.9375rem] leading-relaxed text-ink-muted">
-              {markets.map((market) => market.country).join(", ")}. New Delhi is
-              the only office; everywhere else is served remotely, which we would
-              rather say than imply otherwise.
+              {markets.map((market) => market.country).join(", ")}. Our only
+              office is in New Delhi. We work with clients in the other
+              countries remotely, and we say so plainly.
             </p>
             <Link
               href="/locations"
               className="group mt-4 inline-flex items-center gap-1.5 text-[0.9375rem] font-medium text-accent-text transition-opacity hover:opacity-75 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-focus"
             >
-              Markets we serve
+              Where we work
               <ArrowUpRight
                 aria-hidden="true"
                 className="size-4 transition-transform duration-[var(--duration-fast)] group-hover:-translate-y-0.5 group-hover:translate-x-0.5 motion-reduce:group-hover:translate-x-0 motion-reduce:group-hover:translate-y-0"

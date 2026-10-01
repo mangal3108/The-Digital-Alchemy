@@ -165,17 +165,18 @@ try {
   const leadRes = await fetch(BASE + "/api/leads", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
+    // The short form's shape (Phase 6): name, phone, one need, optional message.
     body: JSON.stringify({
       name: `${TAG} Person`,
-      email: `${TAG}@example.com`,
+      phone: "+91 90000 00000",
       message: "Written by verify-flow to prove the lead pipeline, then deleted.",
-      services: ["saas-development"],
+      services: ["software"],
       sourcePage: "/verify-flow",
     }),
   });
   report("public lead endpoint accepts a submission", leadRes.ok, `HTTP ${leadRes.status}`);
 
-  const stored = await db.lead.findFirst({ where: { email: `${TAG}@example.com` } });
+  const stored = await db.lead.findFirst({ where: { name: `${TAG} Person` } });
   if (stored) created.leads.push(stored.id);
   report("lead reached the database", Boolean(stored));
 
@@ -227,6 +228,7 @@ try {
   await db.$disconnect();
 }
 
+console.log(`\n  ${cached} page read(s) came from the static cache.`);
 console.log(
   failures === 0
     ? "\n  Every round trip works: admin writes reach the public site.\n"

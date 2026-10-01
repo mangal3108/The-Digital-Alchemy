@@ -5,6 +5,7 @@ import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 
 import { PageHero } from "@/components/sections/page-hero";
+import { BrandLogos } from "@/components/ui/brand-logos";
 import { Section, SectionHeading } from "@/components/ui/section-heading";
 import { JsonLd } from "@/components/ui/json-ld";
 import { Button } from "@/components/ui/button";
@@ -28,9 +29,9 @@ export const revalidate = 300;
 
 export async function generateMetadata(): Promise<Metadata> {
   return buildMetadata({
-    title: "Careers — Build AI Automations & AI-Ready Products | The Digital Alchemy",
+    title: "Careers and Jobs in New Delhi | The Digital Alchemy",
     description:
-      "Join our engineering studio in New Delhi building AI automation pipelines, autonomous agent systems, and AI-ready products for ambitious global teams.",
+      "Jobs at a small New Delhi team building websites, apps, AI tools and online marketing. Open roles are listed here, and we read speculative applications.",
     path: "/careers",
   });
 }
@@ -38,11 +39,11 @@ export async function generateMetadata(): Promise<Metadata> {
 const WHAT_WE_LOOK_FOR = [
   {
     title: "Range over specialism, early on",
-    body: "In a small studio, a designer who understands what is expensive to build and an engineer who can read a analytics report are worth more than two narrow specialists.",
+    body: "In a small team, range matters. A designer who knows what is expensive to build, and an engineer who can read an analytics report, are worth more than two specialists.",
   },
   {
     title: "Finishing things",
-    body: "The ability to take something from eighty per cent to actually done — states, edge cases, accessibility, the second pass — is the rarest skill we hire for.",
+    body: "Taking something from eighty per cent to truly done is the rarest skill we hire for. That means the edge cases, the error states, access for everyone, and the second pass.",
   },
   {
     title: "Writing clearly",
@@ -70,14 +71,39 @@ export default async function CareersPage() {
     <>
       <PageHero
         eyebrow="Careers"
-        title="A small team, doing work you can point at."
-        lede="We are not always hiring, and we would rather say that plainly than run a permanently open careers page. When we do have a role, it is listed here."
+        title="Careers: join a small team doing work you can be proud of."
+        lede="We are not always hiring, and we would rather say so plainly than keep a careers page open forever. When we have a job, it is listed here."
         crumbs={crumbs}
-        primaryCta={{ label: "View open roles", href: "#roles" }}
-        secondaryCta={{ label: "How we work", href: "/about" }}
+        primaryCta={
+          jobs.length
+            ? { label: "View open roles", href: "#roles" }
+            : { label: "Send an introduction", href: applyHref }
+        }
         bleedImage={getOptionalBrandImage("hero-careers")}
-        bleedImageAlt="Minimalist modern creative workspace with ergonomic designer task chair and soft daylight"
+        bleedImageAlt="A quiet workspace with a desk chair in daylight"
       />
+
+      {/* ---- Tools our team works with strip ---- */}
+      <section className="border-b border-hairline bg-surface/60 py-6 sm:py-7">
+        <div className="container-page">
+          <BrandLogos
+            slugs={[
+              "react",
+              "nextjs",
+              "typescript",
+              "nodejs",
+              "python",
+              "figma",
+              "aws",
+              "docker",
+              "tailwind",
+            ]}
+            title="Tools and technologies our team works in daily"
+            layout="strip"
+            size="md"
+          />
+        </div>
+      </section>
 
       {/*
         Roles come from the CMS. When none are open the page says so plainly
@@ -85,7 +111,7 @@ export default async function CareersPage() {
         position it held before there was a CMS behind it.
       */}
       {jobs.length ? (
-        <Section size="sm" className="border-y border-hairline bg-surface">
+        <Section id="roles" size="sm" className="border-y border-hairline bg-surface">
           <SectionHeading
             eyebrow="Open roles"
             title={`${jobs.length} role${jobs.length === 1 ? "" : "s"} open right now.`}
@@ -132,19 +158,15 @@ export default async function CareersPage() {
               : "No advertised vacancies at the moment."}
           </h2>
           <p className="mt-3 text-[0.9375rem] leading-relaxed text-ink-muted">
-            That said, we do read speculative applications, and a few people
-            have joined that way. If you are genuinely strong at design,
-            engineering or growth work, send us something specific rather than a
-            general CV — a project you shipped, a problem you solved, or
-            something you built because you wanted it to exist.
+            We still read speculative applications. If you are genuinely good at design, development or marketing, send us
+            something specific, not a general CV. Show us a project you launched,
+            a problem you solved, or something you built because you wanted it to
+            exist.
           </p>
 
           <div className="mt-7 flex flex-wrap gap-3">
             <Button href={applyHref} withArrow>
               Send an introduction
-            </Button>
-            <Button href="/about" variant="secondary">
-              How we work
             </Button>
           </div>
         </div>
@@ -155,7 +177,7 @@ export default async function CareersPage() {
         <div className="relative">
           <SectionHeading
             eyebrow="What we look for"
-            title="The things that actually get someone hired here."
+            title="What actually gets someone hired here."
           />
           <div className="mt-11 grid gap-5 sm:grid-cols-2">
             {WHAT_WE_LOOK_FOR.map((item, index) => (

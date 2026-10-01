@@ -15,9 +15,9 @@ import { SectionBackdrop } from "@/components/visuals/section-backdrop";
 
 export async function generateMetadata(): Promise<Metadata> {
   return buildMetadata({
-    title: "Locations & Markets | The Digital Alchemy",
+    title: "Where We Work: India and Abroad | The Digital Alchemy",
     description:
-      "Our headquarters in New Delhi and the international markets we serve remotely — United States, Australia, United Kingdom, Canada and UAE.",
+      "Our only office is in New Delhi. We also work with clients in the US, UK, Australia, Canada and the UAE, remotely, with set hours for calls.",
     path: "/locations",
   });
 }
@@ -35,8 +35,8 @@ export default function LocationsPage() {
     <>
       <PageHero
         eyebrow="Locations"
-        title="One studio. Six markets."
-        lede="We are a New Delhi studio. Everywhere else on this page is a market we serve remotely — and each page sets out exactly what that means in practice."
+        title="Where we work: one office in New Delhi, clients in six countries."
+        lede="Our only office is in New Delhi. We work with clients in the other countries remotely, and each country's page explains exactly how that works."
         crumbs={crumbs}
         backdropImage={getOptionalBrandImage("object-globe-etched")}
         backdropOpacity={0.15}
@@ -69,12 +69,12 @@ export default function LocationsPage() {
           </div>
 
           <div {...revealProps(80)} className="mt-12">
-            <p className="eyebrow">Markets we serve remotely</p>
+            <p className="eyebrow">Countries we work with remotely</p>
             <p className="mt-2 max-w-2xl text-[0.9375rem] leading-relaxed text-ink-muted">
-              No offices in these countries, and we do not pretend otherwise. What
-              we do have is a working model built for the distance: a held overlap
-              window, decisions recorded in writing, and an environment you can
-              check whenever you want.
+              We have no offices in these countries, and we do not pretend
+              otherwise. What we do have is a way of working built for the distance. That means
+              set hours for calls, every decision written down, and a test link you
+              can check any time.
             </p>
             <MarketList markets={remote} />
           </div>
@@ -83,8 +83,7 @@ export default function LocationsPage() {
 
       <CtaSection
         title="Working somewhere else?"
-        body="We are not limited to these markets — they are simply the ones we work in most. Tell us where you are and we will be straight about whether the time difference works."
-        secondary={{ label: "How we work", href: "/about" }}
+        body="We are not limited to these countries; they are the ones we have described in detail. Tell us where you are, and we will be honest about whether the time difference works."
       />
 
       <JsonLd id="breadcrumb-schema" data={breadcrumbSchema(crumbs)} />

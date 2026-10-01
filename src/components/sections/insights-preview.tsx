@@ -19,7 +19,7 @@ export async function InsightsPreview() {
       <div className="relative">
         <SectionHeading
           eyebrow="Insights"
-          title="Notes on building and growing digital products."
+          title="Articles on websites, apps and getting more customers."
           action={
             <Button href="/insights" variant="secondary" withArrow>
               All insights

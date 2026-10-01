@@ -1,4 +1,11 @@
-import { getServices, serviceHref, type Service } from "./services";
+import {
+  getServices,
+  getServicesByGroup,
+  serviceHref,
+  SERVICE_GROUP_ORDER,
+  SERVICE_GROUPS,
+  type Service,
+} from "./services";
 import { industries } from "./industries";
 import { markets } from "./locations";
 
@@ -23,71 +30,36 @@ function toLinks(services: Service[]): NavLink[] {
   return services.map((service) => ({
     label: service.name,
     href: serviceHref(service.slug),
-    description: service.summary,
+    // The plain one-liner, not the page summary: this is read by someone
+    // deciding where to click, and the summaries were written for a different
+    // job (several carried terms like "multi-tenant" onto every page).
+    description: service.oneLiner,
   }));
 }
 
-export const megaMenuColumns: MegaMenuColumn[] = [
-  {
-    key: "development",
-    label: "Development",
-    blurb: "AI-ready products, SaaS platforms, and custom software built to scale.",
-    links: toLinks(
-      getServices([
-        "saas-development",
-        "custom-software-development",
-        "web-development",
-        "web-application-development",
-        "mobile-app-development",
-        "ecommerce-development",
-      ]),
-    ),
-  },
-  {
-    key: "design",
-    label: "Design",
-    blurb: "Apple-grade interfaces and brand identity that make products feel effortless.",
-    links: toLinks(getServices(["ui-ux-design", "product-design", "branding"])),
-  },
-  {
-    key: "growth",
-    label: "Growth",
-    blurb: "Demand generation, measured end to end.",
-    links: toLinks(
-      getServices([
-        "digital-marketing",
-        "search-engine-optimization",
-        "social-media-management",
-        "performance-marketing",
-        "google-ads",
-        "meta-ads",
-        "lead-generation",
-        "marketing-funnels",
-      ]),
-    ),
-  },
-  {
-    key: "technology",
-    label: "AI & Technology",
-    blurb: "Intelligent agent automations, integrations, and cloud infrastructure.",
-    links: toLinks(
-      getServices([
-        "automation-integrations",
-        "cloud-solutions",
-        "maintenance-support",
-      ]),
-    ),
-  },
-];
+/**
+ * One column per customer need, in the order visitors are most likely to be
+ * looking for them. Membership comes from each service's `group`, so the menu
+ * cannot disagree with /services.
+ */
+export const megaMenuColumns: MegaMenuColumn[] = SERVICE_GROUP_ORDER.map((group) => ({
+  key: group,
+  label: SERVICE_GROUPS[group].label,
+  blurb: SERVICE_GROUPS[group].blurb,
+  links: toLinks(getServicesByGroup(group)),
+}));
 
+/**
+ * Six top-level items at most. Products and Careers moved to the footer: both
+ * pages stay live and linked, but neither has anything published yet, and a
+ * visitor choosing where to go first is better served by fewer choices.
+ */
 export const primaryNav: NavLink[] = [
   { label: "Services", href: "/services" },
   { label: "Work", href: "/work" },
-  { label: "Products", href: "/products" },
   { label: "Industries", href: "/industries" },
   { label: "About", href: "/about" },
   { label: "Insights", href: "/insights" },
-  { label: "Careers", href: "/careers" },
   { label: "Contact", href: "/contact" },
 ];
 

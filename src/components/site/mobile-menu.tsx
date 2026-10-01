@@ -26,7 +26,9 @@ export function MobileMenu({
 }) {
   const panelRef = React.useRef<HTMLDivElement>(null);
   const previouslyFocused = React.useRef<HTMLElement | null>(null);
-  const [expanded, setExpanded] = React.useState<string | null>("development");
+  // All groups start collapsed: six plain labels ("Get a website", "Get more
+  // customers"…) fit on one phone screen and say more than any one open group.
+  const [expanded, setExpanded] = React.useState<string | null>(null);
 
   React.useEffect(() => {
     if (!open) return;
@@ -114,23 +116,8 @@ export function MobileMenu({
           aria-label="Mobile"
           className="min-h-0 flex-1 overflow-y-auto overscroll-contain px-5 py-6"
         >
-          <ul className="space-y-1">
-            {primaryNav
-              .filter((item) => item.label !== "Services")
-              .map((item) => (
-                <li key={item.href}>
-                  <Link
-                    href={item.href}
-                    onClick={onClose}
-                    className="flex min-h-12 items-center rounded-md px-2 -mx-2 font-display text-xl font-medium tracking-[-0.02em] text-ink transition-colors duration-[var(--duration-fast)] hover:bg-surface-2 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus"
-                  >
-                    {item.label}
-                  </Link>
-                </li>
-              ))}
-          </ul>
-
-          <div className="mt-7 border-t border-hairline pt-6">
+          {/* Services first: it is what most visitors open the menu for. */}
+          <div>
             <div className="flex items-baseline justify-between">
               <p className="eyebrow">Services</p>
               <Link
@@ -184,7 +171,31 @@ export function MobileMenu({
                 );
               })}
             </div>
+
+            <Link
+              href="/services#help-me-choose"
+              onClick={onClose}
+              className="mt-3 flex min-h-11 items-center text-[0.9375rem] font-medium text-accent-text underline-offset-4 hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus"
+            >
+              Not sure what you need? Help me choose
+            </Link>
           </div>
+
+          <ul className="mt-7 space-y-1 border-t border-hairline pt-6">
+            {primaryNav
+              .filter((item) => item.label !== "Services")
+              .map((item) => (
+                <li key={item.href}>
+                  <Link
+                    href={item.href}
+                    onClick={onClose}
+                    className="flex min-h-12 items-center rounded-md px-2 -mx-2 font-display text-xl font-medium tracking-[-0.02em] text-ink transition-colors duration-[var(--duration-fast)] hover:bg-surface-2 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus"
+                  >
+                    {item.label}
+                  </Link>
+                </li>
+              ))}
+          </ul>
         </nav>
 
         <div className="shrink-0 space-y-2 border-t border-hairline bg-surface px-5 py-4 pb-[max(1rem,env(safe-area-inset-bottom))]">

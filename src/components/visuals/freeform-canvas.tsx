@@ -244,7 +244,7 @@ export function StickyNote({
   author,
   role,
   company,
-  rating = 5,
+  rating,
   badge,
   attachment,
   rotate = 0,

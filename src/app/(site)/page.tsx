@@ -1,18 +1,12 @@
 import type { Metadata } from "next";
 
 import { Hero } from "@/components/sections/hero";
-import { ProofStrip } from "@/components/sections/proof-strip";
+import { BrandLogos } from "@/components/ui/brand-logos";
 import { ServicesShowcase } from "@/components/sections/services-showcase";
-import { ProductShowcase } from "@/components/sections/product-showcase";
-import { FeaturedWork } from "@/components/sections/featured-work";
-import { ProductsPreview } from "@/components/sections/products-preview";
-import { WhyUs } from "@/components/sections/why-us";
+import { ServicePickerSection } from "@/components/sections/service-picker-section";
 import { ProcessNarrative } from "@/components/sections/process-narrative";
-import { TechnologySection } from "@/components/sections/technology";
-import { GlobalReach } from "@/components/sections/global-reach";
-import { Testimonials } from "@/components/sections/testimonials";
-import { Metrics } from "@/components/sections/metrics";
-import { InsightsPreview } from "@/components/sections/insights-preview";
+import { HomeProof } from "@/components/sections/home-proof";
+import { WhyUs } from "@/components/sections/why-us";
 
 import { buildMetadata, localBusinessSchema } from "@/lib/seo";
 import { JsonLd } from "@/components/ui/json-ld";
@@ -28,22 +22,20 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 
 /**
- * Homepage.
+ * Homepage, in the order the brief sets:
  *
- * The section order is a deliberate light/dark/colour rhythm rather than a
- * list of blocks. Colour arrives in bursts against neutral ground, and the two
- * dark bands are spaced far enough apart to read as punctuation:
+ *   1. Hero: headline, one line on who it is for, two buttons
+ *   2. What we do: the six service groups
+ *   3. Not sure what you need? (the helper)
+ *   4. How we work: one section, four steps (the only dark band)
+ *   5. Proof: real clients and testimonials only; absent when there are none
+ *   6. Why us: three points
+ *   7. Final call to action: the footer's closing band (button, WhatsApp,
+ *      phone), shared by every page
  *
- *   white hero → proof → services (one dark band) → dark work →
- *   canvas → white reasons → dark process narrative → markets →
- *   dark technology → metrics → testimonials → insights → CTA (footer)
- *
- * The markets band sits between the process narrative and technology on
- * purpose: both of those run dark, and back to back they stop reading as two
- * sections and become one long dark stretch.
- *
- * Sections that carry an accent declare it here rather than internally, so the
- * rhythm is legible in one place.
+ * Moved off the homepage, not deleted: the technology section is on /about,
+ * the countries and working hours are on /locations, products on /products,
+ * articles on /insights, and company figures on /about.
  */
 export default async function HomePage() {
   const localBusiness = await localBusinessSchema();
@@ -51,22 +43,35 @@ export default async function HomePage() {
   return (
     <>
       <Hero />
-      <ProofStrip />
+      <section className="border-y border-hairline bg-surface/50 py-6 sm:py-7">
+        <div className="container-page">
+          <BrandLogos
+            slugs={[
+              "google",
+              "meta",
+              "whatsapp",
+              "shopify",
+              "wordpress",
+              "aws",
+              "react",
+              "nextjs",
+              "figma",
+              "stripe",
+              "razorpay",
+            ]}
+            title="Technologies & platforms we work with"
+            layout="strip"
+            size="md"
+          />
+        </div>
+      </section>
       <ServicesShowcase />
-      <FeaturedWork />
-      <ProductsPreview />
-      <ProductShowcase />
-      <WhyUs />
+      <ServicePickerSection className="border-t border-hairline bg-surface" />
       <ProcessNarrative />
-      <div data-accent="blue">
-        <GlobalReach />
-      </div>
-      <TechnologySection />
-      <Metrics />
       <div data-accent="violet">
-        <Testimonials />
+        <HomeProof />
       </div>
-      <InsightsPreview />
+      <WhyUs />
 
       <JsonLd id="local-business-schema" data={localBusiness} />
     </>

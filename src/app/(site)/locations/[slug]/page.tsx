@@ -23,6 +23,7 @@ import {
 import { getScopedFaqs } from "@/lib/content";
 import { BrandImage, getOptionalBrandImage } from "@/components/ui/brand-image";
 import { getSiteSettings, formatAddress } from "@/lib/settings";
+import { PRIMARY_CTA } from "@/config/site";
 
 export const dynamicParams = false;
 
@@ -89,8 +90,7 @@ export default async function MarketPage({
         title={market.title}
         lede={market.lede}
         crumbs={crumbs}
-        primaryCta={{ label: "Start a Project", href: "/start-a-project" }}
-        secondaryCta={{ label: "See our services", href: "/services" }}
+        primaryCta={{ label: PRIMARY_CTA.label, href: PRIMARY_CTA.href }}
         backdropImage={getOptionalBrandImage("world-etched-light")}
         backdropOpacity={0.12}
         visual={
@@ -166,8 +166,8 @@ export default async function MarketPage({
           eyebrow="How we work together"
           title={
             isHq
-              ? "What working with a local studio actually gets you."
-              : "How a remote engagement runs in practice."
+              ? "What working with a team nearby gets you."
+              : "How working remotely with us works in practice."
           }
         />
         <div className="mt-11 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
@@ -191,9 +191,8 @@ export default async function MarketPage({
       {/* ---- Practicalities ---- */}
       <Section className="border-y border-hairline bg-surface">
         <SectionHeading
-          eyebrow="Practicalities"
+          eyebrow="The practical details"
           title={`What is specific to ${market.country}.`}
-          lede="The details that differ by market — regulation, payment expectations, language and where data is allowed to live."
         />
         <div className="mt-11 grid gap-x-10 gap-y-8 sm:grid-cols-2">
           {market.practicalities.map((item, index) => (
@@ -217,7 +216,7 @@ export default async function MarketPage({
       <Section>
         <SectionHeading
           eyebrow="Services"
-          title={`What clients in ${market.country} usually ask for.`}
+          title={`What we usually help with in ${market.country}.`}
         />
         <ul className="mt-9 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {services.map((service, index) => (
@@ -242,8 +241,7 @@ export default async function MarketPage({
 
       <CtaSection
         title={`Based in ${market.country}?`}
-        body="Tell us what you are planning. We will set out how the engagement would run, including the practical details of working across the time difference."
-        secondary={{ label: "All markets", href: "/locations" }}
+        body="Tell us what you are planning. We will explain how working together would go, including the hours we share and how contracts work."
       />
 
       <JsonLd id="breadcrumb-schema" data={breadcrumbSchema(crumbs)} />

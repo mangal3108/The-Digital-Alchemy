@@ -15,6 +15,7 @@ import {
 import { LEAD_STATUS_TONES } from "@/components/admin/lead-status";
 import { formatDateTime, parseJson } from "@/lib/utils";
 import { cn } from "@/lib/utils";
+import { enquiryLabel } from "@/lib/validation";
 
 export const metadata = { title: "Leads" };
 export const dynamic = "force-dynamic";
@@ -165,7 +166,7 @@ export default async function LeadsPage({
               </thead>
               <tbody>
                 {leads.map((lead) => {
-                  const services = parseJson<string[]>(lead.services, []);
+                  const services = parseJson<string[]>(lead.services, []).map(enquiryLabel);
                   return (
                     <tr key={lead.id} className="hover:bg-surface-2/50">
                       <Td>
@@ -176,7 +177,7 @@ export default async function LeadsPage({
                           {lead.name}
                         </Link>
                         <span className="block text-[0.75rem] text-ink-subtle">
-                          {lead.email}
+                          {lead.email || lead.phone}
                         </span>
                         {lead.company ? (
                           <span className="block text-[0.75rem] text-ink-subtle">

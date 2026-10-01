@@ -166,7 +166,7 @@ export function BhadawarAI() {
     <>
       {/* Floating Launcher Button (visible when chat is closed) */}
       {!isOpen && (
-        <div className="fixed bottom-5 right-5 sm:bottom-6 sm:right-6 z-50 animate-in fade-in zoom-in-95 duration-200">
+        <div className="chat-launcher fixed bottom-5 right-5 sm:bottom-6 sm:right-6 z-50 animate-in fade-in zoom-in-95 duration-200">
           <button
             type="button"
             onClick={() => setIsOpen(true)}

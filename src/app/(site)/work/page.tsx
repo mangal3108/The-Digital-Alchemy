@@ -1,23 +1,23 @@
 import type { Metadata } from "next";
 
 import { PageHero } from "@/components/sections/page-hero";
+import { BrandLogos } from "@/components/ui/brand-logos";
 import { Section } from "@/components/ui/section-heading";
 import { SectionBackdrop } from "@/components/visuals/section-backdrop";
 import { CtaSection } from "@/components/sections/cta";
 import { JsonLd } from "@/components/ui/json-ld";
 import { WorkGrid } from "@/components/sections/work-grid";
-import { Button } from "@/components/ui/button";
 import { revealProps } from "@/lib/reveal";
 import { buildMetadata, breadcrumbSchema } from "@/lib/seo";
 import { getPublishedProjects } from "@/lib/content";
-import { parseJson } from "@/lib/utils";
 import { getOptionalBrandImage } from "@/components/ui/brand-image";
+import { PRIMARY_CTA } from "@/config/site";
 
 export async function generateMetadata(): Promise<Metadata> {
   return buildMetadata({
-    title: "Our Work — AI Automations & Production Systems | The Digital Alchemy",
+    title: "Our Work and Case Studies | The Digital Alchemy",
     description:
-      "Case studies, autonomous workflows, AI-ready platforms, and software systems built by The Digital Alchemy.",
+      "Websites, apps, AI tools and marketing we have built, published only with each client's permission. Ask us for examples on a call.",
     path: "/work",
   });
 }
@@ -33,34 +33,52 @@ export default async function WorkPage() {
     new Set(projects.map((project) => project.category)),
   );
 
-  // Only used to show which capabilities the published work covers.
-  const serviceCoverage = new Set(
-    projects.flatMap((project) => parseJson<string[]>(project.services, [])),
-  );
-
   return (
     <>
       <PageHero
-        eyebrow="Portfolio & Systems"
+        eyebrow="Our work"
         title={
           projects.length
-            ? "Production systems & AI automations, verified."
-            : "Case studies & AI systems, coming as clients approve them."
+            ? "Work we have built, and what it changed."
+            : "Our work: see examples on a short call."
         }
         lede={
           projects.length
-            ? "The operational challenges brought to us, the AI automations and architectures engineered, and the measurable business impact delivered."
-            : "We publish client work only with explicit permission, and metrics only when independently verified. Real production software, autonomous workflows, and measured commercial outcomes."
+            ? "The problem each client brought us, what we built, and the results they saw."
+            : "We publish a client's work only with their permission. Until the first case studies are ready, we are glad to walk you through examples like the thing you have in mind."
         }
         crumbs={crumbs}
         primaryCta={
           projects.length
             ? undefined
-            : { label: "Start an AI Project", href: "/start-a-project" }
+            : { label: PRIMARY_CTA.label, href: PRIMARY_CTA.href }
         }
         bleedImage={getOptionalBrandImage("hero-work")}
-        bleedImageAlt="Architectural glass and matte black anodised prism block"
+        bleedImageAlt=""
       />
+
+      {/* ---- Stack & Platforms strip ---- */}
+      <section className="border-b border-hairline bg-surface/60 py-6 sm:py-7">
+        <div className="container-page">
+          <BrandLogos
+            slugs={[
+              "nextjs",
+              "react",
+              "nodejs",
+              "typescript",
+              "aws",
+              "postgresql",
+              "stripe",
+              "shopify",
+              "google-ads",
+              "meta",
+            ]}
+            title="Platforms & technologies featured across our work"
+            layout="strip"
+            size="md"
+          />
+        </div>
+      </section>
 
       {projects.length ? (
         <Section size="sm" className="relative overflow-hidden">
@@ -77,13 +95,13 @@ export default async function WorkPage() {
             className="relative mx-auto max-w-3xl rounded-lg border border-hairline bg-surface p-7 sm:p-10"
           >
             <h2 className="text-title text-ink">
-              What we can show you in the meantime
+              What we can show you on a call
             </h2>
             <ul className="mt-5 space-y-3.5">
               {[
-                "A walkthrough of relevant projects on a call, including work under NDA that we cannot publish here.",
-                "References from clients working in a similar sector or at a similar stage.",
-                "A written approach to your specific problem, so you can judge the thinking rather than the portfolio.",
+                "Work close to what you need, including projects we are not allowed to publish.",
+                "How we would approach your own website, app or marketing.",
+                "A written plan afterwards, so you can judge how we think before you decide anything.",
               ].map((item) => (
                 <li
                   key={item}
@@ -97,32 +115,23 @@ export default async function WorkPage() {
                 </li>
               ))}
             </ul>
-
-            <div className="mt-8 flex flex-wrap gap-3">
-              <Button href="/start-a-project" withArrow>
-                Start a Project
-              </Button>
-              <Button href="/services" variant="secondary">
-                Explore services
-              </Button>
-            </div>
-
-            <p className="mt-7 border-t border-hairline pt-5 text-[0.8125rem] leading-relaxed text-ink-subtle">
-              Note for the site administrator: case studies added under
-              Admin → Projects appear here automatically, with filtering by
-              category. Results only display when you enter verified figures.
+            <p className="mt-6 text-[0.9375rem] leading-relaxed text-ink-muted">
+              Use the button at the top, or the call and WhatsApp options at
+              the bottom of this page. Case studies will appear here as clients
+              approve them.
             </p>
           </div>
         </Section>
       )}
 
-      {serviceCoverage.size ? null : null}
-
-      <CtaSection
-        title="Have something similar in mind?"
-        body="Tell us the problem you are trying to solve. We will tell you how we would approach it and whether we are the right team for it."
-        secondary={{ label: "See our services", href: "/services" }}
-      />
+      {/* One call to action: the hero's while there is no work to show, this
+          one once there is. */}
+      {projects.length ? (
+        <CtaSection
+          title="Have something similar in mind?"
+          body="Tell us the problem you are trying to solve. We will tell you how we would approach it and whether we are the right team for it."
+        />
+      ) : null}
 
       <JsonLd id="breadcrumb-schema" data={breadcrumbSchema(crumbs)} />
     </>

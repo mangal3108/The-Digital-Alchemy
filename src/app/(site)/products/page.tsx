@@ -4,23 +4,24 @@ import Image from "next/image";
 import { ArrowUpRight } from "lucide-react";
 
 import { PageHero } from "@/components/sections/page-hero";
+import { BrandLogos } from "@/components/ui/brand-logos";
 import { Section } from "@/components/ui/section-heading";
 import { SectionBackdrop } from "@/components/visuals/section-backdrop";
 import { CtaSection } from "@/components/sections/cta";
 import { JsonLd } from "@/components/ui/json-ld";
 import { ProductStatusBadge } from "@/components/sections/products-preview";
-import { Button } from "@/components/ui/button";
 import { revealProps } from "@/lib/reveal";
 import { buildMetadata, breadcrumbSchema } from "@/lib/seo";
 import { getPublishedProducts } from "@/lib/content";
 import { DashboardMockup } from "@/components/visuals/mockups";
 import { getOptionalBrandImage } from "@/components/ui/brand-image";
+import { PRIMARY_CTA } from "@/config/site";
 
 export async function generateMetadata(): Promise<Metadata> {
   return buildMetadata({
-    title: "AI-Ready Products & Autonomous Software | The Digital Alchemy",
+    title: "Our Own Software Products | The Digital Alchemy",
     description:
-      "AI-ready digital products, autonomous agents, and software platforms engineered and operated by The Digital Alchemy.",
+      "Software products we build and run ourselves, alongside our client work. Running our own products keeps our advice honest.",
     path: "/products",
   });
 }
@@ -35,22 +36,22 @@ export default async function ProductsPage() {
   return (
     <>
       <PageHero
-        eyebrow="AI-Ready Products"
+        eyebrow="Our products"
         title={
           products.length
-            ? "Software and AI-ready products we build, run and support."
-            : "Our own AI-ready products are in active development."
+            ? "Software products we build, run and support ourselves."
+            : "Our products: our own software, in development."
         }
         lede={
           products.length
-            ? "Running our own AI-ready platforms keeps us honest about what shipping actually costs — inference latency, pricing, support, churn, and enterprise reliability."
-            : "We architect and ship AI-ready software and autonomous tools alongside client work. It is the fastest way to stay ahead on real-world AI architecture, agentic orchestration, and production engineering."
+            ? "Running our own products keeps us honest about what it really takes: speed, pricing, support, and keeping customers happy."
+            : "We build our own software and AI tools alongside client work. It keeps our advice to clients grounded in what actually works."
         }
         crumbs={crumbs}
         primaryCta={
           products.length
             ? undefined
-            : { label: "Build an AI product with us", href: "/start-a-project" }
+            : { label: PRIMARY_CTA.label, href: PRIMARY_CTA.href }
         }
         bleedImage={getOptionalBrandImage("hero-products")}
         bleedImageAlt=""
@@ -70,6 +71,27 @@ export default async function ProductsPage() {
           )
         }
       />
+
+      {/* ---- Technologies strip ---- */}
+      <section className="border-b border-hairline bg-surface/60 py-6 sm:py-7">
+        <div className="container-page">
+          <BrandLogos
+            slugs={[
+              "nextjs",
+              "typescript",
+              "postgresql",
+              "redis",
+              "aws",
+              "stripe",
+              "docker",
+              "openai",
+            ]}
+            title="Built with modern standards"
+            layout="strip"
+            size="md"
+          />
+        </div>
+      </section>
 
       {products.length ? (
         <Section size="sm" className="relative overflow-hidden">
@@ -134,32 +156,34 @@ export default async function ProductsPage() {
             className="relative mx-auto max-w-3xl rounded-lg border border-hairline bg-surface p-7 sm:p-10"
           >
             <h2 className="text-title text-ink">
-              In the meantime, we build AI-ready products for ambitious companies
+              In the meantime, we build software and AI tools for other businesses
             </h2>
             <p className="mt-3 text-[0.9375rem] leading-relaxed text-ink-muted">
-              AI-ready SaaS platforms, autonomous workflow tools, custom agent systems, and mobile applications — from first architectural prompt through to billing, deployment, and autonomous scale.
+              Online software people pay for monthly, tools that do repetitive
+              work automatically, AI assistants and mobile apps. From the first
+              plan to payments, launch and growth.
             </p>
-            <div className="mt-7 flex flex-wrap gap-3">
-              <Button href="/services/saas-development" withArrow>
-                AI-ready SaaS development
-              </Button>
-              <Button href="/services/automation-integrations" variant="secondary">
-                AI automation &amp; integrations
-              </Button>
-            </div>
-            <p className="mt-7 border-t border-hairline pt-5 text-[0.8125rem] leading-relaxed text-ink-subtle">
-              Note for the site administrator: products added under
-              Admin → Products appear here once published.
+            <p className="mt-5 text-[0.9375rem] leading-relaxed text-ink-muted">
+              See{" "}
+              <Link href="/services/saas-development" className="font-medium text-accent-text underline underline-offset-4">
+                SaaS development
+              </Link>{" "}
+              and{" "}
+              <Link href="/services/automation-integrations" className="font-medium text-accent-text underline underline-offset-4">
+                AI automation
+              </Link>
+              .
             </p>
           </div>
         </Section>
       )}
 
-      <CtaSection
-        title="Building an AI-ready product or automation?"
-        body="We take systems from a first prototype to production-grade software customers pay for — and we will tell you early if the architecture needs reshaping."
-        secondary={{ label: "AI SaaS development", href: "/services/saas-development" }}
-      />
+      {products.length ? (
+        <CtaSection
+          title="Have an idea for a software product?"
+          body="We take it from a first sample to software customers pay for, and we tell you early if the plan needs to change."
+        />
+      ) : null}
 
       <JsonLd id="breadcrumb-schema" data={breadcrumbSchema(crumbs)} />
     </>

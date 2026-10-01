@@ -17,6 +17,7 @@ import { getTechnologies } from "@/content/technology";
 import { parseJson } from "@/lib/utils";
 import { PROJECT_CATEGORY_LABELS, type ProjectCategory } from "@/lib/db";
 import { BrowserFrame, WebsiteMockup } from "@/components/visuals/mockups";
+import { getLogo } from "@/content/logos";
 
 export async function generateMetadata({
   params,
@@ -171,15 +172,29 @@ export default async function CaseStudyPage({
             {technologies.length ? (
               <div className="mt-7">
                 <p className="eyebrow">Technology</p>
-                <ul className="mt-3 flex flex-wrap gap-1.5">
-                  {technologies.map((tech) => (
-                    <li
-                      key={tech.key}
-                      className="rounded-full bg-surface-2 px-2.5 py-1 text-[0.75rem] text-ink-muted"
-                    >
-                      {tech.name}
-                    </li>
-                  ))}
+                <ul className="mt-3 flex flex-wrap gap-2">
+                  {technologies.map((tech) => {
+                    const logo = getLogo(tech.key);
+                    return (
+                      <li
+                        key={tech.key}
+                        className="inline-flex items-center gap-1.5 rounded-full border border-hairline bg-surface px-2.5 py-1 text-[0.75rem] font-medium text-ink-muted shadow-2xs"
+                      >
+                        {logo ? (
+                          <span className="relative flex size-3.5 shrink-0 items-center justify-center">
+                            <Image
+                              src={logo.files.color}
+                              alt={logo.name}
+                              width={14}
+                              height={14}
+                              className="size-full object-contain"
+                            />
+                          </span>
+                        ) : null}
+                        <span>{tech.name}</span>
+                      </li>
+                    );
+                  })}
                 </ul>
               </div>
             ) : null}
@@ -328,7 +343,6 @@ export default async function CaseStudyPage({
       <CtaSection
         title="Working on something similar?"
         body="Tell us about it. We will tell you how we would approach it and what we would want to know first."
-        secondary={{ label: "See all work", href: "/work" }}
       />
 
       <JsonLd id="breadcrumb-schema" data={breadcrumbSchema(crumbs)} />

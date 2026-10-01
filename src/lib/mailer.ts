@@ -131,7 +131,7 @@ export interface LeadEmailData {
 export function adminLeadEmail(data: LeadEmailData): MailMessage {
   const rows: [string, string][] = [
     ["Name", data.name],
-    ["Email", data.email],
+    ["Email", data.email || "—"],
     ["Phone", data.phone || "—"],
     ["Company", data.company || "—"],
     ["Country", data.country || "—"],
@@ -158,7 +158,7 @@ export function adminLeadEmail(data: LeadEmailData): MailMessage {
         .join("")}
     </table>
     <p style="margin:20px 0 6px;color:#74747f;font-size:13px;">Message</p>
-    <div style="white-space:pre-wrap;background:#faf8f5;border:1px solid #e5e0d8;border-radius:10px;padding:14px;font-size:14px;">${escapeHtml(data.message)}</div>
+    <div style="white-space:pre-wrap;background:#faf8f5;border:1px solid #e5e0d8;border-radius:10px;padding:14px;font-size:14px;">${escapeHtml(data.message || "(No message. Call or WhatsApp them.)")}</div>
     <p style="margin:24px 0 0;"><a href="${escapeHtml(data.adminUrl)}" style="display:inline-block;background:#a8431a;color:#ffffff;text-decoration:none;padding:11px 18px;border-radius:10px;font-size:14px;">Open in admin</a></p>`,
   );
 
@@ -168,7 +168,7 @@ export function adminLeadEmail(data: LeadEmailData): MailMessage {
     ...rows.map(([label, value]) => `${label}: ${value}`),
     "",
     "Message:",
-    data.message,
+    data.message || "(No message. Call or WhatsApp them.)",
     "",
     data.adminUrl,
   ].join("\n");
@@ -178,7 +178,7 @@ export function adminLeadEmail(data: LeadEmailData): MailMessage {
     subject: `New enquiry — ${data.name}${data.company ? ` (${data.company})` : ""}`,
     html,
     text,
-    replyTo: data.email,
+    replyTo: data.email || undefined,
   };
 }
 

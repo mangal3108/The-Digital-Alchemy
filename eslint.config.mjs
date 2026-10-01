@@ -15,6 +15,8 @@ const eslintConfig = [
   {
     ignores: [
       ".next/**",
+      // The verification build (npm run build:verify); generated, like .next.
+      ".next-verify/**",
       "out/**",
       "build/**",
       "node_modules/**",

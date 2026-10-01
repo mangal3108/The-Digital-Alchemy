@@ -30,26 +30,26 @@ export async function ProofStrip() {
         <SectionBackdrop name="plate-esd-mat" from="var(--color-surface)" opacity={0.15} side="both" />
         <div className="container-page relative py-8">
           <p className="text-center text-[0.9375rem] font-medium text-ink">
-            Empowering founders, scale-ups, and enterprises across the US, UK, India, and UAE with{" "}
-            <span className="text-gradient-apple font-semibold">AI automation pipelines</span> and{" "}
-            <span className="text-gradient-siri font-semibold">AI-ready software systems</span>.
+            We build{" "}
+            <span className="text-gradient-apple font-semibold">websites, apps and AI tools</span>, and bring you{" "}
+            <span className="text-gradient-siri font-semibold">customers online</span>.
           </p>
           <div className="mt-5 flex flex-wrap items-center justify-center gap-2.5">
             <span className="inline-flex items-center gap-1.5 rounded-full border border-blue-500/20 bg-blue-500/10 px-3 py-1 text-[0.8125rem] font-medium text-blue-600 shadow-xs">
               <span className="size-1.5 rounded-full bg-blue-500" />
-              Autonomous Agent Orchestration
+              Websites &amp; online stores
             </span>
             <span className="inline-flex items-center gap-1.5 rounded-full border border-purple-500/20 bg-purple-500/10 px-3 py-1 text-[0.8125rem] font-medium text-purple-600 shadow-xs">
               <span className="size-1.5 rounded-full bg-purple-500" />
-              Enterprise LLM &amp; RAG Systems
+              Apps &amp; software
             </span>
             <span className="inline-flex items-center gap-1.5 rounded-full border border-emerald-500/20 bg-emerald-500/10 px-3 py-1 text-[0.8125rem] font-medium text-emerald-600 shadow-xs">
               <span className="size-1.5 rounded-full bg-emerald-500" />
-              Intelligent Workflow Automations
+              More customers online
             </span>
             <span className="inline-flex items-center gap-1.5 rounded-full border border-amber-500/20 bg-amber-500/10 px-3 py-1 text-[0.8125rem] font-medium text-amber-600 shadow-xs">
               <span className="size-1.5 rounded-full bg-amber-500" />
-              AI-Ready Production SaaS
+              AI tools that save time
             </span>
           </div>
         </div>
@@ -60,7 +60,7 @@ export async function ProofStrip() {
   const heading =
     clients.length === 1
       ? "A client we work with"
-      : `Trusted by ${clients.length} ambitious businesses in India and worldwide`;
+      : "Businesses we work with";
 
   // ---- Few enough to show at once: a still row ----
   if (clients.length < MARQUEE_THRESHOLD) {
@@ -131,7 +131,7 @@ export async function ProofStrip() {
  * not. A name-only entry is a legitimate state: a client can permit being
  * named without supplying a mark.
  */
-function ClientMark({
+export function ClientMark({
   client,
 }: {
   client: { name: string; logo?: { url: string; alt?: string | null; width?: number | null; height?: number | null } | null };

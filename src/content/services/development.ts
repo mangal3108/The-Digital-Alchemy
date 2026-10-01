@@ -1,127 +1,114 @@
 import type { Service } from "./types";
 
+/*
+ * Written for a small-business owner, not a developer. See
+ * docs/plain-language-glossary.md for the words we use and the ones we don't.
+ */
 export const developmentServices: Service[] = [
   {
     slug: "saas-development",
-    name: "AI-Ready SaaS Development",
-    title: "From AI-ready SaaS idea to a product customers pay for.",
-    group: "development",
+    name: "SaaS Development",
+    title: "Online software your customers pay for every month (SaaS).",
+    group: "software",
+    oneLiner: "We build online software that your customers sign up for and pay monthly to use.",
+    needItWhen: "you want to sell software that other businesses pay for every month.",
+    example: {
+      business: "A salon owner with an idea",
+      before: "She built booking spreadsheets for her own salon, and other salon owners keep asking if they can use them.",
+      after: "Online booking software that other salons sign up for and pay monthly, each with their own logins, reminders and reports.",
+    },
+    // {{TODO: real starting price, e.g. "₹60,000"}} Or set it in Admin → Page copy.
+    priceFrom: "",
+    // {{TODO: typical timeline, e.g. "4 to 8 weeks"}} Or set it in Admin → Page copy.
+    typicalTimeline: "",
     visual: "saas",
     featured: true,
-    eyebrow: "AI-Ready SaaS Development",
-    lede: "We architect modern, AI-ready SaaS platforms from a first sketch to a scalable, billable product — with autonomous workflows, multi-tenant security, custom LLM integrations, and compound growth analytics built in from the start.",
+    eyebrow: "SaaS Development",
+    lede: "For founders and businesses with an idea for software that other people will subscribe to. We plan it, design it and build it, with sign-up, payments and reports working from the start.",
     summary:
-      "AI-native multi-tenant platforms with autonomous workflows, subscription billing, and enterprise analytics from day one.",
-    metaTitle: "AI-Ready SaaS Product Development Services | The Digital Alchemy",
+      "Online software people sign up for and pay for monthly, with accounts, billing and reports built in.",
+    metaTitle: "SaaS Development Company in India | The Digital Alchemy",
     metaDescription:
-      "Modern AI-ready SaaS development — multi-tenant architecture, AI agent integrations, subscription billing, authentication, and cloud deployment.",
+      "We build SaaS: online software your customers sign up for and pay for monthly. Sign-up, payments and reports built in. Get a free consultation.",
     whoFor: [
-      "Founders validating a first version and needing it in front of paying users quickly",
-      "Operating businesses turning an internal tool into a product they can sell",
-      "Teams with a live SaaS that has outgrown its original architecture",
-      "Companies replacing a spreadsheet-and-email workflow their customers currently tolerate",
+      "You have an idea for software and want paying users quickly",
+      "You built a tool for your own business and want to sell it to others",
+      "Your software works, but has outgrown the way it was first built",
+      "Your customers put up with spreadsheets and email because nothing better exists",
     ],
     problems: [
       {
-        title: "The MVP keeps growing before it ships",
-        body: "Scope creep is the usual reason a first release slips by six months. We fix the release boundary early — what a customer must be able to do to pay you — and everything else becomes version two.",
+        title: "The first version keeps growing and never launches",
+        body: "Most first versions launch months late because more features keep getting added. We agree early what a customer must be able to do before they pay you. Everything else waits for version two.",
       },
       {
-        title: "Onboarding loses people before they see value",
-        body: "Most SaaS churn happens in week one. We design the path from signup to first useful outcome as a deliberate sequence, not as whatever screens happen to exist.",
+        title: "People sign up, then leave",
+        body: "Many users who give up do it in their first week. We plan the path from sign-up to the first useful result carefully, so new users see the value quickly.",
       },
       {
-        title: "Billing was bolted on afterwards",
-        body: "Plans, trials, upgrades, proration and failed payments touch almost every part of a product. Retrofitting them is expensive, so we model subscription state as part of the core data design.",
+        title: "Payments were added as an afterthought",
+        body: "Plans, free trials, upgrades and failed payments touch almost every part of the software. Adding them later is expensive, so we build them in from the start.",
       },
       {
-        title: "Nobody can answer basic questions about usage",
-        body: "Without event tracking wired in from the start, you cannot tell an activation problem from a pricing problem. We instrument the product before launch, not after the first bad month.",
+        title: "Nobody knows how people use it",
+        body: "Without tracking, you cannot tell whether people leave because it is hard to use or because of the price. We set up tracking before launch, not after a bad month.",
       },
     ],
     capabilities: [
       {
-        title: "Product strategy and scope",
-        body: "We turn a broad idea into a defined first release: the jobs the product does, the users it does them for, and the smallest coherent version that is genuinely worth paying for.",
+        title: "Planning the first version",
+        body: "We turn your idea into a clear first version: who it is for, what it does, and the smallest version that is worth paying for.",
       },
       {
-        title: "Multi-tenant architecture",
-        body: "Tenant isolation, roles and permissions decided at the schema level. Getting this right on day one is what makes enterprise customers possible later without a rewrite.",
+        title: "Accounts, teams and privacy",
+        body: "Sign-up, team accounts and roles. Many customers share the same software, and each one sees only their own data.",
       },
       {
-        title: "Authentication and access control",
-        body: "Email and social sign-in, invitations, team accounts, role-based permissions, session security and audit trails — with authorisation enforced on the server, never in the interface alone.",
+        title: "Monthly billing",
+        body: "Plans, free trials, upgrades, reminders for failed payments, invoices and tax, connected to a payment account in your name.",
       },
       {
-        title: "Subscription billing",
-        body: "Plans, trials, metered usage, upgrades and downgrades, dunning for failed payments, invoices and tax handling, integrated with a payment provider you control the account for.",
+        title: "Screens that feel finished",
+        body: "Every screen is designed, including the empty, loading and error ones, so the software feels complete rather than half-built.",
       },
       {
-        title: "Application interface and design system",
-        body: "A component library, empty states, loading states and error states designed as first-class screens, so the product feels finished rather than assembled.",
+        title: "Reports for you and your customers",
+        body: "Reports your customers need to justify paying for it, and reports you need to see who stays, who leaves and why.",
       },
       {
-        title: "Reporting and dashboards",
-        body: "The views your customers need to justify the subscription internally, plus the internal analytics you need to understand activation, retention and expansion.",
-      },
-      {
-        title: "APIs and integrations",
-        body: "A documented public API, webhooks, and connections into the tools your customers already run, so your product fits their stack instead of asking them to abandon it.",
-      },
-      {
-        title: "Cloud deployment and observability",
-        body: "Environments, automated deploys, backups, logging, error tracking and uptime monitoring, handed over with the runbook needed to operate it.",
-      },
-      {
-        title: "Security and data handling",
-        body: "Input validation, rate limiting, encrypted secrets, least-privilege access, dependency monitoring and a considered position on where customer data lives.",
-      },
-      {
-        title: "Scaling and maintenance",
-        body: "Performance work driven by measurement rather than guesswork, plus a maintenance arrangement so the product keeps getting attention after launch.",
+        title: "AI features and connections",
+        body: "AI features where they save real time, like answering questions from a customer's own documents, and links to the apps your customers already use.",
       },
     ],
     process: [
       {
         step: "01",
-        title: "Discovery",
-        body: "Sessions with you and, where possible, your prospective users. We map the workflow the product replaces and agree what the first release must do.",
+        title: "Understand",
+        body: "We talk to you and, if possible, to your future users. Together we agree what the first version must do.",
       },
       {
         step: "02",
-        title: "Definition",
-        body: "Scope, data model, architecture and a build plan with sequencing. You get a written specification you can take to any team, not just ours.",
+        title: "Plan and design",
+        body: "You get a written plan and a clickable sample of the main screens. Changing a sample takes hours; changing finished software takes weeks.",
       },
       {
         step: "03",
-        title: "Design",
-        body: "Key flows prototyped and reviewed before engineering starts. Changing a prototype costs hours; changing a shipped feature costs weeks.",
+        title: "Build",
+        body: "We build in short rounds. You can log in and try it as it grows, instead of reading about progress.",
       },
       {
         step: "04",
-        title: "Build",
-        body: "Short iterations against a staging environment you can log into throughout. Progress is something you use, not something you read about.",
-      },
-      {
-        step: "05",
-        title: "Launch",
-        body: "Production environment, billing live, monitoring on, analytics verified, and a support path for the first weeks of real usage.",
-      },
-      {
-        step: "06",
-        title: "Iterate",
-        body: "Usage data and customer conversations drive the next cycle. This is where most of a product's value actually gets created.",
+        title: "Launch and improve",
+        body: "It goes live with payments, tracking and alerts working. Then real usage and customer feedback tell us what to improve next.",
       },
     ],
     deliverables: [
-      "Written product specification and data model",
-      "Interactive prototype of core flows",
-      "Production application with staging environment",
-      "Subscription billing configured against your payment account",
-      "Admin tooling for your own team",
-      "API documentation and webhooks where in scope",
-      "Deployment pipeline, backups and monitoring",
-      "Handover documentation and code ownership",
+      "A written plan you can take to any team",
+      "A clickable sample of the main screens",
+      "The live software, plus a test copy for trying changes",
+      "Monthly billing connected to your payment account",
+      "Hosting, backups and alerts set up",
+      "All the code and accounts, in your name",
     ],
     technologies: [
       "openai",
@@ -142,176 +129,143 @@ export const developmentServices: Service[] = [
     engagement: ["project", "product-partnership", "dedicated-team"],
     faqs: [
       {
-        question: "How much does SaaS development cost?",
+        question: "How much does it cost to build?",
         answer:
-          "It depends almost entirely on scope, and any figure quoted before a scoping conversation is a guess. What we can tell you is how the cost is driven: the number of distinct user roles, whether you need billing and multi-tenancy from day one, how many external systems you integrate with, and how much design work is bespoke. We scope in stages so you can see a costed plan before committing to a full build.",
+          "It depends on what the software needs to do, so any price before we talk would be a guess. The biggest factors are how many kinds of user it has, whether it needs billing from the start, how many other apps it connects to, and how much custom design it needs. We plan in stages, so you see a costed plan before you commit to building.",
       },
       {
-        question: "How long does an MVP take?",
+        question: "How long does a first version take?",
         answer:
-          "A focused first release is typically measured in months rather than weeks, and the biggest variable is decision speed on your side rather than engineering time. We sequence the work so that something is usable early and grows, rather than everything arriving at once at the end.",
+          "Usually a few months rather than a few weeks. The biggest factor is how quickly decisions are made on your side. We plan it so something usable exists early and grows, instead of everything arriving at the end.",
       },
       {
-        question: "Can you improve an existing SaaS product?",
+        question: "Do I need to be technical?",
         answer:
-          "Yes. That is a common starting point. We begin with a review of the codebase, architecture and analytics, then propose work in priority order — usually a mix of specific fixes and a longer structural track. We will tell you honestly if a rewrite is genuinely warranted, which is rarer than people expect.",
+          "No. You bring the knowledge of your customers and your business. We handle the technical side and explain each choice in plain words.",
       },
       {
-        question: "Do you handle the UI and UX as well as engineering?",
+        question: "Can you improve software we already have?",
         answer:
-          "Yes, and we prefer to. Design and engineering working in the same team is what stops the two drifting apart, and it removes the handover overhead that slows most product builds.",
-      },
-      {
-        question: "Can you build subscription billing?",
-        answer:
-          "Yes — plans, trials, upgrades, proration, failed-payment handling and invoicing. The payment provider account stays in your name, so you own the customer and payout relationship outright.",
+          "Yes, that is a common starting point. We first review the code and how people use it, then suggest fixes in order of importance. We will tell you honestly if it needs rebuilding, which is rarer than people expect.",
       },
       {
         question: "Who owns the code?",
         answer:
-          "You do. Code, repositories, infrastructure accounts and design files are yours, and we hand over access as part of delivery rather than holding it as leverage.",
+          "You do. The code, the accounts and the design files are yours, and we hand them over as part of the project.",
       },
       {
-        question: "Do you provide support after launch?",
+        question: "Do you help after launch?",
         answer:
-          "Yes, through a maintenance or product-partnership arrangement. Software that ships and is then left alone degrades quickly, so we would rather agree what ongoing attention looks like before launch than improvise it afterwards.",
-      },
-      {
-        question: "Can you work with companies outside India?",
-        answer:
-          "Yes. We are based in New Delhi and work remotely with clients in other markets. We agree a communication rhythm and an overlap window at the start of the engagement so that reviews and decisions do not stall.",
+          "Yes, through a monthly support plan. Software that is left alone after launch gets worse quickly, so we agree the ongoing support before it goes live.",
       },
     ],
-    related: [
-      "product-design",
-      "web-application-development",
-      "ui-ux-design",
-      "cloud-solutions",
-      "custom-software-development",
-    ],
-    ctaLabel: "Scope My SaaS Product",
+    related: ["product-design", "web-application-development", "cloud-solutions"],
   },
 
   {
     slug: "custom-software-development",
     name: "Custom Software",
-    title: "Software built around how your business actually works.",
-    group: "development",
+    title: "Custom software built around how your business works.",
+    group: "software",
+    oneLiner: "Software made only for your business: billing, stock, staff, customers.",
+    needItWhen: "ready-made software does not fit the way your business works.",
+    example: {
+      business: "A hardware shop with two branches",
+      before: "Billing is in one app and stock is in Excel. The branches phone each other to check what is available.",
+      after: "One system for billing and stock across both branches. Everyone sees the same stock, and the monthly report is a click away.",
+    },
+    // {{TODO: real starting price, e.g. "₹60,000"}} Or set it in Admin → Page copy.
+    priceFrom: "",
+    // {{TODO: typical timeline, e.g. "4 to 8 weeks"}} Or set it in Admin → Page copy.
+    typicalTimeline: "",
     visual: "software",
+    featured: true,
     eyebrow: "Custom Software Development",
-    lede: "When off-the-shelf software forces your team to work around it, the workarounds become the process. We build systems that fit the operation instead — and that your team will actually use.",
+    lede: "When ready-made software does not fit, your team ends up working around it. We build software for your billing, stock, staff or customer records that fits the way you already work.",
     summary:
-      "Internal platforms, ERP and CRM systems, operations tooling and business automation.",
-    metaTitle: "Custom Software Development Services | The Digital Alchemy",
+      "Software made only for your business: billing, stock, staff and customer records.",
+    metaTitle: "Custom Software Development in Delhi | The Digital Alchemy",
     metaDescription:
-      "Custom software for operations, internal tools, ERP, CRM and workflow systems — discovery, architecture, engineering and long-term support.",
+      "Custom software for your billing, stock, staff and customer records, built around the way your business works. Get a free consultation.",
     whoFor: [
-      "Operations teams running critical processes in spreadsheets and shared inboxes",
-      "Businesses paying for software that only covers half of what they do",
-      "Companies with a legacy system nobody wants to touch but everyone depends on",
-      "Teams whose data lives in four tools that do not talk to each other",
+      "Important work still runs on spreadsheets and WhatsApp messages",
+      "You pay for software that covers only half of what you do",
+      "You depend on an old system that nobody dares to change",
+      "Your information is spread across apps that do not talk to each other",
     ],
     problems: [
       {
         title: "The process lives in people's heads",
-        body: "When the operation depends on who is in the office, growth is capped and holidays are risky. Encoding the process into software makes it repeatable and visible.",
+        body: "If work stops when one person is on leave, your growth is stuck. Putting the process into software makes it repeatable and visible to everyone.",
       },
       {
-        title: "Reporting takes a person two days a month",
-        body: "Manual consolidation is both expensive and unreliable. If the underlying data is captured properly, the report is a query rather than a project.",
+        title: "Monthly reports take days",
+        body: "Copying numbers between sheets is slow and full of mistakes. When the software records things properly, the report is ready at the click of a button.",
       },
       {
-        title: "The system works but nobody can change it",
-        body: "Legacy software usually fails on maintainability long before it fails on function. We modernise incrementally where we can, so the business keeps running during the work.",
+        title: "The old system works, but nobody can change it",
+        body: "Old software usually becomes impossible to change long before it stops working. We replace it piece by piece, so your business keeps running during the work.",
       },
       {
-        title: "Every tool holds a different version of the truth",
-        body: "Integration is not glamorous, but a single reliable record of customers, orders or stock removes an entire category of daily argument.",
+        title: "Every app shows different numbers",
+        body: "When customers, orders or stock are kept in four places, people argue about which one is right. One reliable record ends that.",
       },
     ],
     capabilities: [
       {
-        title: "Discovery and process mapping",
-        body: "We sit with the people doing the work and map what actually happens, including the exceptions. The exceptions are usually where the value is.",
+        title: "Understanding your process",
+        body: "We sit with the people doing the work and map what really happens, including the exceptions. The exceptions are often where the value is.",
       },
       {
-        title: "Solution architecture",
-        body: "Data model, system boundaries, integration points and a build sequence, documented well enough that another team could pick it up.",
+        title: "Screens for everyday work",
+        body: "The screens your team uses all day: lists, approvals, search that works, and quick ways to handle many records at once.",
       },
       {
-        title: "Internal tools and operations platforms",
-        body: "The screens your team lives in all day: queues, approvals, bulk actions, search that works, and keyboard-first interactions for high-volume tasks.",
+        title: "Billing, stock and customer records",
+        body: "Built from scratch where ready-made products do not fit, or connected to them where they do. We will tell you which one you need.",
       },
       {
-        title: "ERP and CRM systems",
-        body: "Custom-built where the standard products genuinely do not fit, or extended and integrated where they do. We will say which situation you are in.",
+        title: "Approvals and a history of changes",
+        body: "Step-by-step processes with the right people, alerts, and a full record of who did what, and when.",
       },
       {
-        title: "Workflow and approval systems",
-        body: "Multi-step processes with roles, states, notifications and a complete audit trail of who did what and when.",
+        title: "Connecting your existing apps",
+        body: "Your accounting, delivery, payment and marketing apps linked together, so information moves on its own instead of being copied by hand.",
       },
       {
-        title: "Dashboards and data platforms",
-        body: "Operational reporting built on the live data, with the definitions of each metric agreed and written down so numbers stop being disputed.",
-      },
-      {
-        title: "API and integration layers",
-        body: "Connecting the systems you already run — accounting, logistics, payments, marketing — so records move automatically rather than by copy and paste.",
-      },
-      {
-        title: "Legacy modernisation",
-        body: "Incremental replacement, usually strangling the old system module by module rather than attempting a single high-risk cutover.",
-      },
-      {
-        title: "Testing and quality assurance",
-        body: "Automated tests around the logic that would hurt most if it broke, plus structured user acceptance testing with your team before rollout.",
-      },
-      {
-        title: "Rollout and training",
-        body: "Phased release, documentation written for the people using it, and a support window while the new way of working beds in.",
+        title: "Replacing old systems safely",
+        body: "Old systems replaced one part at a time, not all at once in one risky switch-over.",
       },
     ],
     process: [
       {
         step: "01",
         title: "Understand",
-        body: "Interviews and observation with the teams involved. We document the current process, its cost and its failure points before proposing anything.",
+        body: "We talk to your team and watch how the work is done today. We write down what it costs you and where it goes wrong before suggesting anything.",
       },
       {
         step: "02",
-        title: "Architect",
-        body: "A solution design with options and trade-offs made explicit, so you are choosing between approaches rather than approving a black box.",
+        title: "Plan",
+        body: "We show you the options, with the pros and cons of each, so you choose between clear choices.",
       },
       {
         step: "03",
-        title: "Design",
-        body: "Interface design for the highest-volume screens first. Software people use for six hours a day deserves more care than software they see once a quarter.",
+        title: "Build in parts",
+        body: "We build it in parts that each work on their own, so you get value during the project, not only at the end.",
       },
       {
         step: "04",
-        title: "Build",
-        body: "Delivered in modules, each usable on its own, so value arrives during the project rather than only at the end.",
-      },
-      {
-        step: "05",
-        title: "Deploy",
-        body: "Migration of existing data, parallel running where the risk warrants it, then a controlled cutover with a rollback plan.",
-      },
-      {
-        step: "06",
-        title: "Support",
-        body: "Ongoing maintenance, a route for change requests, and a roadmap for the next set of improvements.",
+        title: "Switch over and support",
+        body: "We move your existing data and switch over carefully, with a way back if needed. After that, we keep looking after it.",
       },
     ],
     deliverables: [
-      "Process map and requirements documentation",
-      "Solution architecture and data model",
-      "Working software delivered in modules",
-      "Data migration from existing systems",
-      "Integrations with your current tools",
-      "Role-based access and audit logging",
-      "User documentation and training sessions",
-      "Support arrangement and change process",
+      "A map of your process and what the software must do",
+      "Working software, delivered in parts",
+      "Your existing data moved across and checked",
+      "Connections to the apps you already use",
+      "Roles, permissions and a history of changes",
+      "Training for your team and a support plan",
     ],
     technologies: [
       "typescript",
@@ -328,158 +282,137 @@ export const developmentServices: Service[] = [
     engagement: ["project", "dedicated-team", "product-partnership"],
     faqs: [
       {
-        question: "Is custom software worth it compared with off-the-shelf?",
+        question: "Is custom software worth it, or should we buy something ready-made?",
         answer:
-          "Often it is not, and we will say so. Off-the-shelf wins when your process is genuinely standard. Custom wins when the process is the thing that differentiates you, when licence costs scale badly with headcount, or when you are already paying people to bridge the gaps between tools. The honest answer usually emerges during discovery.",
+          "Often ready-made is better, and we will say so. It wins when your process is standard. Custom wins when the way you work is what makes you different, when licence fees grow with every new employee, or when you already pay people to fill the gaps between apps. The honest answer usually becomes clear once we understand your process.",
       },
       {
-        question: "Can you work with our existing systems?",
+        question: "Can it work with the apps we already use?",
         answer:
-          "Yes. Most projects we take on involve integrating with something already in place — accounting software, a CRM, a warehouse system. Full replacement is the exception rather than the default.",
+          "Yes. Most projects connect to something you already have, like accounting software, a customer list app or a warehouse system. Replacing everything is the exception.",
       },
       {
         question: "What happens to our current data?",
         answer:
-          "Migration is planned as part of the project, including cleaning, mapping and validation. We run migrations against a copy first and reconcile the results with you before anything touches production.",
+          "Moving it is part of the project: we clean it, match it up and check it. We try the move on a copy first and go through the results with you before anything goes live.",
       },
       {
-        question: "How do you handle changes mid-project?",
+        question: "What if we need changes during the project?",
         answer:
-          "Change is expected on this kind of work. We run a written change process: the request, its impact on time and cost, and your decision. What we avoid is absorbing changes silently until the schedule quietly fails.",
+          "Changes are normal. For each one, we write down what it does to the time and cost, and you decide. We do not quietly absorb changes until the deadline slips.",
       },
       {
-        question: "Will our team be able to maintain it?",
+        question: "Can our own team look after it later?",
         answer:
-          "That depends on whether you have engineers. Where you do, we work in mainstream technologies and hand over documented code. Where you do not, a maintenance arrangement with us is the realistic answer, and we will be direct about that up front.",
+          "If you have developers, yes: we use common technology and hand over clear, documented code. If you do not, a support plan with us is the realistic option, and we will say so up front.",
       },
     ],
-    related: [
-      "automation-integrations",
-      "web-application-development",
-      "cloud-solutions",
-      "saas-development",
-      "maintenance-support",
-    ],
-    ctaLabel: "Discuss a Software Project",
-    featured: true,
+    related: ["automation-integrations", "web-application-development", "maintenance-support"],
   },
 
   {
     slug: "web-development",
     name: "Web Development",
-    title: "Websites designed to perform, not just to launch.",
-    group: "development",
+    title: "A business website that loads fast and brings you enquiries.",
+    group: "website",
+    oneLiner: "Business websites that load fast and bring you enquiries.",
+    needItWhen: "you need a website that explains what you do and brings enquiries.",
+    example: {
+      business: "A dental clinic in Dwarka",
+      before: "An old website that is slow on phones and does not list the treatments. Patients call just to ask what the clinic offers.",
+      after: "A fast site that lists every treatment and doctor, with an appointment form. Patients find answers themselves and book from their phone.",
+    },
+    // {{TODO: real starting price, e.g. "₹60,000"}} Or set it in Admin → Page copy.
+    priceFrom: "",
+    // {{TODO: typical timeline, e.g. "4 to 8 weeks"}} Or set it in Admin → Page copy.
+    typicalTimeline: "",
     visual: "web",
-    eyebrow: "Web Development",
-    lede: "A website earns its cost through what it does after launch: how fast it loads, how easily it is found, how clearly it explains the business, and how many enquiries it produces. We build for those outcomes.",
-    summary:
-      "Fast, accessible, content-managed websites built for search visibility and conversion.",
-    metaTitle: "Website Development Services | The Digital Alchemy",
+    featured: true,
+    eyebrow: "Website Development",
+    lede: "For businesses whose website is old, slow, or does not bring in enquiries. We design and build a fast website that explains what you do, shows up on Google and makes it easy to contact you.",
+    summary: "Fast business websites that are easy to find on Google and easy to update.",
+    metaTitle: "Website Development Company in Delhi | The Digital Alchemy",
     metaDescription:
-      "Website design and development focused on speed, accessibility, search visibility and conversion — corporate sites, marketing sites, landing pages and headless CMS builds.",
+      "Fast business websites that explain what you do, show up on Google and bring you enquiries. Easy for you to update. Get a free consultation.",
     whoFor: [
-      "Businesses whose current site does not reflect what they have become",
-      "Companies whose marketing spend lands on a page that does not convert",
-      "Teams who cannot update their own website without a developer",
-      "Organisations failing Core Web Vitals and losing search visibility for it",
+      "Your website no longer matches what your business has become",
+      "You spend on ads, but the page they land on brings few enquiries",
+      "You cannot change your own website without calling a developer",
+      "Your site is slow, and people leave before it loads",
     ],
     problems: [
       {
-        title: "The site is slow and it is costing traffic",
-        body: "Page speed affects both ranking and behaviour. Most slow sites are slow for a handful of identifiable reasons — oversized images, blocking scripts, bloated page builders — and all of them are fixable.",
+        title: "The site is slow, and it costs you visitors",
+        body: "Slow pages rank lower on Google, and people leave them. Most slow sites are slow for a few clear reasons, like huge images or too many add-ons, and all of them can be fixed.",
       },
       {
         title: "Visitors cannot tell what you do",
-        body: "The most common conversion problem is not the button colour, it is the first screen failing to state clearly who this is for and what it does.",
+        body: "The most common problem is not the colour of a button. It is the first screen not saying clearly who you help and what you offer.",
       },
       {
-        title: "Editing anything requires a developer",
-        body: "If publishing a case study means raising a ticket, it will not happen. We hand over a content model your team can actually operate.",
+        title: "Every small change needs a developer",
+        body: "If adding a new photo or service means waiting for someone, it will not happen. We set it up so your team can make changes themselves.",
       },
       {
         title: "The site was never built to be found",
-        body: "Correct headings, clean URLs, unique metadata, structured data and an internal linking structure are not optional extras; they are the foundation search visibility is built on.",
+        body: "Clear headings, clean page addresses and the right page titles are the basics Google needs. We build them in from the start.",
       },
     ],
     capabilities: [
       {
-        title: "Design and art direction",
-        body: "An original visual system for your business, designed against your real content rather than placeholder text.",
+        title: "A design made for your business",
+        body: "A look designed around your business and your real content, not a template filled with placeholder text.",
       },
       {
-        title: "Front-end engineering",
-        body: "Server-rendered pages, optimised images and fonts, and a JavaScript budget that is treated as a budget rather than an afterthought.",
+        title: "Fast on every phone",
+        body: "Pages that load quickly, even on a slow mobile connection, with images sized properly.",
       },
       {
-        title: "Content management",
-        body: "A CMS shaped around your content types, so editors work with meaningful fields instead of wrestling a page builder.",
+        title: "Easy updates",
+        body: "A simple editor set up around what you publish, so your team can change text, photos and pages themselves.",
       },
       {
-        title: "Landing pages and campaign pages",
-        body: "Focused pages built to match a specific audience and campaign, with tracking configured to attribute the result correctly.",
+        title: "Pages for ads and offers",
+        body: "Single pages made for one ad or one offer, with tracking so you can see which ones bring enquiries.",
       },
       {
-        title: "Technical SEO foundations",
-        body: "Semantic markup, canonical URLs, metadata per page, structured data, XML sitemaps and redirect handling — built in, not retrofitted.",
+        title: "Built to be found on Google",
+        body: "Page titles, descriptions, clean addresses and a sitemap set up properly, so Google can understand every page.",
       },
       {
-        title: "Accessibility",
-        body: "Keyboard navigation, visible focus, sensible heading order, form labelling and colour contrast checked against WCAG 2.2 AA.",
-      },
-      {
-        title: "Performance engineering",
-        body: "Core Web Vitals treated as an acceptance criterion, measured on real page weights rather than on an empty template.",
-      },
-      {
-        title: "Analytics and measurement",
-        body: "Event tracking for the actions that matter — enquiries, calls, downloads — so marketing decisions have something real underneath them.",
-      },
-      {
-        title: "Migration and redirects",
-        body: "Existing URLs mapped and redirected so the search history you have already earned is preserved through the move.",
+        title: "Easy for everyone to use",
+        body: "Readable text, clear forms, and pages that work with a keyboard and with screen readers, checked against the international accessibility standard.",
       },
     ],
     process: [
       {
         step: "01",
-        title: "Audit",
-        body: "We review the current site's traffic, rankings, speed and conversion paths, and identify what is worth keeping.",
+        title: "Review",
+        body: "We look at your current site: who visits, how they find you, how fast it is, and what is worth keeping.",
       },
       {
         step: "02",
-        title: "Structure",
-        body: "Sitemap, content model and page-level messaging agreed before any visual design begins.",
+        title: "Plan the pages",
+        body: "We agree the pages, and what each one should say, before any design starts.",
       },
       {
         step: "03",
-        title: "Design",
-        body: "Key templates designed to real content, reviewed at mobile and desktop together rather than desktop first.",
+        title: "Design and build",
+        body: "We design with your real content and check every page on phone and computer. You can see progress on a test link at any time.",
       },
       {
         step: "04",
-        title: "Build",
-        body: "Development against a staging URL you can review at any point, with performance and accessibility checked as we go.",
-      },
-      {
-        step: "05",
-        title: "Launch",
-        body: "Content migration, redirect map, analytics verification, search console setup and a post-launch monitoring window.",
-      },
-      {
-        step: "06",
-        title: "Improve",
-        body: "Once real traffic arrives, the data tells you what to fix. This is where conversion work properly begins.",
+        title: "Launch and improve",
+        body: "We move your content and keep your old links working, so you keep your place on Google. Then visitor data shows what to improve.",
       },
     ],
     deliverables: [
-      "Sitemap, content model and page messaging",
-      "Original design system and page templates",
-      "Responsive, accessible production website",
-      "CMS with editor documentation",
-      "Technical SEO configuration and structured data",
-      "301 redirect map from the previous site",
-      "Analytics and conversion tracking",
-      "Performance report at launch",
+      "A plan of every page and what it says",
+      "A design made for your business",
+      "A fast website that works on every phone",
+      "An editor your team can use, with a short guide",
+      "Google set up: page titles, sitemap and enquiry tracking",
+      "Old links pointed to the new pages, so you keep your rankings",
     ],
     technologies: [
       "typescript",
@@ -496,152 +429,135 @@ export const developmentServices: Service[] = [
       {
         question: "How long does a website take?",
         answer:
-          "A focused marketing site is usually a matter of weeks; a larger site with many templates and a content migration takes longer. In practice the schedule is set by content readiness and review turnaround more often than by build time, so we agree those checkpoints at the start.",
+          "A simple business website usually takes a few weeks. A bigger site, with many pages and old content to move, takes longer. What slows things down most is waiting for content and feedback, so we agree those dates at the start.",
       },
       {
-        question: "Will we be able to edit it ourselves?",
+        question: "Can we update it ourselves?",
         answer:
-          "Yes. We build the content model around what you actually publish and hand over documentation for your team. If a section is genuinely fixed, we will tell you rather than pretending everything is editable.",
+          "Yes. We set up the editor around what you actually change, and give your team a short guide. If a part genuinely cannot be edited, we will tell you rather than pretend.",
       },
       {
-        question: "Will we lose our search rankings when we move?",
+        question: "Will we lose our Google rankings when we move?",
         answer:
-          "Not if the migration is done properly. We map every existing URL, put 301 redirects in place, keep the content that is already ranking, and monitor Search Console after launch. Rankings can fluctuate briefly during reindexing; losing them permanently is a migration failure, not an inevitability.",
+          "Not if the move is done properly. We point every old link to its new page, keep the content that already ranks, and watch Google Search Console after launch. Rankings can wobble for a short time. Losing them for good is a mistake, not bad luck.",
       },
       {
         question: "Do you work with WordPress?",
         answer:
-          "Yes, including the existing WordPress site this business runs today. We will recommend WordPress where editorial flexibility matters most, and a modern framework where performance and custom functionality matter more. The recommendation follows the requirement.",
+          "Yes. We suggest WordPress when easy editing matters most, and a more modern setup when speed or custom features matter more. The choice follows what you need.",
       },
       {
         question: "What do you need from us?",
         answer:
-          "Content, or the time to help us produce it, plus a single person who can make decisions. Those two things determine project speed more than anything on our side.",
+          "Your content, or time to help us write it, and one person who can make decisions. Those two things decide the speed more than anything we do.",
       },
     ],
-    related: [
-      "ui-ux-design",
-      "search-engine-optimization",
-      "ecommerce-development",
-      "web-application-development",
-      "maintenance-support",
-    ],
-    ctaLabel: "Plan My Website",
-    featured: true,
+    related: ["search-engine-optimization", "ecommerce-development", "ui-ux-design"],
   },
 
   {
     slug: "web-application-development",
     name: "Web Applications",
-    title: "Applications your team and customers log into every day.",
-    group: "development",
+    title: "Web applications your customers and staff log in to.",
+    group: "software",
+    oneLiner: "Online portals and dashboards your staff or customers log in to.",
+    needItWhen: "customers or staff need to log in to see or do something.",
+    example: {
+      business: "A coaching institute with several batches",
+      before: "Parents call the office to ask about fees, attendance and test results. Staff answer the same questions all day.",
+      after: "A portal where students and parents log in to see classes, fees and results for themselves, so the office answers fewer calls.",
+    },
+    // {{TODO: real starting price, e.g. "₹60,000"}} Or set it in Admin → Page copy.
+    priceFrom: "",
+    // {{TODO: typical timeline, e.g. "4 to 8 weeks"}} Or set it in Admin → Page copy.
+    typicalTimeline: "",
     visual: "webapp",
+    featured: true,
     eyebrow: "Web Application Development",
-    lede: "A website explains the business. A web application runs part of it. Portals, dashboards, marketplaces and admin systems carry real workflow, real permissions and real consequences when they get it wrong.",
-    summary:
-      "Dashboards, portals, marketplaces and B2B platforms with real permissions and real data.",
-    metaTitle: "Web Application Development Services | The Digital Alchemy",
+    lede: "A website tells people about your business. A web application runs part of it: customer portals, dashboards, booking systems and admin tools that people log in to every day.",
+    summary: "Customer portals, dashboards and booking systems that people log in to.",
+    metaTitle: "Web Application Development Company | The Digital Alchemy",
     metaDescription:
-      "Web application development — customer portals, dashboards, marketplaces, booking platforms and B2B systems with role-based access, real-time data and secure architecture.",
+      "Customer portals, dashboards and booking systems your staff and customers log in to, with the right access for each person. Get a free consultation.",
     whoFor: [
-      "Businesses whose customers currently email to ask for updates",
-      "Teams managing bookings, jobs or inventory through shared documents",
-      "Marketplaces connecting two sides that need different interfaces",
-      "Companies whose internal admin tools have become the bottleneck",
+      "Your customers call or email just to ask for an update",
+      "Bookings, jobs or stock are managed in shared spreadsheets",
+      "You connect two groups, like buyers and sellers, who need different screens",
+      "Your admin tools have become the thing that slows everyone down",
     ],
     problems: [
       {
-        title: "Customers have no self-service route",
-        body: "Every status question that arrives by phone or email is a cost. A portal converts that support load into something customers can answer themselves at midnight.",
+        title: "Customers cannot help themselves",
+        body: "Every “what is the status?” call costs time. A portal lets customers check for themselves, even at midnight.",
       },
       {
-        title: "Permissions are handled by trust rather than by software",
-        body: "Shared logins and honour-system access are a liability. Roles and record-level permissions need to be enforced on the server for every request.",
+        title: "Everyone shares one login",
+        body: "Shared passwords are a risk. Each person should see only what they are allowed to, and the software should make sure of it.",
       },
       {
-        title: "The interface slows down as the data grows",
-        body: "Applications that were fine with a thousand records often collapse at a hundred thousand. Pagination, indexing and query design are decisions to take early.",
+        title: "It gets slower as your data grows",
+        body: "Software that works with a thousand records can struggle with a hundred thousand. We plan for your growth from the start.",
       },
       {
         title: "Nobody trusts the numbers on the dashboard",
-        body: "A dashboard is only useful if the definitions behind each figure are agreed and consistent. We settle that during design, not after launch.",
+        body: "A dashboard only helps if everyone agrees what each number means. We settle that during design, not after launch.",
       },
     ],
     capabilities: [
       {
-        title: "Customer and partner portals",
-        body: "Authenticated areas where clients see their own projects, orders, documents, invoices or reports — scoped so each account sees only its own data.",
+        title: "Customer portals",
+        body: "Areas where each customer logs in to see their own orders, documents, invoices or reports, and nothing else.",
       },
       {
-        title: "Operational dashboards",
-        body: "Live views of the metrics a team actually acts on, with filtering, saved views and export, designed for daily use rather than for a screenshot.",
+        title: "Dashboards",
+        body: "Live numbers your team actually acts on, with filters and downloads, made for daily use.",
       },
       {
-        title: "Admin and back-office systems",
-        body: "The tools your staff use to run the operation: search, bulk actions, approvals, audit history and permissions that match your org chart.",
+        title: "Admin tools",
+        body: "The tools your staff use to run things: search, bulk changes, approvals, and a history of who did what.",
       },
       {
-        title: "Marketplaces and multi-sided platforms",
-        body: "Separate experiences for each side, matching and messaging between them, and the transaction handling that sits in the middle.",
+        title: "Booking and scheduling",
+        body: "Availability, calendars, reminders, cancellations and payments, including the awkward cases that decide whether people trust it.",
       },
       {
-        title: "Booking and scheduling platforms",
-        body: "Availability, capacity, calendars, reminders, cancellations and payment, including the awkward edge cases that decide whether the system is trusted.",
+        title: "Marketplaces",
+        body: "Separate screens for each side, like buyers and sellers, with messages and payments between them.",
       },
       {
-        title: "Data tables that scale",
-        body: "Server-side pagination, sorting, filtering and export built to stay fast as records accumulate.",
-      },
-      {
-        title: "Real-time updates",
-        body: "Live notifications and activity feeds where they genuinely help, without turning the interface into something that will not sit still.",
-      },
-      {
-        title: "Security and auditability",
-        body: "Server-enforced authorisation on every request, session security, rate limiting, and an audit log of consequential actions.",
+        title: "Security built in",
+        body: "Access checked every time someone does something, safe logins, limits against misuse, and a record of important changes.",
       },
     ],
     process: [
       {
         step: "01",
-        title: "Map the workflow",
-        body: "Who does what, in what order, and what each role is allowed to see. This is the foundation everything else is built on.",
+        title: "Map the work",
+        body: "Who does what, in which order, and what each person may see. Everything else is built on this.",
       },
       {
         step: "02",
-        title: "Model the data",
-        body: "Entities, relationships and permissions designed before interface work starts, because the data model is the hardest thing to change later.",
+        title: "Design and test the main screens",
+        body: "The screens people use most are made into clickable samples and tried out by the people who will use them.",
       },
       {
         step: "03",
-        title: "Prototype",
-        body: "The highest-traffic screens built as clickable prototypes and tested with the people who will use them daily.",
+        title: "Build",
+        body: "We build in rounds on a test copy you can log in to, with automatic checks on the parts that matter most.",
       },
       {
         step: "04",
-        title: "Build",
-        body: "Iterative delivery against a staging environment, with automated tests around the logic that matters most.",
-      },
-      {
-        step: "05",
-        title: "Harden",
-        body: "Load testing on realistic data volumes, a security review, and accessibility checks before release.",
-      },
-      {
-        step: "06",
-        title: "Operate",
-        body: "Monitoring, error tracking, backups and a support arrangement, because an application is a service rather than a delivery.",
+        title: "Test and launch",
+        body: "We test it with realistic amounts of data and check its security, then launch with monitoring and backups in place.",
       },
     ],
     deliverables: [
-      "Workflow map and permission matrix",
-      "Data model and API design",
-      "Interactive prototype of core screens",
-      "Production application and staging environment",
-      "Role-based access control with audit logging",
-      "Automated test coverage on critical logic",
-      "Monitoring, error tracking and backups",
-      "Technical and user documentation",
+      "A map of the work, and who can see what",
+      "Clickable samples of the main screens",
+      "The live application, plus a test copy",
+      "Roles, permissions and a history of changes",
+      "Monitoring, error alerts and backups",
+      "Guides for your team and for developers",
     ],
     technologies: [
       "typescript",
@@ -660,155 +576,130 @@ export const developmentServices: Service[] = [
       {
         question: "What is the difference between a website and a web application?",
         answer:
-          "A website is mostly published content that everyone sees. An application is mostly authenticated workflow: users log in, act on data, and see different things depending on who they are. The distinction matters because the second needs a data model, a permission model and a testing approach that the first does not.",
+          "A website is mostly information that everyone sees. A web application is mostly work that people do after logging in, and each person sees different things. That difference means an application needs more planning around data, permissions and testing.",
       },
       {
-        question: "Can you integrate with our existing systems?",
+        question: "Can it connect to our existing systems?",
         answer:
-          "Yes. Most portals and dashboards are only useful because they surface data from somewhere else — an ERP, a CRM, an accounting system. We map those integration points during discovery.",
+          "Yes. Most portals and dashboards are useful because they show information from somewhere else, like your accounting or customer records. We map those connections first.",
       },
       {
-        question: "How do you handle security?",
+        question: "How do you keep it secure?",
         answer:
-          "Authorisation is checked on the server for every request rather than by hiding interface elements. Beyond that: input validation, parameterised queries, rate limiting, secure session cookies, encrypted secrets, dependency monitoring and an audit log for consequential actions.",
+          "Access is checked on the server every time someone does something, not just by hiding buttons. We also check what people type into forms, limit repeated login attempts, keep logins secure and record important actions.",
       },
       {
-        question: "Can it work on mobile?",
+        question: "Will it work on phones?",
         answer:
-          "Yes — we design responsively from the start. Where a workflow is genuinely mobile-first, such as field or warehouse use, we will say whether a native app would serve it better than a browser.",
+          "Yes, we design for phones from the start. If the work really happens on the move, like in a warehouse or on site, we will tell you whether a mobile app would suit it better.",
       },
     ],
-    related: [
-      "custom-software-development",
-      "saas-development",
-      "ui-ux-design",
-      "cloud-solutions",
-      "automation-integrations",
-    ],
-    ctaLabel: "Scope My Application",
-    featured: true,
+    related: ["custom-software-development", "saas-development", "mobile-app-development"],
   },
 
   {
     slug: "mobile-app-development",
     name: "Mobile Apps",
-    title: "Apps people actually keep on their phone.",
-    group: "development",
+    title: "Mobile apps people actually keep on their phone.",
+    group: "software",
+    oneLiner: "Android and iPhone apps, from idea to Play Store/App Store.",
+    needItWhen: "your customers use you often enough to install an app.",
+    example: {
+      business: "A restaurant with its own delivery riders",
+      before: "Orders come by phone and WhatsApp, addresses are written down by hand, and regular customers repeat everything each time.",
+      after: "An ordering app with saved addresses, order history and live order status. Regular customers reorder in a few taps.",
+    },
+    // {{TODO: real starting price, e.g. "₹60,000"}} Or set it in Admin → Page copy.
+    priceFrom: "",
+    // {{TODO: typical timeline, e.g. "4 to 8 weeks"}} Or set it in Admin → Page copy.
+    typicalTimeline: "",
     visual: "mobile",
+    featured: true,
     eyebrow: "Mobile App Development",
-    lede: "Most apps are deleted within a week. The ones that survive earn their place on the home screen by doing one thing noticeably better than a website could — and by feeling native while they do it.",
-    summary:
-      "iOS and Android apps, from first release through store launch and ongoing iteration.",
-    metaTitle: "Mobile App Development Services | The Digital Alchemy",
+    lede: "Android and iPhone apps, from idea to the Play Store and App Store. For businesses whose customers use them often enough to install an app, and for founders whose product belongs on a phone.",
+    summary: "Android and iPhone apps, launched on both stores and improved after release.",
+    metaTitle: "Mobile App Development Company Delhi | The Digital Alchemy",
     metaDescription:
-      "Mobile app development for iOS and Android — product design, cross-platform engineering, API development, payments, push notifications, store launch and post-release iteration.",
+      "Android and iPhone apps, from idea to the Play Store and App Store, then improved after launch. Get a free consultation.",
     whoFor: [
-      "Businesses whose customers interact often enough to justify an install",
-      "Founders launching a product where the phone is the natural place to use it",
-      "Companies needing field, delivery or on-site tools that work offline",
-      "Teams with an existing app that feels dated or performs badly",
+      "Your customers use your service often enough to install an app",
+      "Your product is naturally used on a phone",
+      "Your staff need a tool that works on site, even with a weak signal",
+      "You have an app that feels old or runs badly",
     ],
     problems: [
       {
         title: "The app has no reason to be an app",
-        body: "If the same job is done as well in a browser, an install is friction with no return. We will test that assumption honestly before you commit to a build.",
+        body: "If a website does the same job just as well, asking people to install an app only gets in the way. We check that honestly before you spend on building.",
       },
       {
-        title: "Onboarding asks for too much too early",
-        body: "Registration walls and permission prompts before any value is shown are the fastest way to lose a new user. Sequence matters enormously here.",
+        title: "It asks for too much, too soon",
+        body: "Forcing sign-up and permissions before showing any value is the fastest way to lose new users. The order of the first screens matters a lot.",
       },
       {
-        title: "It does not feel native",
-        body: "Wrong transitions, non-standard gestures and ignored platform conventions read as cheap even when the functionality is fine.",
+        title: "It does not feel like a proper app",
+        body: "Strange gestures, and screens that ignore how Android or iPhone normally work, make an app feel cheap, even when everything works.",
       },
       {
-        title: "Store review keeps rejecting it",
-        body: "Both stores have specific requirements around privacy disclosure, account deletion, permissions and payments. Planning for them beforehand avoids weeks of resubmission.",
+        title: "The store keeps rejecting it",
+        body: "Both stores have strict rules about privacy, deleting accounts, permissions and payments. Planning for them early saves weeks of resubmitting.",
       },
     ],
     capabilities: [
       {
-        title: "Product definition",
-        body: "Deciding what belongs in the app versus the web, and what the first release must contain to be worth installing.",
+        title: "Deciding what goes in version one",
+        body: "What belongs in the app, what can stay on the website, and what the first release needs to be worth installing.",
       },
       {
-        title: "Interface design for mobile",
-        body: "Platform-appropriate patterns, thumb-reachable layouts, real touch targets, and states designed for slow connections and interruptions.",
+        title: "Designed for thumbs",
+        body: "Screens that follow Android and iPhone habits, buttons that are easy to reach, and designs that cope with slow connections.",
       },
       {
-        title: "Cross-platform engineering",
-        body: "One codebase serving iOS and Android where that is the right trade-off, with native modules where a feature genuinely needs them.",
+        title: "One app for Android and iPhone",
+        body: "One shared app for both where that makes sense, with separate parts only where a feature needs them.",
       },
       {
-        title: "Backend and API development",
-        body: "The services the app talks to — accounts, data, sync, business logic — designed for mobile's intermittent connectivity.",
+        title: "Logins, payments and notifications",
+        body: "Phone, email and social sign-in, fingerprint unlock, in-app payments that follow store rules, and notifications people actually want.",
       },
       {
-        title: "Authentication and accounts",
-        body: "Email, phone and social sign-in, biometric unlock, session handling and account deletion, which both stores now require.",
+        title: "Works with a weak signal",
+        body: "Information saved on the phone and synced later, so the app keeps working instead of showing an error.",
       },
       {
-        title: "Payments and subscriptions",
-        body: "In-app purchases and subscriptions where the store rules require them, or external payment where they permit it. Getting this wrong is a common rejection cause.",
-      },
-      {
-        title: "Push notifications",
-        body: "Segmented, permissioned and useful. Notifications are the fastest way to be uninstalled if they are treated as a broadcast channel.",
-      },
-      {
-        title: "Offline behaviour",
-        body: "Local storage and sync so the app degrades gracefully on a weak connection instead of showing an error screen.",
-      },
-      {
-        title: "Store launch",
-        body: "Listings, screenshots, privacy declarations, review submission and release management for both stores.",
-      },
-      {
-        title: "Post-launch iteration",
-        body: "Crash reporting, analytics and staged rollouts, so the second release is informed by how the first one actually behaved.",
+        title: "Launch on both stores",
+        body: "Store listings, screenshots, privacy details and submission, then crash reports and updates after launch.",
       },
     ],
     process: [
       {
         step: "01",
-        title: "Discovery",
-        body: "Users, jobs and constraints. We decide together what earns a place in version one and what waits.",
+        title: "Plan",
+        body: "Who will use it, for what, and what earns a place in the first version.",
       },
       {
         step: "02",
-        title: "Wireframes",
-        body: "Flow and structure resolved in low fidelity, where changes are cheap and disagreements are productive.",
+        title: "Sketch and test",
+        body: "Simple sketches of each screen first, then a clickable sample tested on a real phone in someone's hand.",
       },
       {
         step: "03",
-        title: "Prototype",
-        body: "An interactive prototype on a real device. Testing on a phone in someone's hand reveals things a desktop review never will.",
+        title: "Design and build",
+        body: "Design and building happen together, and you get test versions on your own phone throughout.",
       },
       {
         step: "04",
-        title: "Design and build",
-        body: "Interface design and engineering running together, with builds distributed to you throughout for review.",
-      },
-      {
-        step: "05",
-        title: "Test and submit",
-        body: "Device testing across screen sizes and OS versions, then store submission with the declarations both stores require.",
-      },
-      {
-        step: "06",
-        title: "Grow",
-        body: "Store listing improvements, crash triage, analytics review and a release cadence for subsequent versions.",
+        title: "Launch and grow",
+        body: "We test on many phones and submit to both stores. After launch, crash reports and usage show what to improve next.",
       },
     ],
     deliverables: [
-      "Product definition and release scope",
-      "Wireframes and interactive prototype",
-      "iOS and Android applications",
-      "Backend API and admin tooling",
-      "Push notification setup",
-      "Store listings and successful submission",
-      "Crash reporting and analytics",
-      "Source code and store account handover",
+      "A plan for the first version",
+      "Screen sketches and a clickable sample",
+      "Android and iPhone apps",
+      "The system behind the app, with an admin panel",
+      "Published on the Play Store and App Store",
+      "Crash reports, usage tracking, and the code in your name",
     ],
     technologies: [
       "react-native",
@@ -823,154 +714,137 @@ export const developmentServices: Service[] = [
     engagement: ["project", "product-partnership", "dedicated-team"],
     faqs: [
       {
-        question: "Native or cross-platform?",
+        question: "One shared app for both phones, or two separate apps?",
         answer:
-          "Cross-platform suits most business applications and gets both platforms from one codebase, which usually halves cost and keeps releases in step. Native is the right call for graphics-heavy products, deep hardware use or demanding performance requirements. We will recommend based on what the app actually does, not on preference.",
+          "For most business apps, one shared app for Android and iPhone is the better choice. It usually costs much less and keeps both versions in step. Separate apps make sense for heavy graphics or deep use of the phone's hardware. We recommend based on what your app does.",
       },
       {
-        question: "Do we need a separate backend?",
+        question: "Does the app need a system behind it?",
         answer:
-          "Almost always yes — accounts, data and business logic have to live somewhere the app can reach. If you already have APIs we will use them; if not, that work is part of the project.",
+          "Almost always. Accounts, data and business rules need to live somewhere the app can reach. If you already have that, we use it. If not, we build it as part of the project.",
       },
       {
-        question: "Who publishes to the stores?",
+        question: "Whose name is the app published under?",
         answer:
-          "The developer accounts should be in your company's name, and we publish under them. That way you own the listings, the reviews and the ability to move to another team later.",
+          "Yours. The store accounts should be in your company's name, and we publish under them. You own the listing, the reviews, and the freedom to move to another team later.",
       },
       {
-        question: "How long does app store review take?",
+        question: "How long does store review take?",
         answer:
-          "Usually a few days per submission once the declarations are correct, though it varies and rejections add cycles. We build submission time into the schedule rather than treating approval as instant.",
+          "Usually a few days for each submission once everything is in order. It varies, and a rejection adds another round, so we plan for review time instead of assuming instant approval.",
       },
       {
         question: "What does it cost to keep an app running?",
         answer:
-          "There is an unavoidable baseline: developer account fees, backend hosting, and periodic updates for new OS versions and store policy changes. An app left untouched for a year tends to break, so we plan maintenance as part of the ongoing cost rather than as a surprise.",
+          "Some costs cannot be avoided: store account fees, hosting, and updates for new phone software and store rules. An app left alone for a year tends to break, so we plan for its upkeep from the start.",
       },
     ],
-    related: [
-      "ui-ux-design",
-      "product-design",
-      "web-application-development",
-      "custom-software-development",
-      "maintenance-support",
-    ],
-    ctaLabel: "Build My App",
-    featured: true,
+    related: ["product-design", "web-application-development", "maintenance-support"],
   },
 
   {
     slug: "ecommerce-development",
     name: "E-commerce",
-    title: "Stores built around the moment someone decides to buy.",
-    group: "development",
+    title: "An e-commerce website that turns visitors into orders.",
+    group: "website",
+    oneLiner: "An online store to sell your products, with payments and delivery.",
+    needItWhen: "you want to sell products online and take payments.",
+    example: {
+      business: "A home-décor brand selling on Instagram",
+      before: "Orders arrive as Instagram messages. Payments are chased one by one, and stock is tracked in a notebook.",
+      after: "An online store with UPI and card payments, delivery tracking, and stock that updates itself. Orders can come in at any hour.",
+    },
+    // {{TODO: real starting price, e.g. "₹60,000"}} Or set it in Admin → Page copy.
+    priceFrom: "",
+    // {{TODO: typical timeline, e.g. "4 to 8 weeks"}} Or set it in Admin → Page copy.
+    typicalTimeline: "",
     visual: "ecommerce",
     eyebrow: "E-commerce Development",
-    lede: "Most online stores lose the majority of their revenue in the gap between the product page and the confirmed order. We design and build that stretch deliberately, then keep improving it against real data.",
+    lede: "An online store to sell your products, with payments and delivery. Most stores lose sales between the product page and the finished order. We design that part carefully, then keep improving it.",
     summary:
-      "Shopify, WooCommerce and custom commerce builds, tuned for conversion after launch.",
-    metaTitle: "E-commerce Development Services | The Digital Alchemy",
+      "Online stores on Shopify, WooCommerce or custom-built, set up to sell and improved after launch.",
+    metaTitle: "E-commerce Website Development Company | The Digital Alchemy",
     metaDescription:
-      "E-commerce development on Shopify, WooCommerce and custom platforms — product experience, checkout optimisation, payments, integrations and conversion improvement.",
+      "An online store with UPI, card payments and delivery, built on Shopify, WooCommerce or custom, to turn visitors into orders. Get a free consultation.",
     whoFor: [
-      "Brands whose store gets traffic but converts poorly",
-      "Retailers moving from a marketplace to their own storefront",
-      "Businesses with a catalogue too complex for a stock theme",
-      "Stores whose stock and orders are reconciled by hand",
+      "People visit your store, but few of them buy",
+      "You sell on marketplaces and want a store of your own",
+      "Your products have too many options for a basic template",
+      "You match stock and orders by hand",
     ],
     problems: [
       {
-        title: "Carts are abandoned at checkout",
-        body: "Usually caused by surprise shipping costs, forced account creation, too many fields or a payment method the customer expected and did not find.",
+        title: "People leave at the checkout",
+        body: "Usually because of surprise delivery charges, being forced to create an account, too many form fields, or a missing payment option like UPI.",
       },
       {
         title: "Customers cannot find the right product",
-        body: "For a catalogue of any size, search and filtering are the product experience. Weak navigation shows up directly in the conversion rate.",
+        body: "Once you have more than a few products, search and filters are how people shop. If they are weak, fewer people buy.",
       },
       {
-        title: "The product page does not answer the question",
-        body: "Sizing, materials, delivery timing, returns. Every unanswered question is a reason to close the tab and not come back.",
+        title: "The product page does not answer their question",
+        body: "Size, material, delivery time, returns. Every unanswered question is a reason to leave and not come back.",
       },
       {
-        title: "Stock and orders are managed manually",
-        body: "Overselling and manual reconciliation are symptoms of a missing integration between the store and whatever system holds the truth about inventory.",
+        title: "Stock and orders are handled by hand",
+        body: "Selling items you do not have, or matching orders in a spreadsheet, means your store is not connected to where your stock is tracked.",
       },
     ],
     capabilities: [
       {
-        title: "Platform selection",
-        body: "Shopify, WooCommerce or a custom build, chosen on catalogue complexity, order volume, integration needs and who will run the store day to day.",
+        title: "Choosing the right platform",
+        body: "Shopify, WooCommerce or a custom build, chosen by how many products you sell, how many orders you get, and who will run the store.",
       },
       {
-        title: "Storefront design",
-        body: "Category, product, cart and checkout designed as one sequence, with the brand carried through rather than applied as a theme.",
+        title: "Store design",
+        body: "Category, product, cart and checkout pages designed as one journey, in your brand's look.",
       },
       {
-        title: "Product experience",
-        body: "Search, filtering, variants, imagery, reviews and the specification detail that answers pre-purchase questions before they become support tickets.",
+        title: "Product pages that answer questions",
+        body: "Search, filters, sizes and colours, photos, reviews, and the details that answer questions before people have to ask.",
       },
       {
-        title: "Checkout optimisation",
-        body: "Guest checkout, fewer fields, address autocomplete, visible total cost early, and the payment methods your customers actually use.",
+        title: "An easy checkout",
+        body: "Buying without an account, fewer fields, the total cost shown early, and the payment methods your customers use.",
       },
       {
-        title: "Payments and shipping",
-        body: "Gateway setup, wallets, local payment methods, shipping rules and tax configuration for the markets you sell into.",
+        title: "Payments, delivery and tax",
+        body: "Payment gateway, UPI and wallets, delivery rules and tax set up for the places you sell to.",
       },
       {
-        title: "Integrations",
-        body: "Inventory, ERP, accounting, fulfilment and email platforms connected so orders flow without manual re-entry.",
-      },
-      {
-        title: "Commerce analytics",
-        body: "Product and checkout event tracking configured properly, so you can see exactly where revenue is being lost.",
-      },
-      {
-        title: "Conversion improvement",
-        body: "Ongoing work after launch driven by funnel data and testing rather than by opinion.",
+        title: "Connected to your stock and accounts",
+        body: "Your stock, accounting and delivery apps connected, so orders flow through without being typed in again.",
       },
     ],
     process: [
       {
         step: "01",
-        title: "Audit",
-        body: "Current funnel data, catalogue structure and operational workflow reviewed to find where revenue is actually leaking.",
+        title: "Review",
+        body: "We look at your current sales, your product range and how orders are handled today, to find where sales are lost.",
       },
       {
         step: "02",
         title: "Plan",
-        body: "Platform decision, catalogue and taxonomy design, integration map and a migration plan for products and customers.",
+        body: "Which platform, how products are organised, what connects to what, and how existing products and customers move over.",
       },
       {
         step: "03",
-        title: "Design",
-        body: "The full purchase sequence designed together — most stores design pages in isolation and inherit the gaps between them.",
+        title: "Design and build",
+        body: "The whole buying journey is designed together, then built and tested with real test orders.",
       },
       {
         step: "04",
-        title: "Build",
-        body: "Storefront, integrations and payment configuration, tested against real orders in a staging environment.",
-      },
-      {
-        step: "05",
-        title: "Launch",
-        body: "Migration, redirects from old product URLs, analytics verification and close monitoring through the first trading days.",
-      },
-      {
-        step: "06",
-        title: "Optimise",
-        body: "Continuous improvement against funnel data — product page, checkout and merchandising.",
+        title: "Launch and improve",
+        body: "We move your products, keep old product links working, and watch the first days of sales closely. Then we keep improving from what the sales show.",
       },
     ],
     deliverables: [
-      "Platform recommendation with reasoning",
-      "Catalogue structure and taxonomy",
-      "Designed and built storefront",
-      "Payment, shipping and tax configuration",
-      "Inventory and back-office integrations",
-      "Product URL redirect map",
-      "E-commerce analytics and funnel tracking",
-      "Store operations documentation",
+      "A platform recommendation, with reasons",
+      "A clear way of organising your products",
+      "A designed and built online store",
+      "Payments, delivery and tax set up",
+      "Stock and accounting connected",
+      "Sales tracking, and a guide to running the store",
     ],
     technologies: [
       "shopify",
@@ -987,31 +861,24 @@ export const developmentServices: Service[] = [
       {
         question: "Shopify or WooCommerce?",
         answer:
-          "Shopify suits teams who want the platform to handle hosting, payments and updates, and who value operational simplicity. WooCommerce suits businesses already on WordPress who need unusual rules or tight content integration. A custom build only makes sense at high volume or with genuinely non-standard commerce logic.",
+          "Shopify suits you if you want hosting, payments and updates handled for you, and you value simplicity. WooCommerce suits you if you already use WordPress or need unusual rules. A fully custom store only makes sense at high volume, or with very unusual needs.",
       },
       {
-        question: "Can you migrate our existing store?",
+        question: "Can you move our existing store?",
         answer:
-          "Yes — products, variants, customers, orders and content, with redirects from old product URLs so the search visibility you have built up carries across.",
+          "Yes: products, options, customers, orders and content. We keep old product links working, so the Google rankings you have built come across with you.",
       },
       {
-        question: "Can you improve conversion on our current store?",
+        question: "Can you improve our current store instead of rebuilding it?",
         answer:
-          "Often, and it is usually better value than a rebuild. We start with the funnel data to find where people drop out, then work through the highest-impact fixes in order. We would rather tell you the checkout needs three changes than sell you a new store.",
+          "Often, and it is usually better value. We look at where people drop out, then fix the biggest problems first. We would rather tell you the checkout needs three changes than sell you a new store.",
       },
       {
-        question: "Do you handle product photography?",
+        question: "Do you do product photography?",
         answer:
-          "Not in-house. We will specify what is needed and work with your photographer, or introduce you to one. Product imagery is one of the highest-leverage parts of a store, so it is worth doing properly.",
+          "Not ourselves. We will tell you what is needed and work with your photographer, or introduce you to one. Good photos are one of the biggest things that help a store sell.",
       },
     ],
-    related: [
-      "web-development",
-      "performance-marketing",
-      "search-engine-optimization",
-      "ui-ux-design",
-      "digital-marketing",
-    ],
-    ctaLabel: "Plan My Store",
+    related: ["web-development", "performance-marketing", "search-engine-optimization"],
   },
 ];

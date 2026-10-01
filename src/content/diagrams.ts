@@ -6,6 +6,9 @@ import type { FlowLayer, FlowNode } from "@/components/visuals/flow-diagram";
  * Only defined where a diagram genuinely explains something the prose cannot —
  * an architecture, a pipeline, a hand-off between systems. Services without an
  * entry render no diagram rather than a decorative one.
+ *
+ * Labels are read by business owners, not engineers: see
+ * docs/plain-language-glossary.md.
  */
 
 export interface ServiceDiagram {
@@ -18,43 +21,43 @@ export interface ServiceDiagram {
 
 export const serviceDiagrams: Record<string, ServiceDiagram> = {
   "saas-development": {
-    title: "How a SaaS product fits together",
-    lede: "The shape almost every subscription product ends up with. Deciding these boundaries early is what makes the second year cheaper than the first.",
+    title: "What goes into online software people pay for",
+    lede: "Almost every subscription product ends up with these parts. Deciding them early is what makes the second year cheaper than the first.",
     caption:
-      "Multi-tenancy, authentication and billing all touch the data layer, which is why they are designed together rather than added in sequence.",
+      "Accounts, logins and billing all depend on how the data is stored. That is why we plan them together, not one after another.",
     layers: [
-      { title: "Who uses it", nodes: [{ label: "Customers" }, { label: "Their team members" }, { label: "Your staff" }] },
+      { title: "Who uses it", nodes: [{ label: "Your customers" }, { label: "Their team" }, { label: "Your staff" }] },
       {
-        title: "Interface",
+        title: "What they see",
         nodes: [
-          { label: "Web application", detail: "Product UI" },
-          { label: "Marketing site", detail: "Acquisition" },
-          { label: "Admin console", detail: "Your operations" },
+          { label: "The software", detail: "What customers pay for" },
+          { label: "Your website", detail: "Where they sign up" },
+          { label: "Admin panel", detail: "For your team" },
         ],
       },
       {
-        title: "API layer",
+        title: "Behind the screens",
         nodes: [
-          { label: "Authentication", detail: "Sessions, roles" },
-          { label: "Application API", detail: "Business logic", accent: true },
-          { label: "Public API", detail: "Integrations" },
-          { label: "Webhooks", detail: "Events out" },
+          { label: "Logins", detail: "Accounts and roles" },
+          { label: "Business rules", detail: "What the software does", accent: true },
+          { label: "Connections", detail: "Links to other apps" },
+          { label: "Alerts out", detail: "Tells other apps what happened" },
         ],
       },
       {
-        title: "Data",
+        title: "Stored information",
         nodes: [
-          { label: "Primary database", detail: "Tenant-isolated" },
-          { label: "Cache & queues", detail: "Jobs, rate limits" },
-          { label: "File storage", detail: "Uploads" },
+          { label: "Database", detail: "Each customer sees only their own" },
+          { label: "Background work", detail: "Tasks that run on their own" },
+          { label: "Files", detail: "Uploads and documents" },
         ],
       },
       {
-        title: "Platform services",
+        title: "Always running",
         nodes: [
-          { label: "Billing", detail: "Plans, invoices" },
-          { label: "Analytics", detail: "Usage, activation" },
-          { label: "Monitoring", detail: "Errors, uptime" },
+          { label: "Billing", detail: "Plans and invoices" },
+          { label: "Usage reports", detail: "Who uses what" },
+          { label: "Monitoring", detail: "Errors and downtime" },
           { label: "Backups", detail: "Tested restores" },
         ],
       },
@@ -62,144 +65,144 @@ export const serviceDiagrams: Record<string, ServiceDiagram> = {
   },
 
   "custom-software-development": {
-    title: "A business operating system",
-    lede: "Custom software usually replaces the spreadsheets and inboxes sitting between systems that were never designed to talk to each other.",
+    title: "One system for running your business",
+    lede: "Custom software usually replaces the spreadsheets and email chains that sit between apps that were never meant to work together.",
     caption:
-      "The value is rarely in any single module. It is in one agreed record of a customer, an order or a job that everything else reads from.",
+      "The value is rarely in one part. It is in having one agreed record of each customer, order or job that everything else reads from.",
     layers: [
       {
         title: "People",
-        nodes: [{ label: "Operations" }, { label: "Sales" }, { label: "Finance" }, { label: "Leadership" }],
+        nodes: [{ label: "Operations" }, { label: "Sales" }, { label: "Accounts" }, { label: "Owners" }],
       },
       {
-        title: "Modules",
+        title: "Parts of the system",
         nodes: [
           { label: "Customers" },
           { label: "Orders & jobs", accent: true },
-          { label: "Inventory" },
-          { label: "Reporting" },
+          { label: "Stock" },
+          { label: "Reports" },
         ],
       },
       {
-        title: "Core",
+        title: "At its heart",
         nodes: [
-          { label: "Workflow engine", detail: "States, approvals" },
+          { label: "Steps and approvals", detail: "What happens next" },
           { label: "Permissions", detail: "Who sees what" },
-          { label: "Audit trail", detail: "Who did what" },
+          { label: "History", detail: "Who did what" },
         ],
       },
       {
-        title: "Connected systems",
+        title: "Your other apps",
         nodes: [
           { label: "Accounting" },
-          { label: "Logistics" },
-          { label: "CRM" },
-          { label: "Email & docs" },
+          { label: "Delivery" },
+          { label: "Customer list" },
+          { label: "Email & documents" },
         ],
       },
     ],
   },
 
   "digital-marketing": {
-    title: "From impression to retained customer",
-    lede: "Every stage below can be measured. Where a funnel is not working, it is almost always identifiable rather than mysterious.",
+    title: "From first seeing you to becoming a regular customer",
+    lede: "Every step below can be measured. When marketing is not working, the weak step can almost always be found.",
     caption:
-      "Channels are judged on cost per customer at the end of this chain, not on impressions at the start of it.",
+      "Each channel is judged on what a customer costs at the end, not on how many people saw an ad at the start.",
     steps: [
-      { label: "Impression", detail: "Search, social, paid, referral" },
-      { label: "Click", detail: "Creative and message doing the work" },
-      { label: "Landing page", detail: "Matching the promise that was made" },
-      { label: "Lead", detail: "Qualified before it reaches sales" },
-      { label: "Customer", detail: "Attributed back to source" },
-      { label: "Retention", detail: "Where margin actually accumulates" },
+      { label: "Seen", detail: "Google, social media, ads, referrals" },
+      { label: "Click", detail: "The ad and message doing their job" },
+      { label: "Landing page", detail: "Keeping the ad's promise" },
+      { label: "Enquiry", detail: "Checked before it reaches sales" },
+      { label: "Customer", detail: "Traced back to where they came from" },
+      { label: "Repeat customer", detail: "Where most of the profit is" },
     ],
   },
 
   "lead-generation": {
-    title: "The pipeline, end to end",
-    lede: "Lead generation fails at the joins more often than at the top. Each hand-off below is a place volume quietly leaks.",
+    title: "From stranger to enquiry, step by step",
+    lede: "Lead generation usually fails between the steps, not at the start. Each hand-over below is a place enquiries quietly get lost.",
     steps: [
-      { label: "Audience", detail: "Defined by who actually buys" },
-      { label: "Campaign", detail: "Paid or organic demand" },
+      { label: "Audience", detail: "The people who actually buy" },
+      { label: "Campaign", detail: "Ads or Google" },
       { label: "Landing page", detail: "One offer, one action" },
-      { label: "Qualification", detail: "Form logic and scoring" },
-      { label: "CRM", detail: "Routed, assigned, notified" },
-      { label: "Sales", detail: "Contacted while still warm" },
+      { label: "Filtering", detail: "Form questions" },
+      { label: "Your customer list", detail: "Assigned, with an alert" },
+      { label: "Sales call", detail: "While they are still interested" },
     ],
   },
 
   "automation-integrations": {
-    title: "What an automated workflow looks like",
-    lede: "The unglamorous parts — retries, deduplication, alerting — are what separate an automation people trust from one they quietly work around.",
+    title: "What an automated task looks like",
+    lede: "The dull parts, like retrying, removing duplicates and sending alerts, are what make an automation people trust instead of quietly work around.",
     caption:
-      "Every step is logged and monitored. A failure raises an alert rather than disappearing silently, which is the usual failure mode.",
+      "Every step is recorded and watched. If something fails, someone is told, instead of it disappearing without a trace.",
     steps: [
-      { label: "Trigger", detail: "Form, order, status change" },
-      { label: "Validate", detail: "Clean and deduplicate" },
-      { label: "Route", detail: "Rules and assignment" },
-      { label: "Sync", detail: "CRM, finance, operations" },
-      { label: "Notify", detail: "The right person, the right channel" },
-      { label: "Record", detail: "Logged, monitored, retried" },
+      { label: "Something happens", detail: "A form, an order, a status change" },
+      { label: "Check it", detail: "Clean up and remove duplicates" },
+      { label: "Decide", detail: "Rules and who handles it" },
+      { label: "Update your apps", detail: "Customer list, accounts, operations" },
+      { label: "Tell someone", detail: "The right person, on the right app" },
+      { label: "Record it", detail: "Logged, watched, retried" },
     ],
   },
 
   "ecommerce-development": {
-    title: "The purchase sequence",
-    lede: "Most stores design these as separate pages. Customers experience them as one continuous decision, and the gaps between them are where orders are lost.",
+    title: "How someone buys from your store",
+    lede: "Most stores design these as separate pages. Customers see them as one decision, and the gaps between them are where orders are lost.",
     steps: [
-      { label: "Discovery", detail: "Search, category, recommendation" },
-      { label: "Product", detail: "Answering the pre-purchase questions" },
-      { label: "Cart", detail: "Total cost visible early" },
-      { label: "Checkout", detail: "Guest, few fields, local payments" },
-      { label: "Order", detail: "Confirmation and expectations set" },
-      { label: "Return visit", detail: "Where the margin is" },
+      { label: "Finding", detail: "Search, categories, suggestions" },
+      { label: "Product page", detail: "Answering their questions" },
+      { label: "Cart", detail: "Total cost shown early" },
+      { label: "Checkout", detail: "No account needed, few fields, UPI" },
+      { label: "Order", detail: "Confirmation and delivery date" },
+      { label: "Coming back", detail: "Where the profit is" },
     ],
   },
 
   "web-development": {
-    title: "Design, build, launch",
-    lede: "A website is judged after launch, so the work is sequenced around what happens then rather than around the reveal.",
+    title: "Plan, build, launch",
+    lede: "A website is judged after launch, so we plan the work around what happens then, not around the big reveal.",
     steps: [
-      { label: "Structure", detail: "Sitemap and content model" },
-      { label: "Design", detail: "Templates against real content" },
-      { label: "Build", detail: "Fast, accessible, content-managed" },
-      { label: "Migrate", detail: "Redirects preserving search history" },
-      { label: "Launch", detail: "Analytics verified before traffic" },
-      { label: "Improve", detail: "Driven by what real visitors do" },
+      { label: "Plan", detail: "Pages and what they say" },
+      { label: "Design", detail: "With your real content" },
+      { label: "Build", detail: "Fast, easy to use, easy to update" },
+      { label: "Move", detail: "Old links kept, rankings kept" },
+      { label: "Launch", detail: "Tracking checked first" },
+      { label: "Improve", detail: "From what real visitors do" },
     ],
   },
 
   "web-application-development": {
-    title: "How an application is layered",
-    lede: "Applications differ from websites in that almost everything depends on who is asking. That has to be enforced at the layer below the interface.",
+    title: "How a web application is built up",
+    lede: "Unlike a website, almost everything in an application depends on who is logged in. That has to be checked behind the screen, not just on it.",
     caption:
-      "Authorisation is checked on the server for every request. Hiding a button is presentation, not protection.",
+      "Access is checked on the server every time someone does something. Hiding a button is not the same as protecting it.",
     layers: [
-      { title: "Roles", nodes: [{ label: "Customers" }, { label: "Staff" }, { label: "Administrators" }] },
+      { title: "Who logs in", nodes: [{ label: "Customers" }, { label: "Staff" }, { label: "Managers" }] },
       {
-        title: "Interface",
+        title: "What they see",
         nodes: [
-          { label: "Portal", detail: "Scoped to one account" },
-          { label: "Dashboards", detail: "Operational views" },
-          { label: "Back office", detail: "Bulk actions, approvals" },
+          { label: "Portal", detail: "Only their own account" },
+          { label: "Dashboards", detail: "Live numbers" },
+          { label: "Admin tools", detail: "Bulk changes, approvals" },
         ],
       },
       {
-        title: "Server",
+        title: "Behind the screens",
         nodes: [
-          { label: "Authorisation", detail: "Every request", accent: true },
-          { label: "Business logic", detail: "Tested" },
-          { label: "Jobs & queues", detail: "Background work" },
-          { label: "Audit log", detail: "Accountability" },
+          { label: "Access checks", detail: "On every action", accent: true },
+          { label: "Business rules", detail: "Tested" },
+          { label: "Background tasks", detail: "Work that runs on its own" },
+          { label: "History", detail: "Who did what" },
         ],
       },
       {
-        title: "Data & integrations",
+        title: "Information",
         nodes: [
           { label: "Database" },
-          { label: "Cache" },
-          { label: "External systems" },
-          { label: "File storage" },
+          { label: "Quick-access copy" },
+          { label: "Your other apps" },
+          { label: "Files" },
         ],
       },
     ],
@@ -207,50 +210,50 @@ export const serviceDiagrams: Record<string, ServiceDiagram> = {
 
   "marketing-funnels": {
     title: "What happens after the first visit",
-    lede: "Most people are not ready on the day they find you. A funnel is simply deciding in advance what happens next instead of hoping.",
+    lede: "Most people are not ready on the day they find you. A funnel means deciding in advance what happens next, instead of hoping.",
     steps: [
-      { label: "First visit", detail: "Arriving from any channel" },
-      { label: "Entry offer", detail: "A small step worth taking" },
-      { label: "Follow-up", detail: "Useful, sequenced, automated" },
-      { label: "Retargeting", detail: "Matched to how far they got" },
-      { label: "Conversion", detail: "When they are actually ready" },
+      { label: "First visit", detail: "From any channel" },
+      { label: "A small first step", detail: "Worth saying yes to" },
+      { label: "Follow-up", detail: "WhatsApp or email, sent automatically" },
+      { label: "Reminder ads", detail: "Matched to how far they got" },
+      { label: "Purchase", detail: "When they are ready" },
     ],
   },
 
   "social-media-management": {
-    title: "How the content actually gets made",
-    lede: "Consistency is an operational problem, not a creative one. Batching production is what keeps quality and frequency together.",
+    title: "How your posts get made",
+    lede: "Staying consistent is a planning problem, not a creative one. Making posts in batches is what keeps both quality and regularity.",
     steps: [
-      { label: "Ideas", detail: "Pillars, not one-offs" },
-      { label: "Design", detail: "Per platform, not resized" },
-      { label: "Approval", detail: "Calendar reviewed in advance" },
-      { label: "Publish", detail: "Scheduled, never scrambled" },
-      { label: "Engage", detail: "Replies within an agreed window" },
+      { label: "Ideas", detail: "Topics planned, not one-offs" },
+      { label: "Design", detail: "Made for each platform" },
+      { label: "Approval", detail: "You check the calendar first" },
+      { label: "Posting", detail: "On schedule, never rushed" },
+      { label: "Replies", detail: "Within an agreed time" },
       { label: "Review", detail: "What to do more and less of" },
     ],
   },
 
   "performance-marketing": {
-    title: "The account, as a loop",
-    lede: "Paid media only compounds when the measurement is trustworthy. Everything below depends on the first step being right.",
+    title: "How your ads keep improving",
+    lede: "Paid ads only get better over time when the tracking is right. Everything below depends on that first step.",
     steps: [
-      { label: "Track", detail: "Correct conversions and values" },
-      { label: "Structure", detail: "Campaigns built around economics" },
-      { label: "Create", detail: "New concepts on a cadence" },
-      { label: "Test", detail: "Enough volume to conclude" },
-      { label: "Scale", detail: "Only where cost per sale holds" },
+      { label: "Track", detail: "Every enquiry and sale, with a value" },
+      { label: "Set up", detail: "Campaigns built on your numbers" },
+      { label: "Create", detail: "New ads, regularly" },
+      { label: "Test", detail: "Enough budget to be sure" },
+      { label: "Grow", detail: "Only where the cost per sale holds" },
     ],
   },
 
   "meta-ads": {
-    title: "Ad to customer",
-    lede: "On social platforms the creative does the targeting. The rest of the chain exists to keep the promise it made.",
+    title: "From ad to customer",
+    lede: "On Facebook and Instagram, the ad itself finds the right people. The rest of the steps keep the promise it made.",
     steps: [
-      { label: "Creative", detail: "Earning attention it was not given" },
-      { label: "Landing page", detail: "Continuing the same message" },
-      { label: "Lead", detail: "Qualified, not just captured" },
-      { label: "CRM", detail: "Routed with source attached" },
-      { label: "Sale", detail: "Fed back to optimise on" },
+      { label: "The ad", detail: "Earning attention" },
+      { label: "Landing page", detail: "Same message, continued" },
+      { label: "Enquiry", detail: "Checked, not just collected" },
+      { label: "Your customer list", detail: "With where it came from" },
+      { label: "Sale", detail: "Fed back to improve the ads" },
     ],
   },
 };

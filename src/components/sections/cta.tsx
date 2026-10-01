@@ -9,11 +9,11 @@ import { SectionBackdrop } from "@/components/visuals/section-backdrop";
  *
  * Kept to one primary action and at most one secondary. Pages that stack five
  * competing CTAs convert worse than pages with one, and the footer already
- * carries the closing invitation.
+ * carries the closing invitation, with WhatsApp and phone.
  */
 export async function CtaSection({
-  title = "Have an idea worth building?",
-  body = "Tell us what you are working on. We will come back with questions, a suggested next step, or an honest no.",
+  title = "Tell us what you need.",
+  body = "We will reply with questions, a suggested next step, or an honest no if we are not the right fit.",
   ctaLabel = PRIMARY_CTA.label,
   ctaHref = PRIMARY_CTA.href,
   secondary,

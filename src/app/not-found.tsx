@@ -6,7 +6,9 @@ import { AlchemySigil } from "@/components/visuals/alchemy-sigil";
 import { megaMenuColumns } from "@/content/navigation";
 
 export const metadata = {
-  title: "Page not found | The Digital Alchemy",
+  // The layout's title template appends the brand. Including it here as well
+  // rendered "Page not found | The Digital Alchemy | The Digital Alchemy".
+  title: "Page not found",
   robots: { index: false, follow: true },
 };
 

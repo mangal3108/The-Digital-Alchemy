@@ -1,263 +1,242 @@
 import type { Service } from "./types";
 
+/*
+ * Written for a small-business owner, not a designer. See
+ * docs/plain-language-glossary.md for the words we use and the ones we don't.
+ */
 export const designServices: Service[] = [
   {
     slug: "ui-ux-design",
     name: "UI/UX Design",
-    title: "Interfaces that make complicated things feel obvious.",
+    title: "UI/UX design: making your app or website easy to use.",
     group: "design",
+    oneLiner: "We make your app or website easy and pleasant to use.",
+    needItWhen: "your app or website confuses the people using it.",
+    example: {
+      business: "A pharmacy's ordering app",
+      before: "Customers add medicines to the cart, then give up at the step where they upload a prescription.",
+      after: "A redesigned upload step, tested with real customers before it is built, so fewer people give up halfway.",
+    },
+    // {{TODO: real starting price, e.g. "₹60,000"}} Or set it in Admin → Page copy.
+    priceFrom: "",
+    // {{TODO: typical timeline, e.g. "4 to 8 weeks"}} Or set it in Admin → Page copy.
+    typicalTimeline: "",
     visual: "uiux",
     eyebrow: "UI/UX Design",
-    lede: "Good interface design is mostly decisions: what to show first, what to hide, what to name things, and what happens when something goes wrong. We make those decisions explicitly and test them before they are expensive to change.",
-    summary:
-      "Research, flows, design systems and prototypes — handed over ready for engineering.",
-    metaTitle: "UI/UX Design Services | The Digital Alchemy",
+    lede: "For businesses that already have an app or website that people find confusing. UI is how it looks; UX is how easy it is to use. We find where people get stuck and redesign those parts, testing the changes before anything is rebuilt.",
+    summary: "We find where people get stuck in your app or website, and redesign it so it is easy to use.",
+    metaTitle: "UI/UX Design Agency in India | The Digital Alchemy",
     metaDescription:
-      "UI and UX design for software products, applications and websites — user research, information architecture, wireframes, design systems, prototypes and developer handoff.",
+      "We find where people get stuck in your app or website, and redesign it so it is easy and pleasant to use. Tested with real users. Get a free consultation.",
     whoFor: [
-      "Product teams whose users keep asking for help with the same screen",
-      "Founders who need a credible interface before raising or selling",
-      "Companies with an application that grew feature by feature and now feels incoherent",
-      "Engineering teams building without a design system and paying for it in inconsistency",
+      "Your customers keep asking for help with the same screen",
+      "Your app grew one feature at a time and now feels messy",
+      "You need an app that looks trustworthy before you sell or raise money",
+      "Every new screen your developers build looks slightly different",
     ],
     problems: [
       {
-        title: "The product does everything and communicates nothing",
-        body: "Feature-by-feature growth produces interfaces where every option has equal weight. Establishing hierarchy is usually the single highest-value change available.",
+        title: "Everything looks equally important",
+        body: "When features are added one by one, every button gets the same weight. Making the important things stand out is usually the most valuable change of all.",
       },
       {
-        title: "Users drop out at the same step every time",
-        body: "There is almost always one screen doing the damage. Analytics narrows it down; a handful of usability sessions explains why.",
+        title: "People give up at the same step every time",
+        body: "There is almost always one screen doing the damage. Visitor data shows which one; watching a few people use it shows why.",
       },
       {
         title: "Every screen looks slightly different",
-        body: "Without shared components and tokens, each new feature invents its own spacing, buttons and language. The cost compounds quietly.",
+        body: "Without shared buttons, spacing and wording, each new feature invents its own. The mess grows quietly, and so does the cost of fixing it.",
       },
       {
-        title: "Designs are not buildable as drawn",
-        body: "Handover fails when files show only the happy path. Empty, loading, error and overflow states are part of the design, not edge cases for engineering to invent.",
+        title: "The designs cannot be built as drawn",
+        body: "Designs often show only the perfect case. What the screen shows when it is empty, loading or showing an error is part of the design too.",
       },
     ],
     capabilities: [
       {
-        title: "User research",
-        body: "Interviews, observed sessions and analysis of existing analytics and support tickets. Enough to design from evidence rather than from assumption.",
+        title: "Finding out what goes wrong",
+        body: "Talking to your users, watching them use the product, and reading your visitor data and support messages, so the design is based on evidence.",
       },
       {
-        title: "Information architecture",
-        body: "Navigation, grouping and naming. Most products that feel confusing have a structure problem rather than a visual one.",
+        title: "Clear menus and names",
+        body: "How things are grouped, labelled and found. Most products that feel confusing have a structure problem, not a colour problem.",
       },
       {
-        title: "User flows and wireframes",
-        body: "The sequence resolved in low fidelity first, so structural disagreements happen while they are still cheap to settle.",
+        title: "Screen sketches, then full designs",
+        body: "Simple sketches first, while changes are cheap, then finished screens designed with your real content, including the empty and error states.",
       },
       {
-        title: "Interface design",
-        body: "High-fidelity screens designed to real content and real data lengths, including the states that only appear when something goes wrong.",
+        title: "A shared design kit",
+        body: "Ready-made buttons, forms and rules your developers can build once and use everywhere, so every screen stays consistent.",
       },
       {
-        title: "Design systems",
-        body: "Tokens, components, patterns and usage rules, built so engineering can implement them once and reuse them everywhere.",
+        title: "Clickable samples and testing",
+        body: "A clickable sample tried out by people like your users, with the results written up as a list of changes in order of importance.",
       },
       {
-        title: "Interactive prototypes",
-        body: "Clickable flows for testing and for stakeholder review, which surfaces disagreement far earlier than a static presentation.",
-      },
-      {
-        title: "Usability testing",
-        body: "Structured sessions with people who match your users, with findings written up as prioritised changes rather than as a list of observations.",
-      },
-      {
-        title: "Accessibility in design",
-        body: "Contrast, focus order, target sizes, motion sensitivity and clear form labelling decided during design, where they are nearly free.",
-      },
-      {
-        title: "Developer handoff",
-        body: "Specifications, tokens, component documentation and a working session with the engineers, so intent survives implementation.",
+        title: "Easy for everyone",
+        body: "Readable text, clear forms and buttons large enough to tap, decided during design, where they cost almost nothing.",
       },
     ],
     process: [
       {
         step: "01",
         title: "Understand",
-        body: "Business goals, user goals and constraints, plus whatever the existing data and support history already tells us.",
+        body: "Your goals, your users' goals, and whatever your visitor data and support messages already tell us.",
       },
       {
         step: "02",
-        title: "Structure",
-        body: "Architecture and flows agreed before visual work starts. This is where most of the value is created.",
+        title: "Fix the structure",
+        body: "We agree how screens are organised and how people move through them before any visual design. Most of the value is created here.",
       },
       {
         step: "03",
-        title: "Explore",
-        body: "Visual directions explored on a real screen rather than a mood board, so the choice is grounded in the actual product.",
+        title: "Design and test",
+        body: "Finished screens for phone and computer, then a clickable sample tested with real people, and changes made before building starts.",
       },
       {
         step: "04",
-        title: "Design",
-        body: "Full screen design across breakpoints, with every meaningful state covered.",
-      },
-      {
-        step: "05",
-        title: "Validate",
-        body: "Prototype testing with real users, and revisions made before engineering commits.",
-      },
-      {
-        step: "06",
-        title: "Hand off",
-        body: "System documentation, specifications and support through implementation and design QA.",
+        title: "Hand over",
+        body: "Clear guides for your developers, and we check the built version matches the design.",
       },
     ],
     deliverables: [
-      "Research findings and prioritised recommendations",
-      "Information architecture and user flows",
-      "Wireframes for core journeys",
-      "High-fidelity screens across breakpoints",
-      "Design system with tokens and components",
-      "Interactive prototype",
-      "Usability test findings",
-      "Handoff documentation and design QA",
+      "What we found, and what to change first",
+      "How the screens are organised and linked",
+      "Finished designs for phone and computer",
+      "A shared design kit for your developers",
+      "A clickable sample, and what testing showed",
+      "Guides for developers, and a check of the built version",
     ],
     technologies: ["figma", "react", "tailwind", "storybook"],
     engagement: ["project", "dedicated-team"],
     faqs: [
       {
-        question: "Can you design without building?",
+        question: "Can you design it without building it?",
         answer:
-          "Yes. Plenty of clients have their own engineering team and need design and a system they can implement. We hand over documented components and stay available through implementation so the built version matches the intent.",
+          "Yes. Many clients have their own developers and only need the design. We hand over a documented design kit and stay available while it is built, so the result matches the design.",
       },
       {
-        question: "How much research is really necessary?",
+        question: "How much user research do we really need?",
         answer:
-          "Less than agencies often sell and more than teams usually do. For most projects, five to eight good conversations with real users plus a review of existing analytics changes the design meaningfully. Beyond that you hit diminishing returns quickly.",
+          "Less than some agencies sell, and more than most teams do. For most projects, five to eight good conversations with real users, plus a look at your visitor data, changes the design a lot. More than that adds little.",
       },
       {
-        question: "Do you redesign existing products?",
+        question: "Will a redesign confuse our existing users?",
         answer:
-          "Frequently. We start by finding what is working, because a redesign that discards familiar patterns can easily make things worse for existing users. Incremental redesign is often the better answer, and we will say so when it is.",
+          "It can, which is why we start by finding what already works. Throwing away familiar screens can make things worse. Changing things step by step is often the better answer, and we will say when it is.",
       },
       {
-        question: "What do you deliver to developers?",
+        question: "What do our developers get?",
         answer:
-          "Design files with documented components and tokens, specifications for spacing, type and behaviour, prototypes showing interaction, and a working session at the start of implementation. We also do design QA on the built product.",
+          "Design files with a documented design kit, notes on spacing, text and behaviour, clickable samples showing how things move, and a working session at the start of building.",
       },
     ],
-    related: [
-      "product-design",
-      "web-development",
-      "mobile-app-development",
-      "saas-development",
-      "branding",
-    ],
-    ctaLabel: "Start a Design Project",
+    related: ["product-design", "web-development", "mobile-app-development"],
   },
 
   {
     slug: "product-design",
     name: "Product Design",
-    title: "Deciding what to build before deciding how it looks.",
+    title: "Product design: planning a new app before anything is built.",
     group: "design",
+    oneLiner: "We plan and design a new app from idea to screens before building.",
+    needItWhen: "you have an idea for a new app and want to plan it first.",
+    example: {
+      business: "A doctor who wants a patient follow-up app",
+      before: "The idea is clear to her but not written down, and developers quote very different prices for it.",
+      after: "A clear first version and a tested, clickable sample of every screen, so every developer quotes for the same thing.",
+    },
+    // {{TODO: real starting price, e.g. "₹60,000"}} Or set it in Admin → Page copy.
+    priceFrom: "",
+    // {{TODO: typical timeline, e.g. "4 to 8 weeks"}} Or set it in Admin → Page copy.
+    typicalTimeline: "",
     visual: "product-design",
     eyebrow: "Product Design",
-    lede: "Product design is the work of choosing which problem to solve, for whom, and what the smallest convincing version looks like. Interface design comes after those answers, not instead of them.",
-    summary:
-      "Product strategy, scoping and validation — the thinking that happens before a build.",
-    metaTitle: "Product Design Services | The Digital Alchemy",
+    lede: "For founders and businesses with an idea for a new app. Before any building, we work out who it is for, what problem it solves, and the smallest first version worth making. Then we design every screen and test it with real people.",
+    summary: "Turning an idea for a new app into a tested plan and screens, before any building starts.",
+    metaTitle: "Product Design Agency for New Apps | The Digital Alchemy",
     metaDescription:
-      "Product design and strategy — problem framing, opportunity assessment, scoping, prototyping and validation for new digital products and major feature work.",
+      "Have an idea for a new app? We plan it, design every screen and test it with real people before any building starts. Get a free consultation.",
     whoFor: [
-      "Founders with an idea that needs sharpening before anyone writes code",
-      "Businesses considering whether to productise something they already do internally",
-      "Teams with a long roadmap and no agreed basis for ordering it",
-      "Companies whose last release did not move any number that mattered",
+      "You have an idea for an app and want to get it right before paying for building",
+      "You want to turn something you do in-house into a product you can sell",
+      "You have a long wish-list of features and no agreed order",
+      "Your last launch did not change anything that mattered",
     ],
     problems: [
       {
-        title: "The idea has not been reduced to a problem",
-        body: "Products described purely as features tend to fail. Naming the specific problem, and whose problem it is, changes what gets built and how it is sold.",
+        title: "The idea is a list of features, not a problem",
+        body: "Products described only as features tend to fail. Naming the exact problem, and whose problem it is, changes what gets built and how it is sold.",
       },
       {
-        title: "Scope has no defensible boundary",
-        body: "Without an agreed definition of the first release, everything feels essential. We set that boundary against a decision the user must be able to make.",
+        title: "Everything feels essential",
+        body: "Without an agreed first version, every feature seems a must-have. We draw the line at what a user must be able to do.",
       },
       {
-        title: "Nobody has spoken to a prospective user",
-        body: "Building for months on an untested assumption is the most expensive mistake available. A few structured conversations early usually changes the plan.",
+        title: "Nobody has asked a future user",
+        body: "Building for months on an untested guess is the most expensive mistake there is. A few careful conversations early usually change the plan.",
       },
       {
-        title: "Success is undefined",
-        body: "If nobody agreed in advance what a good outcome looks like, the launch will be assessed on vibes and the next decision will have nothing to stand on.",
+        title: "Nobody agreed what success looks like",
+        body: "If you do not decide in advance what a good result is, you cannot judge the launch. Then the next decision has nothing to stand on.",
       },
     ],
     capabilities: [
       {
-        title: "Problem framing",
-        body: "Turning an idea into a clear statement of who has the problem, what it costs them, and how they currently work around it.",
+        title: "Naming the problem",
+        body: "A clear statement of who has the problem, what it costs them, and how they get around it today.",
       },
       {
-        title: "Opportunity assessment",
-        body: "A grounded look at the alternatives that already exist and what would make yours worth switching to.",
+        title: "Checking the competition",
+        body: "An honest look at what already exists, and what would make yours worth switching to.",
       },
       {
-        title: "Concept development",
-        body: "Several distinct approaches explored rather than one polished forwards, because the first idea is rarely the strongest.",
+        title: "Exploring different approaches",
+        body: "Several different ways of solving the problem, explored side by side, because the first idea is rarely the strongest.",
       },
       {
-        title: "Scope definition",
-        body: "A first release defined by outcome, with everything else placed explicitly in a later phase rather than left ambiguous.",
+        title: "Defining the first version",
+        body: "The first release, defined by what it must achieve, with everything else clearly moved to a later stage.",
       },
       {
-        title: "Rapid prototyping",
-        body: "Prototypes built to answer a specific question, at whatever fidelity that question requires and no more.",
+        title: "Clickable samples and testing",
+        body: "Samples made to answer a specific question, tested with future users. Where it matters, we also test whether they would actually pay.",
       },
       {
-        title: "Validation",
-        body: "Testing concepts with prospective users and, where relevant, with a pricing conversation. Interest is not the same as intent to pay.",
-      },
-      {
-        title: "Success metrics",
-        body: "Agreeing what the product must do to be considered working, and making sure it can actually be measured.",
-      },
-      {
-        title: "Roadmap shaping",
-        body: "Sequencing what comes after launch, based on which uncertainty is most worth resolving next.",
+        title: "Measuring success and planning next steps",
+        body: "What the product must do to count as working, how to measure it, and what to build after launch.",
       },
     ],
     process: [
       {
         step: "01",
-        title: "Frame",
-        body: "Workshops to articulate the problem, the audience and the constraints you are actually working within.",
+        title: "Frame the problem",
+        body: "Working sessions to agree the problem, who it affects and the limits you are working within.",
       },
       {
         step: "02",
-        title: "Research",
-        body: "Conversations with prospective users, plus a review of how the problem is being solved today.",
+        title: "Talk to future users",
+        body: "Conversations with the people you want to serve, and a look at how they solve the problem today.",
       },
       {
         step: "03",
-        title: "Explore",
-        body: "Multiple concepts developed far enough to be compared meaningfully.",
+        title: "Explore and test",
+        body: "Several ideas turned into clickable samples, tested with real people, with the results written up honestly, even the uncomfortable ones.",
       },
       {
         step: "04",
-        title: "Test",
-        body: "Prototypes put in front of real people, with the results written up honestly, including the uncomfortable findings.",
-      },
-      {
-        step: "05",
-        title: "Define",
-        body: "A scoped first release with success criteria, ready to be estimated and built.",
+        title: "Define the first version",
+        body: "A clear first version with a way to measure success, ready to be priced and built.",
       },
     ],
     deliverables: [
-      "Problem definition and audience profile",
-      "Research findings from user conversations",
-      "Concept explorations with trade-offs",
-      "Tested prototype",
-      "Defined first-release scope",
-      "Success metrics and measurement plan",
-      "Phased roadmap beyond launch",
+      "A clear statement of the problem, and who has it",
+      "What future users told us",
+      "The different approaches, with pros and cons",
+      "A tested clickable sample",
+      "A defined first version",
+      "How to measure success, and what comes next",
     ],
     technologies: ["figma", "react", "nextjs"],
     engagement: ["project", "product-partnership"],
@@ -265,140 +244,129 @@ export const designServices: Service[] = [
       {
         question: "How is this different from UI/UX design?",
         answer:
-          "Product design decides what to build and why; UI/UX design decides how it works and looks. On smaller engagements they run together. On anything genuinely new, separating them prevents months of well-designed work aimed at the wrong problem.",
+          "Product design decides what to build, and why. UI/UX design decides how it works and looks. For something genuinely new, doing product design first stops months of good design work being aimed at the wrong problem.",
       },
       {
         question: "Do we need this if we already know what we want?",
         answer:
-          "Not necessarily. If your scope is clear and your users are well understood, go straight to design and build. This is for situations where the idea is still broad or where the last attempt did not land.",
+          "Not always. If you know exactly what to build and who it is for, go straight to design and building. This is for when the idea is still broad, or when a previous attempt did not work.",
       },
       {
-        question: "What if validation says the idea does not work?",
+        question: "What if testing shows the idea does not work?",
         answer:
-          "That is a good outcome, discovered at the cheapest possible point. It usually reframes rather than kills the idea — a different audience, a narrower problem, a different starting wedge.",
+          "That is a good result, found at the cheapest possible moment. It usually changes the idea rather than ending it: a different audience, a narrower problem, or a different place to start.",
+      },
+      {
+        question: "Do I need to be technical?",
+        answer:
+          "No. You bring the knowledge of your customers and your market. We handle the planning and design, and explain each decision in plain words.",
       },
     ],
-    related: [
-      "ui-ux-design",
-      "saas-development",
-      "mobile-app-development",
-      "web-application-development",
-      "branding",
-    ],
-    ctaLabel: "Shape My Product",
+    related: ["ui-ux-design", "saas-development", "mobile-app-development"],
   },
 
   {
     slug: "branding",
     name: "Branding & Creative",
-    title: "An identity that still works at every size it has to survive.",
+    title: "Branding: a logo, colours and look people remember.",
     group: "design",
+    oneLiner: "Logo, colours and the overall look of your brand.",
+    needItWhen: "your logo and look need to be clear and consistent.",
+    example: {
+      business: "A family sweet shop opening a second branch",
+      before: "The logo was made years ago. It looks different on the signboard, the boxes and Instagram, and is hard to read when small.",
+      after: "A refreshed logo, colours and templates that look the same on the signboard, the boxes and every post.",
+    },
+    // {{TODO: real starting price, e.g. "₹60,000"}} Or set it in Admin → Page copy.
+    priceFrom: "",
+    // {{TODO: typical timeline, e.g. "4 to 8 weeks"}} Or set it in Admin → Page copy.
+    typicalTimeline: "",
     visual: "branding",
     eyebrow: "Branding & Creative",
-    lede: "A brand is not a logo. It is the accumulated impression left by every touchpoint — the website, the deck, the invoice, the social post. We build identity systems that hold together across all of them.",
-    summary:
-      "Brand strategy, identity systems and the templates that keep it consistent in daily use.",
-    metaTitle: "Branding & Creative Design Services | The Digital Alchemy",
+    lede: "For businesses that have outgrown their first logo, or whose website, posts and documents all look different. A brand is more than a logo: it is the impression left by everything people see. We design a look that holds together everywhere.",
+    summary: "A logo, colours and look for your business, plus templates that keep it consistent.",
+    metaTitle: "Branding & Logo Design Agency in Delhi | The Digital Alchemy",
     metaDescription:
-      "Brand strategy, visual identity, logo design, typography and colour systems, brand guidelines and marketing templates for businesses building a consistent presence.",
+      "A logo, colours and look that make your business easy to recognise, with templates so your posts and documents stay consistent. Get a free consultation.",
     whoFor: [
-      "Businesses that have outgrown an identity put together at the start",
-      "Companies whose materials all look like they came from different firms",
-      "Founders preparing to go to market and needing to look established",
-      "Teams whose brand exists as a logo file and nothing else",
+      "Your business has outgrown the logo you made at the start",
+      "Your website, posts and documents all look like they came from different companies",
+      "You are about to launch and need to look established",
+      "Your brand is a logo file and nothing else",
     ],
     problems: [
       {
-        title: "The identity does not survive contact with real use",
-        body: "A logo designed in isolation often fails at favicon size, on a dark background, or on a delivery vehicle. Systems have to be tested in the contexts they will live in.",
+        title: "The logo breaks in real use",
+        body: "A logo designed on a white page often fails when it is tiny, on a dark background, or painted on a signboard or delivery bag. We test it in the places it will actually appear.",
       },
       {
-        title: "Everyone interprets the brand differently",
-        body: "Without documented rules and ready templates, consistency depends on whoever is making the file that day.",
+        title: "Everyone uses the brand differently",
+        body: "Without clear rules and ready templates, how your brand looks depends on whoever made the file that day.",
       },
       {
-        title: "It looks like the rest of the category",
-        body: "Sector conventions produce sameness. Distinctiveness is a commercial asset, not a stylistic preference.",
+        title: "You look like everyone else in your field",
+        body: "Copying what others in your industry do makes everyone look the same. Standing out is good for business, not just a matter of taste.",
       },
       {
         title: "The brand says nothing specific",
-        body: "Positioning built on words like quality and innovation is interchangeable with every competitor. Specificity is what makes a brand memorable.",
+        body: "Words like “quality” and “innovation” could belong to any competitor. Being specific is what makes a brand memorable.",
       },
     ],
     capabilities: [
       {
-        title: "Brand strategy",
-        body: "Positioning, audience, personality and messaging — the decisions the visual work then expresses.",
+        title: "What your brand stands for",
+        body: "Who you serve, what makes you different, and how you talk, decided first, so the look has something to express.",
       },
       {
-        title: "Naming and messaging",
-        body: "Value proposition, key messages and tone of voice, written so your team can use them without paraphrasing them into mush.",
+        title: "Your key messages",
+        body: "What you offer and why people should choose you, written so your team can use the same words everywhere.",
       },
       {
-        title: "Logo and identity",
-        body: "A primary mark plus the variants real life demands: horizontal, stacked, monochrome, reversed, and a symbol that reads at 16 pixels.",
+        title: "Logo and its versions",
+        body: "A main logo plus the versions real life needs: wide, stacked, one-colour, on dark backgrounds, and a small symbol that still reads when tiny.",
       },
       {
-        title: "Typography and colour",
-        body: "A type system with a clear hierarchy and a palette checked for accessible contrast in both light and dark contexts.",
+        title: "Fonts and colours",
+        body: "A set of fonts and colours that work together and stay readable, on light and dark backgrounds.",
       },
       {
-        title: "Visual language",
-        body: "Photography direction, graphic devices, iconography and layout principles — the parts that make the brand recognisable without the logo.",
+        title: "Brand guide",
+        body: "A simple guide to using your brand, and just as important, what not to do with it.",
       },
       {
-        title: "Brand guidelines",
-        body: "Practical documentation covering how to use the system and, just as importantly, what not to do with it.",
-      },
-      {
-        title: "Templates and collateral",
-        body: "Social templates, presentation decks, documents and campaign layouts, so consistency is the path of least resistance.",
-      },
-      {
-        title: "Digital application",
-        body: "Translating the identity into a web design system, so the site and the brand are one thing rather than two.",
+        title: "Ready-to-use templates",
+        body: "Templates for social posts, presentations and documents, so staying consistent is the easy option. We can also carry the look through to your website.",
       },
     ],
     process: [
       {
         step: "01",
-        title: "Discover",
-        body: "Workshops on positioning and audience, plus a review of the category so we know what we are differentiating from.",
+        title: "Understand",
+        body: "Working sessions on who you serve and what makes you different, plus a look at your competitors so we know what to stand apart from.",
       },
       {
         step: "02",
-        title: "Strategise",
-        body: "Positioning and messaging agreed in writing before any visual exploration begins.",
+        title: "Agree the message",
+        body: "What your brand stands for and says, agreed in writing before any design begins.",
       },
       {
         step: "03",
-        title: "Explore",
-        body: "Distinct visual directions presented in context — on a screen, a document, a post — rather than as a logo on white.",
+        title: "Design and refine",
+        body: "Different directions shown as they would really appear, on a website, a post, a signboard, not just a logo on white. Then the chosen one is developed and tested.",
       },
       {
         step: "04",
-        title: "Refine",
-        body: "The chosen direction developed into a full system and stress-tested at its practical extremes.",
-      },
-      {
-        step: "05",
-        title: "Document",
-        body: "Guidelines, asset library and templates delivered in editable, usable formats.",
-      },
-      {
-        step: "06",
-        title: "Apply",
-        body: "Rollout across the website, product and marketing materials, with support while the team adopts it.",
+        title: "Hand over",
+        body: "The brand guide, all files and templates, delivered in formats you can edit and use.",
       },
     ],
     deliverables: [
-      "Positioning and messaging framework",
-      "Logo suite with all required variants",
-      "Typography and accessible colour system",
-      "Visual language and art direction",
-      "Brand guidelines document",
-      "Social, presentation and document templates",
-      "Full asset library in production formats",
+      "What your brand stands for, and its key messages",
+      "Your logo, in every version you need",
+      "Fonts and colours that are easy to read",
+      "A simple brand guide",
+      "Templates for posts, presentations and documents",
+      "All files, ready to use and yours to keep",
     ],
     technologies: ["figma"],
     engagement: ["project", "growth-retainer"],
@@ -406,31 +374,24 @@ export const designServices: Service[] = [
       {
         question: "Do we need a full rebrand or just a refresh?",
         answer:
-          "A refresh is right when the brand is recognised and broadly working but looks dated or inconsistent. A full rebrand makes sense when the positioning itself has changed, or when the current identity is actively working against you. Discarding recognition you have already earned is a real cost, so we do not recommend it lightly.",
+          "A refresh is right when people already recognise your brand, but it looks dated or inconsistent. A full rebrand makes sense when what you do has changed, or when the current look is working against you. Throwing away recognition you have earned has a real cost, so we do not suggest it lightly.",
       },
       {
-        question: "How many logo concepts do we see?",
+        question: "How many logo designs will we see?",
         answer:
-          "Typically two or three genuinely distinct directions, each developed enough to judge properly. Presenting a dozen half-formed options tends to produce design by committee rather than a decision.",
+          "Usually two or three genuinely different directions, each developed enough to judge properly. A dozen half-finished options tends to end in design by committee rather than a decision.",
       },
       {
-        question: "Do you provide the source files?",
+        question: "Do we get the original files?",
         answer:
-          "Yes. All source files, editable templates and production-ready exports are handed over and are yours outright.",
+          "Yes. All original files, editable templates and ready-to-use versions are handed over, and they are yours.",
       },
       {
-        question: "Can you show examples of brand work?",
+        question: "Can we see examples of your brand work?",
         answer:
-          "Our public portfolio is being rebuilt alongside this site, and we only publish work with client permission. We can walk through relevant examples directly in a call.",
+          "Our public portfolio is being rebuilt, and we only publish work with the client's permission. We can walk you through relevant examples on a call.",
       },
     ],
-    related: [
-      "ui-ux-design",
-      "web-development",
-      "social-media-management",
-      "digital-marketing",
-      "product-design",
-    ],
-    ctaLabel: "Start a Brand Project",
+    related: ["ui-ux-design", "web-development", "social-media-management"],
   },
 ];

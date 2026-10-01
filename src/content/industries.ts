@@ -6,6 +6,9 @@
  * pulls verified case studies and testimonials from the CMS — and renders
  * nothing at all when none exist yet. That is the honest version, and it is
  * also what keeps these pages out of thin-doorway-page territory.
+ *
+ * Written for the owner of that business, in plain words: see
+ * docs/plain-language-glossary.md.
  */
 export interface Industry {
   slug: string;
@@ -14,6 +17,17 @@ export interface Industry {
   eyebrow: string;
   lede: string;
   summary: string;
+  /**
+   * Who the business is, for "What we can do for {audience}". Plain words a
+   * visitor would use about themselves: "a clinic or hospital".
+   */
+  audience: string;
+  /**
+   * Three concrete things we can build or run for this kind of business, each
+   * linked to the service that delivers it. What they get, not results: no
+   * figures and no client names.
+   */
+  examples: { title: string; body: string; service: string }[];
   metaTitle: string;
   metaDescription: string;
   /** Sector-specific problems, written in the operator's language. */
@@ -31,73 +45,84 @@ export const industries: Industry[] = [
   {
     slug: "startups",
     name: "Startups",
-    title: "Getting to a first version worth showing.",
+    title: "Websites and apps for startups: a first version worth showing.",
     eyebrow: "Startups & Founders",
-    lede: "Early-stage work is a race between learning and runway. The job is to build the smallest thing that produces a real answer, and to build it well enough that it does not have to be thrown away.",
-    summary:
-      "MVPs, investor-ready products and the discipline to keep version one small.",
-    metaTitle: "Digital Product Development for Startups | The Digital Alchemy",
+    lede: "When you are starting out, time and money run out fast. We help you build the smallest version that shows whether people will pay. And we build it well enough that you will not have to throw it away.",
+    summary: "A first version of your product, kept small, built well, and ready to show investors.",
+    audience: "a startup",
+    examples: [
+      {
+        title: "A first version of your app",
+        body: "A small, working version with only the features that show whether people will pay.",
+        service: "saas-development",
+      },
+      {
+        title: "A launch website with a waitlist",
+        body: "A simple site that explains the idea and collects sign-ups or demo requests from day one.",
+        service: "web-development",
+      },
+      {
+        title: "Clickable designs for investors",
+        body: "A tested, clickable sample of every screen to show investors before anything is built.",
+        service: "product-design",
+      },
+    ],
+    metaTitle: "App Development for Startups | The Digital Alchemy",
     metaDescription:
-      "Product design and development for startups — MVP scoping, rapid build, investor-ready interfaces and the technical foundations that survive the first year of growth.",
+      "We help startups build a small, well-made first version of their app or software, ready to test with customers and show investors. Get a free consultation.",
     challenges: [
       {
-        title: "Scope grows faster than runway",
-        body: "Every conversation adds a feature. Without a defended release boundary, the first version arrives late, costs more and still fails to answer the question it was built to answer.",
+        title: "The plan grows faster than the money",
+        body: "Every conversation adds a feature. Without a firm limit, the first version arrives late, costs more, and still does not answer the question it was built for.",
       },
       {
-        title: "Speed now versus not rebuilding in a year",
-        body: "Both extremes are expensive. Over-engineering burns months you do not have; the fastest possible build often has to be replaced right when traction arrives.",
+        title: "Fast now, or not rebuilding in a year?",
+        body: "Both extremes are expensive. Building too much burns months you do not have. Building too cheaply often means starting again just as customers arrive.",
       },
       {
-        title: "The product has to convince investors as well as users",
-        body: "Fundraising is often judged partly on how finished the product looks. That has to be achieved without spending the round on polish.",
+        title: "Investors judge how finished it looks",
+        body: "Raising money often depends partly on how polished the product looks. That has to happen without spending the whole budget on polish.",
       },
       {
-        title: "No in-house engineering team yet",
-        body: "Founders frequently need a team before they can afford to hire one, and the early technical decisions are the hardest to reverse later.",
+        title: "No developers of your own yet",
+        body: "Founders often need a team before they can afford to hire one, and the early technical choices are the hardest to undo later.",
       },
     ],
     approach: [
       {
-        title: "Scope to a single question",
-        body: "We define version one around the one thing you need to learn — usually whether people will pay. Everything not serving that goes into a written phase two so it stops being argued about.",
+        title: "Build to answer one question",
+        body: "We plan version one around the one thing you need to learn, usually whether people will pay. Everything else goes into a written version-two list, so it stops being argued about.",
       },
       {
-        title: "Boring technology, deliberately",
-        body: "Mainstream, well-documented tools. It keeps you hireable later and means the next engineer can read the codebase without a translator.",
+        title: "Common, proven tools",
+        body: "Well-known technology that is easy to hire for, so the next developer can understand the code without help.",
       },
       {
-        title: "Design that punches above the budget",
-        body: "A tight design system applied consistently makes a small product look considered. Consistency reads as quality far more than decoration does.",
+        title: "Looks better than its budget",
+        body: "A small set of design rules, used consistently, makes a small product look carefully made. Consistency looks like quality far more than decoration does.",
       },
       {
-        title: "Instrumented from day one",
-        body: "Analytics and event tracking in the first release, because the point of shipping early is to learn something measurable.",
+        title: "Tracking from the first day",
+        body: "Usage tracking in the very first release, because the point of launching early is to learn something you can measure.",
       },
     ],
-    services: [
-      "product-design",
-      "saas-development",
-      "mobile-app-development",
-      "ui-ux-design",
-      "web-development",
-    ],
+    services: ["product-design", "saas-development", "mobile-app-development", "ui-ux-design", "web-development"],
     considerations: [
-      "Code and infrastructure accounts in your company's name from day one",
-      "Architecture that supports a second engineer without a rewrite",
-      "Documentation good enough for technical due diligence",
-      "A phase-two plan you can show investors",
+      "Code and accounts in your company's name from the first day",
+      "Built so a second developer can join without a rewrite",
+      "Written notes good enough for an investor's technical checks",
+      "A version-two plan you can show investors",
     ],
     faqs: [
       {
-        question: "Can you work with a pre-funding budget?",
+        question: "Can you work with a small, pre-funding budget?",
         answer:
-          "Sometimes, by narrowing scope rather than lowering quality. A tightly defined prototype answering one question is a legitimate project; a full platform on a prototype budget is not, and we will say so rather than take it on.",
+          "Sometimes, by building less rather than building worse. A small, clickable sample that answers one question is a real project. A full platform on a sample's budget is not, and we will say so instead of taking it on.",
       },
       {
-        question: "Will we be able to hire engineers to take it over?",
+        question: "Can we hire our own developers to take it over later?",
         answer:
-          "That is an explicit design goal. We use mainstream technologies, document decisions, and hand over cleanly. Building something only we can maintain would not be in your interest.",
+          "Yes, we plan for exactly that. We use common technology, write down our decisions, and hand over cleanly. Building something only we can look after would not be good for you.",
       },
     ],
   },
@@ -105,73 +130,84 @@ export const industries: Industry[] = [
   {
     slug: "ecommerce",
     name: "E-commerce",
-    title: "Where online retail actually loses money.",
-    eyebrow: "E-commerce & D2C",
-    lede: "Traffic is rarely the problem. Most stores lose the majority of their potential revenue between the product page and the confirmed order, and the reasons are usually specific and fixable.",
-    summary:
-      "Storefronts, checkout, integrations and the ongoing conversion work after launch.",
-    metaTitle: "E-commerce Development & Growth | The Digital Alchemy",
+    title: "E-commerce: helping your online store sell more.",
+    eyebrow: "E-commerce & Online Brands",
+    lede: "Getting visitors is rarely the main problem. Most online stores lose most of their possible sales between the product page and the finished order, and the reasons are usually specific and fixable.",
+    summary: "Online stores, easier checkouts, connected stock, and selling more after launch.",
+    audience: "an online brand",
+    examples: [
+      {
+        title: "A store that takes UPI and cards",
+        body: "An online store with fast checkout, UPI and card payments, and stock that updates itself.",
+        service: "ecommerce-development",
+      },
+      {
+        title: "Instagram and Facebook ads that sell",
+        body: "Ads shown to likely buyers, with every sale tracked back to the ad that brought it.",
+        service: "meta-ads",
+      },
+      {
+        title: "Showing up on Google for your products",
+        body: "Product and category pages written around what people search for, so buyers find you without ads.",
+        service: "search-engine-optimization",
+      },
+    ],
+    metaTitle: "E-commerce Growth for Online Brands | The Digital Alchemy",
     metaDescription:
-      "E-commerce websites and growth for online retailers — storefront development, checkout optimisation, product experience, inventory integration and paid acquisition.",
+      "Online stores that sell more: easier checkout, UPI payments, stock in sync, and ads that bring buyers. Get a free consultation.",
     challenges: [
       {
-        title: "Acquisition costs keep climbing",
-        body: "When paid traffic gets more expensive every year, conversion rate and repeat purchase stop being optimisations and become the business model.",
+        title: "Ads cost more every year",
+        body: "When paid visitors get more expensive every year, turning more visitors into buyers, and getting them to buy again, becomes the whole business.",
       },
       {
-        title: "Checkout leaks",
-        body: "Surprise shipping costs, forced account creation, too many fields and missing local payment methods each remove a slice of orders that were otherwise ready to place.",
+        title: "People leave at checkout",
+        body: "Surprise delivery charges, forced sign-ups, too many fields and a missing UPI option each cost you orders from people who were ready to buy.",
       },
       {
-        title: "Inventory truth lives in two places",
-        body: "Without integration between the store and whatever actually tracks stock, overselling and manual reconciliation become routine.",
+        title: "Stock is tracked in two places",
+        body: "When your store is not connected to your stock records, you sell items you do not have. Then orders get fixed by hand.",
       },
       {
-        title: "Peak trading exposes everything",
-        body: "Sale periods surface the performance and operational problems that a normal week hides.",
+        title: "Sales days expose every weakness",
+        body: "Festive sales and big offers show up the speed and stock problems that a normal week hides.",
       },
     ],
     approach: [
       {
-        title: "Fix the funnel before buying more traffic",
-        body: "We start with checkout and product-page data. A conversion improvement applies to every visit you have already paid for, which usually beats increasing the budget.",
+        title: "Fix the store before buying more visitors",
+        body: "We start with your checkout and product page data. Every improvement helps every visitor you have already paid for, which usually beats spending more.",
       },
       {
-        title: "Design the purchase as one sequence",
-        body: "Category, product, cart and checkout designed together rather than as separate pages, because the gaps between them are where customers leave.",
+        title: "Design buying as one journey",
+        body: "Category, product, cart and checkout designed together, because the gaps between them are where customers leave.",
       },
       {
-        title: "Integrate the back office",
-        body: "Stock, orders and fulfilment connected so the store reflects reality and staff stop re-entering data.",
+        title: "Connect the back office",
+        body: "Stock, orders and delivery connected, so the store shows what is really available and staff stop typing things in twice.",
       },
       {
-        title: "Build for the peak, not the average",
-        body: "Performance and operational headroom sized for your busiest trading day, since that is the day it matters.",
+        title: "Ready for your busiest day",
+        body: "Speed and stock planned for your biggest sale day, because that is the day it matters.",
       },
     ],
-    services: [
-      "ecommerce-development",
-      "performance-marketing",
-      "search-engine-optimization",
-      "meta-ads",
-      "digital-marketing",
-    ],
+    services: ["ecommerce-development", "performance-marketing", "search-engine-optimization", "meta-ads", "digital-marketing"],
     considerations: [
-      "Local payment methods for each market you sell into",
-      "Product feed quality, which drives Shopping and Performance Max",
-      "Returns and delivery information visible before checkout",
-      "Redirects for product URLs during any migration",
+      "The payment methods people use where you sell, like UPI",
+      "A clean product list, which decides how well Google Shopping ads work",
+      "Returns and delivery details shown before checkout",
+      "Old product links kept working when you move stores",
     ],
     faqs: [
       {
-        question: "Should we rebuild or optimise?",
+        question: "Should we rebuild our store or improve it?",
         answer:
-          "Optimise first, in most cases. A rebuild resets whatever is currently working and takes months. We look at the funnel data before recommending either, and a list of targeted fixes is a very common outcome.",
+          "Improve it first, in most cases. A rebuild resets whatever is working now and takes months. We look at your sales data before suggesting either, and a list of targeted fixes is a very common answer.",
       },
       {
-        question: "Can you handle marketplaces as well as our own store?",
+        question: "Can you handle marketplaces like Amazon and Flipkart too?",
         answer:
-          "We focus on your own storefront and the acquisition driving it. Where marketplace listings need to stay in sync with your stock, that is an integration we can build.",
+          "We focus on your own store and the marketing that brings people to it. Where your marketplace listings need to stay in step with your stock, we can connect them.",
       },
     ],
   },
@@ -179,73 +215,84 @@ export const industries: Industry[] = [
   {
     slug: "healthcare",
     name: "Healthcare",
-    title: "Digital work where trust and privacy are the product.",
+    title: "Websites and online booking for clinics and hospitals.",
     eyebrow: "Healthcare & Wellness",
-    lede: "Healthcare software carries obligations most sectors do not. Patient information, consent, accessibility and clarity are not features to add later — they shape the design from the first decision.",
-    summary:
-      "Patient-facing services, booking and practice systems, built with privacy as a constraint.",
-    metaTitle: "Healthcare Digital Development | The Digital Alchemy",
+    lede: "For clinics, hospitals and wellness businesses. Patient information, consent, clear language and easy booking are not extras to add later. They shape everything from the first decision.",
+    summary: "Clinic websites, online booking and patient systems, built with privacy first.",
+    audience: "a clinic or hospital",
+    examples: [
+      {
+        title: "Online appointment booking",
+        body: "A website that lists every treatment and doctor, with a booking form patients can use from their phone.",
+        service: "web-development",
+      },
+      {
+        title: "Appointment reminders on WhatsApp",
+        body: "Reminders and follow-ups sent automatically, so fewer patients forget or miss a visit.",
+        service: "automation-integrations",
+      },
+      {
+        title: "Found by patients nearby",
+        body: "A proper Google Business Profile and treatment pages, so people searching for a doctor near them can find you.",
+        service: "search-engine-optimization",
+      },
+    ],
+    metaTitle: "Clinic and Hospital Websites | The Digital Alchemy",
     metaDescription:
-      "Websites, booking systems and applications for healthcare providers — patient privacy, accessibility, appointment management and clear communication as design constraints.",
+      "Websites, online appointment booking and patient systems for clinics and hospitals, with patient privacy first. Get a free consultation.",
     challenges: [
       {
-        title: "Patient data raises the stakes on every decision",
-        body: "What is collected, where it is stored, who can see it and how long it is kept are decisions with legal weight, and they have to be made deliberately rather than by default.",
+        title: "Patient data raises the stakes",
+        body: "What you collect, where it is kept, who can see it and for how long are decisions with legal weight. They have to be made on purpose, not by default.",
       },
       {
-        title: "Booking is the whole experience for most patients",
-        body: "Availability, rescheduling, reminders and cancellations determine both patient satisfaction and how much of the day reception spends on the phone.",
+        title: "Booking is what most patients experience",
+        body: "Availability, rescheduling, reminders and cancellations decide how happy patients are, and how much of the day your reception spends on the phone.",
       },
       {
-        title: "Accessibility is not optional here",
-        body: "Healthcare audiences include people with impairments, in distress, or using older devices. Contrast, text size and keyboard access have real consequences.",
+        title: "Everyone must be able to use it",
+        body: "Patients may be unwell, worried, older, or on an old phone. Readable text, good contrast and simple steps really matter.",
       },
       {
-        title: "Clinical accuracy versus plain language",
-        body: "Information has to be correct and understandable by someone anxious and unfamiliar with the terminology.",
+        title: "Correct, but easy to understand",
+        body: "Medical information has to be accurate, and understandable by someone who is anxious and does not know the terms.",
       },
     ],
     approach: [
       {
-        title: "Collect the minimum",
-        body: "We design forms and records around what is genuinely needed. Data not collected is data that cannot leak, and it is the cheapest privacy control available.",
+        title: "Collect only what is needed",
+        body: "Forms and records designed around what is really needed. Information you never collect can never leak, and it is the cheapest privacy protection there is.",
       },
       {
-        title: "Work to your compliance requirements",
-        body: "Your obligations depend on your jurisdiction and the data involved. We build to the requirements your advisers set — we do not claim certifications of our own.",
+        title: "Built to your legal requirements",
+        body: "Your obligations depend on where you work and what data you hold. We build to what your advisers require; we do not claim certifications of our own.",
       },
       {
-        title: "Design for the anxious reader",
-        body: "Clear hierarchy, plain language, obvious next steps and honest information about what happens after an enquiry.",
+        title: "Written for a worried reader",
+        body: "Clear headings, plain words, obvious next steps, and honest information about what happens after someone gets in touch.",
       },
       {
-        title: "Accessibility as an acceptance criterion",
-        body: "WCAG 2.2 AA checks built into delivery rather than run as a review after launch.",
+        title: "Checked for easy access",
+        body: "Checked against the international accessibility standard as we build, not reviewed only after launch.",
       },
     ],
-    services: [
-      "web-development",
-      "web-application-development",
-      "ui-ux-design",
-      "search-engine-optimization",
-      "automation-integrations",
-    ],
+    services: ["web-development", "web-application-development", "ui-ux-design", "search-engine-optimization", "automation-integrations"],
     considerations: [
-      "Data residency and retention decided explicitly, in writing",
-      "Consent captured and recorded properly",
-      "Access control and audit logging for anything patient-identifiable",
-      "Encrypted storage and transport as a baseline",
+      "Where patient data is stored, and for how long, agreed in writing",
+      "Patient consent recorded properly",
+      "Controlled access, and a record of who viewed patient details",
+      "Encryption for stored and sent information, as standard",
     ],
     faqs: [
       {
         question: "Are you certified for healthcare compliance?",
         answer:
-          "We do not hold healthcare-specific certifications and we will not imply otherwise. We build to the requirements your compliance advisers define, and we apply the engineering practices those frameworks expect: minimal data collection, access control, encryption, audit logging and documented retention.",
+          "No, we do not hold healthcare-specific certifications, and we will not suggest otherwise. We build to the requirements your advisers set, using the practices those rules expect: collecting only what is needed, controlled access, encryption, records of access, and agreed retention.",
       },
       {
-        question: "Can you integrate with our practice management system?",
+        question: "Can it connect to our clinic management software?",
         answer:
-          "Where the vendor provides an API or an export mechanism, yes. Some systems are closed, and we will establish what is actually possible during discovery rather than assuming.",
+          "If your software allows connections or exports, yes. Some systems are closed, and we find out what is actually possible before promising anything.",
       },
     ],
   },
@@ -253,73 +300,84 @@ export const industries: Industry[] = [
   {
     slug: "education",
     name: "Education",
-    title: "Platforms that work for learners, parents and staff at once.",
+    title: "Websites and portals for coaching institutes, schools and colleges.",
     eyebrow: "Education & Training",
-    lede: "Education products serve several audiences with different needs and very different levels of confidence with software. Designing for all of them without making any one of them feel stupid is the actual challenge.",
-    summary:
-      "Learning platforms, admissions journeys and administrative systems for education providers.",
-    metaTitle: "Education Technology Development | The Digital Alchemy",
+    lede: "For coaching institutes, schools, colleges and training providers. Students, parents and staff all use the same system, with very different needs and comfort with technology. Making it easy for all of them is the real job.",
+    summary: "Admission enquiries, student portals and fee and course systems for education providers.",
+    audience: "a coaching institute or school",
+    examples: [
+      {
+        title: "A portal for students and parents",
+        body: "Fees, attendance and test results online, so parents stop calling the office to ask.",
+        service: "web-application-development",
+      },
+      {
+        title: "Admission enquiries from Google and Instagram",
+        body: "Campaigns for each admission season, with every enquiry sent straight to your counsellors.",
+        service: "digital-marketing",
+      },
+      {
+        title: "A website parents can trust",
+        body: "Courses, results you are allowed to share, fees and faculty, clearly laid out and quick on a phone.",
+        service: "web-development",
+      },
+    ],
+    metaTitle: "Websites for Coaching Institutes | The Digital Alchemy",
     metaDescription:
-      "Websites and platforms for schools, colleges and training providers — admissions journeys, learning platforms, student portals and administrative systems.",
+      "Websites, admission enquiries and student portals for coaching institutes, schools and colleges. Get a free consultation.",
     challenges: [
       {
-        title: "Several audiences, one interface",
-        body: "Students, parents, teachers and administrators need different things from the same system, and blending them produces something that serves nobody well.",
+        title: "Several audiences, one system",
+        body: "Students, parents, teachers and office staff need different things from the same system. Mixing them together serves nobody well.",
       },
       {
-        title: "Admissions decides the year",
-        body: "For most institutions the enquiry-to-enrolment journey is the highest-value path on the entire site, and it is frequently the least considered.",
+        title: "Admissions decide the year",
+        body: "For most institutes, the path from first enquiry to admission is the most valuable part of the website, and often the least thought about.",
       },
       {
-        title: "Seasonal load",
-        body: "Results days and enrolment periods produce traffic many times the baseline, concentrated into hours.",
+        title: "Result days bring huge traffic",
+        body: "Result days and admission weeks can bring many times the normal number of visitors, all within a few hours.",
       },
       {
-        title: "Content ages badly",
-        body: "Course details, fees and dates change annually. If updating them is difficult, the site drifts out of date and starts costing enquiries.",
+        title: "Information goes out of date",
+        body: "Courses, fees and dates change every year. If updating them is hard, the site falls behind and starts costing you enquiries.",
       },
     ],
     approach: [
       {
-        title: "Separate the journeys",
-        body: "Distinct paths for prospective students, current students and staff, so each sees a coherent experience instead of a shared compromise.",
+        title: "Separate paths for each audience",
+        body: "Different paths for new students, current students and staff, so each sees exactly what they need.",
       },
       {
-        title: "Treat admissions as a funnel",
-        body: "The enquiry path designed, measured and improved with the same rigour a commercial funnel receives, because it is one.",
+        title: "Treat admissions like sales",
+        body: "The enquiry path designed, measured and improved with the same care a business gives its sales, because that is what it is.",
       },
       {
-        title: "Content model built for the annual cycle",
-        body: "Courses, intakes, fees and staff as structured content your team can update in minutes without needing a developer.",
+        title: "Easy yearly updates",
+        body: "Courses, batches, fees and staff set up so your team can update them in minutes, without a developer.",
       },
       {
-        title: "Sized for peak days",
-        body: "Performance planned around enrolment and results periods rather than around a quiet Tuesday.",
+        title: "Ready for the busiest days",
+        body: "Speed planned for result and admission days, not for a quiet Tuesday.",
       },
     ],
-    services: [
-      "web-development",
-      "web-application-development",
-      "ui-ux-design",
-      "search-engine-optimization",
-      "digital-marketing",
-    ],
+    services: ["web-development", "web-application-development", "ui-ux-design", "search-engine-optimization", "digital-marketing"],
     considerations: [
-      "Accessibility obligations that often apply to education providers",
-      "Safeguarding considerations where the audience includes minors",
-      "Multi-device use, frequently on older or shared hardware",
-      "Integration with student record and finance systems",
+      "Easy access for everyone, which education providers are often required to offer",
+      "Extra care where students are children",
+      "Use on many devices, often older or shared phones",
+      "Connections to your student records and fee systems",
     ],
     faqs: [
       {
-        question: "Can you build a learning platform, or should we buy one?",
+        question: "Should we build our own learning platform or buy one?",
         answer:
-          "If your teaching model is standard, an existing platform will almost always be cheaper and better supported. Custom development makes sense when your pedagogy or operating model genuinely differs from what those products assume.",
+          "If you teach in a standard way, a ready-made platform will almost always be cheaper and better supported. Building your own makes sense when the way you teach, or run your institute, is genuinely different from what those products assume.",
       },
       {
-        question: "Can our team keep course information current?",
+        question: "Can our staff keep course details up to date?",
         answer:
-          "Yes — that is a core requirement for this sector. We model courses, intakes and fees as structured content so updates are straightforward and consistent everywhere they appear.",
+          "Yes, that is essential in education. We set up courses, batches and fees so changes are quick and show correctly everywhere they appear.",
       },
     ],
   },
@@ -327,73 +385,84 @@ export const industries: Industry[] = [
   {
     slug: "real-estate",
     name: "Real Estate",
-    title: "Listings that hold attention and capture the enquiry.",
+    title: "Real estate websites that bring you enquiries from serious buyers.",
     eyebrow: "Real Estate & Property",
-    lede: "Property buyers browse constantly and enquire rarely. The work is making listings genuinely searchable, making the property feel real on a phone screen, and making enquiries reach an agent while the interest is still warm.",
-    summary:
-      "Property portals, listing management, lead capture and agent tooling.",
-    metaTitle: "Real Estate Website & Platform Development | The Digital Alchemy",
+    lede: "For builders, brokers and property businesses. Buyers browse all the time but enquire rarely. We make your listings easy to search and each property look real on a phone. Every enquiry reaches an agent while the buyer is still interested.",
+    summary: "Property websites, easy search, and enquiries that reach an agent fast.",
+    audience: "a builder or property agent",
+    examples: [
+      {
+        title: "A property website with search",
+        body: "Listings people can search by area, budget and size, with an enquiry button on every property.",
+        service: "web-development",
+      },
+      {
+        title: "Ads for a new project launch",
+        body: "Google and Facebook ads for the launch, with every enquiry tracked and the budget moved to what works.",
+        service: "performance-marketing",
+      },
+      {
+        title: "Enquiries that reach an agent at once",
+        body: "Every enquiry from the site and the ads goes straight to the right agent, while the buyer is still interested.",
+        service: "lead-generation",
+      },
+    ],
+    metaTitle: "Real Estate Websites in Delhi | The Digital Alchemy",
     metaDescription:
-      "Property websites and portals — listing management, search and filtering, virtual tours, lead capture and CRM integration for real estate businesses.",
+      "Property websites with easy search, fast photos and enquiries sent straight to your agents. For builders and brokers. Get a free consultation.",
     challenges: [
       {
-        title: "Search and filtering is the product",
-        body: "For any meaningful inventory, how well someone can narrow the list determines whether they engage at all. Weak filtering shows up directly in enquiry volume.",
+        title: "Search and filters are everything",
+        body: "Once you have more than a few properties, how easily buyers can narrow them down decides whether they stay. Weak filters mean fewer enquiries.",
       },
       {
-        title: "Listings go stale",
-        body: "Sold and let properties left visible waste enquiries and damage credibility. Keeping inventory current usually means integration rather than discipline.",
+        title: "Old listings stay up",
+        body: "Sold or rented properties left online waste enquiries and damage trust. Keeping listings current usually needs a connection to your records, not more effort.",
       },
       {
-        title: "Enquiries go cold quickly",
-        body: "Property interest has a short half-life. A lead that waits until the next working day has usually already spoken to another agent.",
+        title: "Enquiries go cold fast",
+        body: "Interest in a property fades quickly. An enquiry that waits until tomorrow has usually already spoken to another agent.",
       },
       {
-        title: "Media is heavy",
-        body: "Galleries, floor plans and video make listing pages slow, which particularly hurts on mobile where most browsing happens.",
+        title: "Photos slow the site down",
+        body: "Galleries, floor plans and videos make pages slow, which hurts most on phones, where most browsing happens.",
       },
     ],
     approach: [
       {
-        title: "Design search first",
-        body: "Filters, map view, saved searches and alerts treated as the core product rather than as a component dropped onto a page.",
+        title: "Search comes first",
+        body: "Filters, map view, saved searches and alerts treated as the heart of the site, not an afterthought.",
       },
       {
-        title: "Integrate the inventory",
-        body: "Listings synced from whatever system your agents already work in, so the website reflects reality without duplicate entry.",
+        title: "Listings from one source",
+        body: "Listings pulled from the system your agents already use, so the website is always current without typing them in twice.",
       },
       {
-        title: "Route enquiries instantly",
-        body: "Straight into the CRM with the property attached, assigned and notified immediately, because response speed is the whole game.",
+        title: "Enquiries sent instantly",
+        body: "Straight to your customer list app with the property attached, assigned and alerted at once, because speed wins the buyer.",
       },
       {
-        title: "Optimise media aggressively",
-        body: "Responsive images, modern formats and lazy loading so a gallery-heavy page still loads quickly on a phone.",
+        title: "Fast photos",
+        body: "Images sized and compressed properly, so a page full of photos still loads quickly on a phone.",
       },
     ],
-    services: [
-      "web-development",
-      "web-application-development",
-      "lead-generation",
-      "performance-marketing",
-      "search-engine-optimization",
-    ],
+    services: ["web-development", "web-application-development", "lead-generation", "performance-marketing", "search-engine-optimization"],
     considerations: [
-      "Structured data for property listings where eligible",
-      "Map performance with large numbers of markers",
-      "Saved searches and alerts to bring browsers back",
-      "Clear agent contact routes on every listing",
+      "Property details set up so Google can understand them",
+      "Maps that stay fast with many properties on them",
+      "Saved searches and alerts that bring buyers back",
+      "A clear way to contact an agent on every listing",
     ],
     faqs: [
       {
-        question: "Can you sync with our listing software?",
+        question: "Can the website sync with our listing software?",
         answer:
-          "Usually. Most property CRMs offer an API or a feed. We confirm what your specific system supports during discovery rather than promising it up front.",
+          "Usually. Most property software can share its listings. We confirm what your specific system allows before promising it.",
       },
       {
-        question: "Do we need our own portal if we advertise on the big ones?",
+        question: "Do we need our own website if we list on the big property portals?",
         answer:
-          "Portals give reach but rent you the customer relationship and their data. Your own site is where you build a direct audience, capture repeat interest and control the enquiry. Most agencies need both.",
+          "Portals give you reach, but the buyer and their details belong to the portal. Your own site is where you build your own audience, catch repeat interest and control the enquiry. Most agencies need both.",
       },
     ],
   },
@@ -401,73 +470,84 @@ export const industries: Industry[] = [
   {
     slug: "finance",
     name: "Finance",
-    title: "Financial services where credibility is measured in details.",
-    eyebrow: "Finance & Professional Advice",
-    lede: "Financial audiences are sceptical for good reason. Clarity, security and restraint communicate competence here far better than persuasion does — and regulatory obligations shape what can be said at all.",
-    summary:
-      "Client portals, calculators and websites for financial and advisory businesses.",
-    metaTitle: "Financial Services Web Development | The Digital Alchemy",
+    title: "Websites and client portals for finance businesses.",
+    eyebrow: "Finance & Advisory",
+    lede: "For financial advisers, insurance agencies and finance businesses. Your clients are careful, for good reason. Clarity, security and calm design show you are competent far better than sales talk, and rules limit what you can say anyway.",
+    summary: "Client portals, calculators and clear websites for finance and advisory businesses.",
+    audience: "a finance or advisory business",
+    examples: [
+      {
+        title: "A client portal",
+        body: "A secure place where clients log in to see their documents, statements and next steps.",
+        service: "web-application-development",
+      },
+      {
+        title: "Calculators that start conversations",
+        body: "Loan, EMI or tax calculators on your website that answer a question and lead to an enquiry.",
+        service: "web-development",
+      },
+      {
+        title: "Less paperwork by hand",
+        body: "Documents and client details moved between your apps automatically, instead of copied by your team.",
+        service: "automation-integrations",
+      },
+    ],
+    metaTitle: "Websites for Finance Firms | The Digital Alchemy",
     metaDescription:
-      "Websites, client portals and tools for financial services businesses — secure document exchange, calculators, onboarding journeys and compliant, clear communication.",
+      "Clear websites, secure client portals, calculators and easy onboarding for financial advisers and finance businesses. Get a free consultation.",
     challenges: [
       {
-        title: "Marketing claims are constrained",
-        body: "What can be promised is limited by regulation, so credibility has to be built through clarity and evidence rather than through claims.",
+        title: "You cannot promise much",
+        body: "Rules limit what financial businesses can claim, so trust has to come from clarity and evidence instead of promises.",
       },
       {
-        title: "Documents move by email",
-        body: "Sensitive documents sent as email attachments are both a security exposure and a poor client experience. A portal fixes both.",
+        title: "Documents travel by email",
+        body: "Sensitive documents sent as email attachments are a security risk and a poor experience for clients. A secure portal fixes both.",
       },
       {
-        title: "Onboarding is long and manual",
-        body: "Identity checks, forms and signatures create a slow first impression at exactly the point where a client is deciding whether they made the right choice.",
+        title: "Signing up a new client is slow",
+        body: "Identity checks, forms and signatures make a slow first impression, right when a client is deciding whether they chose well.",
       },
       {
         title: "Trust is judged in seconds",
-        body: "Poor design in financial services does not read as informal. It reads as risky.",
+        body: "In finance, careless design does not look relaxed. It looks risky.",
       },
     ],
     approach: [
       {
-        title: "Design restraint deliberately",
-        body: "Clear typography, generous space and precise language. In this sector, visual calm is a credibility signal.",
+        title: "Calm, clear design",
+        body: "Clear text, plenty of space and precise wording. In finance, a calm look builds trust.",
       },
       {
-        title: "Secure document exchange",
-        body: "An authenticated portal for statements, reports and signed documents, replacing email attachments entirely.",
+        title: "Secure document sharing",
+        body: "A secure, logged-in portal for statements, reports and signed documents, replacing email attachments completely.",
       },
       {
-        title: "Streamline onboarding",
-        body: "Multi-step forms that save progress, explain why each piece of information is needed, and integrate with identity verification where required.",
+        title: "Faster sign-up for new clients",
+        body: "Forms that save progress, explain why each detail is needed, and connect to identity checks where required.",
       },
       {
-        title: "Build compliance into the workflow",
-        body: "Approval steps and version history for published material, and audit logging for consequential actions.",
+        title: "Rules built into the process",
+        body: "Approval steps and version history for anything you publish, and a record of important actions.",
       },
     ],
-    services: [
-      "web-application-development",
-      "web-development",
-      "ui-ux-design",
-      "automation-integrations",
-      "custom-software-development",
-    ],
+    services: ["web-application-development", "web-development", "ui-ux-design", "automation-integrations", "custom-software-development"],
     considerations: [
-      "Content approval workflow for regulated material",
-      "Strong authentication and session security for client areas",
-      "Audit logging and data retention decided with your compliance team",
-      "Accessible presentation of figures, charts and disclosures",
+      "An approval step for anything regulated before it is published",
+      "Strong logins and security for client areas",
+      "Records and data retention agreed with your compliance team",
+      "Figures, charts and disclosures that everyone can read",
     ],
     faqs: [
       {
         question: "Do you understand financial regulation?",
         answer:
-          "We are not compliance advisers and will not present ourselves as such. We build to the requirements your compliance function defines, and we are familiar with the engineering practices that support them — approval workflows, audit trails, access control and retention policies.",
+          "We are not compliance advisers and will not present ourselves as such. We build to the requirements your compliance team sets, and we know the practices that support them: approval steps, records of who did what, controlled access and retention rules.",
       },
       {
-        question: "Can you build calculators and modelling tools?",
+        question: "Can you build calculators and planning tools?",
         answer:
-          "Yes. The logic and any assumptions are agreed and documented with you, and results are presented with the caveats your compliance team requires rather than as advice.",
+          "Yes. The calculations and assumptions are agreed and written down with you, and results are shown with the notes your compliance team requires, not as advice.",
       },
     ],
   },
@@ -475,73 +555,84 @@ export const industries: Industry[] = [
   {
     slug: "hospitality",
     name: "Hospitality",
-    title: "Winning the direct booking instead of renting it.",
-    eyebrow: "Hospitality & Travel",
-    lede: "Every booking through an aggregator costs commission and hands over the customer relationship. A direct channel that people actually prefer to use is the highest-return digital investment most hospitality businesses can make.",
-    summary:
-      "Direct booking journeys, property presentation and the marketing that fills the calendar.",
-    metaTitle: "Hospitality Website & Booking Development | The Digital Alchemy",
+    title: "More direct bookings for hotels, restaurants and cafés.",
+    eyebrow: "Hotels, Restaurants & Travel",
+    lede: "For hotels, homestays, restaurants, cafés and travel businesses. Every booking through an aggregator costs you commission and gives away the customer. A booking option on your own site that people actually prefer to use pays back fast.",
+    summary: "Direct bookings, great photos online, and marketing that fills your quiet days.",
+    audience: "a restaurant, café or hotel",
+    examples: [
+      {
+        title: "Direct bookings and orders",
+        body: "Table bookings, room bookings or food orders on your own website, with less commission paid to apps.",
+        service: "web-development",
+      },
+      {
+        title: "Social media that fills quiet days",
+        body: "A monthly plan of posts and reels that shows your food, rooms and offers.",
+        service: "social-media-management",
+      },
+      {
+        title: "Found on Google Maps",
+        body: "A complete Google Business Profile with photos, menu and hours, so nearby people choose you.",
+        service: "search-engine-optimization",
+      },
+    ],
+    metaTitle: "Websites and Direct Booking for Hotels | The Digital Alchemy",
     metaDescription:
-      "Websites and direct booking experiences for hotels, restaurants and travel businesses — availability, reservations, property presentation and demand generation.",
+      "Websites and direct booking for hotels, restaurants and cafés, so fewer bookings go through commission-charging apps. Get a free consultation.",
     challenges: [
       {
-        title: "Aggregators take the margin and the customer",
-        body: "Commission is only part of the cost. The larger loss is never owning the guest relationship or the ability to market to them again.",
+        title: "Booking apps take your margin and your guests",
+        body: "Commission is only part of the cost. The bigger loss is never owning the guest's details, or being able to invite them back.",
       },
       {
-        title: "The booking flow is worse than the aggregator's",
-        body: "If checking availability on your own site is slower or more confusing, guests will book through the channel that is easier, even having found you first.",
+        title: "Booking on your site is harder than on the apps",
+        body: "If checking availability on your own website is slower or more confusing, guests book through whichever is easier, even after finding you first.",
       },
       {
-        title: "Photography carries the decision",
-        body: "Hospitality is bought on how a place looks and feels. Weak imagery cannot be rescued by good copy.",
+        title: "Photos make the decision",
+        body: "People choose a hotel or restaurant by how it looks and feels. Weak photos cannot be rescued by good words.",
       },
       {
-        title: "Demand is seasonal and perishable",
-        body: "An unsold night is revenue that cannot be recovered, which makes filling shoulder periods a specific marketing problem.",
+        title: "Empty rooms and tables cannot be sold later",
+        body: "An unsold night or an empty table is money gone for good, which makes filling quiet days a marketing problem of its own.",
       },
     ],
     approach: [
       {
-        title: "Make direct booking the easiest option",
-        body: "Fast availability, minimal steps, transparent pricing and a clear reason to book direct.",
+        title: "Make booking direct the easiest option",
+        body: "Fast availability, few steps, clear prices, and a good reason to book with you directly.",
       },
       {
-        title: "Design around the imagery",
-        body: "Layouts built to let strong photography carry the page, with performance work so large images still load quickly.",
+        title: "Let the photos do the work",
+        body: "Pages built around strong photos, set up so even large images load quickly.",
       },
       {
-        title: "Capture the relationship",
-        body: "Email capture, pre-arrival messaging and post-stay follow-up, so a guest is reachable next season.",
+        title: "Keep in touch with guests",
+        body: "Email and WhatsApp before and after a visit, so a guest can be reached again next season.",
       },
       {
-        title: "Market against the calendar",
-        body: "Campaigns aimed at the specific periods that need filling rather than run at a constant rate all year.",
+        title: "Market for the quiet days",
+        body: "Campaigns aimed at the dates and times you need to fill, instead of the same spend all year.",
       },
     ],
-    services: [
-      "web-development",
-      "web-application-development",
-      "performance-marketing",
-      "social-media-management",
-      "search-engine-optimization",
-    ],
+    services: ["web-development", "web-application-development", "performance-marketing", "social-media-management", "search-engine-optimization"],
     considerations: [
-      "Integration with your property or reservation management system",
-      "Rate parity constraints in your channel agreements",
-      "Multi-language and multi-currency where guests are international",
-      "Local search presence, which drives a large share of bookings",
+      "Connection to your booking or reservation system",
+      "Price rules in your agreements with booking apps",
+      "Several languages and currencies if your guests come from abroad",
+      "Showing up on Google Maps, which brings many bookings",
     ],
     faqs: [
       {
-        question: "Can you integrate with our booking engine?",
+        question: "Can it connect to our booking system?",
         answer:
-          "Usually yes — most property management systems and booking engines provide integration options. Which approach is best depends on your specific vendor, and we establish that during discovery.",
+          "Usually yes. Most hotel and restaurant booking systems allow connections. The best way to do it depends on your provider, which we check first.",
       },
       {
-        question: "Can you do the photography?",
+        question: "Can you take the photos?",
         answer:
-          "Not in-house. We will specify what the site needs and work with your photographer, or recommend one. Given how much of the decision rests on imagery, it is worth investing in properly.",
+          "Not ourselves. We will tell you what the site needs and work with your photographer, or suggest one. Since so much of the decision rests on photos, they are worth doing properly.",
       },
     ],
   },
@@ -549,73 +640,84 @@ export const industries: Industry[] = [
   {
     slug: "professional-services",
     name: "Professional Services",
-    title: "Making expertise visible before the first conversation.",
+    title: "Websites for CA firms, law firms and consultants.",
     eyebrow: "Professional Services",
-    lede: "Firms selling expertise are usually bought on credibility and referral. The website's job is to confirm that a recommendation was sound, and to give someone researching quietly a reason to make contact.",
-    summary:
-      "Positioning, credibility and enquiry capture for consultancies, agencies and advisory firms.",
-    metaTitle: "Professional Services Website Development | The Digital Alchemy",
+    lede: "For CA firms, law firms, consultants and agencies. Clients usually find you by recommendation, then check your website before calling. Its job is to confirm the recommendation, and to give quiet researchers a reason to get in touch.",
+    summary: "Clear positioning, visible expertise and more enquiries for firms that sell their knowledge.",
+    audience: "a CA, law or consulting firm",
+    examples: [
+      {
+        title: "A website that explains what you do",
+        body: "Clear pages for each service you offer, written so clients understand them without jargon.",
+        service: "web-development",
+      },
+      {
+        title: "Found when people search for your service",
+        body: "Pages built around searches like “GST registration near me”, so the right clients find you.",
+        service: "search-engine-optimization",
+      },
+      {
+        title: "A look that matches your expertise",
+        body: "A logo, colours and documents that look as professional as the work you do.",
+        service: "branding",
+      },
+    ],
+    metaTitle: "Websites for CA and Law Firms | The Digital Alchemy",
     metaDescription:
-      "Websites and digital marketing for consultancies, law firms, accountancy practices and advisory businesses — positioning, credibility, thought leadership and enquiry generation.",
+      "Websites and marketing for CA firms, law firms and consultants that show your expertise and turn referrals into enquiries. Get a free consultation.",
     challenges: [
       {
         title: "Every firm's website says the same thing",
-        body: "Experience, integrity, client focus. Interchangeable claims give a prospect nothing to choose between and no reason to remember you.",
+        body: "Experience, integrity, client focus. Claims every firm makes give a prospect nothing to choose between, and no reason to remember you.",
       },
       {
-        title: "The expertise is invisible",
-        body: "The knowledge that wins work usually lives in people's heads and in private documents, never in a form a prospect can encounter.",
+        title: "Your expertise is invisible",
+        body: "The knowledge that wins work usually lives in people's heads and private documents, never somewhere a prospect can see it.",
       },
       {
-        title: "Referrals arrive and then research",
-        body: "Most referred prospects check the website before making contact. That visit either confirms the recommendation or quietly undermines it.",
+        title: "Referrals check your website first",
+        body: "Many people who are recommended to you look at your website before calling. That visit either confirms the recommendation or quietly weakens it.",
       },
       {
-        title: "Nobody has time to publish",
-        body: "Content programmes in professional services usually fail on capacity rather than intent.",
+        title: "Nobody has time to write",
+        body: "Articles and posts in professional firms usually stop because people are busy, not because they do not care.",
       },
     ],
     approach: [
       {
-        title: "Position on something specific",
-        body: "A defined focus — sector, problem or client type — is more persuasive than breadth, even though breadth feels safer.",
+        title: "Be known for something specific",
+        body: "A clear focus, on an industry, a problem or a type of client, persuades more than offering everything, even though offering everything feels safer.",
       },
       {
-        title: "Show the thinking",
-        body: "Published perspective on the questions clients actually ask is what separates a credible firm from a competent one on paper.",
+        title: "Show how you think",
+        body: "Useful answers to the questions your clients actually ask are what make a firm stand out as credible.",
       },
       {
-        title: "Design for the referred visitor",
-        body: "Clear people, clear specialisms, clear evidence and an easy way to make contact without committing to a sales process.",
+        title: "Designed for the recommended visitor",
+        body: "Clear people, clear specialities, clear evidence, and an easy way to get in touch without being pushed into a sales process.",
       },
       {
-        title: "Make publishing sustainable",
-        body: "A realistic content model and a process built around interviewing your experts rather than expecting them to write.",
+        title: "Publishing that fits your week",
+        body: "A realistic content plan, built around short interviews with your experts rather than asking them to write.",
       },
     ],
-    services: [
-      "web-development",
-      "branding",
-      "search-engine-optimization",
-      "lead-generation",
-      "digital-marketing",
-    ],
+    services: ["web-development", "branding", "search-engine-optimization", "lead-generation", "digital-marketing"],
     considerations: [
-      "Client confidentiality constraints on case studies",
-      "Approval processes for published material in regulated professions",
-      "Individual profiles, which are often the most-visited pages on the site",
-      "Structured data for the organisation and its people",
+      "Client confidentiality limits on case studies",
+      "Approval steps for published material in regulated professions",
+      "Individual profiles, often the most visited pages on the site",
+      "Firm and people details set up so Google can understand them",
     ],
     faqs: [
       {
-        question: "We cannot name our clients. Can we still show credibility?",
+        question: "We cannot name our clients. Can we still show we are credible?",
         answer:
-          "Yes. Anonymised case studies describing the situation, approach and outcome work well, as do sector-level results, published perspective and clearly presented expertise. Named logos help, but they are not the only route.",
+          "Yes. Anonymous case studies describing the situation, what you did and the result work well, as do clear explanations of your expertise and useful articles. Client names help, but they are not the only way.",
       },
       {
-        question: "Is content marketing worth it for a small firm?",
+        question: "Are articles worth it for a small firm?",
         answer:
-          "It can be, provided it is genuinely specific. Generic articles compete with everyone and rank for nothing. A narrow, well-answered question your clients actually ask is worth more than twenty broad posts.",
+          "They can be, if they are specific. General articles compete with everyone and rank for nothing. One clear answer to a question your clients really ask is worth more than twenty general posts.",
       },
     ],
   },
@@ -623,73 +725,84 @@ export const industries: Industry[] = [
   {
     slug: "retail",
     name: "Retail",
-    title: "Joining up the shop, the site and the customer.",
-    eyebrow: "Retail & Multi-location",
-    lede: "Customers do not think in channels. They check stock online, buy in store, return by post, and expect all three systems to know about each other.",
-    summary:
-      "Multi-location retail, local search visibility and connecting online with in-store.",
-    metaTitle: "Retail Digital Development | The Digital Alchemy",
+    title: "Connecting your shop, your website and your customers.",
+    eyebrow: "Shops & Showrooms",
+    lede: "For shops, showrooms and businesses with several branches. Customers check stock online, buy in the shop and return by courier, and they expect all three to know about each other.",
+    summary: "Showing up in local searches, branch pages that help, and connecting online with in-store.",
+    audience: "a shop or showroom",
+    examples: [
+      {
+        title: "A page for each branch",
+        body: "Address, hours, directions and stock highlights for each branch, so people come to the right one.",
+        service: "web-development",
+      },
+      {
+        title: "Selling online as well as in store",
+        body: "An online store connected to the same stock as your shop, so you never sell what you do not have.",
+        service: "ecommerce-development",
+      },
+      {
+        title: "Ads that bring people into the shop",
+        body: "Local Google and social ads for sales and festive seasons, aimed at people near your branches.",
+        service: "performance-marketing",
+      },
+    ],
+    metaTitle: "Websites and Local Marketing for Shops | The Digital Alchemy",
     metaDescription:
-      "Digital development for retail businesses — multi-location websites, local search visibility, stock visibility, click and collect and customer data across channels.",
+      "Websites, Google Maps visibility and stock shown online for shops, showrooms and multi-branch retailers. Get a free consultation.",
     challenges: [
       {
-        title: "Online and in-store are separate businesses",
-        body: "Different systems, different stock, different customer records. The customer experiences the gap even when the organisation has stopped noticing it.",
+        title: "Online and in-store feel like two businesses",
+        body: "Different systems, different stock, different customer records. Customers notice the gap even when your team has stopped noticing it.",
       },
       {
-        title: "Local search is where the traffic is",
-        body: "For physical retail, being found by someone nearby with intent matters more than national visibility, and it is a different discipline.",
+        title: "Local searches are where your customers are",
+        body: "For a shop, being found by someone nearby who wants to buy matters more than being found across the country, and it needs different work.",
       },
       {
-        title: "Store pages are an afterthought",
-        body: "Location pages with only an address and a phone number waste the highest-intent traffic the site receives.",
+        title: "Branch pages are an afterthought",
+        body: "Branch pages with only an address and phone number waste your most ready-to-buy visitors.",
       },
       {
-        title: "Nobody knows the online-to-store effect",
-        body: "Digital activity that drives store visits is usually invisible in reporting, so it gets under-funded relative to what it produces.",
+        title: "Nobody knows what online does for the shop",
+        body: "Online activity that brings people into your shop usually does not show up in reports, so it gets less budget than it earns.",
       },
     ],
     approach: [
       {
         title: "Connect the systems",
-        body: "Stock, orders and customer data integrated so online can show what is actually available and where.",
+        body: "Stock, orders and customer records connected, so your website can show what is really available, and where.",
       },
       {
-        title: "Treat local search as a channel",
-        body: "Business profiles, consistent details and genuinely useful store pages, since this is where local intent converts.",
+        title: "Show up in local searches",
+        body: "Google Business Profile, the same details everywhere online, and genuinely useful branch pages, because that is where nearby buyers decide.",
       },
       {
-        title: "Design store pages properly",
-        body: "Stock, staff, services, parking, accessibility, live hours and directions — the specifics people are actually looking for.",
+        title: "Branch pages that help",
+        body: "Stock, staff, services, parking, access, live opening hours and directions: the details people actually look for.",
       },
       {
-        title: "Measure the store effect",
-        body: "Store locator use, click-and-collect and direction requests tracked, so online's contribution to physical sales becomes visible.",
+        title: "Measure what online brings to the shop",
+        body: "Store finder use, pick-up orders and direction requests tracked, so you can see what online adds to your in-store sales.",
       },
     ],
-    services: [
-      "web-development",
-      "ecommerce-development",
-      "search-engine-optimization",
-      "performance-marketing",
-      "automation-integrations",
-    ],
+    services: ["web-development", "ecommerce-development", "search-engine-optimization", "performance-marketing", "automation-integrations"],
     considerations: [
-      "Consistent name, address and phone details across every listing",
-      "Local business structured data per location",
-      "Stock visibility, which is the main reason people check before travelling",
-      "Opening hours accurate through holidays and exceptions",
+      "The same name, address and phone number on every listing",
+      "Each branch set up so Google can show it in local results",
+      "Stock shown online, which is the main reason people check before visiting",
+      "Opening hours kept right through holidays and exceptions",
     ],
     faqs: [
       {
-        question: "Can you build a store locator with live stock?",
+        question: "Can you show live stock for each branch?",
         answer:
-          "Yes, provided your stock system can expose availability by location. Where it cannot, we will be direct about that limitation rather than showing customers a number that is wrong.",
+          "Yes, if your stock system can share availability by branch. Where it cannot, we will tell you plainly, rather than show customers a number that is wrong.",
       },
       {
-        question: "How do we handle many locations without duplicate content?",
+        question: "How do we have many branch pages without repeating ourselves?",
         answer:
-          "Each location page needs genuinely specific content — its own staff, services, stock, parking and local information. A template with the town name swapped is exactly what search engines treat as low quality.",
+          "Each branch page needs its own details: staff, services, stock, parking and local information. A template with only the area name swapped is exactly what Google treats as low quality.",
       },
     ],
   },

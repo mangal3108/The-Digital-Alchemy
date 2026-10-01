@@ -13,12 +13,13 @@ import { Button } from "@/components/ui/button";
 import { revealProps } from "@/lib/reveal";
 import { buildMetadata, breadcrumbSchema } from "@/lib/seo";
 import { getPublishedClients } from "@/lib/content";
+import { PRIMARY_CTA } from "@/config/site";
 
 export async function generateMetadata(): Promise<Metadata> {
   return buildMetadata({
-    title: "Clients | The Digital Alchemy",
+    title: "Our Clients | The Digital Alchemy",
     description:
-      "The businesses we work with, the sectors they operate in, and what they say about working with us.",
+      "The businesses we work with, named only with their permission, and what they say about working with us.",
     path: "/clients",
   });
 }
@@ -42,13 +43,13 @@ export default async function ClientsPage() {
         lede={
           clients.length
             ? "Every business listed here has agreed to be named. Some of our work is under agreements that do not allow it, so this is not the full picture."
-            : "We name clients and show logos only where the client has explicitly agreed. Until those permissions are in place this page stays empty rather than filled with marks we have no right to use."
+            : "We only name a client or show their logo when they have agreed to it. Until then, this page stays empty rather than showing logos we have no right to use."
         }
         crumbs={crumbs}
         primaryCta={
           clients.length
             ? undefined
-            : { label: "Start a Project", href: "/start-a-project" }
+            : { label: PRIMARY_CTA.label, href: PRIMARY_CTA.href }
         }
               bleedImage={getOptionalBrandImage("hero-clients")}
         bleedImageAlt=""
@@ -111,28 +112,23 @@ export default async function ClientsPage() {
           >
             <SectionHeading
               title="Why this page is empty"
-              lede="It is a deliberate choice, not an oversight."
+              lede="It is on purpose, not a mistake."
             />
             <p className="mt-5 text-[0.9375rem] leading-relaxed text-ink-muted">
-              Logo walls are the easiest thing on an agency site to fake, and
-              the hardest thing for a prospective client to verify. We would
-              rather have an empty page than borrow credibility we have not been
-              given permission to use.
+              Client logos are the easiest thing on an agency website to fake,
+              and the hardest thing for you to check. We would rather show an
+              empty page than borrow trust we have not been given.
             </p>
             <p className="mt-3 text-[0.9375rem] leading-relaxed text-ink-muted">
-              If you would like references, we can arrange for you to speak to
-              clients directly — which is more useful than a logo anyway.
+              If you would like a reference, we can arrange for you to speak to
+              a client directly, where they agree to it. That is more useful than
+              a logo anyway.
             </p>
             <div className="mt-7">
-              <Button href="/start-a-project" withArrow>
-                Ask for references
+              <Button href={PRIMARY_CTA.href} withArrow>
+                {PRIMARY_CTA.label}
               </Button>
             </div>
-            <p className="mt-7 border-t border-hairline pt-5 text-[0.8125rem] leading-relaxed text-ink-subtle">
-              Note for the site administrator: clients added under
-              Admin → Clients appear here once published. Logos additionally
-              require the &ldquo;approved for logo use&rdquo; flag.
-            </p>
           </div>
         </Section>
       )}
@@ -142,7 +138,6 @@ export default async function ClientsPage() {
       <CtaSection
         title="Could we be working with you?"
         body="Tell us what you are trying to build or grow, and we will tell you honestly whether we are the right team."
-        secondary={{ label: "See our work", href: "/work" }}
       />
 
       <JsonLd id="breadcrumb-schema" data={breadcrumbSchema(crumbs)} />

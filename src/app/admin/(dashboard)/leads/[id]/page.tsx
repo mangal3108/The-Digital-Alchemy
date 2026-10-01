@@ -9,6 +9,7 @@ import { Badge, Card, PageHeader } from "@/components/admin/ui";
 import { LEAD_STATUS_TONES } from "@/components/admin/lead-status";
 import { formatDateTime, parseJson } from "@/lib/utils";
 import { LeadControls, LeadNoteForm } from "./lead-controls";
+import { enquiryLabel } from "@/lib/validation";
 
 export const metadata = { title: "Lead" };
 export const dynamic = "force-dynamic";
@@ -34,7 +35,7 @@ export default async function LeadDetailPage({
 
   if (!lead) notFound();
 
-  const services = parseJson<string[]>(lead.services, []);
+  const services = parseJson<string[]>(lead.services, []).map(enquiryLabel);
   const editable = can(user.role, "leads.manage");
 
   const assignees = editable
@@ -56,7 +57,7 @@ export default async function LeadDetailPage({
   ];
 
   const details: [string, string | null][] = [
-    ["Email", lead.email],
+    ["Email", lead.email || null],
     ["Phone", lead.phone],
     ["Company", lead.company],
     ["Country", lead.country],

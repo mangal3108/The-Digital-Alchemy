@@ -1,13 +1,15 @@
 import Link from "next/link";
+import Image from "next/image";
 import { Mail, MapPin, Phone } from "lucide-react";
 
 import { Logo } from "@/components/ui/logo";
 import { Button } from "@/components/ui/button";
 import { footerColumns } from "@/content/navigation";
-import { getSiteSettings, formatAddress } from "@/lib/settings";
+import { getSiteSettings, formatAddress, whatsappLink } from "@/lib/settings";
 import { PRIMARY_CTA } from "@/config/site";
 import { AlchemyCore } from "@/components/visuals/alchemy-core";
 import { BrandImage } from "@/components/ui/brand-image";
+import { getLogo } from "@/content/logos";
 
 const SOCIAL_LABELS: Record<string, string> = {
   linkedin: "LinkedIn",
@@ -23,6 +25,7 @@ const SOCIAL_LABELS: Record<string, string> = {
 export async function Footer() {
   const settings = await getSiteSettings();
   const address = formatAddress(settings);
+  const whatsapp = whatsappLink(settings, "Hi, I would like to talk about a project.");
   const socials = Object.entries(settings.social).filter(([, value]) => value);
   const year = new Date().getFullYear();
 
@@ -61,29 +64,54 @@ export async function Footer() {
                 viewport, and body's overflow-x:clip hides the damage rather
                 than revealing it as a scrollbar. */}
             <div className="min-w-0 max-w-2xl">
-              <p className="eyebrow">Start an AI Project</p>
+              <p className="eyebrow">Talk to us</p>
               <h2 className="mt-4 text-display-2 text-ink">
-                Have an AI-ready product or workflow worth automating?
+                Tell us what you need.
               </h2>
               <p className="mt-5 max-w-xl text-lede text-ink-muted">
-                Tell us what you are building. From autonomous agent pipelines to AI-ready SaaS platforms, we architect intelligent systems engineered to compound in value.
+                A website, an app, a tool that saves you time, or more
+                customers. We will give you honest advice, even if it means
+                telling you what you do not need.
               </p>
+              {/*
+                The closing call to action on every page: one button, plus
+                WhatsApp and phone, because many visitors in India would
+                rather message or call than fill in a form. Email is in the
+                directory directly below.
+              */}
               <div className="mt-8 flex flex-wrap items-center gap-3">
-                <Button href={PRIMARY_CTA.href} size="lg" withArrow className="bg-white text-ink hover:bg-white/90">
+                {/* No colour override: on this dark band the primary button already
+                    inverts to light-on-dark. "text-ink" here is near-white, which
+                    made the label invisible on a white button. */}
+                <Button href={PRIMARY_CTA.href} size="lg" withArrow>
                   {PRIMARY_CTA.label}
                 </Button>
-                {settings.email ? (
-                  <Button
-                    href={`mailto:${settings.email}`}
-                    variant="secondary"
-                    size="lg"
-                    data-analytics="email_click"
-                    className="h-auto max-w-full whitespace-normal break-all py-3.5 text-left"
-                  >
-                    {settings.email}
+                {whatsapp ? (
+                  <Button href={whatsapp} variant="secondary" size="lg">
+                    <span className="inline-flex items-center gap-2">
+                      <Image
+                        src="/logos/whatsapp.svg"
+                        alt="WhatsApp"
+                        width={18}
+                        height={18}
+                        className="size-4.5 object-contain"
+                      />
+                      <span>Message us on WhatsApp</span>
+                    </span>
                   </Button>
                 ) : null}
               </div>
+              {settings.phone ? (
+                <p className="mt-5 text-[0.9375rem] text-ink-muted">
+                  Prefer to talk? Call{" "}
+                  <a
+                    href={`tel:${settings.phoneE164 || settings.phone}`}
+                    className="font-medium text-ink underline underline-offset-4"
+                  >
+                    {settings.phone}
+                  </a>
+                </p>
+              ) : null}
             </div>
 
             {/* The payoff. The core returns here holding the full palette —
@@ -146,18 +174,32 @@ export async function Footer() {
 
             {socials.length ? (
               <ul className="mt-6 flex flex-wrap gap-x-4 gap-y-2">
-                {socials.map(([key, url]) => (
-                  <li key={key}>
-                    <a
-                      href={url}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-sm text-ink-muted underline-offset-4 transition-colors duration-[var(--duration-fast)] hover:text-ink hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus"
-                    >
-                      {SOCIAL_LABELS[key] ?? key}
-                    </a>
-                  </li>
-                ))}
+                {socials.map(([key, url]) => {
+                  const logo = getLogo(key);
+                  return (
+                    <li key={key}>
+                      <a
+                        href={url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-1.5 text-sm text-ink-muted underline-offset-4 transition-colors duration-[var(--duration-fast)] hover:text-ink hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus"
+                      >
+                        {logo ? (
+                          <span className="relative flex size-3.5 shrink-0 items-center justify-center">
+                            <Image
+                              src={logo.files.color}
+                              alt=""
+                              width={14}
+                              height={14}
+                              className="size-full object-contain"
+                            />
+                          </span>
+                        ) : null}
+                        <span>{SOCIAL_LABELS[key] ?? key}</span>
+                      </a>
+                    </li>
+                  );
+                })}
               </ul>
             ) : null}
           </div>
@@ -192,6 +234,11 @@ export async function Footer() {
           <p>
             {settings.footerNote ||
               "Working with clients in India, the United States, Australia and worldwide."}
+          </p>
+        </div>
+        <div className="container-page pb-6 text-[0.75rem] leading-relaxed text-ink-subtle/80">
+          <p>
+            All product names, logos, and brands are property of their respective owners and are used for identification purposes only. Use does not imply endorsement.
           </p>
         </div>
       </div>

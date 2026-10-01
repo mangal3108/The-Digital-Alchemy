@@ -22,6 +22,16 @@ export interface FeaturedNavItem {
   category: string;
 }
 
+/**
+ * How the six groups share three columns. "Get more customers" has eight
+ * services, so it gets a column to itself; the smaller groups stack.
+ */
+const MENU_STACKS: string[][] = [
+  ["website", "software"],
+  ["customers"],
+  ["automation", "design", "running"],
+];
+
 export function Navbar({ featured }: { featured: FeaturedNavItem | null }) {
   const pathname = usePathname();
   const [scrolled, setScrolled] = React.useState(false);
@@ -43,6 +53,18 @@ export function Navbar({ featured }: { featured: FeaturedNavItem | null }) {
     setOpenMenu(null);
     setMobileOpen(false);
   }, [pathname]);
+
+  // Announce an open menu on <html> so fixed-position widgets can step aside.
+  // The chat launcher is pinned bottom-right, and on a short laptop window the
+  // mega menu reaches down to the same spot: "Start a Project" sat underneath
+  // the launcher, so clicking it opened the chat instead. The launcher reads
+  // this attribute in CSS, which keeps the two components independent.
+  React.useEffect(() => {
+    const root = document.documentElement;
+    if (openMenu || mobileOpen) root.setAttribute("data-nav-open", "");
+    else root.removeAttribute("data-nav-open");
+    return () => root.removeAttribute("data-nav-open");
+  }, [openMenu, mobileOpen]);
 
   // Escape closes the mega menu and returns focus to the trigger.
   React.useEffect(() => {
@@ -208,43 +230,73 @@ export function Navbar({ featured }: { featured: FeaturedNavItem | null }) {
               : "pointer-events-none invisible -translate-y-1 opacity-0",
           )}
         >
-          <div className="container-page py-8">
+          {/*
+            Capped to the space under the header: with a one-line description
+            under every service the panel is tall, and on a short laptop window
+            it would otherwise run off the bottom of the screen.
+          */}
+          <div className="container-page max-h-[calc(100dvh-var(--header-height))] overflow-y-auto py-6">
             <div className="grid grid-cols-12 gap-8">
-              <div className="col-span-9 grid grid-cols-4 gap-x-6 gap-y-8">
-                {megaMenuColumns.map((column) => (
-                  <div key={column.key}>
-                    <p className="eyebrow">{column.label}</p>
-                    <p className="mt-1.5 text-[0.8125rem] leading-snug text-ink-subtle">
-                      {column.blurb}
-                    </p>
-                    <ul className="mt-3.5 space-y-0.5">
-                      {column.links.map((link) => (
-                        <li key={link.href}>
-                          <Link
-                            href={link.href}
-                            className="block rounded-sm px-2 py-1.5 -mx-2 text-[0.875rem] font-medium text-ink-muted transition-colors duration-[var(--duration-fast)] hover:bg-surface-2 hover:text-ink focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus"
-                          >
-                            {link.label}
-                          </Link>
-                        </li>
-                      ))}
-                    </ul>
+              <div className="col-span-9 grid grid-cols-3 gap-x-8">
+                {MENU_STACKS.map((keys) => (
+                  <div key={keys.join("-")} className="space-y-6">
+                    {keys.map((key) => {
+                      const column = megaMenuColumns.find((c) => c.key === key);
+                      if (!column) return null;
+                      return (
+                        <div key={column.key}>
+                          <p className="eyebrow">{column.label}</p>
+                          <p className="mt-1.5 text-[0.8125rem] leading-snug text-ink-subtle">
+                            {column.blurb}
+                          </p>
+                          <ul className="mt-3 space-y-0.5">
+                            {column.links.map((link) => (
+                              <li key={link.href}>
+                                <Link
+                                  href={link.href}
+                                  className="block rounded-sm px-2 py-1 -mx-2 transition-colors duration-[var(--duration-fast)] hover:bg-surface-2 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus"
+                                >
+                                  <span className="block text-[0.875rem] font-medium text-ink">
+                                    {link.label}
+                                  </span>
+                                  {link.description ? (
+                                    <span className="mt-0.5 block text-[0.8125rem] leading-snug text-ink-muted">
+                                      {link.description}
+                                    </span>
+                                  ) : null}
+                                </Link>
+                              </li>
+                            ))}
+                          </ul>
+                        </div>
+                      );
+                    })}
                   </div>
                 ))}
               </div>
 
-              <div className="col-span-3">
+              {/*
+                The actions live here, top right, rather than in a row under
+                the groups: with a description under every service the groups
+                are tall, and a bottom row fell below the fold on an 800px-high
+                laptop screen. Up here they are visible at any height.
+              */}
+              <div className="col-span-3 space-y-4">
+                <div className="rounded-lg border border-hairline bg-surface p-5">
+                  <p className="eyebrow">Not sure what you need?</p>
+                  <p className="mt-2 text-[0.9375rem] leading-relaxed text-ink">
+                    Answer a few quick questions and we will point you to the
+                    right service.
+                  </p>
+                  <div className="mt-4">
+                    <TextLink href="/services#help-me-choose">Help me choose</TextLink>
+                  </div>
+                </div>
                 <FeaturedPanel featured={featured} />
-              </div>
-            </div>
-
-            <div className="mt-8 flex items-center justify-between border-t border-hairline pt-5">
-              <p className="text-sm text-ink-muted">
-                Not sure which you need? Start with a conversation.
-              </p>
-              <div className="flex items-center gap-5">
-                <TextLink href="/services">All services</TextLink>
-                <TextLink href={PRIMARY_CTA.href}>{PRIMARY_CTA.label}</TextLink>
+                <div className="flex items-center gap-5 px-1">
+                  <TextLink href="/services">All services</TextLink>
+                  <TextLink href={PRIMARY_CTA.href}>{PRIMARY_CTA.label}</TextLink>
+                </div>
               </div>
             </div>
           </div>
@@ -295,11 +347,11 @@ function FeaturedPanel({ featured }: { featured: FeaturedNavItem | null }) {
     <div className="rounded-lg border border-hairline bg-surface p-5">
       <p className="eyebrow">How we work</p>
       <p className="mt-2 font-display text-lg font-semibold leading-tight tracking-[-0.02em] text-ink">
-        Strategy, design, engineering and growth in one team.
+        One team, start to finish.
       </p>
       <p className="mt-2 text-[0.875rem] leading-relaxed text-ink-muted">
-        Most projects fail in the handovers between those four. We removed the
-        handovers.
+        One team plans, designs, builds and markets your project, so nothing
+        gets lost between teams.
       </p>
       <div className="mt-4">
         <TextLink href="/about">How we work</TextLink>

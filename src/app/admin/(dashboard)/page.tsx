@@ -189,7 +189,7 @@ export default async function AdminDashboard({
                             {lead.name}
                           </Link>
                           <span className="block text-[0.75rem] text-ink-subtle">
-                            {lead.company || lead.email}
+                            {lead.company || lead.email || lead.phone}
                           </span>
                         </Td>
                         <Td>

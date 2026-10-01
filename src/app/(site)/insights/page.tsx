@@ -4,21 +4,22 @@ import Link from "next/link";
 import Image from "next/image";
 
 import { PageHero } from "@/components/sections/page-hero";
+import { BrandLogos } from "@/components/ui/brand-logos";
 import { Section } from "@/components/ui/section-heading";
 import { SectionBackdrop } from "@/components/visuals/section-backdrop";
 import { CtaSection } from "@/components/sections/cta";
 import { JsonLd } from "@/components/ui/json-ld";
-import { Button } from "@/components/ui/button";
 import { revealProps } from "@/lib/reveal";
 import { buildMetadata, breadcrumbSchema } from "@/lib/seo";
 import { getCategories, getPublishedPosts } from "@/lib/content";
 import { formatDate } from "@/lib/utils";
+import { PRIMARY_CTA } from "@/config/site";
 
 export async function generateMetadata(): Promise<Metadata> {
   return buildMetadata({
-    title: "Insights — Notes on Product, Software & Growth | The Digital Alchemy",
+    title: "Articles on Websites, Apps & Marketing | The Digital Alchemy",
     description:
-      "Practical writing on SaaS and software development, web and app builds, design, SEO and digital marketing — from a studio that does the work.",
+      "Practical articles on websites, apps, AI tools, Google and online marketing, written by the people who do the work.",
     path: "/insights",
   });
 }
@@ -42,21 +43,42 @@ export default async function InsightsPage() {
         eyebrow="Insights"
         title={
           posts.length
-            ? "Notes on building and growing digital products."
-            : "We are writing this properly rather than quickly."
+            ? "Articles on websites, apps and getting more customers."
+            : "Articles on websites, apps and marketing, coming soon."
         }
         lede={
           posts.length
-            ? "Written by the people doing the work, about decisions we have actually had to make. No listicles."
-            : "Rather than publish filler to fill a blog, articles will appear here as we write them — practical pieces on the decisions that come up in real projects."
+            ? "Written by the people doing the work, about real decisions we have had to make. No filler."
+            : "We would rather write useful articles than fill a blog. They will appear here as we write them, on the real decisions that come up in projects."
         }
         crumbs={crumbs}
         primaryCta={
-          posts.length ? undefined : { label: "Start a Project", href: "/start-a-project" }
+          posts.length ? undefined : { label: PRIMARY_CTA.label, href: PRIMARY_CTA.href }
         }
               bleedImage={getOptionalBrandImage("hero-insights")}
         bleedImageAlt=""
       />
+
+      {/* ---- Topic topics & platform badges ---- */}
+      <section className="border-b border-hairline bg-surface/60 py-6 sm:py-7">
+        <div className="container-page">
+          <BrandLogos
+            slugs={[
+              "google-ads",
+              "meta",
+              "shopify",
+              "nextjs",
+              "wordpress",
+              "ga4",
+              "openai",
+              "aws",
+            ]}
+            title="Platforms and technologies covered in our articles"
+            layout="strip"
+            size="md"
+          />
+        </div>
+      </section>
 
       {posts.length ? (
         <Section size="sm" className="relative overflow-hidden">
@@ -173,13 +195,13 @@ export default async function InsightsPage() {
             {...revealProps()}
             className="relative mx-auto max-w-3xl rounded-lg border border-hairline bg-surface p-7 sm:p-10"
           >
-            <h2 className="text-title text-ink">What will be here</h2>
+            <h2 className="text-title text-ink">What we are writing about</h2>
             <ul className="mt-5 space-y-3">
               {[
-                "How we scope a SaaS first release, and what we deliberately leave out.",
-                "The checkout and product-page changes that move e-commerce conversion.",
-                "What actually causes a site migration to lose search visibility.",
-                "Choosing between custom software and configuring something off the shelf.",
+                "How we plan the first version of a software product, and what we leave out.",
+                "The checkout and product page changes that help online stores sell more.",
+                "Why moving a website can lose your Google rankings, and how to avoid it.",
+                "Custom software or something ready-made: how to choose.",
               ].map((item) => (
                 <li
                   key={item}
@@ -193,24 +215,20 @@ export default async function InsightsPage() {
                 </li>
               ))}
             </ul>
-            <div className="mt-8">
-              <Button href="/start-a-project" withArrow>
-                Ask us directly instead
-              </Button>
-            </div>
-            <p className="mt-7 border-t border-hairline pt-5 text-[0.8125rem] leading-relaxed text-ink-subtle">
-              Note for the site administrator: articles written under
-              Admin → Insights appear here once published.
+            <p className="mt-6 text-[0.9375rem] leading-relaxed text-ink-muted">
+              Have a question about one of these now? Ask us directly, using the
+              button at the top or the call and WhatsApp options below.
             </p>
           </div>
         </Section>
       )}
 
-      <CtaSection
-        title="Have a question we have not written about?"
-        body="Ask it directly. We would rather answer the specific version of your question than point you at a general article."
-        secondary={{ label: "See our services", href: "/services" }}
-      />
+      {posts.length ? (
+        <CtaSection
+          title="Have a question we have not written about?"
+          body="Ask it directly. We would rather answer the specific version of your question than point you at a general article."
+        />
+      ) : null}
 
       <JsonLd id="breadcrumb-schema" data={breadcrumbSchema(crumbs)} />
     </>

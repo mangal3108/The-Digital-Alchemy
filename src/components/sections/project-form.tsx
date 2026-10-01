@@ -2,34 +2,28 @@
 
 import * as React from "react";
 import { usePathname } from "next/navigation";
-import { ArrowLeft, Check } from "lucide-react";
+import { Check } from "lucide-react";
 
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
-import { Field, Input, Textarea, ChoiceCard } from "@/components/ui/field";
-import {
-  BUDGET_OPTIONS,
-  ENQUIRY_SERVICE_OPTIONS,
-  TIMELINE_OPTIONS,
-} from "@/lib/validation";
+import { Field, Input, Select, Textarea } from "@/components/ui/field";
+import { ENQUIRY_NEED_OPTIONS, enquiryNeedFor } from "@/lib/validation";
 import { track } from "@/components/site/analytics-events";
 
 /**
- * Progressive project enquiry form.
+ * The enquiry form: as short as it can be (Phase 6).
  *
- * Deliberate choices:
- *  - Four short steps rather than one long form. The first question is easy
- *    and requires no typing, which is what gets people started.
- *  - Every step validates before advancing, and the server validates all of it
- *    again — the client checks are for feedback, not for trust.
- *  - Attribution (UTMs, referrer, landing page) is captured silently on mount
- *    so a lead arrives with its source attached.
- *  - Spam handling is a honeypot plus a submission-timing check, not a CAPTCHA.
- *    A CAPTCHA on a B2B enquiry form costs more conversions than it prevents
- *    spam.
+ * Four fields: name, a phone or WhatsApp number, what they need (the six
+ * service groups, as a dropdown), and an optional message. Most visitors are
+ * on a phone and would rather be called than type, so there is no email,
+ * budget or timeline step. We ask those on the call.
+ *
+ * Kept from the earlier form:
+ *  - The server validates everything again; the browser checks are feedback.
+ *  - Attribution (UTMs, referrer, landing page) is captured silently, so a
+ *    lead arrives with its source attached.
+ *  - Spam handling is a honeypot plus a timing check, not a CAPTCHA.
  */
-
-const STEPS = ["Service", "Budget", "Timeline", "Details"] as const;
 
 interface Attribution {
   sourcePage: string;
@@ -54,24 +48,20 @@ const EMPTY_ATTRIBUTION: Attribution = {
 export function ProjectForm({
   compact = false,
   defaultService,
+  replyTime = "",
 }: {
   compact?: boolean;
+  /** A service slug or group key, e.g. from /start-a-project?service=google-ads. */
   defaultService?: string;
+  /** From Admin → Settings. Empty means we promise no reply time. */
+  replyTime?: string;
 }) {
   const pathname = usePathname();
 
-  const [step, setStep] = React.useState(0);
-  const [services, setServices] = React.useState<string[]>(
-    defaultService ? [defaultService] : [],
-  );
-  const [budget, setBudget] = React.useState("");
-  const [timeline, setTimeline] = React.useState("");
   const [details, setDetails] = React.useState({
     name: "",
-    company: "",
-    email: "",
     phone: "",
-    country: "",
+    need: enquiryNeedFor(defaultService),
     message: "",
   });
 
@@ -84,8 +74,6 @@ export function ProjectForm({
   const [submitting, setSubmitting] = React.useState(false);
   const [submitted, setSubmitted] = React.useState(false);
   const [formError, setFormError] = React.useState<string | null>(null);
-
-  const headingRef = React.useRef<HTMLParagraphElement>(null);
 
   // Capture attribution once, on mount.
   React.useEffect(() => {
@@ -102,53 +90,25 @@ export function ProjectForm({
     });
   }, [pathname]);
 
-  // Move focus to the new step so keyboard and screen-reader users follow it.
-  React.useEffect(() => {
-    if (step > 0) headingRef.current?.focus();
-  }, [step]);
-
-  function toggleService(value: string) {
-    setServices((current) =>
-      current.includes(value)
-        ? current.filter((item) => item !== value)
-        : [...current, value],
-    );
-    setErrors((current) => ({ ...current, services: "" }));
+  function update(field: keyof typeof details, value: string) {
+    setDetails((current) => ({ ...current, [field]: value }));
+    if (errors[field]) setErrors((current) => ({ ...current, [field]: "" }));
   }
 
-  function validateStep(index: number): boolean {
+  function validate(): boolean {
     const next: Record<string, string> = {};
-
-    if (index === 0 && services.length === 0) {
-      next.services = "Pick at least one so we know who should read this.";
+    if (details.name.trim().length < 2) next.name = "Please enter your name.";
+    if (details.phone.replace(/\D/g, "").length < 7) {
+      next.phone = "Please enter a phone or WhatsApp number we can reach you on.";
     }
-    if (index === 3) {
-      if (details.name.trim().length < 2) next.name = "Please enter your name.";
-      if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(details.email.trim())) {
-        next.email = "Please enter a valid email address.";
-      }
-      if (details.message.trim().length < 10) {
-        next.message = "A sentence or two about the project is enough.";
-      }
-    }
-
+    if (!details.need) next.need = "Please choose one. “Not sure yet” is fine.";
     setErrors(next);
     return Object.keys(next).length === 0;
   }
 
-  function goNext() {
-    if (!validateStep(step)) return;
-    setStep((current) => Math.min(STEPS.length - 1, current + 1));
-  }
-
-  function goBack() {
-    setFormError(null);
-    setStep((current) => Math.max(0, current - 1));
-  }
-
   async function handleSubmit(event: React.FormEvent) {
     event.preventDefault();
-    if (!validateStep(3)) return;
+    if (!validate()) return;
 
     setSubmitting(true);
     setFormError(null);
@@ -158,10 +118,10 @@ export function ProjectForm({
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          ...details,
-          services,
-          budget,
-          timeline,
+          name: details.name,
+          phone: details.phone,
+          services: [details.need],
+          message: details.message,
           ...attribution,
           website: honeypot,
           elapsedMs: Date.now() - mountedAt.current,
@@ -175,21 +135,20 @@ export function ProjectForm({
       };
 
       if (!response.ok || !data.ok) {
-        if (data.fields) setErrors(data.fields);
+        if (data.fields) {
+          // The server knows the need as "services"; show it on the dropdown.
+          const { services, ...rest } = data.fields;
+          setErrors(services ? { ...rest, need: services } : rest);
+        }
         setFormError(data.error ?? "Something went wrong. Please try again.");
-        setSubmitting(false);
         return;
       }
 
-      track("contact_submit", {
-        services: services.join(","),
-        budget,
-        timeline,
-      });
+      track("contact_submit", { services: details.need });
       setSubmitted(true);
     } catch {
       setFormError(
-        "We could not reach the server. Please check your connection, or email us directly.",
+        "We could not reach the server. Please check your connection, or call or WhatsApp us instead.",
       );
     } finally {
       setSubmitting(false);
@@ -197,7 +156,7 @@ export function ProjectForm({
   }
 
   if (submitted) {
-    return <ThankYou />;
+    return <ThankYou replyTime={replyTime} />;
   }
 
   return (
@@ -209,258 +168,103 @@ export function ProjectForm({
         compact ? "p-5 sm:p-6" : "p-6 sm:p-8",
       )}
     >
-      {/* ---- Progress ---- */}
-      <div className="flex items-center gap-2">
-        {STEPS.map((label, index) => (
-          <div key={label} className="flex flex-1 flex-col gap-1.5">
-            <span
-              className={cn(
-                "h-1 rounded-full transition-colors duration-[var(--duration-standard)]",
-                index <= step ? "bg-accent" : "bg-surface-3",
-              )}
-            />
-            <span
-              className={cn(
-                "hidden text-[0.6875rem] font-medium uppercase tracking-[0.1em] sm:block",
-                index <= step ? "text-ink-muted" : "text-ink-subtle",
-              )}
-            >
-              {label}
-            </span>
-          </div>
-        ))}
-      </div>
-
-      <p
-        ref={headingRef}
-        tabIndex={-1}
-        aria-live="polite"
-        className="mt-6 text-[0.75rem] font-medium uppercase tracking-[0.12em] text-ink-subtle outline-none"
-      >
-        Step {step + 1} of {STEPS.length}
+      <h2 className="text-title text-ink">Tell us what you need</h2>
+      <p className="mt-2 text-[0.9375rem] text-ink-muted">
+        Four questions. We will call or WhatsApp you back.
       </p>
 
-      {/* ---- Step 1: services ---- */}
-      {step === 0 ? (
-        <fieldset className="mt-3">
-          <legend className="text-title text-ink">
-            What do you need help with?
-          </legend>
-          <p className="mt-2 text-[0.9375rem] text-ink-muted">
-            Choose as many as apply. This only decides who reads it first.
-          </p>
-
-          <div className="mt-5 grid gap-2 sm:grid-cols-2">
-            {ENQUIRY_SERVICE_OPTIONS.map((option) => (
-              <ChoiceCard
-                key={option.value}
-                label={option.label}
-                selected={services.includes(option.value)}
-                onSelect={() => toggleService(option.value)}
-              />
-            ))}
-          </div>
-
-          {errors.services ? (
-            <p role="alert" className="mt-3 text-[0.8125rem] font-medium text-danger">
-              {errors.services}
-            </p>
-          ) : null}
-        </fieldset>
-      ) : null}
-
-      {/* ---- Step 2: budget ---- */}
-      {step === 1 ? (
-        <fieldset className="mt-3">
-          <legend className="text-title text-ink">
-            Roughly what budget are you working with?
-          </legend>
-          <p className="mt-2 text-[0.9375rem] text-ink-muted">
-            A range is fine, and &ldquo;not sure&rdquo; is a legitimate answer —
-            it just changes how we scope the first conversation.
-          </p>
-
-          <div className="mt-5 grid gap-2">
-            {BUDGET_OPTIONS.map((option) => (
-              <ChoiceCard
-                key={option.value}
-                type="radio"
-                name="budget"
-                label={option.label}
-                selected={budget === option.value}
-                onSelect={() => setBudget(option.value)}
-              />
-            ))}
-          </div>
-        </fieldset>
-      ) : null}
-
-      {/* ---- Step 3: timeline ---- */}
-      {step === 2 ? (
-        <fieldset className="mt-3">
-          <legend className="text-title text-ink">
-            When would you want to start?
-          </legend>
-          <p className="mt-2 text-[0.9375rem] text-ink-muted">
-            Researching for later is genuinely fine. We would rather know than
-            guess.
-          </p>
-
-          <div className="mt-5 grid gap-2 sm:grid-cols-2">
-            {TIMELINE_OPTIONS.map((option) => (
-              <ChoiceCard
-                key={option.value}
-                type="radio"
-                name="timeline"
-                label={option.label}
-                selected={timeline === option.value}
-                onSelect={() => setTimeline(option.value)}
-              />
-            ))}
-          </div>
-        </fieldset>
-      ) : null}
-
-      {/* ---- Step 4: details ---- */}
-      {step === 3 ? (
-        <div className="mt-3">
-          <h3 className="text-title text-ink">How do we reach you?</h3>
-          <p className="mt-2 text-[0.9375rem] text-ink-muted">
-            A real person reads every one of these.
-          </p>
-
-          <div className="mt-5 grid gap-4 sm:grid-cols-2">
-            <Field label="Name" required error={errors.name}>
-              {({ id, describedBy, invalid }) => (
-                <Input
-                  id={id}
-                  name="name"
-                  autoComplete="name"
-                  value={details.name}
-                  aria-describedby={describedBy}
-                  invalid={invalid}
-                  onChange={(event) =>
-                    setDetails({ ...details, name: event.target.value })
-                  }
-                />
-              )}
-            </Field>
-
-            <Field label="Company" error={errors.company}>
-              {({ id, describedBy, invalid }) => (
-                <Input
-                  id={id}
-                  name="organization"
-                  autoComplete="organization"
-                  value={details.company}
-                  aria-describedby={describedBy}
-                  invalid={invalid}
-                  onChange={(event) =>
-                    setDetails({ ...details, company: event.target.value })
-                  }
-                />
-              )}
-            </Field>
-
-            <Field label="Email" required error={errors.email}>
-              {({ id, describedBy, invalid }) => (
-                <Input
-                  id={id}
-                  name="email"
-                  type="email"
-                  inputMode="email"
-                  autoComplete="email"
-                  value={details.email}
-                  aria-describedby={describedBy}
-                  invalid={invalid}
-                  onChange={(event) =>
-                    setDetails({ ...details, email: event.target.value })
-                  }
-                />
-              )}
-            </Field>
-
-            <Field label="Phone" error={errors.phone}>
-              {({ id, describedBy, invalid }) => (
-                <Input
-                  id={id}
-                  name="tel"
-                  type="tel"
-                  inputMode="tel"
-                  autoComplete="tel"
-                  value={details.phone}
-                  aria-describedby={describedBy}
-                  invalid={invalid}
-                  onChange={(event) =>
-                    setDetails({ ...details, phone: event.target.value })
-                  }
-                />
-              )}
-            </Field>
-
-            <Field
-              label="Country"
-              className="sm:col-span-2"
-              error={errors.country}
-            >
-              {({ id, describedBy, invalid }) => (
-                <Input
-                  id={id}
-                  name="country"
-                  autoComplete="country-name"
-                  value={details.country}
-                  aria-describedby={describedBy}
-                  invalid={invalid}
-                  onChange={(event) =>
-                    setDetails({ ...details, country: event.target.value })
-                  }
-                />
-              )}
-            </Field>
-
-            <Field
-              label="About the project"
-              required
-              className="sm:col-span-2"
-              hint="What are you trying to build or fix, and what does success look like?"
-              error={errors.message}
-            >
-              {({ id, describedBy, invalid }) => (
-                <Textarea
-                  id={id}
-                  name="message"
-                  value={details.message}
-                  aria-describedby={describedBy}
-                  invalid={invalid}
-                  onChange={(event) =>
-                    setDetails({ ...details, message: event.target.value })
-                  }
-                />
-              )}
-            </Field>
-          </div>
-
-          {/* Honeypot — positioned off-screen rather than display:none, which
-              some bots detect. Hidden from assistive technology too. */}
-          <div aria-hidden="true" className="absolute left-[-9999px] top-auto">
-            <label htmlFor="website-url">Website (leave blank)</label>
-            <input
-              id="website-url"
-              name="website"
-              type="text"
-              tabIndex={-1}
-              autoComplete="off"
-              value={honeypot}
-              onChange={(event) => setHoneypot(event.target.value)}
+      <div className="mt-6 grid gap-5">
+        <Field label="Your name" required error={errors.name}>
+          {({ id, describedBy, invalid }) => (
+            <Input
+              id={id}
+              name="name"
+              autoComplete="name"
+              value={details.name}
+              aria-describedby={describedBy}
+              invalid={invalid}
+              onChange={(event) => update("name", event.target.value)}
             />
-          </div>
+          )}
+        </Field>
 
-          <p className="mt-5 text-[0.8125rem] leading-relaxed text-ink-subtle">
-            We use these details only to respond to your enquiry. No lists, no
-            sharing.
-          </p>
-        </div>
-      ) : null}
+        <Field
+          label="Phone or WhatsApp number"
+          required
+          hint="With country code if you are outside India."
+          error={errors.phone}
+        >
+          {({ id, describedBy, invalid }) => (
+            <Input
+              id={id}
+              name="tel"
+              type="tel"
+              inputMode="tel"
+              autoComplete="tel"
+              value={details.phone}
+              aria-describedby={describedBy}
+              invalid={invalid}
+              onChange={(event) => update("phone", event.target.value)}
+            />
+          )}
+        </Field>
+
+        <Field label="What do you need?" required error={errors.need}>
+          {({ id, describedBy, invalid }) => (
+            <Select
+              id={id}
+              name="need"
+              value={details.need}
+              aria-describedby={describedBy}
+              invalid={invalid}
+              onChange={(event) => update("need", event.target.value)}
+            >
+              <option value="" disabled>
+                Choose one
+              </option>
+              {ENQUIRY_NEED_OPTIONS.map((option) => (
+                <option key={option.value} value={option.value}>
+                  {option.label}
+                </option>
+              ))}
+            </Select>
+          )}
+        </Field>
+
+        <Field
+          label="Anything else we should know?"
+          hint="A sentence or two is plenty. You can skip this."
+          error={errors.message}
+        >
+          {({ id, describedBy, invalid }) => (
+            <Textarea
+              id={id}
+              name="message"
+              rows={3}
+              className="min-h-24"
+              value={details.message}
+              aria-describedby={describedBy}
+              invalid={invalid}
+              onChange={(event) => update("message", event.target.value)}
+            />
+          )}
+        </Field>
+      </div>
+
+      {/* Honeypot, positioned off-screen rather than display:none, which
+          some bots detect. Hidden from assistive technology too. */}
+      <div aria-hidden="true" className="absolute left-[-9999px] top-auto">
+        <label htmlFor="website-url">Website (leave blank)</label>
+        <input
+          id="website-url"
+          name="website"
+          type="text"
+          tabIndex={-1}
+          autoComplete="off"
+          value={honeypot}
+          onChange={(event) => setHoneypot(event.target.value)}
+        />
+      </div>
 
       {formError ? (
         <p
@@ -471,37 +275,32 @@ export function ProjectForm({
         </p>
       ) : null}
 
-      {/* ---- Navigation ---- */}
-      <div className="mt-7 flex items-center justify-between gap-3 border-t border-hairline pt-5">
-        {step > 0 ? (
-          <Button type="button" variant="ghost" onClick={goBack} size="sm">
-            <ArrowLeft aria-hidden="true" className="size-4" />
-            Back
-          </Button>
-        ) : (
-          <span />
-        )}
+      <Button
+        type="submit"
+        size="lg"
+        loading={submitting}
+        withArrow
+        className="mt-6 w-full justify-center"
+      >
+        {submitting ? "Sending" : "Send"}
+      </Button>
 
-        {step < STEPS.length - 1 ? (
-          <Button type="button" onClick={goNext} withArrow>
-            Continue
-          </Button>
-        ) : (
-          <Button type="submit" loading={submitting} withArrow>
-            {submitting ? "Sending" : "Send enquiry"}
-          </Button>
-        )}
-      </div>
+      <p className="mt-4 text-[0.8125rem] leading-relaxed text-ink-subtle">
+        {replyTime ? `We reply within ${replyTime}. ` : ""}
+        We use your details only to reply to you. We never share or sell them.
+      </p>
     </form>
   );
 }
 
-function ThankYou() {
+function ThankYou({ replyTime }: { replyTime: string }) {
   const steps = [
-    "We read your enquiry and look at your existing site or product.",
-    "We come back with either questions or a suggested next step.",
-    "If it looks like a fit, a call to talk through scope properly.",
-    "A written proposal with scope, timeline and cost.",
+    replyTime
+      ? `We call or WhatsApp you within ${replyTime}.`
+      : "We call or WhatsApp you on the number you gave.",
+    "We ask a few questions about your business and what you need.",
+    "We suggest a next step, or tell you honestly if we are not the right fit.",
+    "If you want to go ahead, you get a written plan and price.",
   ];
 
   return (
@@ -513,11 +312,11 @@ function ThankYou() {
         <Check aria-hidden="true" className="size-5 text-accent-text" />
       </span>
 
-      <h3 className="mt-5 text-title text-ink">
-        Thanks — your project is now on our radar.
-      </h3>
+      <h2 className="mt-5 text-title text-ink">
+        Thank you. We have your message.
+      </h2>
       <p className="mt-3 text-[0.9375rem] leading-relaxed text-ink-muted">
-        We have sent a confirmation to your email. Here is what happens next.
+        A real person reads every one. Here is what happens next.
       </p>
 
       <ol className="mt-6 space-y-3">
@@ -532,11 +331,6 @@ function ThankYou() {
           </li>
         ))}
       </ol>
-
-      <p className="mt-6 border-t border-hairline pt-5 text-[0.8125rem] leading-relaxed text-ink-subtle">
-        If anything changes in the meantime, just reply to the confirmation
-        email.
-      </p>
     </div>
   );
 }

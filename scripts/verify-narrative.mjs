@@ -7,7 +7,7 @@
  * CDP composites properly, which makes it the only way to check this without
  * asking a human to scroll.
  *
- * Drives the page to each of the six stages and asserts three things per stage:
+ * Drives the page to each stage and asserts three things per stage:
  * the section's accent changes, exactly one visual layer is opaque, and the
  * progress rail fills to the right count.
  *
@@ -19,6 +19,8 @@ import path from "node:path";
 
 const BASE = process.argv[2] || "http://localhost:3100";
 const DEBUG_PORT = 9335;
+/** One per entry in processStages (src/content/process.ts). */
+const STAGES = 4;
 
 const CHROME_CANDIDATES = [
   `${process.env.ProgramFiles}\\Google\\Chrome\\Application\\chrome.exe`,
@@ -182,12 +184,11 @@ try {
     awaitPromise: true,
   });
 
-  const expected = ["blue", "indigo", "violet", "mint", "coral", "tangerine"];
+  // Mirrors STAGE_VISUALS in src/components/sections/process-narrative.tsx.
+  const expected = ["blue", "violet", "coral", "tangerine"];
   const expectedImage = [
     "object-silicon-wafer",
-    "object-machined-forms",
     "service-product-design",
-    "service-custom-software-development",
     "service-saas-development",
     "service-cloud-solutions",
   ];
@@ -231,7 +232,7 @@ try {
 
   console.log("\n  stage  accent      opaque layer                       rail");
 
-  for (let i = 0; i < 6; i++) {
+  for (let i = 0; i < STAGES; i++) {
     const { result } = await cdp.send("Runtime.evaluate", {
       expression: `(async () => {
         const sleep = (ms) => new Promise(r => setTimeout(r, ms));
@@ -282,7 +283,7 @@ try {
 
     console.log(
       `  ${String(i + 1).padStart(5)}  ${String(r.accent).padEnd(11)}` +
-        `${String(r.image).padEnd(36)}${String(r.rail).padStart(2)}/6  ` +
+        `${String(r.image).padEnd(36)}${String(r.rail).padStart(2)}/${STAGES}  ` +
         (ok
           ? "ok"
           : `FAIL${accentOk ? "" : " accent"}${imageOk ? "" : " image"}` +
@@ -297,7 +298,7 @@ try {
 
 console.log(
   failures === 0
-    ? "\n  All six stages advance correctly.\n"
+    ? `\n  All ${STAGES} stages advance correctly.\n`
     : `\n  ${failures} stage(s) did not advance as expected.\n`,
 );
 process.exit(failures === 0 ? 0 : 1);

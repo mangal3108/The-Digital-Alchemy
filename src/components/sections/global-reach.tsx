@@ -30,7 +30,7 @@ export function GlobalReach() {
       <SectionHeading
         eyebrow="Where we work"
         title="Built in India. Working globally."
-        lede="One studio in New Delhi, working remotely with clients in six markets. We are precise about that distinction — these are the places we serve, not places we have offices."
+        lede="Our only office is in New Delhi. We also work with clients in these countries, remotely. They are places we serve, not places we have offices."
       />
 
       <div className="mt-12 grid items-center gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)] lg:gap-14">
@@ -104,10 +104,9 @@ export function GlobalReach() {
           </ul>
 
           <p className="mt-5 text-[0.875rem] leading-relaxed text-ink-muted">
-            Every engagement outside India runs remotely, with a held overlap
-            window for calls and decisions recorded in writing. Each market page
-            sets out the actual time-zone overlap and how contracting works
-            there.
+            Work outside India is done remotely, with set hours for calls and
+            every decision written down. Each country&apos;s page shows the working
+            hours we share and how contracts work there.
           </p>
         </div>
       </div>

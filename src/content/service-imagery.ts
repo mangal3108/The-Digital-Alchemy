@@ -43,6 +43,53 @@ export function getServiceImage(slug: string): BrandImageName | undefined {
   return serviceImagery[slug];
 }
 
+export const serviceAltText: Record<string, string> = {
+  "custom-software-development":
+    "Dual desktop monitors displaying an internal operations dashboard with data tables alongside a tablet system architecture diagram on a dark workspace",
+  "web-development":
+    "Large widescreen display showing a responsive corporate website layout with a vertical code editor and synchronized mobile device on a desk",
+  "saas-development":
+    "Open laptop on a dark desk showing a SaaS product analytics dashboard with recurring revenue graphs and user activity metrics",
+  "mobile-app-development":
+    "Dark-mode smartphone on an aluminum dock displaying application controls with floating translucent UI cards",
+  "web-application-development":
+    "Curved widescreen monitor running an interactive browser application with modular widgets and data feeds",
+  "ui-ux-design":
+    "Designer working on a digital drawing tablet with a stylus sketching mobile wireframe flows next to color swatch chips",
+  "product-design":
+    "Close-up of interactive prototyping wireframes and digital component blueprints on a tablet workspace",
+  branding:
+    "Thick cream stationery debossed with an abstract geometric gold-foil emblem resting on a textured dark slate slab under warm studio light",
+  "ecommerce-development":
+    "Laptop and phone displaying an upscale online store interface with product grid cards, slide-out shopping cart, and checkout summary",
+  "digital-marketing":
+    "Multi-channel marketing intelligence dashboard showing growth trends, conversion attribution charts, and performance heatmaps",
+  "search-engine-optimization":
+    "Curved monitor showing search engine visibility curves, ranking trajectory charts, and site health speedometers in soft mint lighting",
+  "social-media-management":
+    "Mobile creative feed mockups and visual content scheduling cards with engagement metrics",
+  "performance-marketing":
+    "Real-time advertising dashboard showing ROAS analytics, conversion rate indicators, and audience attribution breakdowns",
+  "google-ads":
+    "Search ad management display showing keyword bidding performance curves and conversion rate gauges",
+  "meta-ads":
+    "Smartphone screen displaying social media ad creative cards with performance tags against dark ambient lighting",
+  "lead-generation":
+    "Dark workstation with a laptop alongside a glassmorphic inbound lead capture form card featuring input fields, consent checkbox, and an emerald submit button",
+  "marketing-funnels":
+    "Digital conversion funnel architecture diagram illustrating interconnected landing page and automated sequence stages",
+  "automation-integrations":
+    "Visual node-graph automation canvas connecting modular service endpoints with glowing data flow lines",
+  "cloud-solutions":
+    "Diagnostic laptop displaying automated CI/CD deployment pipelines in a pristine data center server corridor with blue LED lighting",
+  "maintenance-support":
+    "Operations monitoring workstation displaying 24/7 uptime health dashboards with green latency telemetry waves and security shield badges",
+};
+
+export function getServiceAltText(slug: string): string {
+  return serviceAltText[slug] || "Digital technology workspace and interface";
+}
+
 /** Industry pages follow the same pattern, one photograph each. */
 export const industryImagery: Record<string, BrandImageName> = {
   startups: "industry-startups",
@@ -59,3 +106,29 @@ export const industryImagery: Record<string, BrandImageName> = {
 export function getIndustryImage(slug: string): BrandImageName | undefined {
   return industryImagery[slug];
 }
+
+export const industryAltText: Record<string, string> = {
+  startups:
+    "High-growth startup workstation with a laptop showing MVP launch metrics and scaling curves",
+  ecommerce:
+    "E-commerce platform operations interface showing product catalog and order processing feeds",
+  healthcare:
+    "Digital health telemedicine portal and patient consultation scheduling calendar displayed on a tablet",
+  education:
+    "EdTech learning management platform on a laptop displaying course modules and student progress tracking",
+  "real-estate":
+    "Digital property development portal with architectural floor plans and property listing cards",
+  finance:
+    "Secure FinTech banking and investment dashboard displaying portfolio performance and compliance logs",
+  hospitality:
+    "Direct hospitality reservation engine with date selector and boutique suite preview cards",
+  "professional-services":
+    "Executive client portal on a desktop setup showing matter management and automated billing summaries",
+  retail:
+    "Omnichannel retail management terminal showing store inventory levels and customer loyalty sync",
+};
+
+export function getIndustryAltText(slug: string): string {
+  return industryAltText[slug] || "Sector digital technology and interface";
+}
+

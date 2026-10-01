@@ -2,6 +2,7 @@ import { checkPermission } from "@/lib/auth";
 import { db, LEAD_STATUSES } from "@/lib/db";
 import { recordAudit } from "@/lib/audit";
 import { parseJson } from "@/lib/utils";
+import { enquiryLabel } from "@/lib/validation";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -76,7 +77,7 @@ export async function GET(request: Request) {
       lead.phone,
       lead.company,
       lead.country,
-      parseJson<string[]>(lead.services, []).join("; "),
+      parseJson<string[]>(lead.services, []).map(enquiryLabel).join("; "),
       lead.budget,
       lead.timeline,
       lead.message,

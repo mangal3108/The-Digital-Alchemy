@@ -13,6 +13,46 @@
  * business can edit all of them from /admin/settings without a code change.
  */
 
+/**
+ * The one production origin. www + https is what the domain actually serves:
+ * the apex and plain-http variants all 308 here.
+ */
+export const PRODUCTION_ORIGIN = "https://www.thedigitalalchemy.co.in";
+
+/**
+ * Where canonical URLs, the sitemap, robots.txt and Open Graph tags point.
+ *
+ * `NEXT_PUBLIC_SITE_URL` is honoured, except in one case: a loopback address in
+ * a production build. That is never correct, and it is not hypothetical. The
+ * live site shipped `http://localhost:3000` as its canonical on every page, in
+ * all 49 sitemap URLs and in robots.txt, because that value — copied from
+ * `.env.example` — was set in the hosting environment. `??` only falls back
+ * when the variable is absent, so a wrong value went straight through.
+ *
+ * Development keeps whatever is configured, so local links still work.
+ */
+function resolveSiteUrl(): string {
+  const configured = process.env.NEXT_PUBLIC_SITE_URL?.trim().replace(/\/+$/, "");
+  if (!configured) return PRODUCTION_ORIGIN;
+
+  const isLoopback = /^https?:\/\/(localhost|127\.0\.0\.1|0\.0\.0\.0|\[::1\])(:\d+)?$/i.test(
+    configured,
+  );
+  if (isLoopback && process.env.NODE_ENV === "production") {
+    // Once per server process: this module is evaluated by many routes.
+    const flag = globalThis as { __tdaSiteUrlWarned?: boolean };
+    if (typeof window === "undefined" && !flag.__tdaSiteUrlWarned) {
+      flag.__tdaSiteUrlWarned = true;
+      console.warn(
+        `[site] NEXT_PUBLIC_SITE_URL is "${configured}" in a production build. ` +
+          `Ignoring it and using ${PRODUCTION_ORIGIN}. Fix the environment variable.`,
+      );
+    }
+    return PRODUCTION_ORIGIN;
+  }
+  return configured;
+}
+
 export const siteConfig = {
   /** VERIFIED — og:site_name on the live site */
   name: "The Digital Alchemy",
@@ -23,12 +63,12 @@ export const siteConfig = {
    * ads agency. The brief repositions it as a digital product, software and
    * growth studio. This describes capability, not claimed scale.
    */
-  tagline: "AI Automation, AI-Ready Products & Digital Software Studio",
+  tagline: "Websites, apps, AI tools and online marketing",
   shortDescription:
-    "We architect and scale AI automation systems, autonomous workflows, AI-ready SaaS platforms, and digital growth engines for ambitious businesses worldwide.",
+    "We build websites, apps and AI tools, and bring you customers from Google and Instagram. A New Delhi team working with businesses in India and abroad.",
 
-  /** VERIFIED — production domain of the existing site */
-  url: process.env.NEXT_PUBLIC_SITE_URL ?? "https://thedigitalalchemy.co.in",
+  /** The canonical origin. See `resolveSiteUrl` for why this is not read raw. */
+  url: resolveSiteUrl(),
 
   /** VERIFIED — from the live /contact-2/ page */
   email: "support@thedigitalalchemy.co.in",
@@ -111,14 +151,22 @@ export const siteConfig = {
 export type SiteConfig = typeof siteConfig;
 
 /** Primary conversion action, used consistently across the site. */
+/**
+ * The one main call to action, used everywhere. It replaced 22 different
+ * labels ("Scope My SaaS Product", "Map My Automations"…) that each asked for
+ * the same thing. "Free" is a promise about price: it matches what the site
+ * says about the first call ("no obligation"). If that changes, change it here.
+ */
 export const PRIMARY_CTA = {
-  label: "Start a Project",
+  label: "Get a free consultation",
   href: "/start-a-project",
 } as const;
 
+/** At most one secondary action per section. Points at the services, not the
+ * (still empty) work page. */
 export const SECONDARY_CTA = {
-  label: "View Our Work",
-  href: "/work",
+  label: "See what we do",
+  href: "/services",
 } as const;
 
 /** Absolute URL helper — always builds from the configured origin. */

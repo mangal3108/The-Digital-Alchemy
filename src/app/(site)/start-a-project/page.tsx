@@ -7,14 +7,13 @@ import { Logo } from "@/components/ui/logo";
 import { JsonLd } from "@/components/ui/json-ld";
 import { revealProps } from "@/lib/reveal";
 import { buildMetadata, breadcrumbSchema } from "@/lib/seo";
-import { getSiteSettings } from "@/lib/settings";
-import { processStages } from "@/content/process";
+import { getSiteSettings, whatsappLink } from "@/lib/settings";
 
 export async function generateMetadata(): Promise<Metadata> {
   return buildMetadata({
-    title: "Start an AI Project — AI Automation & AI-Ready Products | The Digital Alchemy",
+    title: "Get a Free Consultation | The Digital Alchemy",
     description:
-      "Tell us about your project — AI automation, autonomous workflows, AI-ready SaaS platforms, or custom software. Senior engineering scoping with clear ROI.",
+      "Tell us what you need in four quick questions. A real person reads it and calls or WhatsApps you back with honest advice. No obligation.",
     path: "/start-a-project",
   });
 }
@@ -33,10 +32,22 @@ export default async function StartProjectPage({
 }) {
   const { service } = await searchParams;
   const settings = await getSiteSettings();
+  const whatsapp = whatsappLink(settings, "Hi, I would like to talk about a project.");
+
+  // What happens after they send it. The reply time is the owner's to set
+  // (Admin → Settings); until then, no time is promised.
+  const nextSteps = [
+    settings.replyTime
+      ? `We call or WhatsApp you within ${settings.replyTime}.`
+      : "We call or WhatsApp you on the number you give.",
+    "We ask a few questions about your business and what you need.",
+    "We suggest a next step, or tell you honestly if we are not the right fit.",
+    "If you want to go ahead, you get a written plan and price.",
+  ];
 
   const crumbs = [
     { name: "Home", href: "/" },
-    { name: "Start a Project", href: "/start-a-project" },
+    { name: "Free consultation", href: "/start-a-project" },
   ];
 
   return (
@@ -66,21 +77,18 @@ export default async function StartProjectPage({
               <div {...revealProps()}>
                 <Logo href={null} />
                 <h1 className="mt-7 text-display-2 text-ink">
-                  Start a project.
+                  Get a free consultation.
                 </h1>
                 <p className="mt-5 max-w-md text-lede text-ink-muted">
-                  Tell us what you are trying to build or fix. We will come
-                  back with questions, an approach, or an honest answer that we
-                  are not the right team for it.
+                  Four quick questions. It takes under a minute, and a real
+                  person reads every one.
                 </p>
               </div>
 
               <ul {...revealProps(80)} className="mt-8 space-y-3">
                 {[
-                  "A real person reads every enquiry — no qualification bot.",
                   "No obligation, and no pressure on the first call.",
-                  "We will tell you if a smaller scope would serve you better.",
-                  "Your details are used only to reply. No lists, no sharing.",
+                  "We will tell you if a smaller project would suit you better.",
                 ].map((item) => (
                   <li
                     key={item}
@@ -99,28 +107,54 @@ export default async function StartProjectPage({
                 {...revealProps(140)}
                 className="mt-9 rounded-lg border border-hairline bg-surface p-5"
               >
-                <p className="eyebrow">What happens after</p>
+                <h2 className="eyebrow">What happens next</h2>
                 <ol className="mt-3.5 space-y-2.5">
-                  {processStages.slice(0, 3).map((stage) => (
-                    <li key={stage.step} className="flex gap-3">
+                  {nextSteps.map((item, index) => (
+                    <li key={item} className="flex gap-3">
                       <span className="numeric font-mono text-[0.6875rem] leading-6 tracking-[0.14em] text-accent-text">
-                        {stage.step}
+                        {String(index + 1).padStart(2, "0")}
                       </span>
                       <span className="text-[0.875rem] leading-relaxed text-ink-muted">
-                        <span className="font-medium text-ink">
-                          {stage.title}.
-                        </span>{" "}
-                        {stage.summary}
+                        {item}
                       </span>
                     </li>
                   ))}
                 </ol>
               </div>
 
+              {settings.phone ? (
+                <p
+                  {...revealProps(170)}
+                  className="mt-7 text-[0.9375rem] text-ink-muted"
+                >
+                  Rather talk now? Call{" "}
+                  <a
+                    href={`tel:${settings.phoneE164 || settings.phone}`}
+                    className="font-medium text-accent-text underline underline-offset-4"
+                  >
+                    {settings.phone}
+                  </a>
+                  {whatsapp ? (
+                    <>
+                      {" "}or{" "}
+                      <a
+                        href={whatsapp}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="font-medium text-accent-text underline underline-offset-4"
+                      >
+                        message us on WhatsApp
+                      </a>
+                    </>
+                  ) : null}
+                  .
+                </p>
+              ) : null}
+
               {settings.email ? (
                 <p
                   {...revealProps(180)}
-                  className="mt-7 text-[0.875rem] text-ink-subtle"
+                  className="mt-3 text-[0.875rem] text-ink-subtle"
                 >
                   Prefer email?{" "}
                   <a
@@ -136,7 +170,7 @@ export default async function StartProjectPage({
 
             {/* ---- The form ---- */}
             <div {...revealProps(60, 20)}>
-              <ProjectForm defaultService={service} />
+              <ProjectForm defaultService={service} replyTime={settings.replyTime} />
             </div>
           </div>
         </div>

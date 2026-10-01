@@ -222,7 +222,6 @@ export default async function InsightPage({
       <CtaSection
         title="Working on something this applies to?"
         body="Tell us the specifics. General advice only goes so far — the useful conversation is about your actual situation."
-        secondary={{ label: "More insights", href: "/insights" }}
       />
 
       <JsonLd id="breadcrumb-schema" data={breadcrumbSchema(crumbs)} />

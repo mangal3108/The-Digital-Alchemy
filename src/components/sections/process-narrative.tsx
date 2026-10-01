@@ -9,17 +9,17 @@ import { cn } from "@/lib/utils";
 import { useMediaQuery, usePrefersMotion } from "@/lib/use-media-query";
 
 /**
- * The six stages, told as a scroll narrative rather than a row of cards.
+ * The four steps, told as a scroll narrative rather than a row of cards.
  *
- * The brand idea is a sequence — idea, strategy, design, technology, launch,
- * growth — and a six-column grid renders a sequence as six things happening at
+ * How we work is a sequence (plan, build, launch, grow), and a four-column
+ * grid renders a sequence as four things happening at
  * once. Here the copy scrolls while one visual stays pinned and changes beneath
  * it, so the page moves through the process at the reader's pace instead of
  * presenting it as a diagram.
  *
  * WHY THE COLOUR RUNS COOL TO WARM
  * Blue through to tangerine, in order. The accent is not decoration on these
- * six: it encodes where you are. By the time the visual is warm you are in
+ * four: it encodes where you are. By the time the visual is warm you are in
  * growth, and that is legible before you have read a word.
  *
  * WHY NO ANIMATION LIBRARY
@@ -37,17 +37,13 @@ import { useMediaQuery, usePrefersMotion } from "@/lib/use-media-query";
 
 /** Each stage's visual and colour. Deliberate pairings, not a cycle. */
 const STAGE_VISUALS: { image: BrandImageName; accent: Accent }[] = [
-  // Discover — looking very closely at the substrate before committing.
+  // Talk and plan — looking very closely before committing.
   { image: "object-silicon-wafer", accent: "blue" },
-  // Strategise — deciding which parts fit where, one lifted clear.
-  { image: "object-machined-forms", accent: "indigo" },
-  // Design — five iterations of one part, rough through to resolved.
+  // Design and build — five iterations of one part, rough through to resolved.
   { image: "service-product-design", accent: "violet" },
-  // Build — the billet actually being cut.
-  { image: "service-custom-software-development", accent: "mint" },
   // Launch — the unit going into the rack on its rails.
   { image: "service-saas-development", accent: "coral" },
-  // Scale — the same thing many times over, running.
+  // Grow — the same thing many times over, running.
   { image: "service-cloud-solutions", accent: "tangerine" },
 ];
 
@@ -101,11 +97,11 @@ export function ProcessNarrative() {
         <div className="max-w-2xl">
           <p className="eyebrow text-accent-text">How we work</p>
           <h2 className="mt-3.5 text-display-3 text-ink">
-            Six stages, and what you get from each.
+            Four steps, and what you get from each.
           </h2>
           <p className="mt-4 max-w-xl text-lede text-ink-muted">
-            The same shape whether we are building a SaaS platform or running a
-            growth retainer. What changes is the depth of each stage, not the
+            The same steps whether we are building an app or running your
+            marketing. What changes is how much each step needs, not the
             order.
           </p>
         </div>

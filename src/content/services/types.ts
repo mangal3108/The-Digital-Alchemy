@@ -9,7 +9,18 @@
  * to accidentally gut a page's structure.
  */
 
-export type ServiceGroup = "development" | "design" | "growth" | "technology";
+/**
+ * Services are grouped by what the customer wants, not by which of our teams
+ * does the work. Visitors think "I need more customers", not "I need growth
+ * marketing" — so the groups are named in their words.
+ */
+export type ServiceGroup =
+  | "website"
+  | "software"
+  | "customers"
+  | "automation"
+  | "design"
+  | "running";
 
 /** Which signature graphic the page hero renders. */
 export type ServiceVisual =
@@ -62,6 +73,32 @@ export interface Service {
   /** Page H1. Written as an outcome, not a keyword. */
   title: string;
   group: ServiceGroup;
+  /**
+   * One plain sentence saying what this is, for someone with no technical
+   * background. Shown under the service name in the menu, and the base for the
+   * page's intro. No jargon: if a word needs explaining, it does not belong here.
+   */
+  oneLiner: string;
+  /**
+   * Finishes the sentence "You need this when…". Shown on related-service
+   * cards, so a visitor can tell whether the neighbouring service is for them.
+   */
+  needItWhen: string;
+  /**
+   * A before-and-after for a typical business. Always rendered under an
+   * "Example" label and never presented as a client story: nobody named here is
+   * a client. No figures, because an example cannot promise a result.
+   */
+  example: { business: string; before: string; after: string };
+  /**
+   * Starting price, including currency ("₹60,000"). Empty until the owner sets
+   * it — in this file or in Admin → Page copy. The key must exist even when
+   * empty, because admin overrides only replace keys the object already has.
+   * While empty, the page says every project is priced on what it needs.
+   */
+  priceFrom: string;
+  /** Typical time from start to launch ("4 to 8 weeks"). Empty until set. */
+  typicalTimeline: string;
   visual: ServiceVisual;
   eyebrow: string;
   /** Hero supporting paragraph. */
@@ -89,8 +126,6 @@ export interface Service {
   faqs: ServiceFaq[];
   /** Slugs of related services — powers deliberate internal linking. */
   related: string[];
-  /** Page-specific call to action label. */
-  ctaLabel: string;
   /** Shown as one of the six primary cards on the homepage. */
   featured?: boolean;
 }
@@ -99,20 +134,38 @@ export const SERVICE_GROUPS: Record<
   ServiceGroup,
   { label: string; blurb: string }
 > = {
-  development: {
-    label: "Development",
-    blurb: "Products and platforms, built to be maintained.",
+  website: {
+    label: "Get a website",
+    blurb: "A business website or online store that loads fast and brings you enquiries.",
+  },
+  software: {
+    label: "Build an app or software",
+    blurb: "Apps, portals and software made for the way your business works.",
+  },
+  customers: {
+    label: "Get more customers",
+    blurb: "We bring people to your business through Google, Instagram and more.",
+  },
+  automation: {
+    label: "Automate your work with AI",
+    blurb: "Tools that do your repetitive work for you, like replying to leads or sending invoices.",
   },
   design: {
-    label: "Design",
-    blurb: "Interfaces and identity that make the work legible.",
+    label: "Design & branding",
+    blurb: "Make your brand look good and your app easy to use.",
   },
-  growth: {
-    label: "Growth",
-    blurb: "Demand, measured end to end rather than by impressions.",
-  },
-  technology: {
-    label: "Technology",
-    blurb: "The plumbing that keeps everything connected and running.",
+  running: {
+    label: "Keep it running",
+    blurb: "Hosting, updates and fixes that keep your website or app fast, safe and online.",
   },
 };
+
+/** The order groups appear in the menu, on /services and in the picker. */
+export const SERVICE_GROUP_ORDER: ServiceGroup[] = [
+  "website",
+  "software",
+  "customers",
+  "automation",
+  "design",
+  "running",
+];

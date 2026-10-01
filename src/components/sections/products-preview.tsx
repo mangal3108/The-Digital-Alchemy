@@ -61,7 +61,7 @@ export async function ProductsPreview() {
         <SectionHeading
           eyebrow="Our products"
           title="Things we build for ourselves."
-          lede="Working on our own products keeps us honest about what it takes to ship, price and support software — rather than only advising on it."
+          lede="Building our own products keeps us honest about what it takes to launch, price and support software, not just advise on it."
           action={
             products.length > 2 ? (
               <Button href="/products" variant="secondary" withArrow>

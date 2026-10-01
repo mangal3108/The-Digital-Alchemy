@@ -1,5 +1,10 @@
 import { z } from "zod";
-import { serviceSlugs } from "@/content/services";
+import {
+  SERVICE_GROUPS,
+  SERVICE_GROUP_ORDER,
+  getService,
+  serviceSlugs,
+} from "@/content/services";
 
 /**
  * Every form is validated twice: in the browser for immediate feedback, and
@@ -15,7 +20,7 @@ export const BUDGET_OPTIONS = [
   { value: "3l-8l", label: "₹3,00,000 – ₹8,00,000 / $4,000 – $10,000" },
   { value: "8l-20l", label: "₹8,00,000 – ₹20,00,000 / $10,000 – $25,000" },
   { value: "20l-plus", label: "Above ₹20,00,000 / above $25,000" },
-  { value: "not-sure", label: "Not sure yet — help me scope it" },
+  { value: "not-sure", label: "Not sure yet: help me work it out" },
 ] as const;
 
 export const TIMELINE_OPTIONS = [
@@ -25,7 +30,33 @@ export const TIMELINE_OPTIONS = [
   { value: "researching", label: "Researching for now" },
 ] as const;
 
-/** Service choices offered on the enquiry form, plus a catch-all. */
+/**
+ * "What do you need?" on the enquiry form: the six service groups, in the
+ * words the menu and homepage use, plus "not sure". One dropdown instead of
+ * thirteen tick boxes (Phase 6).
+ */
+export const ENQUIRY_NEED_OPTIONS: { value: string; label: string }[] = [
+  ...SERVICE_GROUP_ORDER.map((group) => ({
+    value: group,
+    label: SERVICE_GROUPS[group].label,
+  })),
+  { value: "not-sure", label: "Not sure yet" },
+];
+
+/**
+ * The group a pre-selected service belongs to, for links like
+ * /start-a-project?service=google-ads. Accepts a group key too.
+ */
+export function enquiryNeedFor(value: string | undefined): string {
+  if (!value) return "";
+  if (ENQUIRY_NEED_OPTIONS.some((option) => option.value === value)) return value;
+  return getService(value)?.group ?? "";
+}
+
+/**
+ * Service choices from the earlier, longer form. No longer offered, but still
+ * accepted and labelled, so enquiries stored before Phase 6 read correctly.
+ */
 export const ENQUIRY_SERVICE_OPTIONS = [
   { value: "saas-development", label: "SaaS product" },
   { value: "custom-software-development", label: "Custom software" },
@@ -42,18 +73,40 @@ export const ENQUIRY_SERVICE_OPTIONS = [
   { value: "other", label: "Something else" },
 ] as const;
 
-const enquiryServiceValues = ENQUIRY_SERVICE_OPTIONS.map(
-  (option) => option.value,
-) as string[];
+const enquiryServiceValues = [
+  ...ENQUIRY_NEED_OPTIONS.map((option) => option.value),
+  ...ENQUIRY_SERVICE_OPTIONS.map((option) => option.value),
+] as string[];
+
+/** A stored service value, as a person would read it (admin, emails, export). */
+export function enquiryLabel(value: string): string {
+  return (
+    ENQUIRY_NEED_OPTIONS.find((option) => option.value === value)?.label ??
+    ENQUIRY_SERVICE_OPTIONS.find((option) => option.value === value)?.label ??
+    getService(value)?.name ??
+    value
+  );
+}
 
 export const leadSchema = z.object({
   name: trimmed(120).min(2, "Please enter your name."),
+  // The short form (Phase 6) asks for a phone or WhatsApp number, not an
+  // email. Email stays accepted, and validated when given.
   email: z
     .string()
     .trim()
     .max(180)
-    .email("Please enter a valid email address."),
-  phone: trimmed(40).optional().or(z.literal("")),
+    .email("Please enter a valid email address.")
+    .optional()
+    .or(z.literal("")),
+  phone: z.preprocess(
+    // A missing number gets the same plain message as a short one.
+    (value) => value ?? "",
+    trimmed(40).refine(
+      (value) => value.replace(/\D/g, "").length >= 7,
+      "Please enter a phone or WhatsApp number we can reach you on.",
+    ),
+  ),
   company: trimmed(140).optional().or(z.literal("")),
   country: trimmed(80).optional().or(z.literal("")),
   services: z
@@ -71,7 +124,7 @@ export const leadSchema = z.object({
     ),
   budget: trimmed(40).optional().or(z.literal("")),
   timeline: trimmed(40).optional().or(z.literal("")),
-  message: trimmed(5000).min(10, "Please tell us a little about the project."),
+  message: trimmed(5000).optional().or(z.literal("")),
 
   // Attribution — collected from the page, not typed by the visitor.
   sourcePage: trimmed(300).optional().or(z.literal("")),

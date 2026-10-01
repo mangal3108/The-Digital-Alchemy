@@ -1,8 +1,11 @@
 /**
- * The studio process. Deliberately six stages that map to the brand idea —
- * idea → strategy → design → technology → launch → growth — without spelling
- * the metaphor out in the copy. Each stage names what actually happens and
- * what the client receives, rather than describing a feeling.
+ * How we work, in four steps. The same four everywhere they appear: the
+ * homepage, /services and the enquiry page. Plain words
+ * (docs/plain-language-glossary.md).
+ *
+ * Four, not six: the brief caps the homepage at four simple steps, and
+ * "understand" and "plan" (like "design" and "build") were one conversation
+ * to the client, told as two.
  */
 export interface ProcessStage {
   step: string;
@@ -15,51 +18,35 @@ export interface ProcessStage {
 export const processStages: ProcessStage[] = [
   {
     step: "01",
-    title: "Discover",
-    summary: "Understand the business before proposing anything.",
+    title: "Talk and plan",
+    summary: "We get to know your business before suggesting anything.",
     detail:
-      "We spend time with the people who own the problem, look at whatever data already exists, and establish what success would actually look like. Most bad projects are traceable to this stage being skipped.",
-    outputs: ["Problem definition", "Audience and constraints", "Success criteria"],
+      "We talk about your business, your customers and what you want to change. Then we write down what we will do, what comes first and what it costs. That includes what we suggest leaving out.",
+    outputs: ["What you want to achieve, written down", "A written plan and price", "What comes first"],
   },
   {
     step: "02",
-    title: "Strategise",
-    summary: "Decide what to do, and what not to do.",
+    title: "Design and build",
+    summary: "You see and use it as it grows.",
     detail:
-      "Scope, priorities, architecture and channel mix, written down and agreed. Including the things we recommend leaving out, which is usually the more valuable half of the document.",
-    outputs: ["Written scope", "Technical approach", "Budget and sequencing"],
+      "We design with your real content and build on a test link you can open at any time. You check it on your phone and computer, and ask for changes while they are still cheap.",
+    outputs: ["Designs using your content", "A test link you can use", "Changes made as we go"],
   },
   {
     step: "03",
-    title: "Design",
-    summary: "Resolve the experience while it is still cheap to change.",
+    title: "Launch",
+    summary: "We put it live carefully, with tracking already working.",
     detail:
-      "Structure first, then interface. Prototyped and reviewed with real content, across mobile and desktop together, so the decisions are tested before engineering commits to them.",
-    outputs: ["Flows and wireframes", "Interface design", "Design system"],
+      "We move your content, keep old links working, check the tracking, and watch for problems in the first weeks. A launch is planned, with a way back if needed.",
+    outputs: ["Live and working", "Old links kept, content moved", "Tracking checked"],
   },
   {
     step: "04",
-    title: "Build",
-    summary: "Ship in increments you can see and use.",
+    title: "Grow",
+    summary: "We improve it using what real use shows.",
     detail:
-      "Short iterations against a staging environment you have access to throughout. Progress is something you can click on, not a percentage in a status report.",
-    outputs: ["Staging environment", "Working increments", "Test coverage"],
-  },
-  {
-    step: "05",
-    title: "Launch",
-    summary: "Release carefully, with the measurement already on.",
-    detail:
-      "Migration, redirects, analytics verification, monitoring and a support window. A launch is a controlled event with a rollback plan, not a moment of hope.",
-    outputs: ["Production release", "Redirects and migration", "Analytics verified"],
-  },
-  {
-    step: "06",
-    title: "Scale",
-    summary: "Improve against what real usage shows.",
-    detail:
-      "Once actual people are using it, the data replaces the assumptions. This is where most of the value gets created, and it is the stage most often skipped.",
-    outputs: ["Performance reporting", "Prioritised improvements", "Ongoing support"],
+      "Once real people use it, facts replace guesses. We look at what they do and improve what matters most. This is the step most often skipped.",
+    outputs: ["Monthly results", "Improvements, most valuable first", "Ongoing support"],
   },
 ];
 
@@ -76,22 +63,44 @@ export interface Differentiator {
 export const differentiators: Differentiator[] = [
   {
     key: "ai-native",
-    title: "AI-native architecture & autonomous workflows",
-    body: "We engineer systems with AI automation built into the foundation—structured agent routing, retrieval-augmented intelligence, and automated operational pipelines rather than shallow retrofits.",
+    title: "AI where it saves you time",
+    body: "We add AI where it genuinely helps, like answering common questions or sorting documents, and we tell you when it would not.",
   },
   {
     key: "product-thinking",
-    title: "Product thinking, not order taking",
-    body: "We ask what the software is for before we ask what it should contain. If a smaller build would get you the same outcome, we will say so — including when it means a smaller project for us.",
+    title: "We ask what it is for first",
+    body: "We ask what the software is for before what it should contain. If something smaller would get you the same result, we will say so, even when it means a smaller project for us.",
   },
   {
     key: "design-and-engineering",
-    title: "Design and engineering in one team",
-    body: "The two disciplines work together from the first week, so designs are buildable and engineers understand the intent. There is no handover gap for quality to fall through.",
+    title: "Design and building in one team",
+    body: "Designers and developers work together from the first week, so designs can actually be built and nothing gets lost in a hand-over.",
   },
   {
     key: "growth-built-in",
-    title: "Growth considered from the start",
-    body: "The people who will have to market the product are in the room while it is being built. SEO structure, speed, measurement and messaging are decided during the project, not retrofitted after launch.",
+    title: "Marketing planned from the start",
+    body: "The people who will market it are involved while it is built. Being easy to find on Google, speed, tracking and messaging are decided during the project, not patched on after launch.",
+  },
+];
+
+/**
+ * The homepage "Why us": three points, each something a client can check.
+ * /about keeps the fuller list above.
+ */
+export const homeReasons: Differentiator[] = [
+  {
+    key: "one-team",
+    title: "One team, start to finish",
+    body: "The same team plans, designs, builds and markets it. Nothing gets lost between different companies.",
+  },
+  {
+    key: "honest-advice",
+    title: "We tell you what you do not need",
+    body: "If something smaller or cheaper would do the job, we say so, even when it means less work for us.",
+  },
+  {
+    key: "see-progress",
+    title: "You can see progress any time",
+    body: "Every decision is written down, and you get a test link you can open whenever you want.",
   },
 ];

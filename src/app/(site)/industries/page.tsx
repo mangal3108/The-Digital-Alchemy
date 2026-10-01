@@ -8,6 +8,7 @@ import { industries } from "@/content/industries";
 import { getIndustryAccent } from "@/content/accents";
 import { getIndustryImage } from "@/content/service-imagery";
 import { PageHero } from "@/components/sections/page-hero";
+import { BrandLogos } from "@/components/ui/brand-logos";
 import { Section } from "@/components/ui/section-heading";
 import { SectionBackdrop } from "@/components/visuals/section-backdrop";
 import { CtaSection } from "@/components/sections/cta";
@@ -17,9 +18,9 @@ import { buildMetadata, breadcrumbSchema } from "@/lib/seo";
 
 export async function generateMetadata(): Promise<Metadata> {
   return buildMetadata({
-    title: "Industries We Work With | The Digital Alchemy",
+    title: "Industries We Help | The Digital Alchemy",
     description:
-      "How we approach digital work in startups, e-commerce, healthcare, education, real estate, finance, hospitality, professional services and retail.",
+      "What we do for clinics, shops, restaurants, coaching institutes, real estate, finance firms, online brands and startups. Get a free consultation.",
     path: "/industries",
   });
 }
@@ -35,12 +36,33 @@ export default async function IndustriesPage() {
     <>
       <PageHero
         eyebrow="Industries"
-        title="The problems change. The discipline does not."
-        lede="Each of these sectors has its own constraints — regulatory, operational or seasonal — that change what good looks like. These pages set out how we approach them."
+        title="Industries we help, and what we can do for each."
+        lede="Clinics, shops, restaurants, coaching institutes, property businesses and more. Each industry has its own rules and busy seasons, and each page explains how we would help a business like yours."
         crumbs={crumbs}
               bleedImage={getOptionalBrandImage("hero-industries")}
         bleedImageAlt=""
       />
+
+      {/* ---- Industry platform overview strip ---- */}
+      <section className="border-b border-hairline bg-surface/60 py-6 sm:py-7">
+        <div className="container-page">
+          <BrandLogos
+            slugs={[
+              "shopify",
+              "woocommerce",
+              "stripe",
+              "razorpay",
+              "whatsapp",
+              "aws",
+              "google-ads",
+              "meta",
+            ]}
+            title="Platforms & ecosystems we build for across sectors"
+            layout="strip"
+            size="md"
+          />
+        </div>
+      </section>
 
       <Section size="sm" className="relative overflow-hidden">
         <SectionBackdrop name="plate-bench-aluminium" from="var(--color-canvas)" opacity={0.12} side="center" />
@@ -50,11 +72,11 @@ export default async function IndustriesPage() {
             {...revealProps()}
             className="max-w-3xl rounded-md border border-hairline bg-surface p-5 text-[0.9375rem] leading-relaxed text-ink-muted"
           >
-            A note on how to read these: they describe how we approach each
-            sector and the problems we have seen in it — not a claim to a client
-            list we cannot show you. Where we have published, permitted case
-            studies in a sector, they appear on the relevant page. Where we have
-            not, the page says nothing rather than implying otherwise.
+            A note on these pages: they explain how we would approach each
+            industry and the problems common in it. They are not a claim to a
+            client list we cannot show you. Where a client has allowed us to
+            publish their work, it appears on the right page. Where not, the page
+            says nothing rather than suggest otherwise.
           </p>
 
         <ul className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
@@ -99,9 +121,24 @@ export default async function IndustriesPage() {
                     className="mt-1.5 size-4 shrink-0 text-ink-subtle transition-[transform,color] duration-[var(--duration-fast)] ease-standard group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-accent-text motion-reduce:transition-none"
                   />
                 </div>
-                <p className="mt-2.5 flex-1 text-[0.9375rem] leading-relaxed text-ink-muted">
+                <p className="mt-2.5 text-[0.9375rem] leading-relaxed text-ink-muted">
                   {industry.summary}
                 </p>
+                {/* The three things we can do for this kind of business. */}
+                <ul className="mt-4 flex-1 space-y-1.5">
+                  {industry.examples.map((example) => (
+                    <li
+                      key={example.title}
+                      className="flex items-start gap-2 text-[0.875rem] text-ink-muted"
+                    >
+                      <span
+                        aria-hidden="true"
+                        className="mt-[0.5rem] size-1 shrink-0 rounded-full bg-accent"
+                      />
+                      {example.title}
+                    </li>
+                  ))}
+                </ul>
                 <span
                   aria-hidden="true"
                   className="mt-4 block h-0.5 w-10 rounded-full bg-accent transition-[width] duration-[var(--duration-slow)] ease-standard group-hover:w-16"
@@ -116,8 +153,7 @@ export default async function IndustriesPage() {
 
       <CtaSection
         title="Not on the list?"
-        body="The sector matters less than whether the problem is one we have solved before. Describe it and we will tell you honestly."
-        secondary={{ label: "See our services", href: "/services" }}
+        body="Your industry matters less than your problem. Tell us about it, and we will tell you honestly whether we can help."
       />
 
       <JsonLd id="breadcrumb-schema" data={breadcrumbSchema(crumbs)} />

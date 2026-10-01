@@ -211,7 +211,6 @@ export default async function ProductPage({
       <CtaSection
         title="Want something like this built?"
         body="We take products from first scope through to billing, launch and the ongoing work of running them."
-        secondary={{ label: "SaaS development", href: "/services/saas-development" }}
       />
 
       <JsonLd id="breadcrumb-schema" data={breadcrumbSchema(crumbs)} />

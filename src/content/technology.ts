@@ -24,7 +24,7 @@ export const TECH_CATEGORIES: Record<
 > = {
   ai: {
     label: "AI & Automation",
-    blurb: "Autonomous agents, LLM pipelines, vector search, and intelligent workflow automations.",
+    blurb: "AI models, AI assistants that carry out tasks, search across your own documents, and automated workflows.",
   },
   frontend: {
     label: "Frontend",
@@ -71,35 +71,35 @@ export const technologies: Technology[] = [
     name: "OpenAI GPT-4o",
     category: "ai",
     usedFor:
-      "Custom GPT models, multi-modal reasoning, structured data extraction, and automated conversational assistants.",
+      "GPT models for chat assistants, reading images and documents, and pulling structured data out of text.",
   },
   {
     key: "anthropic",
     name: "Anthropic Claude",
     category: "ai",
     usedFor:
-      "High-context document intelligence, complex data analysis pipelines, and deterministic code synthesis.",
+      "Working with long documents, analysing complex data, and writing code under careful review.",
   },
   {
     key: "langchain",
     name: "LangChain & Agents",
     category: "ai",
     usedFor:
-      "Multi-step autonomous agent architectures, deterministic tool calling, and RAG retrieval pipelines.",
+      "AI assistants that carry out several steps and use tools, and answering questions from your own documents.",
   },
   {
     key: "pinecone",
     name: "Pinecone & Vector DB",
     category: "ai",
     usedFor:
-      "High-performance vector embeddings, hybrid semantic search, and knowledge base retrieval.",
+      "Search by meaning rather than exact words, across your documents and knowledge base.",
   },
   {
     key: "n8n",
     name: "n8n Automation",
     category: "ai",
     usedFor:
-      "Enterprise workflow orchestration connecting internal tools, CRM, and cloud services with AI models.",
+      "Automated workflows connecting your internal tools, customer list and cloud services with AI models.",
   },
 
   // Frontend

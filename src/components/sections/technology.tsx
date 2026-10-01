@@ -4,12 +4,14 @@ import * as React from "react";
 import { cn } from "@/lib/utils";
 import { SectionBackdrop } from "@/components/visuals/section-backdrop";
 import { revealProps } from "@/lib/reveal";
+import Image from "next/image";
 import {
   TECH_CATEGORIES,
   getTechnologiesByCategory,
   technologies,
   type TechCategory,
 } from "@/content/technology";
+import { getLogo } from "@/content/logos";
 
 const CATEGORY_ORDER: TechCategory[] = [
   "frontend",
@@ -68,9 +70,9 @@ export function TechnologySection() {
             The tools, and what we use them for.
           </h2>
           <p className="mt-4 text-lede text-ink-muted">
-            We are not attached to any of these. They are chosen per project on
-            what the work needs and what your team can maintain after we hand
-            it over.
+            We are not attached to any of these. We choose for each project,
+            based on what the work needs and what your team can look after once
+            we hand it over.
           </p>
         </div>
 
@@ -117,6 +119,7 @@ export function TechnologySection() {
             <ul className="mt-4 grid grid-cols-2 gap-2 sm:grid-cols-3">
               {items.map((tech) => {
                 const selected = active?.key === tech.key;
+                const logo = getLogo(tech.key);
                 return (
                   <li key={tech.key}>
                     <button
@@ -126,7 +129,7 @@ export function TechnologySection() {
                       onFocus={() => setActiveKey(tech.key)}
                       aria-pressed={selected}
                       className={cn(
-                        "flex h-full w-full min-h-14 items-center gap-2.5 rounded-md border px-3 py-2.5 text-left",
+                        "flex h-full w-full min-h-14 items-center gap-3 rounded-md border px-3 py-2.5 text-left",
                         "transition-[border-color,background-color,transform] duration-[var(--duration-fast)] ease-standard",
                         "focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus",
                         selected
@@ -134,13 +137,25 @@ export function TechnologySection() {
                           : "border-hairline bg-surface/40 hover:border-hairline-strong",
                       )}
                     >
-                      <span
-                        aria-hidden="true"
-                        className={cn(
-                          "size-2 shrink-0 rounded-[3px]",
-                          selected ? "bg-accent" : "bg-ink-subtle",
-                        )}
-                      />
+                      {logo ? (
+                        <div className="relative flex size-6 shrink-0 items-center justify-center rounded-sm bg-white/90 p-0.5 shadow-2xs">
+                          <Image
+                            src={logo.files.color}
+                            alt={logo.name}
+                            width={18}
+                            height={18}
+                            className="size-full object-contain"
+                          />
+                        </div>
+                      ) : (
+                        <span
+                          aria-hidden="true"
+                          className={cn(
+                            "size-2 shrink-0 rounded-[3px]",
+                            selected ? "bg-accent" : "bg-ink-subtle",
+                          )}
+                        />
+                      )}
                       <span className="text-[0.875rem] font-medium text-ink">
                         {tech.name}
                       </span>
@@ -158,13 +173,28 @@ export function TechnologySection() {
           >
             {active ? (
               <>
-                <p className="eyebrow">
-                  {TECH_CATEGORIES[active.category].label}
-                </p>
-                <h3 className="mt-3 text-title text-ink">{active.name}</h3>
+                <div className="flex items-center gap-3.5">
+                  {getLogo(active.key) ? (
+                    <div className="relative flex size-11 shrink-0 items-center justify-center rounded-lg border border-hairline bg-white/95 p-2 shadow-2xs">
+                      <Image
+                        src={getLogo(active.key)!.files.color}
+                        alt={active.name}
+                        width={30}
+                        height={30}
+                        className="size-full object-contain"
+                      />
+                    </div>
+                  ) : null}
+                  <div>
+                    <p className="eyebrow">
+                      {TECH_CATEGORIES[active.category].label}
+                    </p>
+                    <h3 className="mt-1 text-title text-ink">{active.name}</h3>
+                  </div>
+                </div>
                 <p
                   key={active.key}
-                  className="mt-3 text-[0.9375rem] leading-relaxed text-ink-muted"
+                  className="mt-4 text-[0.9375rem] leading-relaxed text-ink-muted"
                 >
                   {active.usedFor}
                 </p>

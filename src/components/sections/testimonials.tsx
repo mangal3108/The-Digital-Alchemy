@@ -11,6 +11,8 @@ import {
   type StickyColor,
 } from "@/components/visuals/freeform-canvas";
 import { Button } from "@/components/ui/button";
+import { features } from "@/config/features";
+import { PRIMARY_CTA } from "@/config/site";
 
 /**
  * Authentic Client Stories on a Vibrant Whiteboard Canvas.
@@ -20,6 +22,13 @@ import { Button } from "@/components/ui/button";
 export async function Testimonials({ limit = 6 }: { limit?: number }) {
   const dbTestimonials = await getTestimonials(limit);
 
+  // The hardcoded testimonials below are unverified and hidden by default —
+  // see `features.unverifiedTestimonials`. With them off, the board carries
+  // only testimonials entered through the admin, and if there are none it
+  // renders nothing rather than an empty "what clients say" section.
+  const showUnverified = features.unverifiedTestimonials;
+  if (!showUnverified && dbTestimonials.length === 0) return null;
+
   // Curated color sequence for sticky notes
   const colorCycle: StickyColor[] = ["yellow", "cyan", "pink", "lime", "purple", "peach"];
   const rotations = [-1.8, 1.4, -2, 1.8, -1.2, 2.2];
@@ -28,9 +37,9 @@ export async function Testimonials({ limit = 6 }: { limit?: number }) {
     <Section size="lg" className="relative overflow-hidden">
       <div className="relative">
         <SectionHeading
-          eyebrow="Real Client Feedback"
-          title="What founders say when the PRs are merged."
-          lede="No agency fluff, no PR-polished testimonials. Raw, authentic thoughts pinned by founders and technical leads we build with."
+          eyebrow="What clients say"
+          title="In our clients' own words."
+          lede="Only feedback clients have given us themselves. We never write our own."
         />
 
         {/* Freeform Whiteboard Canvas Container (No fake iPad app chrome) */}
@@ -39,11 +48,15 @@ export async function Testimonials({ limit = 6 }: { limit?: number }) {
             {/* Board Banner Header (Inspired by the Apple Freeform reference image) */}
             <div className="mb-8 sm:mb-10 flex flex-col md:flex-row md:items-center justify-between gap-5 border-b-2 border-dashed border-slate-200 pb-6 sm:pb-8">
               <div>
+                {showUnverified ? (
+                  <>
                 <div className="flex flex-wrap items-center gap-2 sm:gap-2.5 mb-2.5 sm:mb-3">
                   <MarkerBadge text="REAL FOUNDER STORIES" color="pink" rotate={-1.5} />
                   <MarkerBadge text="ZERO FLUFF" color="lime" rotate={1} />
                   <MarkerBadge text="100% PRODUCTION VERIFIED" color="cyan" rotate={-0.5} />
                 </div>
+                  </>
+                ) : null}
                 
                 {/* Big Vibrant Hand-Styled Title with highlighter glow */}
                 <div className="relative inline-block">
@@ -57,6 +70,8 @@ export async function Testimonials({ limit = 6 }: { limit?: number }) {
                 </div>
               </div>
 
+              {showUnverified ? (
+                <>
               {/* Handcrafted Stamps & Metrics */}
               <div className="flex flex-wrap items-center gap-2.5 sm:gap-3">
                 <div className="rounded-xl sm:rounded-2xl border-2 border-emerald-400 bg-emerald-50 px-3 sm:px-4 py-1.5 sm:py-2 text-center shadow-xs rotate-1">
@@ -77,10 +92,14 @@ export async function Testimonials({ limit = 6 }: { limit?: number }) {
                   </span>
                 </div>
               </div>
+                </>
+              ) : null}
             </div>
 
             {/* Vibrant Whiteboard Elements Grid */}
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-7 items-start">
+              {showUnverified ? (
+                <>
               {/* Note 1: Canary Yellow Post-It */}
               <div className="relative">
                 <StickyNote
@@ -143,6 +162,8 @@ export async function Testimonials({ limit = 6 }: { limit?: number }) {
                   rotate={2}
                 />
               </div>
+                </>
+              ) : null}
 
               {/* Sketch Card: Architecture Flow (Inspired by reference image layouts) */}
               <div className="relative">
@@ -173,6 +194,8 @@ export async function Testimonials({ limit = 6 }: { limit?: number }) {
                 </SketchLayoutCard>
               </div>
 
+              {showUnverified ? (
+                <>
               {/* Note 4: Electric Lilac Purple Post-It */}
               <div className="relative">
                 <StickyNote
@@ -239,6 +262,8 @@ export async function Testimonials({ limit = 6 }: { limit?: number }) {
                   <MarkerBadge text="100% DIRECT ENGINEER HANDOFF" color="yellow" rotate={2} />
                 </div>
               </div>
+                </>
+              ) : null}
 
               {/* If DB has any additional published testimonials, render them dynamically */}
               {dbTestimonials.map((testimonial, idx) => (
@@ -250,9 +275,7 @@ export async function Testimonials({ limit = 6 }: { limit?: number }) {
                     author={testimonial.authorName}
                     role={testimonial.position ?? undefined}
                     company={testimonial.company ?? undefined}
-                    rating={testimonial.rating ?? 5}
-                    badge="VERIFIED PARTNER"
-                    attachment={idx % 2 === 0 ? "tape" : "pin"}
+                    rating={testimonial.rating ?? undefined}
                     rotate={rotations[idx % rotations.length]}
                   />
                 </div>
@@ -264,15 +287,15 @@ export async function Testimonials({ limit = 6 }: { limit?: number }) {
               <div className="flex items-center gap-2.5">
                 <span className="size-2.5 sm:size-3 rounded-full bg-emerald-500 animate-pulse shrink-0" />
                 <span className="font-mono text-xs text-slate-600 font-bold">
-                  Next sprint kicks off Monday. Pin your idea on our board.
+                  Have a project in mind? Tell us about it.
                 </span>
               </div>
               <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-2.5 sm:gap-3 w-full sm:w-auto">
                 <Button href="/clients" variant="secondary" size="sm" className="w-full sm:w-auto justify-center">
-                  View Full Client Directory
+                  See our clients
                 </Button>
-                <Button href="/start-a-project" size="sm" withArrow className="w-full sm:w-auto justify-center">
-                  Start a Project
+                <Button href={PRIMARY_CTA.href} size="sm" withArrow className="w-full sm:w-auto justify-center">
+                  {PRIMARY_CTA.label}
                 </Button>
               </div>
             </div>

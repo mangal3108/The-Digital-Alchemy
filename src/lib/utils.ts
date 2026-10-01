@@ -1,5 +1,25 @@
 import { clsx, type ClassValue } from "clsx";
-import { twMerge } from "tailwind-merge";
+import { extendTailwindMerge } from "tailwind-merge";
+
+/**
+ * tailwind-merge, told about the type scale defined in globals.css.
+ *
+ * It only knows Tailwind's built-in sizes, so it read `text-display-2` as a
+ * text *colour*. Put next to a real colour like `text-ink`, it decided the two
+ * conflicted and silently dropped the size: every page heading built with
+ * `cn("text-display-2 text-ink", …)` rendered at 16px. Declaring these as font
+ * sizes lets size and colour sit together, while two sizes (or two colours)
+ * still resolve to the last one, as they should.
+ */
+const twMerge = extendTailwindMerge({
+  extend: {
+    classGroups: {
+      "font-size": [
+        { text: ["display-1", "display-2", "display-3", "title", "lede", "label"] },
+      ],
+    },
+  },
+});
 
 /** Merge conditional class names, with Tailwind conflict resolution. */
 export function cn(...inputs: ClassValue[]) {

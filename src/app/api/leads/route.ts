@@ -2,7 +2,7 @@ import { NextResponse } from "next/server";
 import { headers } from "next/headers";
 
 import { db } from "@/lib/db";
-import { leadSchema, looksAutomated, fieldErrors } from "@/lib/validation";
+import { leadSchema, looksAutomated, fieldErrors, enquiryLabel } from "@/lib/validation";
 import { rateLimit, pruneRateLimits } from "@/lib/rate-limit";
 import { clientIpFrom } from "@/lib/auth";
 import { getSiteSettings } from "@/lib/settings";
@@ -78,14 +78,16 @@ export async function POST(request: Request) {
   const lead = await db.lead.create({
     data: {
       name: input.name,
-      email: input.email.toLowerCase(),
+      // Optional since the short form (Phase 6); the column is required, so
+      // "no email" is stored as an empty string.
+      email: (input.email ?? "").toLowerCase(),
       phone: input.phone || null,
       company: input.company || null,
       country: input.country || null,
       services: JSON.stringify(input.services ?? []),
       budget: input.budget || null,
       timeline: input.timeline || null,
-      message: input.message,
+      message: input.message ?? "",
       sourcePage: input.sourcePage || null,
       referrer: input.referrer || null,
       utmSource: input.utmSource || null,
@@ -116,14 +118,14 @@ export async function POST(request: Request) {
   if (adminRecipient) {
     const message = adminLeadEmail({
       name: input.name,
-      email: input.email,
+      email: input.email ?? "",
       phone: input.phone,
       company: input.company,
       country: input.country,
-      services: input.services ?? [],
+      services: (input.services ?? []).map(enquiryLabel),
       budget: input.budget,
       timeline: input.timeline,
-      message: input.message,
+      message: input.message ?? "",
       sourcePage: input.sourcePage,
       utmSource: input.utmSource,
       utmMedium: input.utmMedium,
@@ -133,13 +135,17 @@ export async function POST(request: Request) {
     await sendMail({ ...message, to: adminRecipient });
   }
 
-  await sendMail(
-    acknowledgementEmail({
-      name: input.name,
-      email: input.email,
-      companyName: settings.companyName,
-    }),
-  );
+  // Only when they gave an email. The short form asks for a phone number,
+  // and we reply there.
+  if (input.email) {
+    await sendMail(
+      acknowledgementEmail({
+        name: input.name,
+        email: input.email,
+        companyName: settings.companyName,
+      }),
+    );
+  }
 
   // Opportunistic housekeeping — cheap, and keeps the limiter table small
   // without needing a scheduled job.

@@ -51,6 +51,7 @@ const SOCIAL_KEYS = [
   "behance",
   "dribbble",
   "github",
+  "reddit",
 ] as const;
 
 /**

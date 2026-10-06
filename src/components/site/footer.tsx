@@ -20,6 +20,7 @@ const SOCIAL_LABELS: Record<string, string> = {
   behance: "Behance",
   dribbble: "Dribbble",
   github: "GitHub",
+  reddit: "Reddit",
 };
 
 export async function Footer() {

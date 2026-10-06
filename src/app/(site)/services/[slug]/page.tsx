@@ -27,7 +27,11 @@ import { ProjectCard } from "@/components/ui/project-card";
 import { JsonLd } from "@/components/ui/json-ld";
 import { FlowDiagram, FlowSteps } from "@/components/visuals/flow-diagram";
 import { ServiceVisualScene } from "@/components/visuals/service-visuals";
-import { getServiceImage, getServiceAltText } from "@/content/service-imagery";
+import {
+  getServiceImage,
+  getServiceAltText,
+  getServiceImagePosition,
+} from "@/content/service-imagery";
 import { getServiceAccent } from "@/content/accents";
 import { TextLink } from "@/components/ui/button";
 import { revealProps } from "@/lib/reveal";
@@ -123,6 +127,7 @@ export default async function ServicePage({
         primaryCta={{ label: PRIMARY_CTA.label, href: PRIMARY_CTA.href }}
         bleedImage={heroImage}
         bleedImageAlt={getServiceAltText(slug)}
+        bleedImagePosition={getServiceImagePosition(slug)}
         visual={
           // Only where no photograph exists for this service. The built CSS
           // scene makes a weaker hero, so it is the fallback rather than the

@@ -327,6 +327,15 @@ Each page now has one clear purpose and one call to action. **The 20 secondary b
 | `npm run lint` (whole project), typecheck, production build | pass |
 | CSS, layout, admin, contrast | pass |
 
+## Social profiles and owner-supplied images (October 2026)
+
+- **Social links** in the footer of every page, and as `sameAs` in the Organization schema: LinkedIn, Instagram (@thedigitalalchemy.co.in), Facebook and Reddit (u/thedigitalalchmey). Stored without tracking parameters, and editable in Admin → Settings → Social, which now includes Reddit.
+- **Three new service images** for UI/UX design, branding and product design, through the normal image pipeline (`images/services/studio-*.webp` → `public/images/services/service-*-studio.webp`). The previous images are kept and simply not used.
+  - Branding and product design show made-up figures on mock screens (post likes, a battery level), so they carry the "Illustrative interface, not client data" label in the hero, like the homepage.
+  - On phones these three anchor left, so the title printed in each image is not cut in half.
+  - Alt text describes what each image shows.
+- Rebuilding images also rewrote every existing image with slightly different bytes. Those were restored; only the three new files and their manifest entries are added. The script now writes the manifest with 2-space indentation, as committed, so future runs do not reformat it.
+
 ## `{{TODO}}` items for you
 
 | # | Item | Where |
@@ -337,7 +346,7 @@ Each page now has one clear purpose and one call to action. **The 20 secondary b
 | 4 | ~~Confirm the "10x" claim~~ Removed in Phase 3 | n/a |
 | 5 | Set the Vercel env var above | Vercel |
 | 6 | ~~Is Vercel's `DATABASE_URL` the same as the local one?~~ Withdrawn: based on a wrong Phase 0 finding, corrected in the audit §6.2 | n/a |
-| 7 | Social profiles for `sameAs` | n/a |
+| 7 | ~~Social profiles for `sameAs`~~ Done: LinkedIn, Instagram, Facebook, Reddit (October 2026) | `social` in `src/config/site.ts` |
 | 8 | Confirm the first consultation is free, as the new main button says ("Get a free consultation") | `PRIMARY_CTA` in `src/config/site.ts` |
 | 9 | ~~Confirm "Working with clients worldwide" under the homepage hero~~ Removed in Phase 5 | n/a |
 | 10 | **Starting prices for the 20 services** (e.g. "₹60,000"). Until set, pages say every project is priced on what it needs | `priceFrom` in `src/content/services/*.ts`, or Admin → Page copy |
@@ -348,3 +357,5 @@ Each page now has one clear purpose and one call to action. **The 20 secondary b
 | 15 | Confirm two older promises on the country pages: India "questions are answered within the day", and UAE "in-person workshops can be arranged" | `src/content/locations.ts` |
 | 16 | Confirm the careers page promise: "if [the exercise] takes more than a couple of hours, we pay for your time" | `src/app/(site)/careers/page.tsx` |
 | 17 | Add team profiles (name, role, photo) when people agree to be featured; /about shows them automatically | Admin → Team |
+| 18 | Optional: a Facebook username (facebook.com/yourname) to replace the share link, and a LinkedIn **Company Page** (linkedin.com/company/…). The current LinkedIn link is a personal-profile address | Admin → Settings → Social |
+| 19 | Optional: the Instagram bio says "AI-ready products that scale" and "AI Agents". The site's plain-language rules retire those phrases, so the bio and the site now read differently | Instagram |

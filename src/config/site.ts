@@ -101,14 +101,20 @@ export const siteConfig = {
   },
 
   /**
-   * UNVERIFIED — the live site publishes no social profiles. Left empty on
-   * purpose; the footer and Organization schema omit `sameAs` entirely rather
-   * than linking to guessed handles.
+   * Profiles supplied by the owner (October 2026). Shown in the footer and
+   * listed as `sameAs` in the Organization schema. Empty ones are hidden.
+   * Admin → Settings can override any of them.
+   *
+   * Share links are stored without their tracking parameters. Facebook's is
+   * the share link because the profile's own address has a long ID that
+   * Facebook can change; a username (facebook.com/yourname) would be better
+   * once one is set.
    */
   social: {
-    linkedin: "",
-    instagram: "",
-    facebook: "",
+    linkedin: "https://www.linkedin.com/in/the-digital-alchemy-3a40a9440/",
+    instagram: "https://www.instagram.com/thedigitalalchemy.co.in/",
+    facebook: "https://www.facebook.com/share/1CBexATRfG/",
+    reddit: "https://www.reddit.com/user/thedigitalalchmey/",
     youtube: "",
     x: "",
     behance: "",

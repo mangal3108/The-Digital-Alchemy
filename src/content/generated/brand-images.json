@@ -399,5 +399,26 @@
     "height": 548,
     "blurDataURL": "data:image/webp;base64,UklGRjgAAABXRUJQVlA4ICwAAABwAQCdASoQAA4AA4BaJaWDrAGIAAD+89WAbgobBKt2uIxToODWYcMiOjgAAA==",
     "illustrative": false
+  },
+  "service-ui-ux-design-studio": {
+    "src": "/images/services/service-ui-ux-design-studio.webp",
+    "width": 1280,
+    "height": 720,
+    "blurDataURL": "data:image/webp;base64,UklGRlgAAABXRUJQVlA4IEwAAADQAQCdASoQAAkAA4BaJQAB8UYcbRzD4AD+8j17S8s/l/fqyAY45e0nf+AmBH5EBYacvg5PQRrNc3QzWmRvGVY2/x54pN0A8KII+oAA",
+    "illustrative": false
+  },
+  "service-branding-studio": {
+    "src": "/images/services/service-branding-studio.webp",
+    "width": 1280,
+    "height": 720,
+    "blurDataURL": "data:image/webp;base64,UklGRlwAAABXRUJQVlA4IFAAAADQAQCdASoQAAkAA4BaJZQCsAEJ6u81AAD+8BZqpM1tJFo5XHAYKodce3GwoFlkfR0n8iiW7axWgzWw1I29JnbwJDya/bT7wSZ3tfs89QAAAA==",
+    "illustrative": true
+  },
+  "service-product-design-studio": {
+    "src": "/images/services/service-product-design-studio.webp",
+    "width": 1280,
+    "height": 720,
+    "blurDataURL": "data:image/webp;base64,UklGRmIAAABXRUJQVlA4IFYAAADwAQCdASoQAAkAA4BaJZwAApwFoVDiMAAA/u4mCltSUQNqZZ5k/kls7D9Kxn2WYVvifTbmNTA82oPoVDC3tXfyaVubj/nXdXvDV/FtNzdNOfwPmEAAAA==",
+    "illustrative": true
   }
 }

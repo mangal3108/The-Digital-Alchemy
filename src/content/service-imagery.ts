@@ -15,6 +15,10 @@ import type { BrandImageName } from "@/components/ui/brand-image";
  *
  * Accents are set separately in `accents.ts`; each image was generated to carry
  * its page's accent on one element, so the two stay in step.
+ *
+ * Exception: UI/UX design, branding and product design use images the owner
+ * supplied (the "-studio" set). Those do show screens and mock-ups; the two
+ * with figures on them are flagged illustrative in the image manifest.
  */
 export const serviceImagery: Record<string, BrandImageName> = {
   "saas-development": "service-saas-development",
@@ -23,9 +27,9 @@ export const serviceImagery: Record<string, BrandImageName> = {
   "web-application-development": "service-web-application-development",
   "mobile-app-development": "service-mobile-app-development",
   "ecommerce-development": "service-ecommerce-development",
-  "ui-ux-design": "service-ui-ux-design",
-  "product-design": "service-product-design",
-  branding: "service-branding",
+  "ui-ux-design": "service-ui-ux-design-studio",
+  "product-design": "service-product-design-studio",
+  branding: "service-branding-studio",
   "digital-marketing": "service-digital-marketing",
   "search-engine-optimization": "service-search-engine-optimization",
   "social-media-management": "service-social-media-management",
@@ -43,6 +47,21 @@ export function getServiceImage(slug: string): BrandImageName | undefined {
   return serviceImagery[slug];
 }
 
+/**
+ * The owner-supplied images have their title on the left. On a phone the hero
+ * band is nearly square and a centred crop cuts that title in half, so these
+ * anchor left until the band is wide enough to show the whole width.
+ */
+const serviceImagePosition: Record<string, string> = {
+  "ui-ux-design": "object-left sm:object-center",
+  branding: "object-left sm:object-center",
+  "product-design": "object-left sm:object-center",
+};
+
+export function getServiceImagePosition(slug: string): string | undefined {
+  return serviceImagePosition[slug];
+}
+
 export const serviceAltText: Record<string, string> = {
   "custom-software-development":
     "Dual desktop monitors displaying an internal operations dashboard with data tables alongside a tablet system architecture diagram on a dark workspace",
@@ -55,11 +74,11 @@ export const serviceAltText: Record<string, string> = {
   "web-application-development":
     "Curved widescreen monitor running an interactive browser application with modular widgets and data feeds",
   "ui-ux-design":
-    "Designer working on a digital drawing tablet with a stylus sketching mobile wireframe flows next to color swatch chips",
+    "A notebook of hand-drawn app screen sketches next to a laptop, colour swatches and a phone showing a finished app screen",
   "product-design":
-    "Close-up of interactive prototyping wireframes and digital component blueprints on a tablet workspace",
+    "Product design desk with sketchbook drawings, a technical drawing with measurements, a 3D model on a monitor and the finished device beside its phone app",
   branding:
-    "Thick cream stationery debossed with an abstract geometric gold-foil emblem resting on a textured dark slate slab under warm studio light",
+    "Brand identity layout for The Digital Alchemy: logo sketches, typography, business cards, packaging, a brochure and colour swatches",
   "ecommerce-development":
     "Laptop and phone displaying an upscale online store interface with product grid cards, slide-out shopping cart, and checkout summary",
   "digital-marketing":

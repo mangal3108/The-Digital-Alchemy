@@ -2,7 +2,12 @@ import { Breadcrumb, type Crumb } from "@/components/ui/breadcrumb";
 import { Button } from "@/components/ui/button";
 import { revealProps } from "@/lib/reveal";
 import { cn } from "@/lib/utils";
-import { BrandImage, type BrandImageName } from "@/components/ui/brand-image";
+import {
+  BrandImage,
+  IllustrativeNote,
+  isIllustrative,
+  type BrandImageName,
+} from "@/components/ui/brand-image";
 import { SectionBackdrop } from "@/components/visuals/section-backdrop";
 
 /**
@@ -22,6 +27,7 @@ export function PageHero({
   visual,
   bleedImage,
   bleedImageAlt = "",
+  bleedImagePosition,
   backdropImage,
   backdropOpacity = 0.16,
   className,
@@ -41,6 +47,8 @@ export function PageHero({
    */
   bleedImage?: BrandImageName;
   bleedImageAlt?: string;
+  /** Extra object-position classes, for images whose subject is off-centre. */
+  bleedImagePosition?: string;
   /** Atmospheric background photograph layer across the hero. */
   backdropImage?: BrandImageName;
   backdropOpacity?: number;
@@ -163,7 +171,7 @@ export function PageHero({
             fill
             priority
             sizes="100vw"
-            imgClassName="object-cover"
+            imgClassName={cn("object-cover", bleedImagePosition)}
           />
           {/* Subtle top edge line */}
           <span
@@ -179,6 +187,11 @@ export function PageHero({
                 "linear-gradient(to top, var(--color-canvas) 0%, color-mix(in srgb, var(--color-canvas) 25%, transparent) 55%, transparent 100%)",
             }}
           />
+          {/* Images whose mock screens carry figures (likes, battery levels)
+              say so, as the homepage hero does. */}
+          {isIllustrative(bleedImage) ? (
+            <IllustrativeNote className="absolute bottom-3 right-4 z-10 rounded-sm bg-canvas/85 px-2 py-1 sm:right-6" />
+          ) : null}
         </div>
       ) : null}
     </section>

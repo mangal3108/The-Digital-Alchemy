@@ -87,6 +87,12 @@ const CURATED = [
   { name: "service-ui-ux-design", category: "services", match: "services/service-ui-ux-design", hue: 0, saturation: 1, maxEdge: 1600, note: "/services/ui-ux-design — accent violet." },
   { name: "service-product-design", category: "services", match: "services/service-product-design", hue: 0, saturation: 1, maxEdge: 1600, note: "/services/product-design — accent indigo." },
   { name: "service-branding", category: "services", match: "services/service-branding", hue: 0, saturation: 1, maxEdge: 1600, note: "/services/branding — accent gold." },
+  // Supplied by the owner (October 2026). Unlike the set above these show
+  // screens and mock-ups, so the two with figures on them (likes on a phone
+  // post, a battery level) carry `caption` and are labelled as illustrative.
+  { name: "service-ui-ux-design-studio", category: "services", match: "services/studio-ui-ux-design", hue: 0, saturation: 1, maxEdge: 1600, note: "/services/ui-ux-design hero, owner-supplied." },
+  { name: "service-branding-studio", category: "services", match: "services/studio-branding", hue: 0, saturation: 1, maxEdge: 1600, caption: true, note: "/services/branding hero, owner-supplied. Mock post shows like counts." },
+  { name: "service-product-design-studio", category: "services", match: "services/studio-product-design", hue: 0, saturation: 1, maxEdge: 1600, caption: true, note: "/services/product-design hero, owner-supplied. Mock app shows a battery level." },
   { name: "service-digital-marketing", category: "services", match: "services/service-digital-marketing", hue: 0, saturation: 1, maxEdge: 1600, note: "/services/digital-marketing — accent tangerine." },
   { name: "service-search-engine-optimization", category: "services", match: "services/service-search-engine-optimization", hue: 0, saturation: 1, maxEdge: 1600, note: "/services/search-engine-optimization — accent mint." },
   { name: "service-social-media-management", category: "services", match: "services/service-social-media-management", hue: 0, saturation: 1, maxEdge: 1600, note: "/services/social-media-management — accent pink." },
@@ -280,7 +286,7 @@ try {
 } catch {
   /* first run */
 }
-writeFileSync(MANIFEST, JSON.stringify({ ...existing, ...manifest }, null, 1));
+writeFileSync(MANIFEST, JSON.stringify({ ...existing, ...manifest }, null, 2));
 
 const built = Object.keys(manifest).length;
 console.log(

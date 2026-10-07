@@ -196,6 +196,18 @@ export const brandLogos: BrandLogo[] = [
     minimumSize: 20,
     category: "marketing",
   },
+  {
+    slug: "reddit",
+    name: "Reddit",
+    files: {
+      color: "/logos/reddit.svg",
+    },
+    allowedVariants: ["color"],
+    officialSourceUrl: "https://www.reddit.com/",
+    guidelineUrl: "https://www.redditinc.com/assets/brand-guidelines.pdf",
+    minimumSize: 24,
+    category: "marketing",
+  },
 
   // E-commerce & Payments
   {

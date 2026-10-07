@@ -89,12 +89,12 @@ export const siteConfig = {
 
   /** VERIFIED — from the live /contact-2/ page. This is the only real location. */
   address: {
-    locality: "Uttam Nagar",
+    locality: "New Delhi",
     region: "New Delhi",
-    postalCode: "110059",
+    postalCode: "",
     country: "India",
     countryCode: "IN",
-    /** UNVERIFIED — no street line published on the live site */
+    /** VERIFIED — from the current contact page */
     street: "",
     /** UNVERIFIED — admin should paste the Google Business Profile link */
     mapsUrl: "",
@@ -111,7 +111,7 @@ export const siteConfig = {
    * once one is set.
    */
   social: {
-    linkedin: "https://www.linkedin.com/in/the-digital-alchemy-3a40a9440/",
+    linkedin: "https://www.linkedin.com/in/the-digital-alchemy-media-pvt-ltd-3a40a9440/",
     instagram: "https://www.instagram.com/thedigitalalchemy.co.in/",
     facebook: "https://www.facebook.com/share/1CBexATRfG/",
     reddit: "https://www.reddit.com/user/thedigitalalchmey/",

@@ -64,7 +64,7 @@ export default async function CareersPage() {
   ];
 
   const applyHref = settings.email
-    ? `mailto:${settings.email}?subject=${encodeURIComponent("Application — The Digital Alchemy")}`
+    ? `mailto:${settings.email}?subject=${encodeURIComponent("Application — The Digital Alchemy Media Private Limited")}`
     : "/contact";
 
   return (

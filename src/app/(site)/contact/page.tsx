@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import whatsappQr from "@/content/generated/whatsapp-qr.json";
 import { SectionBackdrop } from "@/components/visuals/section-backdrop";
-import { Mail, QrCode, MapPin, Phone, Clock } from "lucide-react";
+import { Mail, QrCode, MapPin, Phone, Clock, UserRound } from "lucide-react";
 
 import { Breadcrumb } from "@/components/ui/breadcrumb";
 import { Section } from "@/components/ui/section-heading";
@@ -212,6 +212,23 @@ export default async function ContactPage() {
                         className="size-[104px] [&>*]:fill-ink"
                         unoptimized
                       />
+                    </span>
+                  </span>
+                </li>
+              ) : null}
+
+              {settings.founderName ? (
+                <li className="flex items-start gap-3 text-ink-muted">
+                  <UserRound aria-hidden="true" className="mt-0.5 size-4 shrink-0 text-accent" />
+                  <span>
+                    <span className="block text-[0.75rem] uppercase tracking-[0.1em] text-ink-subtle">
+                      Founder
+                    </span>
+                    <span className="block text-[0.9375rem] font-medium">
+                      {settings.founderName}
+                    </span>
+                    <span className="mt-1 block text-[0.8125rem] text-ink-subtle">
+                      {settings.companyName}
                     </span>
                   </span>
                 </li>

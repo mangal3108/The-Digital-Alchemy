@@ -16,6 +16,7 @@ import { siteConfig } from "@/config/site";
 
 export interface ResolvedSettings {
   companyName: string;
+  founderName: string;
   tagline: string;
   shortDescription: string;
   email: string;
@@ -73,7 +74,16 @@ export const SETTING_DEFINITIONS: {
     label: "Company name",
     group: "company",
     type: "text",
-    default: siteConfig.name,
+    hint: "The full registered name. Shown in the footer, legal pages, emails and search results data.",
+    default: siteConfig.legalName,
+  },
+  {
+    key: "company.founder",
+    label: "Founder",
+    group: "company",
+    type: "text",
+    hint: "Shown on the About, Contact and legal pages, and in search results data. Leave blank to hide.",
+    default: siteConfig.founder,
   },
   {
     key: "company.tagline",
@@ -296,6 +306,7 @@ export const getSiteSettings = cache(async (): Promise<ResolvedSettings> => {
 
   return {
     companyName: get("company.name"),
+    founderName: get("company.founder"),
     tagline: get("company.tagline"),
     shortDescription: get("company.description"),
     footerNote: get("company.footerNote"),

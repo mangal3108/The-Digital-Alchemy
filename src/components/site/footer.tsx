@@ -130,7 +130,12 @@ export async function Footer() {
       <div className="container-page py-14">
         <div className="grid gap-10 lg:grid-cols-[minmax(0,1.15fr)_minmax(0,2.6fr)]">
           <div>
-            <Logo className="text-ink" label="The Digital Alchemy Media Private Limited" />
+            <Logo className="text-ink" label={settings.companyName} />
+            {settings.founderName ? (
+              <p className="mt-3 text-sm text-ink-muted">
+                Founded by {settings.founderName}
+              </p>
+            ) : null}
             <p className="mt-4 max-w-xs text-sm leading-relaxed text-ink-muted">
               {settings.tagline}. {settings.shortDescription}
             </p>

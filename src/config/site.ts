@@ -56,7 +56,10 @@ function resolveSiteUrl(): string {
 export const siteConfig = {
   /** VERIFIED — og:site_name on the live site */
   name: "The Digital Alchemy",
+  /** Supplied by the owner. Used wherever the site names the company in text. */
   legalName: "The Digital Alchemy Media Private Limited",
+  /** Supplied by the owner (October 2026). */
+  founder: "Suraj Kalra",
 
   /**
    * Repositioning: the live site presents the company as a social-media and
@@ -90,11 +93,11 @@ export const siteConfig = {
   /** VERIFIED — from the live /contact-2/ page. This is the only real location. */
   address: {
     locality: "New Delhi",
-    region: "New Delhi",
+    region: "",
     postalCode: "",
     country: "India",
     countryCode: "IN",
-    /** VERIFIED — from the current contact page */
+    /** Owner asked for "New Delhi, India" only, without a street line. */
     street: "",
     /** UNVERIFIED — admin should paste the Google Business Profile link */
     mapsUrl: "",

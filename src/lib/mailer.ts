@@ -103,7 +103,7 @@ function layout(title: string, bodyHtml: string): string {
 <body style="margin:0;padding:24px;background:#faf8f5;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;color:#0b0b0d;">
   <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="max-width:600px;margin:0 auto;background:#ffffff;border:1px solid #e5e0d8;border-radius:14px;">
     <tr><td style="padding:28px 28px 8px;">
-      <p style="margin:0 0 4px;font-size:12px;letter-spacing:0.12em;text-transform:uppercase;color:#74747f;">The Digital Alchemy</p>
+      <p style="margin:0 0 4px;font-size:12px;letter-spacing:0.12em;text-transform:uppercase;color:#74747f;">The Digital Alchemy Media Private Limited</p>
       <h1 style="margin:0;font-size:20px;line-height:1.3;color:#0b0b0d;">${escapeHtml(title)}</h1>
     </td></tr>
     <tr><td style="padding:12px 28px 28px;font-size:15px;line-height:1.6;color:#35353d;">${bodyHtml}</td></tr>

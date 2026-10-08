@@ -101,9 +101,11 @@ export default async function AboutPage() {
             className="space-y-4 text-[1.0625rem] leading-relaxed text-ink-muted"
           >
             <p>
-              We are a team in New Delhi. We build websites, online stores, apps
-              and software, set up AI tools that save time, and run online
-              marketing that brings in customers.
+              {settings.companyName} is a team in New Delhi
+              {settings.founderName ? `, founded by ${settings.founderName}` : ""}.
+              We build websites, online stores, apps and software, set up AI
+              tools that save time, and run online marketing that brings in
+              customers.
             </p>
             <p>
               A common problem: a business&apos;s website, apps and marketing were
@@ -194,6 +196,9 @@ export default async function AboutPage() {
               </h2>
             </div>
             <p {...revealProps(80)} className="text-[1.0625rem] leading-relaxed text-ink-muted lg:pt-2">
+              {settings.founderName
+                ? `The team is led by ${settings.founderName}, our founder. `
+                : ""}
               You work with the same small team from the first call to launch.
               The people who plan and design your project also build it and help
               people find it, so you never have to explain things twice.

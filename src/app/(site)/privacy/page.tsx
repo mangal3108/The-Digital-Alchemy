@@ -9,7 +9,7 @@ export async function generateMetadata(): Promise<Metadata> {
   return buildMetadata({
     title: "Privacy Policy | The Digital Alchemy",
     description:
-      "How The Digital Alchemy collects, uses and stores personal information submitted through this website, and the choices available to you.",
+      "How The Digital Alchemy Media Private Limited collects, uses and stores personal information submitted through this website, and the choices available to you.",
     path: "/privacy",
   });
 }
@@ -32,7 +32,8 @@ export default async function PrivacyPage() {
         <h2>Who we are</h2>
         <p>
           {settings.companyName} is a digital product, software and growth
-          studio{address ? ` based at ${address}` : ""}. We are the controller
+          studio{address ? ` based in ${address}` : ""}
+          {settings.founderName ? `, founded by ${settings.founderName}` : ""}. We are the controller
           of the personal information described in this policy. You can reach us
           about anything here at{" "}
           {settings.email ? (

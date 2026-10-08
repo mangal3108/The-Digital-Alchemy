@@ -119,6 +119,11 @@ export async function organizationSchema(): Promise<JsonLd> {
     "@type": ["Organization", "ProfessionalService"],
     "@id": absoluteUrl("/#organization"),
     name: settings.companyName,
+    legalName: siteConfig.legalName,
+    alternateName: siteConfig.name,
+    ...(settings.founderName
+      ? { founder: { "@type": "Person", name: settings.founderName } }
+      : {}),
     description: settings.shortDescription,
     url: absoluteUrl("/"),
     email: settings.email || undefined,
@@ -256,6 +261,7 @@ export async function localBusinessSchema(): Promise<JsonLd | null> {
     "@type": "LocalBusiness",
     "@id": absoluteUrl("/#localbusiness"),
     name: settings.companyName,
+    alternateName: siteConfig.name,
     image: absoluteUrl(siteConfig.ogImage),
     url: absoluteUrl("/"),
     email: settings.email || undefined,

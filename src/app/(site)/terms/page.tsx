@@ -10,7 +10,7 @@ export async function generateMetadata(): Promise<Metadata> {
   return buildMetadata({
     title: "Terms of Use | The Digital Alchemy",
     description:
-      "The terms on which The Digital Alchemy makes this website available, including intellectual property, acceptable use and liability.",
+      "The terms on which The Digital Alchemy Media Private Limited makes this website available, including intellectual property, acceptable use and liability.",
     path: "/terms",
   });
 }
@@ -29,7 +29,8 @@ export default async function TermsPage() {
         <h2>These terms</h2>
         <p>
           This website is operated by {settings.companyName}
-          {address ? `, ${address}` : ""}. By using the site you accept these
+          {address ? `, ${address}` : ""}
+          {settings.founderName ? `, founded by ${settings.founderName}` : ""}. By using the site you accept these
           terms. If you do not accept them, please do not use the site.
         </p>
         <p>

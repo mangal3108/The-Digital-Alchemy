@@ -336,6 +336,14 @@ Each page now has one clear purpose and one call to action. **The 20 secondary b
   - Alt text describes what each image shows.
 - Rebuilding images also rewrote every existing image with slightly different bytes. Those were restored; only the three new files and their manifest entries are added. The script now writes the manifest with 2-space indentation, as committed, so future runs do not reformat it.
 
+## Full company name and founder (October 2026)
+
+- **Company name** now defaults to the full name, **The Digital Alchemy Media Private Limited** (Admin → Settings → Company name). It appears in the footer and copyright line, Terms, Privacy, About, Contact, the chat assistant, emails and search-engine data.
+- **Founder: Suraj Kalra.** New setting, Admin → Settings → Founder. Shown on About, Contact, Terms, Privacy, the footer ("Founded by Suraj Kalra") and in search-engine data (`founder`). Blank hides it everywhere.
+- **Kept short on purpose:** the header logo and page titles (browser tabs and Google results) still say "The Digital Alchemy". Google cuts titles at about 60 characters, so the full name would be cut off mid-word in results. Search data lists the short name as `alternateName`, so both names point to the same company.
+- **Address** reads "New Delhi, India" (it said "New Delhi, New Delhi, India").
+- **Reddit icon** is now Reddit's official logo, in its brand orange.
+
 ## `{{TODO}}` items for you
 
 | # | Item | Where |

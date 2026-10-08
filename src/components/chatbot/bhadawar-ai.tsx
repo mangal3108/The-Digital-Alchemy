@@ -10,7 +10,7 @@ const INITIAL_MESSAGES: ChatMessage[] = [
   {
     id: "welcome-1",
     role: "assistant",
-    content: "Hi there! I am **AI**, your technical consultant at **The Digital Alchemy**.\n\nI can help you explore our AI automation services, review our production tech stack, or directly scope and submit a project inquiry to our senior engineers.\n\nWhat are you planning to build?",
+    content: "Hi there! I am **AI**, your technical consultant at **The Digital Alchemy Media Private Limited**.\n\nI can help you explore our AI automation services, review our production tech stack, or directly scope and submit a project inquiry to our senior engineers.\n\nWhat are you planning to build?",
     timestamp: Date.now(),
   },
 ];
@@ -231,7 +231,7 @@ export function BhadawarAI() {
                   </h3>
                 </div>
                 <p className="text-[0.6875rem] text-slate-500 dark:text-slate-400 font-medium">
-                  Your Friendly Assistant · The Digital Alchemy
+                  Your Friendly Assistant · The Digital Alchemy Media Private Limited
                 </p>
               </div>
             </div>
@@ -367,7 +367,7 @@ export function BhadawarAI() {
               </button>
             </div>
             <p className="mt-2 text-center text-[0.625rem] text-slate-400 font-medium">
-              Grounded in The Digital Alchemy website · support@thedigitalalchemy.co.in
+              Grounded in the website of The Digital Alchemy Media Private Limited · support@thedigitalalchemy.co.in
             </p>
           </div>
         </div>

@@ -78,7 +78,7 @@ export const serviceAltText: Record<string, string> = {
   "product-design":
     "Product design desk with sketchbook drawings, a technical drawing with measurements, a 3D model on a monitor and the finished device beside its phone app",
   branding:
-    "Brand identity layout for The Digital Alchemy: logo sketches, typography, business cards, packaging, a brochure and colour swatches",
+    "Brand identity layout for The Digital Alchemy Media Private Limited: logo sketches, typography, business cards, packaging, a brochure and colour swatches",
   "ecommerce-development":
     "Laptop and phone displaying an upscale online store interface with product grid cards, slide-out shopping cart, and checkout summary",
   "digital-marketing":

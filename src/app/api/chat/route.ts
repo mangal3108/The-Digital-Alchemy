@@ -60,7 +60,7 @@ function generateFallbackResponse(userPrompt: string): { response: string; actio
 
   if (lower.includes("service") || lower.includes("offer") || lower.includes("what do you do")) {
     return {
-      response: `At **The Digital Alchemy**, we specialize in high-impact digital engineering across 4 core capabilities:\n\n1. **AI Automation & Agents**: Autonomous operational pipelines, custom LLM agents, and automated workflows.\n2. **AI-Ready SaaS & Web Platforms**: Scalable SaaS platforms and full-stack software built on Next.js, Node.js, and PostgreSQL.\n3. **Custom Software & Cloud**: High-throughput APIs, distributed backends, and cloud infrastructure.\n4. **UI/UX Design Systems**: World-class, Apple-grade interface design with micro-animations.\n\nWould you like to scope a project or discuss an MVP? Share your idea and email, and I can submit a brief directly to our team!`,
+      response: `At **The Digital Alchemy Media Private Limited**, we specialize in high-impact digital engineering across 4 core capabilities:\n\n1. **AI Automation & Agents**: Autonomous operational pipelines, custom LLM agents, and automated workflows.\n2. **AI-Ready SaaS & Web Platforms**: Scalable SaaS platforms and full-stack software built on Next.js, Node.js, and PostgreSQL.\n3. **Custom Software & Cloud**: High-throughput APIs, distributed backends, and cloud infrastructure.\n4. **UI/UX Design Systems**: World-class, Apple-grade interface design with micro-animations.\n\nWould you like to scope a project or discuss an MVP? Share your idea and email, and I can submit a brief directly to our team!`,
       actionData: null,
     };
   }
@@ -109,7 +109,7 @@ If you tell me what you are planning, along with your name and email, I will pas
   }
 
   return {
-    response: `Hello! I am **AI**, the digital representative for **The Digital Alchemy**.\n\nI can help you explore our AI automation services, review our technical stack, look through client case studies, or submit a project brief directly to our senior engineering team.\n\nWhat kind of digital system or software are you looking to build?`,
+    response: `Hello! I am **AI**, the digital representative for **The Digital Alchemy Media Private Limited**.\n\nI can help you explore our AI automation services, review our technical stack, look through client case studies, or submit a project brief directly to our senior engineering team.\n\nWhat kind of digital system or software are you looking to build?`,
     actionData: null,
   };
 }

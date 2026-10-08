@@ -20,7 +20,7 @@ export default async function LoginPage() {
         <div className="flex items-center gap-2.5">
           <LogoMark className="h-7 w-auto" />
           <span className="font-display text-[0.9375rem] font-semibold tracking-[-0.02em] text-ink">
-            The Digital Alchemy
+            The Digital Alchemy Media Private Limited
           </span>
         </div>
 

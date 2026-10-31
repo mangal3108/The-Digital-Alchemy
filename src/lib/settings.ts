@@ -22,6 +22,8 @@ export interface ResolvedSettings {
   email: string;
   phone: string;
   phoneE164: string;
+  /** Every number to show, main one first, each with its country. */
+  phones: PhoneNumber[];
   whatsapp: string;
   addressLocality: string;
   addressRegion: string;
@@ -41,6 +43,14 @@ export interface ResolvedSettings {
   };
   defaultMetaTitle: string;
   defaultMetaDescription: string;
+}
+
+export interface PhoneNumber {
+  country: string;
+  /** As shown on the page, e.g. "+1 365 389 7559" */
+  display: string;
+  /** For tel: links, e.g. "+13653897559" */
+  e164: string;
 }
 
 const SOCIAL_KEYS = [
@@ -132,6 +142,22 @@ export const SETTING_DEFINITIONS: {
     hint: "Used for tel: links. Include the country code, no spaces.",
     default: siteConfig.phoneE164,
   },
+  {
+    key: "contact.phoneCountry",
+    label: "Phone country",
+    group: "contact",
+    type: "text",
+    hint: "Shown in front of the main number, e.g. India.",
+    default: siteConfig.phoneCountry,
+  },
+  ...siteConfig.additionalPhones.map((extra) => ({
+    key: `contact.phone.${extra.key}`,
+    label: `Phone (${extra.country})`,
+    group: "contact",
+    type: "tel",
+    hint: "Include the country code. Leave blank to hide.",
+    default: extra.phone,
+  })),
   {
     key: "contact.whatsapp",
     label: "WhatsApp number",
@@ -313,6 +339,17 @@ export const getSiteSettings = cache(async (): Promise<ResolvedSettings> => {
     email: get("contact.email"),
     phone: get("contact.phone"),
     phoneE164: get("contact.phoneE164"),
+    phones: [
+      {
+        country: get("contact.phoneCountry"),
+        display: get("contact.phone"),
+        e164: get("contact.phoneE164") || toE164(get("contact.phone")),
+      },
+      ...siteConfig.additionalPhones.map((extra) => {
+        const display = get(`contact.phone.${extra.key}`);
+        return { country: extra.country, display, e164: toE164(display) };
+      }),
+    ].filter((phone) => phone.display),
     whatsapp: get("contact.whatsapp"),
     businessHours: get("contact.businessHours"),
     replyTime: get("contact.replyTime"),
@@ -345,6 +382,11 @@ export function formatAddress(settings: ResolvedSettings): string {
   ]
     .filter(Boolean)
     .join(", ");
+}
+
+/** "+1 365 389 7559" → "+13653897559" */
+function toE164(display: string): string {
+  return display.replace(/[^\d+]/g, "");
 }
 
 export function whatsappLink(settings: ResolvedSettings, message?: string): string {

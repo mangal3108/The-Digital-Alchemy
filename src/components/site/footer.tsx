@@ -102,15 +102,21 @@ export async function Footer() {
                   </Button>
                 ) : null}
               </div>
-              {settings.phone ? (
+              {settings.phones.length ? (
                 <p className="mt-5 text-[0.9375rem] text-ink-muted">
                   Prefer to talk? Call{" "}
-                  <a
-                    href={`tel:${settings.phoneE164 || settings.phone}`}
-                    className="font-medium text-ink underline underline-offset-4"
-                  >
-                    {settings.phone}
-                  </a>
+                  {settings.phones.map((phone, index) => (
+                    <span key={phone.e164}>
+                      {index > 0 ? ", " : null}
+                      {phone.country ? `${phone.country} ` : null}
+                      <a
+                        href={`tel:${phone.e164}`}
+                        className="whitespace-nowrap font-medium text-ink underline underline-offset-4"
+                      >
+                        {phone.display}
+                      </a>
+                    </span>
+                  ))}
                 </p>
               ) : null}
             </div>
@@ -153,18 +159,23 @@ export async function Footer() {
                   </a>
                 </li>
               ) : null}
-              {settings.phone ? (
-                <li>
+              {settings.phones.map((phone) => (
+                <li key={phone.e164}>
                   <a
-                    href={`tel:${settings.phoneE164 || settings.phone}`}
+                    href={`tel:${phone.e164}`}
                     data-analytics="phone_click"
                     className="inline-flex items-center gap-2.5 text-ink-muted transition-colors duration-[var(--duration-fast)] hover:text-ink focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus"
                   >
                     <Phone aria-hidden="true" className="size-4 shrink-0" />
-                    {settings.phone}
+                    <span>
+                      {phone.country ? (
+                        <span className="text-ink-subtle">{phone.country} </span>
+                      ) : null}
+                      {phone.display}
+                    </span>
                   </a>
                 </li>
-              ) : null}
+              ))}
               {address ? (
                 <li className="flex items-start gap-2.5 text-ink-muted">
                   <MapPin aria-hidden="true" className="mt-0.5 size-4 shrink-0" />

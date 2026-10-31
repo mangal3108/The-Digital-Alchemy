@@ -128,6 +128,16 @@ export async function organizationSchema(): Promise<JsonLd> {
     url: absoluteUrl("/"),
     email: settings.email || undefined,
     telephone: settings.phoneE164 || undefined,
+    ...(settings.phones.length
+      ? {
+          contactPoint: settings.phones.map((phone) => ({
+            "@type": "ContactPoint",
+            telephone: phone.e164,
+            contactType: "customer service",
+            ...(phone.country ? { areaServed: phone.country } : {}),
+          })),
+        }
+      : {}),
     address,
     ...(settings.mapsUrl ? { hasMap: settings.mapsUrl } : {}),
     ...(sameAs.length ? { sameAs } : {}),

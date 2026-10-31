@@ -138,25 +138,25 @@ export default async function ContactPage() {
                 </li>
               ) : null}
 
-              {settings.phone ? (
-                <li>
+              {settings.phones.map((phone) => (
+                <li key={phone.e164}>
                   <a
-                    href={`tel:${settings.phoneE164 || settings.phone}`}
+                    href={`tel:${phone.e164}`}
                     data-analytics="phone_click"
                     className="group flex items-start gap-3 rounded-md text-ink-muted transition-colors duration-[var(--duration-fast)] hover:text-ink focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus"
                   >
                     <Phone aria-hidden="true" className="mt-0.5 size-4 shrink-0 text-accent" />
                     <span>
                       <span className="block text-[0.75rem] uppercase tracking-[0.1em] text-ink-subtle">
-                        Phone
+                        {phone.country ? `Phone · ${phone.country}` : "Phone"}
                       </span>
                       <span className="block text-[0.9375rem] font-medium">
-                        {settings.phone}
+                        {phone.display}
                       </span>
                     </span>
                   </a>
                 </li>
-              ) : null}
+              ))}
 
               {whatsapp ? (
                 <li>

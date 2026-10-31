@@ -89,6 +89,18 @@ export const siteConfig = {
   /** E.164, used for tel: and wa.me links */
   phoneE164: "+919990463175",
   whatsapp: "919990463175",
+  /** Country shown in front of the main number wherever several are listed. */
+  phoneCountry: "India",
+
+  /**
+   * Extra numbers supplied by the owner (October 2026) for clients in North
+   * America. Shown after the main number with their country in front. They
+   * are phone numbers only: WhatsApp and the office address stay in India.
+   */
+  additionalPhones: [
+    { key: "canada", country: "Canada", phone: "+1 365 389 7559" },
+    { key: "usa", country: "USA", phone: "+1 516 529 0758" },
+  ],
 
   /** VERIFIED — from the live /contact-2/ page. This is the only real location. */
   address: {

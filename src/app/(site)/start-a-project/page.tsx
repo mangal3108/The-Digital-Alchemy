@@ -122,18 +122,24 @@ export default async function StartProjectPage({
                 </ol>
               </div>
 
-              {settings.phone ? (
+              {settings.phones.length ? (
                 <p
                   {...revealProps(170)}
                   className="mt-7 text-[0.9375rem] text-ink-muted"
                 >
                   Rather talk now? Call{" "}
-                  <a
-                    href={`tel:${settings.phoneE164 || settings.phone}`}
-                    className="font-medium text-accent-text underline underline-offset-4"
-                  >
-                    {settings.phone}
-                  </a>
+                  {settings.phones.map((phone, index) => (
+                    <span key={phone.e164}>
+                      {index > 0 ? ", " : null}
+                      {phone.country ? `${phone.country} ` : null}
+                      <a
+                        href={`tel:${phone.e164}`}
+                        className="whitespace-nowrap font-medium text-accent-text underline underline-offset-4"
+                      >
+                        {phone.display}
+                      </a>
+                    </span>
+                  ))}
                   {whatsapp ? (
                     <>
                       {" "}or{" "}
